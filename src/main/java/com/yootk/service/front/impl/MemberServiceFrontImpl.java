@@ -11,6 +11,12 @@ import com.yootk.vo.Member;
 public class MemberServiceFrontImpl extends AbstractService implements IMemberServiceFront {
     @Autowired
     private IMemberDAO memberDAO ;
+
+    @Override
+    public boolean register(Member vo) throws Exception {
+        return false;
+    }
+
     @Override
     public boolean login(Member vo) throws Exception {
         Member member = this.memberDAO.findByIdAndpw(vo.getMid());
