@@ -1,5 +1,6 @@
 package com.yootk.dao.impl;
 
+import com.yootk.common.annotation.Repository;
 import com.yootk.common.dao.abs.AbstractDAO;
 import com.yootk.dao.IMemberDAO;
 import com.yootk.vo.Member;
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+@Repository
 public class MemberDAOImpl extends AbstractDAO implements IMemberDAO {
     @Override
     public boolean doCreate(Member member) throws SQLException {
@@ -28,16 +30,6 @@ public class MemberDAOImpl extends AbstractDAO implements IMemberDAO {
 
     @Override
     public Member findById(String mid) throws SQLException {
-        String sql = "SELECT mid,password FROM member WHERE mid=?";
-        super.pstmt = super.conn.prepareStatement(sql);
-        super.pstmt.setString(1,mid);
-        ResultSet rs = super.pstmt.executeQuery();
-        if (rs.next()){
-            Member vo = new Member();
-            vo.setMid(rs.getString(1));
-            vo.setPassword(rs.getString(2));
-            return vo;
-        }
         return null;
     }
 
@@ -63,6 +55,23 @@ public class MemberDAOImpl extends AbstractDAO implements IMemberDAO {
 
     @Override
     public Long getAllCount(String column, String keyWord) throws SQLException {
+        return null;
+    }
+
+    @Override
+    public Member findByIdAndpw(String id) throws SQLException {
+        Member vo = null;
+        String sql = "SELECT mid,name,password FROM member WHERE mid=?";
+        super.pstmt = super.conn.prepareStatement(sql);
+        super.pstmt.setString(1,id);
+        ResultSet rs = super.pstmt.executeQuery();
+        if (rs.next()){
+            vo = new Member();
+            vo.setMid(rs.getString(1));
+            vo.setName(rs.getString(2));
+            vo.setPassword(rs.getString(3));
+            return vo;
+        }
         return null;
     }
 }
