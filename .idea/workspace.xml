@@ -7,20 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="11d629aa-d426-436e-b640-180f95fade86" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yootk/action/front/MemberActionFront.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yootk/service/front/impl/MemberServiceFrontImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yootk/action/CodeAction.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/yootk/common/dbc/DatabaseConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yootk/common/dbc/DatabaseConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yootk/dao/IMemberDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yootk/dao/IMemberDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yootk/dao/impl/MemberDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yootk/dao/impl/MemberDAOImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yootk/vo/Member.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yootk/vo/Member.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/yootk/mall/action/resource/Page.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/yootk/mall/action/resource/Page.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/login.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/plugins/front/include_navbar.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/plugins/front/include_navbar.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -125,20 +113,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/index.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="10" column="59" lean-forward="true" selection-start-line="10" selection-start-column="59" selection-end-line="10" selection-end-column="59" />
+            <state relative-caret-position="330">
+              <caret line="24" column="42" lean-forward="true" selection-start-line="24" selection-start-column="42" selection-end-line="24" selection-end-column="42" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/plugins/front/include_navbar.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="503">
-              <caret line="56" column="38" selection-start-line="56" selection-start-column="38" selection-end-line="56" selection-end-column="38" />
+            <state relative-caret-position="613">
+              <caret line="61" column="6" lean-forward="true" selection-start-line="61" selection-start-column="6" selection-end-line="61" selection-end-column="6" />
               <folding>
                 <element signature="e#1012#1018#0#HTML" expanded="true" />
               </folding>
@@ -529,7 +517,7 @@
       <workItem from="1558947458852" duration="251000" />
       <workItem from="1558948361954" duration="366000" />
       <workItem from="1558949114924" duration="4248000" />
-      <workItem from="1558954043555" duration="5261000" />
+      <workItem from="1558954043555" duration="5362000" />
     </task>
     <task id="LOCAL-00001" summary="dao">
       <created>1558945352537</created>
@@ -552,17 +540,24 @@
       <option name="project" value="LOCAL" />
       <updated>1558949757176</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="实现用户登录">
+      <created>1558959378856</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1558959378856</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11681000" />
+    <option name="totallyTimeSpent" value="11782000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16791044" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16791044" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -572,7 +567,7 @@
       <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.11388286" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.11388286" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.47939262" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -635,7 +630,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="dao" />
-    <option name="LAST_COMMIT_MESSAGE" value="dao" />
+    <MESSAGE value="实现用户登录" />
+    <option name="LAST_COMMIT_MESSAGE" value="实现用户登录" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$MAVEN_REPOSITORY$/org/springframework/spring-core/5.1.7.RELEASE/spring-core-5.1.7.RELEASE.pom">
@@ -829,13 +825,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/index.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="10" column="59" lean-forward="true" selection-start-line="10" selection-start-column="59" selection-end-line="10" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/yootk/common/action/abs/AbstractAction.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="154">
@@ -863,11 +852,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/plugins/front/include_navbar.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="503">
-          <caret line="56" column="38" selection-start-line="56" selection-start-column="38" selection-end-line="56" selection-end-column="38" />
+        <state relative-caret-position="613">
+          <caret line="61" column="6" lean-forward="true" selection-start-line="61" selection-start-column="6" selection-end-line="61" selection-end-column="6" />
           <folding>
             <element signature="e#1012#1018#0#HTML" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/index.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="24" column="42" lean-forward="true" selection-start-line="24" selection-start-column="42" selection-end-line="24" selection-end-column="42" />
         </state>
       </provider>
     </entry>
