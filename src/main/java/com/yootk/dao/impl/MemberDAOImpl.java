@@ -59,6 +59,15 @@ public class MemberDAOImpl extends AbstractDAO implements IMemberDAO {
     }
 
     @Override
+    public boolean doCreateByMember(Member vo) throws SQLException {
+        String sql = "INSERT INTO member(mid,password) VALUES (?,?)";
+        super.pstmt = super.conn.prepareStatement(sql);
+        super.pstmt.setString(1,vo.getMid());
+        super.pstmt.setString(2,vo.getPassword());
+        return super.pstmt.executeUpdate()>0;
+    }
+
+    @Override
     public Member findByIdAndpw(String id) throws SQLException {
         Member vo = null;
         String sql = "SELECT mid,name,password FROM member WHERE mid=?";
