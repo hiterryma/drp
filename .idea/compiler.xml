@@ -6,7 +6,10 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="mall-upload" />
         <module name="drp" />
+        <module name="mall-web" />
+        <module name="mall-common" />
       </profile>
     </annotationProcessing>
   </component>

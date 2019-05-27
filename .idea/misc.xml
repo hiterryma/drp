@@ -3,6 +3,8 @@
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$" />
+    <file type="web" url="file://D:/workspace/idea/mldn/mall/mall-upload" />
+    <file type="web" url="file://D:/workspace/idea/mldn/mall/mall-web" />
   </component>
   <component name="JavaScriptSettings">
     <option name="languageLevel" value="ES6" />
@@ -11,6 +13,7 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="D:/workspace/idea/mldn/mall/pom.xml" />
       </list>
     </option>
   </component>
