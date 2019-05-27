@@ -1,6 +1,5 @@
 package com.yootk.vo;
 
-import sun.plugin2.message.Serializer;
 
 import java.io.Serializable;
 
