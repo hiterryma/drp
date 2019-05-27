@@ -1,5 +1,6 @@
 package com.yootk.dao.impl;
 
+import com.yootk.common.annotation.Repository;
 import com.yootk.common.dao.abs.AbstractDAO;
 import com.yootk.dao.IMemberDAO;
 import com.yootk.vo.Member;
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+@Repository
 public class MemberDAOImpl extends AbstractDAO implements IMemberDAO {
     @Override
     public boolean doCreate(Member member) throws SQLException {
@@ -27,7 +29,7 @@ public class MemberDAOImpl extends AbstractDAO implements IMemberDAO {
     }
 
     @Override
-    public Member findById(String s) throws SQLException {
+    public Member findById(String mid) throws SQLException {
         return null;
     }
 
@@ -57,18 +59,28 @@ public class MemberDAOImpl extends AbstractDAO implements IMemberDAO {
     }
 
     @Override
-    public List<Member> findByIdAndPw(String mid) throws SQLException {
-        List<Member> all = new ArrayList<>();
-        String sql = "SELECT mid,password FROM member WHERE mid=?";
+    public boolean doCreateByMember(Member vo) throws SQLException {
+        String sql = "INSERT INTO member(mid,password) VALUES (?,?)";
         super.pstmt = super.conn.prepareStatement(sql);
-        super.pstmt.setString(1,mid);
+        super.pstmt.setString(1,vo.getMid());
+        super.pstmt.setString(2,vo.getPassword());
+        return super.pstmt.executeUpdate()>0;
+    }
+
+    @Override
+    public Member findByIdAndpw(String id) throws SQLException {
+        Member vo = null;
+        String sql = "SELECT mid,name,password FROM member WHERE mid=?";
+        super.pstmt = super.conn.prepareStatement(sql);
+        super.pstmt.setString(1,id);
         ResultSet rs = super.pstmt.executeQuery();
         if (rs.next()){
-            Member vo = new Member();
+            vo = new Member();
             vo.setMid(rs.getString(1));
-            vo.setPassword(rs.getString(2));
-            all.add(vo);
+            vo.setName(rs.getString(2));
+            vo.setPassword(rs.getString(3));
+            return vo;
         }
-        return all;
+        return null;
     }
 }

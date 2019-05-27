@@ -138,4 +138,25 @@ public class Member implements java.io.Serializable {
     public void setCuid(Long cuid) {
         this.cuid = cuid;
     }
+
+    @Override
+    public String toString() {
+        return "Member{" +
+                "mid='" + mid + '\'' +
+                ", lid=" + lid +
+                ", did=" + did +
+                ", name='" + name + '\'' +
+                ", sal=" + sal +
+                ", phone='" + phone + '\'' +
+                ", password='" + password + '\'' +
+                ", photo='" + photo + '\'' +
+                ", note='" + note + '\'' +
+                ", regdate=" + regdate +
+                ", inmid='" + inmid + '\'' +
+                ", locked=" + locked +
+                ", type=" + type +
+                ", email='" + email + '\'' +
+                ", cuid=" + cuid +
+                '}';
+    }
 }
