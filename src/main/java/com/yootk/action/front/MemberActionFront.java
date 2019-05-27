@@ -18,6 +18,26 @@ public class MemberActionFront extends AbstractAction {
     @Autowired
     private IMemberServiceFront memberService;
 
+    @RequestMapping("/member_register")
+    public ModuleAndView register(Member vo){
+        ModuleAndView mav = new ModuleAndView(super.getPage("login.action"));
+        vo.setPassword(EncryptUtil.encode(vo.getPassword()));
+        try {
+            if (memberService.register(vo)) {
+                ServletObject.getRequest().getSession().setAttribute("mid", vo.getMid());
+                mav.setView(super.getForwardPage());
+                mav.add(AbstractAction.PATH_ATTRIBUTE_NAME, super.getIndexPage());
+                mav.add(AbstractAction.MSG_ATTRIBUTE_NAME, ResourceUtil.getMessage("login.success", ACTION_TITLE));
+            } else {
+                mav.add(AbstractAction.PATH_ATTRIBUTE_NAME, super.getPage("index.page"));
+                mav.add(AbstractAction.MSG_ATTRIBUTE_NAME, ResourceUtil.getMessage("login.failure", ACTION_TITLE));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return mav;
+    }
+
     /**
      * 登录前的页面跳转处理
      *
@@ -83,7 +103,6 @@ public class MemberActionFront extends AbstractAction {
             mav.add(AbstractAction.PATH_ATTRIBUTE_NAME, super.getPage("index.page"));
             mav.add(AbstractAction.MSG_ATTRIBUTE_NAME, ResourceUtil.getMessage("login.failure", ACTION_TITLE));
         }
-        System.out.println(super.getFrontUser());
         return mav;
     }
 
