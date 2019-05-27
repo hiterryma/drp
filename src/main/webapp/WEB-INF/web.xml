@@ -20,7 +20,7 @@
         <servlet-class>com.yootk.common.servlet.DispatcherServlet</servlet-class>
         <init-param>
             <param-name>scanPackages</param-name>
-            <param-value>com.yootk.action</param-value> <!-- 如果有多个包使用“;”分割 -->
+            <param-value>com.yootk</param-value> <!-- 如果有多个包使用“;”分割 -->
         </init-param>
         <init-param>
             <param-name>validationBaseName</param-name>

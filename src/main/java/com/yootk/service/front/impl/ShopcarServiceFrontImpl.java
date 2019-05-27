@@ -3,13 +3,22 @@ package com.yootk.service.front.impl;
 import com.yootk.common.annotation.Autowired;
 import com.yootk.common.annotation.Service;
 import com.yootk.common.service.abs.AbstractService;
+import com.yootk.dao.IGoodsDAO;
 import com.yootk.dao.IShopcarDAO;
 import com.yootk.service.front.IShopcarServiceFront;
+import com.yootk.vo.Goods;
 import com.yootk.vo.Shopcar;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 @Service //注解业务层
 public class ShopcarServiceFrontImpl extends AbstractService implements IShopcarServiceFront {
     @Autowired //自动注入
     private IShopcarDAO shopcarDAO;
+    @Autowired
+    private IGoodsDAO goodsDAO ;
     @Override
     public boolean add(Shopcar vo) throws Exception {
         //1.根据用户id和商品编号查询已有的购物车中的保存的商品数量
@@ -23,5 +32,15 @@ public class ShopcarServiceFrontImpl extends AbstractService implements IShopcar
             return this.shopcarDAO.doEditAmountByMemberAndGoods(vo.getMid(),vo.getGid(),amout);
         }
 
+    }
+
+    @Override
+    public Map<String, Object> listByMember(String mid) throws Exception {
+        Map<String,Object> result = new HashMap<>() ;
+        Map<Long,Integer> shopcar = this.shopcarDAO.findAllByMember(mid) ;
+        List<Goods> allGoods = this.goodsDAO.findAllByGids(shopcar.keySet()) ;
+        result.put("shopcar",shopcar) ;
+        result.put("allGoods",allGoods) ;
+        return result;
     }
 }

@@ -5,6 +5,7 @@ import com.yootk.common.dao.IBaseDAO;
 import com.yootk.vo.Shopcar;
 
 import java.sql.SQLException;
+import java.util.Map;
 
 public interface IShopcarDAO extends IBaseDAO<Long, Shopcar> {
     /**
@@ -25,4 +26,13 @@ public interface IShopcarDAO extends IBaseDAO<Long, Shopcar> {
      * @throws SQLException JDBC
      */
     public boolean doEditAmountByMemberAndGoods(String mid,Long gid,Integer amount)throws SQLException;
+
+    /**
+     * 根据用户id查找出此用户的全部购物车的信息，为了方便页面的显示以及商品数据的查询，本次返回Map
+     * Map中的key为商品id集合，Map中的value为商品的购物数量
+     * @param mid 当前用户编号
+     * @return 用户所购买的所有商品
+     * @throws SQLException JDBC
+     */
+    public Map<Long,Integer> findAllByMember(String mid)throws SQLException;
 }

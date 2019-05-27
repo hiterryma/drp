@@ -7,7 +7,9 @@ import com.yootk.vo.Shopcar;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 @Repository //注解数据层
 public class ShopcarDAOImpl extends AbstractDAO implements IShopcarDAO {
@@ -82,5 +84,18 @@ public class ShopcarDAOImpl extends AbstractDAO implements IShopcarDAO {
         super.pstmt.setString(2,mid);
         super.pstmt.setLong(3,gid);
         return super.pstmt.executeUpdate()>0;
+    }
+
+    @Override
+    public Map<Long, Integer> findAllByMember(String mid) throws SQLException {
+        Map<Long,Integer> map=new HashMap<>();
+        String sql="select gid,amount from shopcar where mid=?";
+        super.pstmt=super.conn.prepareStatement(sql);
+        super.pstmt.setString(1,mid);
+        ResultSet rs=super.pstmt.executeQuery();
+        while(rs.next()){
+            map.put(rs.getLong(1),rs.getInt(2));//保存商品编号和对应数量
+        }
+        return map;
     }
 }
