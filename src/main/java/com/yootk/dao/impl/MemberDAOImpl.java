@@ -27,7 +27,17 @@ public class MemberDAOImpl extends AbstractDAO implements IMemberDAO {
     }
 
     @Override
-    public Member findById(String s) throws SQLException {
+    public Member findById(String mid) throws SQLException {
+        String sql = "SELECT mid,password FROM member WHERE mid=?";
+        super.pstmt = super.conn.prepareStatement(sql);
+        super.pstmt.setString(1,mid);
+        ResultSet rs = super.pstmt.executeQuery();
+        if (rs.next()){
+            Member vo = new Member();
+            vo.setMid(rs.getString(1));
+            vo.setPassword(rs.getString(2));
+            return vo;
+        }
         return null;
     }
 
@@ -54,21 +64,5 @@ public class MemberDAOImpl extends AbstractDAO implements IMemberDAO {
     @Override
     public Long getAllCount(String column, String keyWord) throws SQLException {
         return null;
-    }
-
-    @Override
-    public List<Member> findByIdAndPw(String mid) throws SQLException {
-        List<Member> all = new ArrayList<>();
-        String sql = "SELECT mid,password FROM member WHERE mid=?";
-        super.pstmt = super.conn.prepareStatement(sql);
-        super.pstmt.setString(1,mid);
-        ResultSet rs = super.pstmt.executeQuery();
-        if (rs.next()){
-            Member vo = new Member();
-            vo.setMid(rs.getString(1));
-            vo.setPassword(rs.getString(2));
-            all.add(vo);
-        }
-        return all;
     }
 }
