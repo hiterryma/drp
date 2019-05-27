@@ -2,21 +2,21 @@ package com.yootk.dao.impl;
 
 import com.yootk.common.annotation.Repository;
 import com.yootk.common.dao.abs.AbstractDAO;
-import com.yootk.dao.IProvinceDAO;
-import com.yootk.vo.Province;
+import com.yootk.dao.IWitemDAO;
+import com.yootk.vo.Witem;
 
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Set;
 @Repository
-public class ProvinceDAOImpl extends AbstractDAO implements IProvinceDAO {
+public class ItemDAOImpl extends AbstractDAO implements IWitemDAO {
     @Override
-    public boolean doCreate(Province province) throws SQLException {
+    public boolean doCreate(Witem witem) throws SQLException {
         return false;
     }
 
     @Override
-    public boolean doEdit(Province province) throws SQLException {
+    public boolean doEdit(Witem witem) throws SQLException {
         return false;
     }
 
@@ -26,24 +26,24 @@ public class ProvinceDAOImpl extends AbstractDAO implements IProvinceDAO {
     }
 
     @Override
-    public Province findById(Long aLong) throws SQLException {
+    public Witem findById(Long aLong) throws SQLException {
         return null;
     }
 
     @Override
-    public List<Province> findAll() throws SQLException {
-        String sql = "select pid title from province";
+    public List<Witem> findAll() throws SQLException {
+        String sql = "select wiid title from witem";
         super.pstmt = super.conn.prepareStatement(sql);
-        return super.handleResultToList(super.pstmt.executeQuery(), Province.class);
+        return super.handleResultToList(super.pstmt.executeQuery(), Witem.class);
     }
 
     @Override
-    public List<Province> findSplit(Long currentPage, Integer lineSize) throws SQLException {
+    public List<Witem> findSplit(Long currentPage, Integer lineSize) throws SQLException {
         return null;
     }
 
     @Override
-    public List<Province> findSplit(Long currentPage, Integer lineSize, String column, String keyWord) throws SQLException {
+    public List<Witem> findSplit(Long currentPage, Integer lineSize, String column, String keyWord) throws SQLException {
         return null;
     }
 
