@@ -5,7 +5,7 @@
 	<script type="text/javascript" src="js/mall_index.js"></script>
 </head>
 <%!
-	public static final String LOGIN_URL = "" ;
+	public static final String LOGIN_URL = "/member_login.action" ;
 %>
 <script type="text/javascript" src="js/login.js"></script>
 <body class="back">
