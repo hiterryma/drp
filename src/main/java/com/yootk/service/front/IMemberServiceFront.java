@@ -7,7 +7,7 @@ public interface IMemberServiceFront {
 
     /**
      * 实现登录验证
-     * @param vo
+     * @param vo  需要验证的member集合
      * @return
      * @throws Exception
      */

@@ -14,6 +14,9 @@ public class MemberServiceFrontImpl extends AbstractService implements IMemberSe
 
     @Override
     public boolean register(Member vo) throws Exception {
+        if (vo != null){
+            return  this.memberDAO.doCreateByMember(vo);
+        }
         return false;
     }
 
