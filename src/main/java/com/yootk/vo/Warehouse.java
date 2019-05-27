@@ -1,6 +1,4 @@
 package com.yootk.vo;
-
-
 import java.io.Serializable;
 
 public class Warehouse implements Serializable {
