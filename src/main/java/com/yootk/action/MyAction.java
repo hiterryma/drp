@@ -8,6 +8,7 @@ import com.yootk.common.annotation.RequestMapping;
 public class MyAction extends AbstractAction {
     @RequestMapping("/abc/a")
     public void add(){
+        System.out.println("hello");
         super.print("hello");
     }
 
