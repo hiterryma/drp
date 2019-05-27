@@ -21,11 +21,6 @@
 
   <dependencies>
     <dependency>
-      <groupId>com.yootk</groupId>
-      <artifactId>mall-common</artifactId>
-      <version>1.0</version>
-    </dependency>
-    <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-core</artifactId>
       <version>5.1.7.RELEASE</version>
@@ -122,5 +117,15 @@
         </plugin>
       </plugins>
     </pluginManagement>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>8</source>
+          <target>8</target>
+        </configuration>
+      </plugin>
+    </plugins>
   </build>
 </project>
