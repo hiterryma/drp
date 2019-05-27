@@ -12,7 +12,7 @@ public class ResourceUtil {
         try {
             String str = messageResource.getString(key) ;
             if (param != null && param.length > 0) {
-                return MessageFormat.format(str,param) ;
+                return MessageFormat.format(str,param[0]) ;
             }
             return str ;
         } catch (Exception e) {
