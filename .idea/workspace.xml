@@ -7,8 +7,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="11d629aa-d426-436e-b640-180f95fade86" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/yootk/action/front/MemberActionFront.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yootk/action/front/MemberActionFront.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/yootk/dao/IMemberDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yootk/dao/IMemberDAO.java" afterDir="false" />
@@ -17,10 +15,7 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/com/yootk/service/front/impl/MemberServiceFrontImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yootk/service/front/impl/MemberServiceFrontImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/yootk/mall/action/resource/Message.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/yootk/mall/action/resource/Message.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/yootk/mall/action/resource/Page.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/yootk/mall/action/resource/Page.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/pages/front/center/member/member_edit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/pages/front/center/member/member_edit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/regist.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/regist.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/front/center/member/member_edit.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/front/center/member/member_edit.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/regist.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/regist.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/front/center/member/member_password_edit.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/front/center/member/member_password_edit.jsp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -42,50 +37,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/yootk/service/front/IMemberServiceFront.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="10" column="33" selection-start-line="10" selection-start-column="33" selection-end-line="10" selection-end-column="33" />
+            <state relative-caret-position="212">
+              <caret line="13" column="83" selection-start-line="13" selection-start-column="83" selection-end-line="13" selection-end-column="83" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/js/pages/front/center/member/member_edit.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="18" column="37" lean-forward="true" selection-start-line="18" selection-start-column="37" selection-end-line="18" selection-end-column="37" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/yootk/action/front/MemberActionFront.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="193">
-              <caret line="28" column="29" selection-start-line="28" selection-start-column="29" selection-end-line="28" selection-end-column="29" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/com/yootk/mall/action/resource/Page.properties">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="14" column="40" lean-forward="true" selection-start-line="14" selection-start-column="40" selection-end-line="14" selection-end-column="49" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/com/yootk/mall/action/resource/Message.properties">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="497">
-              <caret line="30" selection-start-line="30" selection-end-line="30" selection-end-column="12" />
             </state>
           </provider>
         </entry>
@@ -102,11 +58,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/yootk/common/action/abs/AbstractAction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1166">
-              <caret line="63" column="21" lean-forward="true" selection-start-line="63" selection-start-column="21" selection-end-line="63" selection-end-column="21" />
+            <state relative-caret-position="288">
+              <caret line="82" column="36" selection-start-line="82" selection-start-column="36" selection-end-line="82" selection-end-column="36" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#2574#2575#0" expanded="true" />
                 <element signature="e#2633#2634#0" expanded="true" />
                 <element signature="e#2727#2728#0" expanded="true" />
                 <element signature="e#2784#2785#0" expanded="true" />
@@ -118,10 +73,28 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/yootk/service/front/impl/MemberServiceFrontImpl.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/yootk/dao/IMemberDAO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="286">
-              <caret line="16" column="52" selection-start-line="16" selection-start-column="52" selection-end-line="16" selection-end-column="52" />
+            <state relative-caret-position="88">
+              <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/com/yootk/mall/action/resource/Page.properties">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="330">
+              <caret line="15" column="53" selection-start-line="15" selection-start-column="40" selection-end-line="15" selection-end-column="53" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/yootk/action/front/MemberActionFront.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="298">
+              <caret line="25" column="46" selection-start-line="25" selection-start-column="46" selection-end-line="25" selection-end-column="46" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -130,19 +103,40 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/yootk/dao/IMemberDAO.java">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/front/center/member/member_password_edit.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1364">
-              <caret line="66" column="31" selection-start-line="66" selection-start-column="18" selection-end-line="66" selection-end-column="31" />
+            <state relative-caret-position="462">
+              <caret line="48" column="78" selection-start-line="48" selection-start-column="67" selection-end-line="48" selection-end-column="78" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/yootk/dao/impl/MemberDAOImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="132" column="31" selection-start-line="132" selection-start-column="18" selection-end-line="132" selection-end-column="31" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/com/yootk/mall/action/resource/Message.properties">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="704">
+              <caret line="32" column="8" selection-start-line="32" selection-end-line="32" selection-end-column="8" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/yootk/dao/impl/MemberDAOImpl.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/yootk/service/front/impl/MemberServiceFrontImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="343">
-              <caret line="63" column="41" selection-start-line="63" selection-start-column="41" selection-end-line="63" selection-end-column="41" />
+            <state relative-caret-position="329">
+              <caret line="18" column="67" selection-start-line="18" selection-start-column="67" selection-end-line="18" selection-end-column="67" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -189,15 +183,16 @@
         <option value="$PROJECT_DIR$/src/main/webapp/regist.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/js/regist.js" />
         <option value="$PROJECT_DIR$/src/main/java/com/yootk/common/action/abs/AbstractAction.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/yootk/service/front/IMemberServiceFront.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/yootk/service/front/impl/MemberServiceFrontImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/com/yootk/mall/action/resource/Page.properties" />
-        <option value="$PROJECT_DIR$/src/main/resources/com/yootk/mall/action/resource/Message.properties" />
-        <option value="$PROJECT_DIR$/src/main/java/com/yootk/action/front/MemberActionFront.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/pages/front/center/member/member_edit.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/js/pages/front/center/member/member_edit.js" />
-        <option value="$PROJECT_DIR$/src/main/java/com/yootk/dao/IMemberDAO.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/pages/front/center/member/member_password_edit.jsp" />
+        <option value="$PROJECT_DIR$/src/main/resources/com/yootk/mall/action/resource/Page.properties" />
+        <option value="$PROJECT_DIR$/src/main/resources/com/yootk/mall/action/resource/Message.properties" />
         <option value="$PROJECT_DIR$/src/main/java/com/yootk/dao/impl/MemberDAOImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/yootk/dao/IMemberDAO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/yootk/action/front/MemberActionFront.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/yootk/service/front/IMemberServiceFront.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/yootk/service/front/impl/MemberServiceFrontImpl.java" />
       </list>
     </option>
   </component>
@@ -613,7 +608,7 @@
       <workItem from="1559021715584" duration="327000" />
       <workItem from="1559022360251" duration="451000" />
       <workItem from="1559023057206" duration="5796000" />
-      <workItem from="1559029007007" duration="3170000" />
+      <workItem from="1559029007007" duration="4490000" />
     </task>
     <task id="LOCAL-00001" summary="dao">
       <created>1558945352537</created>
@@ -678,16 +673,24 @@
       <option name="project" value="LOCAL" />
       <updated>1559025637056</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="实现个人资料加载与修改">
+      <created>1559032211629</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1559032211629</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="30605000" />
+    <option name="totallyTimeSpent" value="31925000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18070363" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19509594" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -697,7 +700,7 @@
       <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.31127983" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.2548807" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.47939262" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -709,7 +712,7 @@
       <window_info anchor="bottom" id="Messages" order="11" weight="0.3286334" />
       <window_info anchor="bottom" id="Java Enterprise" order="12" weight="0.329718" />
       <window_info anchor="bottom" id="Database Changes" order="13" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="14" visible="true" weight="0.03253796" />
+      <window_info anchor="bottom" id="Version Control" order="14" weight="0.057483733" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -764,12 +767,10 @@
     <MESSAGE value="1" />
     <MESSAGE value="修改Login小Bug" />
     <MESSAGE value="完善登录注册验证" />
-    <option name="LAST_COMMIT_MESSAGE" value="完善登录注册验证" />
+    <MESSAGE value="实现个人资料加载与修改" />
+    <option name="LAST_COMMIT_MESSAGE" value="实现个人资料加载与修改" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/images/ad/ads-pic-01.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/back/index.jsp">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -989,11 +990,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/front/center/member/member_password_edit.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-264" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/login.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
@@ -1029,13 +1025,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/js/pages/front/center/member/member_password_edit.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/js/pages/front/center/member/member_edit.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="18" column="37" selection-start-line="18" selection-start-column="37" selection-end-line="18" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/yootk/common/action/abs/AbstractAction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1166">
-          <caret line="63" column="21" lean-forward="true" selection-start-line="63" selection-start-column="21" selection-end-line="63" selection-end-column="21" />
+        <state relative-caret-position="288">
+          <caret line="82" column="36" selection-start-line="82" selection-start-column="36" selection-end-line="82" selection-end-column="36" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2574#2575#0" expanded="true" />
             <element signature="e#2633#2634#0" expanded="true" />
             <element signature="e#2727#2728#0" expanded="true" />
             <element signature="e#2784#2785#0" expanded="true" />
@@ -1045,47 +1050,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/yootk/service/front/impl/MemberServiceFrontImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="16" column="52" selection-start-line="16" selection-start-column="52" selection-end-line="16" selection-end-column="52" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/com/yootk/mall/action/resource/Page.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="14" column="40" lean-forward="true" selection-start-line="14" selection-start-column="40" selection-end-line="14" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/com/yootk/mall/action/resource/Message.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="497">
-          <caret line="30" selection-start-line="30" selection-end-line="30" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/yootk/service/front/IMemberServiceFront.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="10" column="33" selection-start-line="10" selection-start-column="33" selection-end-line="10" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/yootk/action/front/MemberActionFront.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="28" column="29" selection-start-line="28" selection-start-column="29" selection-end-line="28" selection-end-column="29" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="704">
+          <caret line="32" column="8" selection-start-line="32" selection-end-line="32" selection-end-column="8" />
         </state>
       </provider>
     </entry>
@@ -1096,24 +1064,61 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/js/pages/front/center/member/member_edit.js">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/front/center/member/member_password_edit.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="18" column="37" lean-forward="true" selection-start-line="18" selection-start-column="37" selection-end-line="18" selection-end-column="37" />
+        <state relative-caret-position="462">
+          <caret line="48" column="78" selection-start-line="48" selection-start-column="67" selection-end-line="48" selection-end-column="78" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/com/yootk/mall/action/resource/Page.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="15" column="53" selection-start-line="15" selection-start-column="40" selection-end-line="15" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/yootk/service/front/IMemberServiceFront.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="212">
+          <caret line="13" column="83" selection-start-line="13" selection-start-column="83" selection-end-line="13" selection-end-column="83" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/yootk/action/front/MemberActionFront.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="298">
+          <caret line="25" column="46" selection-start-line="25" selection-start-column="46" selection-end-line="25" selection-end-column="46" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/yootk/dao/IMemberDAO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1364">
-          <caret line="66" column="31" selection-start-line="66" selection-start-column="18" selection-end-line="66" selection-end-column="31" />
+        <state relative-caret-position="88">
+          <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/yootk/dao/impl/MemberDAOImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="343">
-          <caret line="63" column="41" selection-start-line="63" selection-start-column="41" selection-end-line="63" selection-end-column="41" />
+        <state relative-caret-position="153">
+          <caret line="132" column="31" selection-start-line="132" selection-start-column="18" selection-end-line="132" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/yootk/service/front/impl/MemberServiceFrontImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="329">
+          <caret line="18" column="67" selection-start-line="18" selection-start-column="67" selection-end-line="18" selection-end-column="67" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

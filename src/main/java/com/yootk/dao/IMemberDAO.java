@@ -8,19 +8,13 @@ import java.util.List;
 
 public interface IMemberDAO extends IBaseDAO<String , Member> {
     /**
-     * 修改密码前 将原始密码删除
+     *
+     * @param newpassword
      * @param mid
      * @return
      * @throws SQLException
      */
-    public boolean removePasswordByMember(String mid) throws SQLException;
-    /**
-     * 修改密码
-     * @param mid
-     * @return
-     * @throws SQLException
-     */
-    public boolean doEditPasswordByMember(String mid)throws SQLException;
+    public boolean doEditPasswordByMember(String newpassword,String mid)throws SQLException;
     /**
      * 进行前台用户的资料修改
      * @param vo  包含要修改的用户资料

@@ -18,6 +18,24 @@ public class MemberActionFront extends AbstractAction {
     public static final String ACTION_TITLE = "用户";
     @Autowired
     private IMemberServiceFront memberService;
+    @RequestMapping("/update_password")
+    public ModuleAndView update_password(String oldpassword,String newpassword){
+        System.out.println(oldpassword+"********"+newpassword);
+        ModuleAndView mav = new ModuleAndView(super.getPage("edit.page"));
+        try {
+            if (this.memberService.update_password(oldpassword,newpassword,super.getFrontUser())){
+                mav.setView(super.getForwardPage());
+                mav.add(AbstractAction.PATH_ATTRIBUTE_NAME, super.getPage("password.page"));
+                mav.add(AbstractAction.MSG_ATTRIBUTE_NAME, ResourceUtil.getMessage("password.success", ACTION_TITLE));
+            }else {
+                mav.add(AbstractAction.PATH_ATTRIBUTE_NAME, super.getPage("password.page"));
+                mav.add(AbstractAction.MSG_ATTRIBUTE_NAME, ResourceUtil.getMessage("password.failure", ACTION_TITLE));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return mav;
+    }
 
     /**
      * 进行用户资料修改
@@ -26,8 +44,7 @@ public class MemberActionFront extends AbstractAction {
      */
     @RequestMapping("/updeate_member")
     public ModuleAndView updeate_member(Member vo){
-        System.out.println(vo);
-        ModuleAndView mav = new ModuleAndView(super.getPage("login.action"));
+        ModuleAndView mav = new ModuleAndView(super.getPage("edit.page"));
         vo.setMid(super.getFrontUser());
         try {
             if (memberService.update_personalData(vo)) {
@@ -109,7 +126,7 @@ public class MemberActionFront extends AbstractAction {
      */
     @RequestMapping("/member_register")
     public ModuleAndView register(String id,String name,String password){
-        ModuleAndView mav = new ModuleAndView(super.getPage("login.action"));
+        ModuleAndView mav = new ModuleAndView(super.getIndexPage());
         Member vo = new Member();
         vo.setMid(id);
         vo.setName(name);

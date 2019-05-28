@@ -60,15 +60,12 @@ public class MemberDAOImpl extends AbstractDAO implements IMemberDAO {
     }
 
     @Override
-    public boolean removePasswordByMember(String mid) throws SQLException {
-        String sql = "delete FROM member ";
+    public boolean doEditPasswordByMember(String newpassword,String mid) throws SQLException {
+        String sql = "UPDATE member SET password=? WHERE mid=?";
         super.pstmt = super.conn.prepareStatement(sql);
-        return false;
-    }
-
-    @Override
-    public boolean doEditPasswordByMember(String mid) throws SQLException {
-        return false;
+        super.pstmt.setString(1,newpassword);
+        super.pstmt.setString(2,mid);
+        return super.pstmt.executeUpdate()>0;
     }
 
     @Override

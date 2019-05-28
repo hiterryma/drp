@@ -6,6 +6,13 @@ import java.util.Map;
 
 public interface IMemberServiceFront {
     /**
+     *
+     * @param vo
+     * @return
+     * @throws Exception
+     */
+    public boolean update_password(String oldpassword,String newpassword,String mid) throws Exception;
+    /**
      * 进行用户资料的修改
      * @param vo  包含需要修改的资料
      * @return 成功返回true，否则返回false
