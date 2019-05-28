@@ -42,7 +42,7 @@
 						<div class="form-group" id="picDiv">
 							<label class="col-md-2 control-label" for="pic">公告图片：</label>
 							<div class="col-md-5">
-								<input type="file" name="pic" id="pic" class="form-control input-sm" placeholder="请选择公告所需要的图片">
+								<input type="file" name="file" id="pic" class="form-control input-sm" placeholder="请选择公告所需要的图片">
 							</div>
 							<div class="col-md-4" id="picMsg">*</div>
 						</div>
