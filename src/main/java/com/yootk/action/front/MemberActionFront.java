@@ -101,6 +101,7 @@ public class MemberActionFront extends AbstractAction {
      */
     @RequestMapping("/member_login")
     public ModuleAndView login(Member vo, String rememberme) throws Exception {
+        System.out.println(super.getPage("login.action"));
         ModuleAndView mav = new ModuleAndView(super.getPage("login.action"));
         vo.setPassword(EncryptUtil.encode(vo.getPassword()));
         if (memberService.login(vo)) {
