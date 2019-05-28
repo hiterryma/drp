@@ -1,6 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%!
-	public static final String LOGOUT_URL = "logout.jsp" ;
+	public static final String LOGOUT_URL = "member_logout.action" ;
 	public static final String INDEX_URL = "pages/back/index.jsp" ;
 %>
 <header class="main-header">

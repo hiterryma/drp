@@ -20,7 +20,6 @@ public class MemberActionFront extends AbstractAction {
     private IMemberServiceFront memberService;
     @RequestMapping("/update_password")
     public ModuleAndView update_password(String oldpassword,String newpassword){
-        System.out.println(oldpassword+"********"+newpassword);
         ModuleAndView mav = new ModuleAndView(super.getPage("edit.page"));
         try {
             if (this.memberService.update_password(oldpassword,newpassword,super.getFrontUser())){

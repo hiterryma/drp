@@ -60,6 +60,18 @@ public class MemberDAOImpl extends AbstractDAO implements IMemberDAO {
     }
 
     @Override
+    public Long findDidByDeptAndMember(String mid) throws SQLException {
+        String sql = "SELECT did FROM member WHERE mid=?";
+        super.pstmt = super.conn.prepareStatement(sql);
+        super.pstmt.setString(1,mid);
+        ResultSet rs = super.pstmt.executeQuery();
+        if (rs.next()){
+            return rs.getLong(1);
+        }
+        return 0L;
+    }
+
+    @Override
     public boolean doEditPasswordByMember(String newpassword,String mid) throws SQLException {
         String sql = "UPDATE member SET password=? WHERE mid=?";
         super.pstmt = super.conn.prepareStatement(sql);
@@ -108,7 +120,7 @@ public class MemberDAOImpl extends AbstractDAO implements IMemberDAO {
     }
 
     @Override
-    public Integer findByDeptAndMember(String mid) throws SQLException {
+    public Integer findTypeByMember(String mid) throws SQLException {
         String sql = "SELECT type FROM member WHERE mid=?";
         super.pstmt = super.conn.prepareStatement(sql);
         super.pstmt.setString(1, mid);

@@ -53,6 +53,7 @@
 						class="glyphicon glyphicon-user"></i>&nbsp;${name}&nbsp;<span
 						class="glyphicon glyphicon-chevron-down"></span></a>
 					<ul class="dropdown-menu main-list" >
+
 						<li><a href="pages/front/center/member/member_password_edit.jsp"><i class="glyphicon glyphicon-edit"></i>&nbsp;修改密码</a></li>
 						<li class="divider"></li>
 						<li id="manage"></li>

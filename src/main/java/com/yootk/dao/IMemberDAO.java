@@ -8,6 +8,13 @@ import java.util.List;
 
 public interface IMemberDAO extends IBaseDAO<String , Member> {
     /**
+     * 查询用户是否有部门，用户查询雇员的角色信息
+     * @param mid
+     * @return
+     * @throws SQLException
+     */
+    public Long findDidByDeptAndMember(String mid) throws SQLException;
+    /**
      *
      * @param newpassword
      * @param mid
@@ -37,12 +44,12 @@ public interface IMemberDAO extends IBaseDAO<String , Member> {
      */
     public String findMemberById(String mid) throws SQLException;
     /**
-     * 查询用户是否有部门，判断是否开启都台管理选项
+     * 查询用户是为后台用户
      * @param mid 要查询的用户ID
      * @return 返回包含查询信息的Member类
      * @throws SQLException
      */
-    public Integer findByDeptAndMember(String mid) throws SQLException;
+    public Integer findTypeByMember(String mid) throws SQLException;
 
     /**
      * 实现用户注册

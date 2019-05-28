@@ -34,7 +34,7 @@
 									<div class="col-md-5">
 										<!-- 定义表单输入组件 -->
 										<input type="text" id="mid" name="mid" class="form-control"
-											   placeholder="用户名 / 邮箱 / 手机" value="yootk1">
+											   placeholder="用户名 / 邮箱 / 手机" value="admin">
 									</div>
 									<!-- 定义表单错误提示显示元素 -->
 									<div class="col-md-4" id="midMsg"></div>
@@ -45,7 +45,7 @@
 									<div class="col-md-5">
 										<!-- 定义表单输入组件 -->
 										<input type="password" id="password" name="password" class="form-control"
-											   placeholder="请输入登录密码" value="hello">
+											   placeholder="请输入登录密码" value="123456">
 									</div>
 									<!-- 定义表单错误提示显示元素 -->
 									<div class="col-md-4" id="passwordMsg"></div>

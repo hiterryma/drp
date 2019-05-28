@@ -5,9 +5,12 @@ import com.yootk.vo.Member;
 import java.util.Map;
 
 public interface IMemberServiceFront {
+
     /**
      *
-     * @param vo
+     * @param oldpassword
+     * @param newpassword
+     * @param mid
      * @return
      * @throws Exception
      */

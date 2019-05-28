@@ -44,7 +44,7 @@ public class MemberServiceFrontImpl extends AbstractService implements IMemberSe
 
     @Override
     public Integer access_right(String mid) throws Exception {
-        return this.memberDAO.findByDeptAndMember(mid);
+        return this.memberDAO.findTypeByMember(mid);
     }
 
     @Override
