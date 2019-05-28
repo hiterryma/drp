@@ -9,6 +9,28 @@ import java.util.List;
 public interface IMemberDAO extends IBaseDAO<String , Member> {
     /**
      *
+     * @param newpassword
+     * @param mid
+     * @return
+     * @throws SQLException
+     */
+    public boolean doEditPasswordByMember(String newpassword,String mid)throws SQLException;
+    /**
+     * 进行前台用户的资料修改
+     * @param vo  包含要修改的用户资料
+     * @return 成功返回true，否则返回false
+     * @throws SQLException
+     */
+    public boolean doEditDatumByMember(Member vo) throws SQLException;
+    /**
+     * 查询前台登录用户的基本资料
+     * @param mid  要查询的雇员ID
+     * @return 返回雇员的信息
+     * @throws SQLException
+     */
+    public Member findDatumByMember(String mid)throws SQLException;
+    /**
+     *
      * @param mid
      * @return
      * @throws SQLException

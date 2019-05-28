@@ -64,6 +64,9 @@ $(function(){
                     }
                 }
             },
+            "name" : {
+                required : true
+            } ,
             "password" : {
                 required : true
             } ,
