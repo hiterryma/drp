@@ -13,6 +13,14 @@ public class MemberServiceFrontImpl extends AbstractService implements IMemberSe
     private IMemberDAO memberDAO ;
 
     @Override
+    public Integer access_right(String mid) throws Exception {
+        if (mid != null){
+            return this.memberDAO.findByDeptAndMember(mid);
+        }
+        return 0;
+    }
+
+    @Override
     public boolean register(Member vo) throws Exception {
         if (vo != null){
             return  this.memberDAO.doCreateByMember(vo);

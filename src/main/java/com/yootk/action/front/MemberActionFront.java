@@ -1,5 +1,6 @@
 package com.yootk.action.front;
 
+import com.alibaba.fastjson.JSONObject;
 import com.yootk.common.action.abs.AbstractAction;
 import com.yootk.common.annotation.Autowired;
 import com.yootk.common.annotation.Controller;
@@ -12,11 +13,23 @@ import com.yootk.common.util.ResourceUtil;
 import com.yootk.service.front.IMemberServiceFront;
 import com.yootk.vo.Member;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Controller
 public class MemberActionFront extends AbstractAction {
     public static final String ACTION_TITLE = "用户";
     @Autowired
     private IMemberServiceFront memberService;
+
+    @RequestMapping("/member_role")
+    public void member_role(){
+        try {
+            super.print(JSONObject.toJSONString(this.memberService.access_right(super.getFrontUser())));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     @RequestMapping("/member_register")
     public ModuleAndView register(Member vo){

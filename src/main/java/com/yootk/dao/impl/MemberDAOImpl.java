@@ -1,5 +1,6 @@
 package com.yootk.dao.impl;
 
+import com.sun.org.apache.xml.internal.security.Init;
 import com.yootk.common.annotation.Repository;
 import com.yootk.common.dao.abs.AbstractDAO;
 import com.yootk.dao.IMemberDAO;
@@ -56,6 +57,18 @@ public class MemberDAOImpl extends AbstractDAO implements IMemberDAO {
     @Override
     public Long getAllCount(String column, String keyWord) throws SQLException {
         return null;
+    }
+
+    @Override
+    public Integer findByDeptAndMember(String mid) throws SQLException {
+        String sql = "SELECT type FROM member WHERE mid=?";
+        super.pstmt = super.conn.prepareStatement(sql);
+        super.pstmt.setString(1,mid);
+        ResultSet rs = super.pstmt.executeQuery();
+        if (rs.next()){
+            return rs.getInt(1);
+        }
+        return 0;
     }
 
     @Override

@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" pageEncoding="UTF-8"%>
 <html>
 <head>
@@ -84,7 +85,7 @@
 						</form>
 					</c:if>
 					<c:if test="${mid != null}">
-						您已经登录过了，请正常访问！
+						<a href="index.jsp">您已经登录过了，请正常访问！</a>
 					</c:if>
 				</div>
 				<div class="panel-footer">
