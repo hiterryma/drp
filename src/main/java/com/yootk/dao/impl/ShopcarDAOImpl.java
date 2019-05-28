@@ -98,4 +98,30 @@ public class ShopcarDAOImpl extends AbstractDAO implements IShopcarDAO {
         }
         return map;
     }
+
+    @Override
+    public boolean doEditBatch(List<Shopcar> cars) throws SQLException {
+        String sql="update shopcar set amount=? where mid=? and gid=?";
+        super.pstmt=super.conn.prepareStatement(sql);
+        for(Shopcar car:cars){
+            super.pstmt.setInt(1,car.getAmount());
+            super.pstmt.setString(2,car.getMid());
+            super.pstmt.setLong(3,car.getGid());
+            super.pstmt.addBatch();
+        }
+        int result[]=super.pstmt.executeBatch();
+        return super.isBatchSuccess(result);
+    }
+
+    @Override
+    public boolean doRemoveByMemberAndGoods(String mid, Set<Long> gids) throws SQLException {
+        StringBuffer sql=new StringBuffer("delete from shopcar where mid=? and gid in (");
+        for(Long gid:gids){
+            sql.append(gid+",");
+        }
+        sql.delete(sql.length()-1,sql.length()).append(")");
+        super.pstmt=super.conn.prepareStatement(sql.toString());
+        super.pstmt.setString(1,mid);
+        return super.pstmt.executeUpdate()>0;
+    }
 }

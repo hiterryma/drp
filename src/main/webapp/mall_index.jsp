@@ -28,7 +28,8 @@
                     <p>
                         <a href="<%=GOODS_SHOW_URL%>">
                             <img src="images/nophoto.png" style="width:100px;"></a></p>
-                    <span class="text-warning h4"><strong>￥198.10</strong></span>
+                    <>
+                            <span class="text-warning h4"><strong>￥198.10</strong></span>    <!--用map集合,在ShopcarActionFront中的map,-->
                     <p><a href="<%=GOODS_SHOW_URL%>">Java开发实战经典</a></p>
                     <button id="addCar-1" class="btn btn-primary btn-xs">
                         <span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;加入购物车</button>

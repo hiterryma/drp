@@ -5,7 +5,9 @@ import com.yootk.common.dao.IBaseDAO;
 import com.yootk.vo.Shopcar;
 
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public interface IShopcarDAO extends IBaseDAO<Long, Shopcar> {
     /**
@@ -35,4 +37,21 @@ public interface IShopcarDAO extends IBaseDAO<Long, Shopcar> {
      * @throws SQLException JDBC
      */
     public Map<Long,Integer> findAllByMember(String mid)throws SQLException;
+
+    /**
+     * 进行购物车中数量内容的批量修改
+     * @param cars 要修改的购物车内容
+     * @return 修改成功返回true
+     * @throws SQLException 异常
+     */
+    public boolean doEditBatch(List<Shopcar> cars)throws SQLException;
+
+    /**
+     * 根据用户编号和商品编号购物车商品信息
+     * @param mid 要操作的用户编号
+     * @param gids 要清楚的商品编号
+     * @return 删除成功返回true，否则返回false
+     * @throws SQLException JDBC
+     */
+    public boolean doRemoveByMemberAndGoods(String mid,Set<Long> gids)throws SQLException;
 }

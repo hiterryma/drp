@@ -3,6 +3,7 @@
 <head>
 	<jsp:include page="/pages/plugins/basepath.jsp"/>
 	<script type="text/javascript" src="js/pages/front/goods/goods_list.js"></script>
+	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>>
 </head>
 <%!
 	public static final String GOODS_SHOW_URL = "pages/front/goods/goods_show.jsp" ;
@@ -26,6 +27,17 @@
 							<jsp:include page="/pages/plugins/split_page_search_plugin.jsp"/>
 						</div>
 						<div class="row">
+							<c:forEach items="${allGoods}" var="goods">
+								<div class="col-md-3 text-center">
+									<p>
+										<a href="<%=GOODS_SHOW_URL%>">
+											<img src="http://upload-server/upload/${goods.photo}" style="width:100px;"></a></p>
+									<span class="text-warning h4"><strong>￥${goods.price}</strong></span>
+									<p><a href="<%=GOODS_SHOW_URL%>">${goods.name}</a></p>
+									<button id="addCar-${goods.gid}" class="btn btn-primary btn-xs">
+										<span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;加入购物车</button>
+								</div>
+							</c:forEach>
 							<div class="col-md-3 text-center">
 								<p>
 									<a href="<%=GOODS_SHOW_URL%>">

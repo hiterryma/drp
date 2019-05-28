@@ -12,6 +12,7 @@ import com.yootk.vo.Shopcar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 @Service //注解业务层
 public class ShopcarServiceFrontImpl extends AbstractService implements IShopcarServiceFront {
@@ -42,5 +43,21 @@ public class ShopcarServiceFrontImpl extends AbstractService implements IShopcar
         result.put("shopcar",shopcar) ;
         result.put("allGoods",allGoods) ;
         return result;
+    }
+
+    @Override
+    public boolean editBatch(List<Shopcar> cars) throws Exception {
+        if(cars==null||cars.size()==0){
+            return false;//不进行内容的修改
+        }
+        return this.shopcarDAO.doEditBatch(cars);
+    }
+
+    @Override
+    public boolean deleteByMember(String mid, Set<Long> gids) throws Exception {
+        if(gids==null||gids.size()==0){
+            return false;
+        }
+        return this.shopcarDAO.doRemoveByMemberAndGoods(mid,gids);
     }
 }
