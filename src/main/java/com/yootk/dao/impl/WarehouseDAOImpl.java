@@ -79,13 +79,7 @@ public class WarehouseDAOImpl extends AbstractDAO implements IWarehouseDAO {
 
     @Override
     public List<Warehouse> findSplit(Long currentPage, Integer lineSize, String column, String keyWord) throws SQLException {
-        /**
-         * String sql = "SELECT gid,name,price,photo,note,iid FROM goods WHERE dflag=0 AND " + column + " LIKE ? LIMIT " + (currentPage - 1) * linesize + "," + linesize ;
-         *         super.pstmt = super.conn.prepareStatement(sql) ;
-         *         super.pstmt.setString(1,"%"+keyWord+"%");
-         *         ResultSet rs = super.pstmt.executeQuery() ;
-         *         return super.handleResultToList(rs,Goods.class) ;
-         */
+
         String sql = "SELECT wid,name,pid,cid,wiid,address,area,maximum,currnum,photo,note,recorder,admin FROM warehouse WHERE "+ column +"LIKE ? LIMIT " + (currentPage - 1)*lineSize + "," + lineSize ;
         super.pstmt = super.conn.prepareStatement(sql) ;
         super.pstmt.setString(1,"%"+keyWord+"%");
