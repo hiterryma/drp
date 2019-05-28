@@ -41,6 +41,7 @@ public class ShopcarActionFront extends AbstractAction {
         }
         return mav;
     }
+    @RequestMapping("shopcar_edit")
     public void edit(String data){//data的机构为："gid:amount;gid:amount",这样可以传递一组也可以传递多组数据
         String results[]=data.split(";");//根据“;”拆分数据
         List<Shopcar> cars=new ArrayList<>();

@@ -25,16 +25,16 @@
 						<form class="form-horizontal" action="<%=REGIST_URL%>" id="myform" method="post">
 							<fieldset>
 								<!-- 定义输入表单样式，其中id主要用于设置颜色样式 -->
-								<div class="form-group" id="midDiv">
+								<div class="form-group" id="idDiv">
 									<!-- 定义表单提示文字 -->
-									<label class="col-md-3 control-label" for="mid">注册ID：</label>
+									<label class="col-md-3 control-label" for="id">注册ID：</label>
 									<div class="col-md-5">
 										<!-- 定义表单输入组件 -->
-										<input type="text" id="mid" name="mid" class="form-control"
+										<input type="text" id="id" name="id" class="form-control"
 											placeholder="用户名 / 邮箱 / 手机">
 									</div>
 									<!-- 定义表单错误提示显示元素 -->
-									<div class="col-md-4" id="midMsg"></div>
+									<div class="col-md-4" id="idMsg"></div>
 								</div>
 								<div class="form-group" id="passwordDiv">
 									<!-- 定义表单提示文字 -->
@@ -82,10 +82,12 @@
 						</form>
 					</div>
 					<div class="panel-footer">
-						<div class="alert alert-success" id="alertDiv" style="display: none;">
-	                        <button type="button" class="close" data-dismiss="alert">&times;</button>
-	                        <span id="alertText"></span>
-	                    </div>
+						<c:if test="${msg != null}">
+							<div class="alert alert-danger" id="alertDiv">
+								<button type="button" class="close" data-dismiss="alert">&times;</button>
+								<span id="alertText">${msg}</span>
+							</div>
+						</c:if>
 					</div>
 				</div>
 			</div>

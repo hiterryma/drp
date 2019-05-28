@@ -103,6 +103,8 @@ public class DispatcherServlet extends HttpServlet {
             }
         }
         if (dispatcherPath != null) {   // 此时有了跳转路径
+            response.setCharacterEncoding("UTF-8");
+            request.setCharacterEncoding("UTF-8");
             request.getRequestDispatcher(dispatcherPath).forward(request,response);
         }
     }

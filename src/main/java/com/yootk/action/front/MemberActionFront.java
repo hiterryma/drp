@@ -1,5 +1,6 @@
 package com.yootk.action.front;
 
+import com.alibaba.fastjson.JSONObject;
 import com.yootk.common.action.abs.AbstractAction;
 import com.yootk.common.annotation.Autowired;
 import com.yootk.common.annotation.Controller;
@@ -18,10 +19,63 @@ public class MemberActionFront extends AbstractAction {
     @Autowired
     private IMemberServiceFront memberService;
 
+    /**
+     * 用户注册时对用户ID是否存在进行检测，用于ajax异步验证处理
+     */
+    @RequestMapping("/checkMid")
+    public void checkMid(String id){
+
+        try {
+            boolean flag = this.memberService.findById(id);
+            if (flag){  //如果返回的flase，表示用户ID以存在
+                super.print(false);
+            }else {
+                super.print(true);  // 表示用户ID不存在，可以注册
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 对登录用户是否为后台用户进行检测，用于ajax异步验证处理
+     */
+    @RequestMapping("/member_role")
+    public void member_role(){
+        try {
+            super.print(JSONObject.toJSONString(this.memberService.access_right(super.getFrontUser())));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 验证码检测，用于ajax异步验证处理
+     *
+     * @param code 输入验证码
+     */
+    @RequestMapping("/code_check")
+    public void check(String code) {
+        System.out.println("验证码"+code);
+        String rand = (String) ServletObject.getRequest().getSession().getAttribute("rand");
+        if (rand == null || "".equals(rand)) {
+            super.print(false);
+        } else {
+            super.print(rand.equalsIgnoreCase(code));
+        }
+    }
+
+    /**
+     * 实现前台用户注册
+     * @param vo 包含注册的信息
+     * @return
+     */
     @RequestMapping("/member_register")
-    public ModuleAndView register(Member vo){
+    public ModuleAndView register(String id,String password){
         ModuleAndView mav = new ModuleAndView(super.getPage("login.action"));
+        Member vo = new Member();
         vo.setPassword(EncryptUtil.encode(vo.getPassword()));
+        vo.setMid(id);
         try {
             if (memberService.register(vo)) {
                 ServletObject.getRequest().getSession().setAttribute("mid", vo.getMid());
@@ -65,21 +119,6 @@ public class MemberActionFront extends AbstractAction {
     }
 
     /**
-     * 验证码检测，用于ajax异步验证处理
-     *
-     * @param code 输入验证码
-     */
-    @RequestMapping("/code_check")
-    public void check(String code) {
-        String rand = (String) ServletObject.getRequest().getSession().getAttribute("rand");
-        if (rand == null || "".equals(rand)) {
-            super.print(false);
-        } else {
-            super.print(rand.equalsIgnoreCase(code));
-        }
-    }
-
-    /**
      * 用户登录处理
      *
      * @param vo         包含有用户登录信息
@@ -88,10 +127,10 @@ public class MemberActionFront extends AbstractAction {
      */
     @RequestMapping("/member_login")
     public ModuleAndView login(Member vo, String rememberme) throws Exception {
-        System.out.println(super.getPage("login.action"));
         ModuleAndView mav = new ModuleAndView(super.getPage("login.action"));
         vo.setPassword(EncryptUtil.encode(vo.getPassword()));
-        if (memberService.login(vo)) {
+        boolean flag = memberService.login(vo);
+        if (flag) {
             ServletObject.getRequest().getSession().setAttribute("mid", vo.getMid());
             mav.setView(super.getForwardPage());
             mav.add(AbstractAction.PATH_ATTRIBUTE_NAME, super.getIndexPage());
@@ -101,7 +140,7 @@ public class MemberActionFront extends AbstractAction {
                 CookieUtil.set("info", vo.getMid() + ":" + vo.getPassword(), ServletObject.getResponse());
             }
         } else {
-            mav.add(AbstractAction.PATH_ATTRIBUTE_NAME, super.getPage("index.page"));
+            mav.add(AbstractAction.PATH_ATTRIBUTE_NAME, super.getPage("login.page"));
             mav.add(AbstractAction.MSG_ATTRIBUTE_NAME, ResourceUtil.getMessage("login.failure", ACTION_TITLE));
         }
         return mav;
