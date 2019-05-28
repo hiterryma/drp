@@ -8,7 +8,13 @@ $(function(){
             form.submit(); // 提交表单
         },
         errorPlacement : function(error, element) {
-            $("#" + $(element).attr("id").replace(".", "\\.") + "Msg").append(error);
+            var id = $(element).attr("id") ;
+            if (id.indexOf(".") != -1) {
+                id = id.replace(".","\\.") ;
+            }
+            id = id + "Msg" ;
+            $("#" + id).empty() ;	// 先清除之前的所有内容
+            $("#" + id).append(error) ;
         },
         highlight : function(element, errorClass) {
             $(element).fadeOut(1,function() {
@@ -17,6 +23,12 @@ $(function(){
                 });
 
             })
+        },
+        success : function(error,element) {
+            var id = $(element).attr("id") ;
+            id = id + "Msg" ;
+            $("#" + id).empty() ;	// 先清除之前的所有内容
+            $("#" + id).append("<span class='text-success glyphicon glyphicon-ok'></span>") ;
         },
         unhighlight : function(element, errorClass) {
             $(element).fadeOut(1,function() {
@@ -31,8 +43,30 @@ $(function(){
         } ,
         rules : {
             "id" : {
-                required : true
+                required : true ,
+                remote : {
+                    url : "checkMid.action", // 后台处理程序
+                    type : "post", // 数据发送方式
+                    dataType : "html", // 接收数据格式
+                    data : { // 要传递的数据
+                        id : function() {
+                            mid=$("#id").val();
+                            return mid;
+                        }
+                    },
+                    dataFilter : function(data, type) {
+                        console.log(data.trim());
+                        if (data.trim() == "true") {
+                            return false;
+                        } else {
+                            return true;
+                        }
+                    }
+                }
             },
+            "name" : {
+                required : true
+            } ,
             "password" : {
                 required : true
             } ,
@@ -41,8 +75,28 @@ $(function(){
                 equalTo : "#password"
             } ,
             "code" : {
-                required : true
+                required : true ,
+                remote : {
+                    url : "code_check.action", // 后台处理程序
+                    type : "post", // 数据发送方式
+                    dataType : "html", // 接收数据格式
+                    data : { // 要传递的数据
+                        code : function() {
+                            return $("#code").val();
+                        }
+                    },
+                    dataFilter : function(data, type) {
+                        if (data.trim() == "true") {
+                            return true;
+                        } else {
+                            if ($("#code").val().length == 4) {
+                                $("#imageCode").attr("src","ImageCode?p="+Math.random()) ;
+                            }
+                            return false;
+                        }
+                    }
+                }
             }
         }
     });
-})
+});
