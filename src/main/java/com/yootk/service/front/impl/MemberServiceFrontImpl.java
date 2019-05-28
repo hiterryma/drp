@@ -13,6 +13,16 @@ public class MemberServiceFrontImpl extends AbstractService implements IMemberSe
     private IMemberDAO memberDAO;
 
     @Override
+    public boolean update_personalData(Member vo) throws Exception {
+        return this.memberDAO.doEditDatumByMember(vo);
+    }
+
+    @Override
+    public Member findBy_personalData(String mid) throws Exception {
+        return this.memberDAO.findDatumByMember(mid);
+    }
+
+    @Override
     public boolean findById(String mid) throws Exception {
         String cmid = this.memberDAO.findMemberById(mid);
         if (cmid != null){  //用户的id存在

@@ -20,19 +20,55 @@ public class MemberActionFront extends AbstractAction {
     private IMemberServiceFront memberService;
 
     /**
+     * 进行用户资料修改
+     * @param vo  包含要修改的资料
+     * @return
+     */
+    @RequestMapping("/updeate_member")
+    public ModuleAndView updeate_member(Member vo){
+        System.out.println(vo);
+        ModuleAndView mav = new ModuleAndView(super.getPage("login.action"));
+        vo.setMid(super.getFrontUser());
+        try {
+            if (memberService.update_personalData(vo)) {
+                mav.setView(super.getForwardPage());
+                mav.add(AbstractAction.PATH_ATTRIBUTE_NAME, super.getPage("edit.page"));
+                mav.add(AbstractAction.MSG_ATTRIBUTE_NAME, ResourceUtil.getMessage("edit.success", ACTION_TITLE));
+            } else {
+                mav.add(AbstractAction.PATH_ATTRIBUTE_NAME, super.getPage("edit.page"));
+                mav.add(AbstractAction.MSG_ATTRIBUTE_NAME, ResourceUtil.getMessage("edit.failure", ACTION_TITLE));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return mav;
+    }
+
+    /**
+     * 进行用户的个人资料查询
+     */
+    @RequestMapping("/member_datum")
+    public void member_datum(){
+        try {
+            super.print(JSONObject.toJSONString(this.memberService.findBy_personalData(super.getFrontUser())));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
      * 用户注册时对用户ID是否存在进行检测，用于ajax异步验证处理
      */
     @RequestMapping("/checkMid")
     public void checkMid(String id){
-
         try {
-            boolean flag = this.memberService.findById(id);
-            if (flag){  //如果返回的flase，表示用户ID以存在
+            if (this.memberService.findById(id)){  //如果返回的flase，表示用户ID以存在
                 super.print(false);
             }else {
                 super.print(true);  // 表示用户ID不存在，可以注册
             }
         } catch (Exception e) {
+            super.print(true);
             e.printStackTrace();
         }
     }
@@ -56,7 +92,6 @@ public class MemberActionFront extends AbstractAction {
      */
     @RequestMapping("/code_check")
     public void check(String code) {
-        System.out.println("验证码"+code);
         String rand = (String) ServletObject.getRequest().getSession().getAttribute("rand");
         if (rand == null || "".equals(rand)) {
             super.print(false);
@@ -67,24 +102,26 @@ public class MemberActionFront extends AbstractAction {
 
     /**
      * 实现前台用户注册
-     * @param vo 包含注册的信息
+     * @param id 需要注册的ID
+     * @param password 密码
+     * @param name 名称
      * @return
      */
     @RequestMapping("/member_register")
-    public ModuleAndView register(String id,String password){
+    public ModuleAndView register(String id,String name,String password){
         ModuleAndView mav = new ModuleAndView(super.getPage("login.action"));
         Member vo = new Member();
-        vo.setPassword(EncryptUtil.encode(vo.getPassword()));
         vo.setMid(id);
+        vo.setName(name);
+        vo.setPassword(EncryptUtil.encode(password));
         try {
             if (memberService.register(vo)) {
-                ServletObject.getRequest().getSession().setAttribute("mid", vo.getMid());
                 mav.setView(super.getForwardPage());
                 mav.add(AbstractAction.PATH_ATTRIBUTE_NAME, super.getIndexPage());
-                mav.add(AbstractAction.MSG_ATTRIBUTE_NAME, ResourceUtil.getMessage("login.success", ACTION_TITLE));
+                mav.add(AbstractAction.MSG_ATTRIBUTE_NAME, ResourceUtil.getMessage("regist.success", ACTION_TITLE));
             } else {
-                mav.add(AbstractAction.PATH_ATTRIBUTE_NAME, super.getPage("index.page"));
-                mav.add(AbstractAction.MSG_ATTRIBUTE_NAME, ResourceUtil.getMessage("login.failure", ACTION_TITLE));
+                mav.add(AbstractAction.PATH_ATTRIBUTE_NAME, super.getPage("regist.page"));
+                mav.add(AbstractAction.MSG_ATTRIBUTE_NAME, ResourceUtil.getMessage("regist.failure", ACTION_TITLE));
             }
         } catch (Exception e) {
             e.printStackTrace();

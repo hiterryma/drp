@@ -36,6 +36,17 @@
 									<!-- 定义表单错误提示显示元素 -->
 									<div class="col-md-4" id="idMsg"></div>
 								</div>
+								<div class="form-group" id="nameDiv">
+									<!-- 定义表单提示文字 -->
+									<label class="col-md-3 control-label" for="name">用户名称：</label>
+									<div class="col-md-5">
+										<!-- 定义表单输入组件 -->
+										<input type="text" id="name" name="name" class="form-control"
+											   placeholder="请输入名称">
+									</div>
+									<!-- 定义表单错误提示显示元素 -->
+									<div class="col-md-4" id="nameMsg"></div>
+								</div>
 								<div class="form-group" id="passwordDiv">
 									<!-- 定义表单提示文字 -->
 									<label class="col-md-3 control-label" for="password">登录密码：</label>

@@ -5,7 +5,7 @@
 	<script type="text/javascript" src="js/pages/front/center/member/member_edit.js"></script>
 </head>
 <%!
-	public static final String MEMBER_EDIT_URL = "" ;
+	public static final String MEMBER_EDIT_URL = "updeate_member.action" ;
 %>
 <body class="back">
 	<div class="container contentback">
@@ -26,7 +26,7 @@
 					<div class="panel-heading">
 						<strong><span class="glyphicon glyphicon-edit"></span>&nbsp;编辑个人信息</strong>
 					</div>
-					<div class="panel-body">
+					<div class="panel-body" id="member_edit">
 						<form class="form-horizontal" action="<%=MEMBER_EDIT_URL%>" id="myform" method="post">
 							<fieldset>
 								<!-- 定义输入表单样式，其中id主要用于设置颜色样式 -->
@@ -36,7 +36,7 @@
 									<div class="col-md-5">
 										<!-- 定义表单输入组件 -->
 										<input type="text" id="name" name="name" class="form-control"
-											placeholder="请输入您的姓名" value="张三">
+											placeholder="请输入您的姓名" value="">
 									</div>
 									<!-- 定义表单错误提示显示元素 -->
 									<div class="col-md-4" id="nameMsg"></div>
@@ -47,7 +47,7 @@
 									<div class="col-md-5">
 										<!-- 定义表单输入组件 -->
 										<input type="text" id="phone" name="phone" class="form-control"
-											placeholder="请输入您的联系电话" value="18238923892">
+											placeholder="请输入您的联系电话" value="">
 									</div>
 									<!-- 定义表单错误提示显示元素 -->
 									<div class="col-md-4" id="phoneMsg"></div>
@@ -58,7 +58,7 @@
 									<div class="col-md-5">
 										<!-- 定义表单输入组件 -->
 										<input type="text" id="email" name="email" class="form-control"
-											placeholder="请输入您的联系邮箱" value="nihao@xiaoli.com">
+											placeholder="请输入您的联系邮箱" value="">
 									</div>
 									<!-- 定义表单错误提示显示元素 -->
 									<div class="col-md-4" id="emailMsg"></div>
