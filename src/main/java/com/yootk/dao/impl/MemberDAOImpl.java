@@ -60,6 +60,18 @@ public class MemberDAOImpl extends AbstractDAO implements IMemberDAO {
     }
 
     @Override
+    public String  findMemberById(String mid) throws SQLException {
+        String sql = "SELECT mid FROM member WHERE mid=?";
+        super.pstmt = super.conn.prepareStatement(sql);
+        super.pstmt.setString(1,mid);
+        ResultSet rs = super.pstmt.executeQuery();
+        if (rs.next()) {
+            return rs.getString(1);
+        }
+        return null;
+    }
+
+    @Override
     public Integer findByDeptAndMember(String mid) throws SQLException {
         String sql = "SELECT type FROM member WHERE mid=?";
         super.pstmt = super.conn.prepareStatement(sql);

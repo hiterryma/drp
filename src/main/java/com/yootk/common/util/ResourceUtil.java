@@ -9,6 +9,7 @@ public class ResourceUtil {
         messageResource = ResourceBundle.getBundle(messageBaseName) ;
     }
     public static String getMessage(String key,String ... param) {
+
         try {
             String str = messageResource.getString(key) ;
             if (param != null && param.length > 0) {

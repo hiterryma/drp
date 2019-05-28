@@ -8,6 +8,13 @@ import java.util.List;
 
 public interface IMemberDAO extends IBaseDAO<String , Member> {
     /**
+     *
+     * @param mid
+     * @return
+     * @throws SQLException
+     */
+    public String findMemberById(String mid) throws SQLException;
+    /**
      * 查询用户是否有部门，判断是否开启都台管理选项
      * @param mid 要查询的用户ID
      * @return 返回包含查询信息的Member类

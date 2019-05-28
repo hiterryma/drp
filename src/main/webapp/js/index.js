@@ -16,5 +16,5 @@ function ajax_login() {
         if (data == 1) {
             $("#manage").append("<a href=\"pages/back/index.jsp\"><i class=\"glyphicon glyphicon-home\"></i>&nbsp;管理中心</a>");
         }
-    });
+    },"text");
 }
