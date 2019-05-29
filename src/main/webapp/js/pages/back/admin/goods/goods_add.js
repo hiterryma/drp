@@ -42,13 +42,24 @@ $(function(){
 				required : true ,
 				digits : true 
 			},
-			"pic" : {
+			"photo" : {
 				required : true ,
 				accept : ["jpg","png","gif","bmp"]
 			},
 			"note" : {
 				required : true
 			}
+		}
+	});
+	$("#wiid").on("change",function () {
+		$("#stid option:gt(0)").remove(); // 清除已有的内容
+		$("#stid option:eq(0)").prop("selected") ;
+		if (this.value != "") {	// 有内容，需要进行ajax异步加载
+			$.getJSON("/pages/back/admin/subtype/list_subtype.action", {"wiid": $(this).val()}, function (data) {
+				for (x = 0; x < data.length; x++) {
+					$("#stid").append("<option value='" + data[x].stid + "'>" + data[x].title + "</option>");
+				}
+			});
 		}
 	});
 })

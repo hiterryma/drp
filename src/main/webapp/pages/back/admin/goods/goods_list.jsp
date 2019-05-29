@@ -1,6 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%!
-	public static final String GOODS_EDIT_URL = "pages/back/admin/goods/goods_edit.jsp" ;
+	public static final String GOODS_EDIT_URL = "pages/back/admin/goods/goods_pre_edit.action" ;
 	public static final String GOODS_SHOW_URL = "pages/back/admin/goods/goods_show.jsp" ;
 %>
 <html>
@@ -50,7 +50,7 @@
 							<td class="text-center"><span id="storage-1" style="cursor:pointer;">3000</span></td>
 							<td class="text-center"><span id="mid-admin" style="cursor:pointer;">老李</span></td> 
 							<td class="text-left">
-								<a href="<%=GOODS_EDIT_URL%>" class="btn btn-primary btn-xs">
+								<a href="<%=GOODS_EDIT_URL%>?gid=1" class="btn btn-primary btn-xs">
 										<span class="glyphicon glyphicon-edit"></span>&nbsp;编辑</a>
 								<button class="btn btn-danger btn-xs" id="out-1">
 										<span class="glyphicon glyphicon-ok-circle"></span>&nbsp;待出库</button>

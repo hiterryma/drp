@@ -2,21 +2,21 @@ package com.yootk.dao.impl;
 
 import com.yootk.common.annotation.Repository;
 import com.yootk.common.dao.abs.AbstractDAO;
-import com.yootk.dao.IWitemDAO;
-import com.yootk.vo.Witem;
+import com.yootk.dao.IDeptDAO;
+import com.yootk.vo.Dept;
 
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Set;
 @Repository
-public class ItemDAOImpl extends AbstractDAO implements IWitemDAO {
+public class DeptDAOImpl extends AbstractDAO implements IDeptDAO {
     @Override
-    public boolean doCreate(Witem witem) throws SQLException {
+    public boolean doCreate(Dept dept) throws SQLException {
         return false;
     }
 
     @Override
-    public boolean doEdit(Witem witem) throws SQLException {
+    public boolean doEdit(Dept dept) throws SQLException {
         return false;
     }
 
@@ -26,24 +26,24 @@ public class ItemDAOImpl extends AbstractDAO implements IWitemDAO {
     }
 
     @Override
-    public Witem findById(Long aLong) throws SQLException {
+    public Dept findById(Long aLong) throws SQLException {
         return null;
     }
 
     @Override
-    public List<Witem> findAll() throws SQLException {
-        String sql = "select wiid title from witem";
+    public List<Dept> findAll() throws SQLException {
+        String sql = "select did, dname, mid from dept";
         super.pstmt = super.conn.prepareStatement(sql);
-        return super.handleResultToList(super.pstmt.executeQuery(), Witem.class);
+        return super.handleResultToList(super.pstmt.executeQuery(), Dept.class);
     }
 
     @Override
-    public List<Witem> findSplit(Long currentPage, Integer lineSize) throws SQLException {
+    public List<Dept> findSplit(Long currentPage, Integer lineSize) throws SQLException {
         return null;
     }
 
     @Override
-    public List<Witem> findSplit(Long currentPage, Integer lineSize, String column, String keyWord) throws SQLException {
+    public List<Dept> findSplit(Long currentPage, Integer lineSize, String column, String keyWord) throws SQLException {
         return null;
     }
 
