@@ -6,11 +6,14 @@ import com.yootk.dao.IWitemDAO;
 import com.yootk.vo.Subtype;
 import com.yootk.vo.Witem;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+
 @Repository
-public class ItemDAOImpl extends AbstractDAO implements IWitemDAO {
+public class WitemDAOImpl extends AbstractDAO implements IWitemDAO {
     @Override
     public boolean doCreate(Witem witem) throws SQLException {
         return false;
@@ -33,9 +36,17 @@ public class ItemDAOImpl extends AbstractDAO implements IWitemDAO {
 
     @Override
     public List<Witem> findAll() throws SQLException {
-        String sql = "select wiid title from witem";
+        List<Witem> all = new ArrayList<>();
+        String sql = "SELECT wiid,title FROM witem";
         super.pstmt = super.conn.prepareStatement(sql);
-        return super.handleResultToList(super.pstmt.executeQuery(), Witem.class);
+        ResultSet rs = super.pstmt.executeQuery();
+        while (rs.next()){
+            Witem vo = new Witem();
+            vo.setWiid(rs.getLong(1));
+            vo.setTitle(rs.getString(2));
+            all.add(vo);
+        }
+        return all;
     }
 
     @Override
@@ -57,4 +68,6 @@ public class ItemDAOImpl extends AbstractDAO implements IWitemDAO {
     public Long getAllCount(String column, String keyWord) throws SQLException {
         return null;
     }
+
+
 }

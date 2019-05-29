@@ -1,9 +1,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<script type="text/javascript" src="js/include_navbar.js"></script>
 <%!
 	public static final String LOGIN_URL = "login.jsp" ;
-	public static final String MALL_INDEX_URL = "mall_index.jsp" ;
+	public static final String MALL_INDEX_URL = "classify.action" ;
 
 	public static final String PURCHASE_ADD_URL = "pages/front/center/purchase/purchase_add.jsp" ;
 
