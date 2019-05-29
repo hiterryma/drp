@@ -5,7 +5,9 @@ import com.yootk.common.dao.abs.AbstractDAO;
 import com.yootk.dao.ISubtypeDAO;
 import com.yootk.vo.Subtype;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 @Repository
@@ -32,7 +34,18 @@ public class SubtypeDAOImpl extends AbstractDAO implements ISubtypeDAO {
 
     @Override
     public List<Subtype> findAll() throws SQLException {
-        return null;
+        List<Subtype> all = new ArrayList<>();
+        String sql = "SELECT stid,title,wiid FROM subtype";
+        super.pstmt = super.conn.prepareStatement(sql);
+        ResultSet rs = super.pstmt.executeQuery();
+        while (rs.next()){
+            Subtype vo = new Subtype();
+            vo.setStid(rs.getLong(1));
+            vo.setTitle(rs.getString(2));
+            vo.setWiid(rs.getLong(3));
+            all.add(vo);
+        }
+        return all;
     }
 
     @Override

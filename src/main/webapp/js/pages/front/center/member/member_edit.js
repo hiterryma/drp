@@ -1,4 +1,11 @@
 $(function() {
+	$("#member_edit").each(function () {
+		$.getJSON("member_datum.action",function (data) {
+			$("#name").val(data.name);
+			$("#phone").val(data.phone);
+			$("#email").val(data.email);
+		})
+	});
 	$("#myform").validate({
 		debug : true, // 取消表单的提交操作
 		submitHandler : function(form) {

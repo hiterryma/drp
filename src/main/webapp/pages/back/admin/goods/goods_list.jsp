@@ -48,7 +48,7 @@
 							<td class="text-center">200g</td>
 							<td class="text-center">2018-10-13</td>
 							<td class="text-center"><span id="storage-1" style="cursor:pointer;">3000</span></td>
-							<td class="text-center"><span id="mid-admin" style="cursor:pointer;">老李</span></td> 
+							<td class="text-center"><span id="mid-admin" style="cursor:pointer;">老李</span></td>
 							<td class="text-left">
 								<a href="<%=GOODS_EDIT_URL%>?gid=1" class="btn btn-primary btn-xs">
 										<span class="glyphicon glyphicon-edit"></span>&nbsp;编辑</a>

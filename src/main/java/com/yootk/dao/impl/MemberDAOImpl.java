@@ -7,7 +7,6 @@ import com.yootk.vo.Member;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -64,12 +63,85 @@ public class MemberDAOImpl extends AbstractDAO implements IMemberDAO {
     }
 
     @Override
-    public boolean doCreateByMember(Member vo) throws SQLException {
-        String sql = "INSERT INTO member(mid,password) VALUES (?,?)";
+    public Long findDidByDeptAndMember(String mid) throws SQLException {
+        String sql = "SELECT did FROM member WHERE mid=?";
         super.pstmt = super.conn.prepareStatement(sql);
-        super.pstmt.setString(1,vo.getMid());
-        super.pstmt.setString(2,vo.getPassword());
+        super.pstmt.setString(1,mid);
+        ResultSet rs = super.pstmt.executeQuery();
+        if (rs.next()){
+            return rs.getLong(1);
+        }
+        return 0L;
+    }
+
+    @Override
+    public boolean doEditPasswordByMember(String newpassword,String mid) throws SQLException {
+        String sql = "UPDATE member SET password=? WHERE mid=?";
+        super.pstmt = super.conn.prepareStatement(sql);
+        super.pstmt.setString(1,newpassword);
+        super.pstmt.setString(2,mid);
         return super.pstmt.executeUpdate()>0;
+    }
+
+    @Override
+    public boolean doEditDatumByMember(Member vo) throws SQLException {
+        String sql = "UPDATE member SET name=?,phone=?,email=? WHERE mid=?";
+        super.pstmt = super.conn.prepareStatement(sql);
+        super.pstmt.setString(1,vo.getName());
+        super.pstmt.setString(2,vo.getPhone());
+        super.pstmt.setString(3,vo.getEmail());
+        super.pstmt.setString(4,vo.getMid());
+        return super.pstmt.executeUpdate()>0;
+    }
+
+    @Override
+    public Member findDatumByMember(String mid) throws SQLException {
+        Member vo = null;
+        String sql = "SELECT name,phone,email FROM member WHERE mid=?";
+        super.pstmt = super.conn.prepareStatement(sql);
+        super.pstmt.setString(1, mid);
+        ResultSet rs = super.pstmt.executeQuery();
+        if (rs.next()) {
+            vo = new Member();
+            vo.setName(rs.getString(1));
+            vo.setPhone(rs.getString(2));
+            vo.setEmail(rs.getString(3));
+        }
+        return vo;
+    }
+
+    @Override
+    public String findMemberById(String mid) throws SQLException {
+        String sql = "SELECT mid FROM member WHERE mid=?";
+        super.pstmt = super.conn.prepareStatement(sql);
+        super.pstmt.setString(1, mid);
+        ResultSet rs = super.pstmt.executeQuery();
+        if (rs.next()) {
+            return rs.getString(1);
+        }
+        return null;
+    }
+
+    @Override
+    public Integer findTypeByMember(String mid) throws SQLException {
+        String sql = "SELECT type FROM member WHERE mid=?";
+        super.pstmt = super.conn.prepareStatement(sql);
+        super.pstmt.setString(1, mid);
+        ResultSet rs = super.pstmt.executeQuery();
+        if (rs.next()) {
+            return rs.getInt(1);
+        }
+        return 0;
+    }
+
+    @Override
+    public boolean doCreateByMember(Member vo) throws SQLException {
+        String sql = "INSERT INTO member(mid,name,password) VALUES (?,?,?)";
+        super.pstmt = super.conn.prepareStatement(sql);
+        super.pstmt.setString(1, vo.getMid());
+        super.pstmt.setString(2, vo.getName());
+        super.pstmt.setString(3, vo.getPassword());
+        return super.pstmt.executeUpdate() > 0;
     }
 
     @Override
@@ -77,9 +149,9 @@ public class MemberDAOImpl extends AbstractDAO implements IMemberDAO {
         Member vo = null;
         String sql = "SELECT mid,name,password FROM member WHERE mid=?";
         super.pstmt = super.conn.prepareStatement(sql);
-        super.pstmt.setString(1,id);
+        super.pstmt.setString(1, id);
         ResultSet rs = super.pstmt.executeQuery();
-        if (rs.next()){
+        if (rs.next()) {
             vo = new Member();
             vo.setMid(rs.getString(1));
             vo.setName(rs.getString(2));

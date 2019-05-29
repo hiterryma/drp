@@ -7,7 +7,7 @@
 	<script type="text/javascript" src="bootstrap/tinymce/tinymce.min.js"></script>
 </head>
 <%!
-	public static final String NEWS_ADD_URL = "pages/back/news/add.action" ;
+	public static final String NEWS_ADD_URL = "pages/back/admin/news/news_add.action" ;
 %>
 <body class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">
@@ -39,12 +39,12 @@
 							</div>
 							<div class="col-md-4" id="absMsg">*</div>
 						</div>
-						<div class="form-group" id="picDiv">
-							<label class="col-md-2 control-label" for="pic">公告图片：</label>
+						<div class="form-group" id="photoDiv">
+							<label class="col-md-2 control-label" for="photo">公告图片：</label>
 							<div class="col-md-5">
-								<input type="file" name="pic" id="pic" class="form-control input-sm" placeholder="请选择公告所需要的图片">
+								<input type="file" name="photo" id="photo" class="form-control input-sm" placeholder="请选择公告所需要的图片">
 							</div>
-							<div class="col-md-4" id="picMsg">*</div>
+							<div class="col-md-4" id="photoMsg">*</div>
 						</div>
 						<div class="form-group" id="noteDiv">
 							<label class="col-md-2 control-label" for="status">公告内容：</label>

@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" pageEncoding="UTF-8"%>
 <html>
 <head>
@@ -33,7 +34,7 @@
 									<div class="col-md-5">
 										<!-- 定义表单输入组件 -->
 										<input type="text" id="mid" name="mid" class="form-control"
-											   placeholder="用户名 / 邮箱 / 手机" value="vadmin">
+											   placeholder="用户名 / 邮箱 / 手机" value="admin">
 									</div>
 									<!-- 定义表单错误提示显示元素 -->
 									<div class="col-md-4" id="midMsg"></div>
@@ -44,7 +45,7 @@
 									<div class="col-md-5">
 										<!-- 定义表单输入组件 -->
 										<input type="password" id="password" name="password" class="form-control"
-											   placeholder="请输入登录密码" value="hello">
+											   placeholder="请输入登录密码" value="123456">
 									</div>
 									<!-- 定义表单错误提示显示元素 -->
 									<div class="col-md-4" id="passwordMsg"></div>
@@ -84,14 +85,17 @@
 						</form>
 					</c:if>
 					<c:if test="${mid != null}">
-						您已经登录过了，请正常访问！
+						<a href="index.jsp">您已经登录过了，请正常访问！</a>
 					</c:if>
 				</div>
+
 				<div class="panel-footer">
-					<div class="alert alert-success" id="alertDiv" style="display: none;">
-						<button type="button" class="close" data-dismiss="alert">&times;</button>
-						<span id="alertText"></span>
-					</div>
+					<c:if test="${msg != null}">
+						<div class="alert alert-danger" id="alertDiv">
+							<button type="button" class="close" data-dismiss="alert">&times;</button>
+							<span id="alertText">${msg}</span>
+						</div>
+					</c:if>
 				</div>
 			</div>
 		</div>
