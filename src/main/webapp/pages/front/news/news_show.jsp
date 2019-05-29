@@ -26,7 +26,7 @@
 					<div class="panel-body">
 						<div class="text-center h2">${news.title}</div>
 						<div class="text-primary"><strong>新闻摘要：</strong>${news.abs}</div>
-						<div class="text-primary"><strong>发布日期：</strong>2010-10-10</div>
+						<div class="text-primary"><strong>发布日期：</strong>${news.pubdate}</div>
 						<div>
 							<pre class="pre-scrollable" style="height:300px;width: 100%;">${news.note}</pre>
 						</div>

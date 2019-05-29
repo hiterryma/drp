@@ -1,5 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <html>
 <head>
     <jsp:include page="/pages/plugins/basepath.jsp"/>
@@ -24,13 +26,9 @@
                 <div class="panel-heading"><strong><span class="glyphicon glyphicon-bullhorn"></span>&nbsp;公司要闻</strong></div>
                 <div class="panel-body">
                     <ul>
-                        <li><a href="pages/front/news/news_show.jsp"><span class="glyphicon glyphicon-exclamation-sign text-danger"></span>&nbsp;【2010-10-10】我们牛逼了。</a></li>
-                        <li><a href="pages/front/news/news_show.jsp"><span class="glyphicon glyphicon-exclamation-sign text-danger"></span>&nbsp;【2010-10-10】大家赶紧去上班。</a></li>
-                        <li><a href="pages/front/news/news_show.jsp"><span class="glyphicon glyphicon-exclamation-sign text-danger"></span>&nbsp;【2010-10-10】我们真要去上班。</a></li>
-                        <li><a href="pages/front/news/news_show.jsp"><span class="glyphicon glyphicon-exclamation-sign text-danger"></span>&nbsp;【2010-10-10】上班太好了。</a></li>
-                        <li><a href="pages/front/news/news_show.jsp"><span class="glyphicon glyphicon-exclamation-sign text-danger"></span>&nbsp;【2010-10-10】真的爽屁了。</a></li>
-                        <li><a href="pages/front/news/news_show.jsp"><span class="glyphicon glyphicon-exclamation-sign text-danger"></span>&nbsp;【2010-10-10】真的爽屁了。</a></li>
-                        <li><a href="pages/front/news/news_show.jsp"><span class="glyphicon glyphicon-exclamation-sign text-danger"></span>&nbsp;【2010-10-10】真的爽屁了。</a></li>
+                        <c:forEach items="${allNews}" var="news">
+                            <li><a href="pages/back/admin/news/news_show.action?nid=${news.nid}"><span class="glyphicon glyphicon-exclamation-sign text-danger"></span>${news.title}</a></li>
+                        </c:forEach>
                     </ul>
                     <jsp:include page="/pages/plugins/split_page_bar_plugin.jsp"/>
                 </div>

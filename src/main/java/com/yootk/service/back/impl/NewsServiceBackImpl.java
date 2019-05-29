@@ -9,6 +9,7 @@ import com.yootk.vo.News;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 @Service
 public class NewsServiceBackImpl extends AbstractService implements INewsServiceBack {
@@ -21,7 +22,15 @@ public class NewsServiceBackImpl extends AbstractService implements INewsService
 
     @Override
     public boolean edit(News vo) throws Exception {
+        if(vo.getPhoto()==null || "".equals(vo.getPhoto())){
+            vo.setPhoto(this.newsDAO.findById(vo.getNid()).getPhoto());
+        }
         return this.newsDAO.doEdit(vo);
+    }
+
+    @Override
+    public boolean delete(Set<Long> longs) throws Exception {
+        return this.newsDAO.doRemove(longs) ;
     }
 
     @Override
@@ -30,7 +39,7 @@ public class NewsServiceBackImpl extends AbstractService implements INewsService
     }
 
     @Override
-    public Map<String, Object> split(Long currentPage, Integer lineSize, String column, String keyword) throws Exception {
+    public Map<String, Object> list(Long currentPage, Integer lineSize, String column, String keyword) throws Exception {
         Map<String, Object> map = new HashMap<>();
         if(isEmpty(column,keyword)){
             map.put("allNews",this.newsDAO.findSplit(currentPage,lineSize)) ;
@@ -41,4 +50,5 @@ public class NewsServiceBackImpl extends AbstractService implements INewsService
        }
         return map ;
     }
+
 }
