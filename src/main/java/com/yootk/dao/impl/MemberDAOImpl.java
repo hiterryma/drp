@@ -1,6 +1,5 @@
 package com.yootk.dao.impl;
 
-import com.sun.org.apache.xml.internal.security.Init;
 import com.yootk.common.annotation.Repository;
 import com.yootk.common.dao.abs.AbstractDAO;
 import com.yootk.dao.IMemberDAO;
@@ -8,7 +7,6 @@ import com.yootk.vo.Member;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
