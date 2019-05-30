@@ -5,7 +5,7 @@
     <script type="text/javascript" src="js/pages/front/center/purchase/purchase_authentication.js"></script>
 </head>
 <%!
-    public static final String PURCHASE_AUTHENTICATION_URL = "" ;
+    public static final String PURCHASE_AUTHENTICATION_URL = "/pages/front/center/purchase/add_pre.action" ;
 %>
 <body class="back">
 <div class="container contentback">
