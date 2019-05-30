@@ -5,8 +5,10 @@ import com.yootk.common.dao.abs.AbstractDAO;
 import com.yootk.dao.IGoodsDAO;
 import com.yootk.vo.Goods;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 @Repository
@@ -49,7 +51,9 @@ public class GoodsDAOImpl extends AbstractDAO implements IGoodsDAO {
 
     @Override
     public List<Goods> findAll() throws SQLException {
-        return null;
+        String sql = "SELECT name,price,photo FROM goods WHERE delflag=0  LIMIT 12";
+        super.pstmt = super.conn.prepareStatement(sql);
+        return super.handleResultToList(super.pstmt.executeQuery(),Goods.class);
     }
 
     @Override
@@ -80,7 +84,19 @@ public class GoodsDAOImpl extends AbstractDAO implements IGoodsDAO {
     }
 
     @Override
-    public List<Goods> findByStid(Long stid) throws SQLException {
-        return null;
+    public List<Goods> findByStid(Long stid,Long currentPage,Integer lineSize,String clonum,String keyword) throws SQLException {
+        String sql = "SELECT name,price,photo FROM goods WHERE delflag=0 AND stid=? AND "+ clonum +" LIKE ? LIMIT " + (currentPage - 1) * lineSize + " , " + lineSize;
+        super.pstmt = super.conn.prepareStatement(sql);
+        super.pstmt.setLong(1,stid);
+        super.pstmt.setString(2,"%"+keyword+"%");
+        return super.handleResultToList(super.pstmt.executeQuery(),Goods.class);
+    }
+
+    @Override
+    public List<Goods> findByStid(Long stid, Long currentPage, Integer lineSize) throws SQLException {
+        String sql = "SELECT name,price,photo FROM goods WHERE delflag=0 AND stid=?  LIMIT " + (currentPage - 1) * lineSize + " , " + lineSize;
+        super.pstmt = super.conn.prepareStatement(sql);
+        super.pstmt.setLong(1,stid);
+        return super.handleResultToList(super.pstmt.executeQuery(),Goods.class);
     }
 }

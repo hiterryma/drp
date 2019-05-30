@@ -5,6 +5,7 @@ import com.yootk.common.dao.abs.AbstractDAO;
 import com.yootk.dao.ICustomerDAO;
 import com.yootk.vo.Customer;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Set;
@@ -70,6 +71,18 @@ public class CustomerDAOImpl extends AbstractDAO implements ICustomerDAO {
 
     @Override
     public Long getAllCount(String column, String keyWord) throws SQLException {
+        return null;
+    }
+
+    @Override
+    public Integer findByMid(String mid) throws SQLException {
+        String sql = "SELECT status FROM customer WHERE mid=?";
+        super.pstmt = super.conn.prepareStatement(sql);
+        super.pstmt.setString(1,mid);
+        ResultSet rs = super.pstmt.executeQuery();
+        if (rs.next()){
+            return rs.getInt(1);
+        }
         return null;
     }
 }
