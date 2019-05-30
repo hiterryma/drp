@@ -1,11 +1,13 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page import="com.yootk.vo.Member" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
 	<jsp:include page="/pages/plugins/basepath.jsp"/>
-	<script type="text/javascript" src="js/pages/back/admin/emp/emp_list.js"></script>
+	<script type="text/javascript" src="js/pages/back/admin/member/member_list.js"></script>
 </head>
 <%!
-	public static final String EMP_EDIT_URL = "pages/back/admin/emp/emp_edit.jsp" ;
+	public static final String EMP_EDIT_URL = "pages/back/admin/member/member_edit.jsp" ;
 %>
 <body class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">
@@ -40,24 +42,30 @@
 						</tr>
 					</thead>
 					<tbody>
+					<c:forEach items="${allMembers}" var="member">
 						<tr>
-							<td class="text-center"><input type="checkbox" id="eid-1" value="1"></td>
+							<td class="text-center"><input type="checkbox" id="mid" value="${member.mid}"></td>
 							<td class="text-center">
-								<img src="images/nophoto.png" style="width:20px;"/>
-							</td> 
-							<td class="text-center">老李</td>
-							<td class="text-center">经理</td>
-							<td class="text-center">人事部</td>
-							<td class="text-center">2019-10-10</td>
-							<td class="text-center">3000</td>
-							<td class="text-center">13010109992</td>
+								<c:if test="${member.photo!=null && member.photo !=''&& member.photo!='nophoto.png'}">
+									<img src="http://upload-server/upload/${member.photo}" style="width:20px;"/>
+								</c:if>
+							</td>
+							<td class="text-center">${member.name}</td>
+							<td class="text-center">${allLevels[member.lid].title}</td>
+							<td class="text-center">${allDepts[member.did].dname}</td>
+							<td class="text-center">${member.regdate}</td>
+							<td class="text-center">${member.sal}</td>
+							<td class="text-center">${member.phone}</td>
 							<td class="text-center">
 								<a type="button" class="btn btn-warning btn-xs" href="<%=EMP_EDIT_URL%>?eid=">
-										<span class="glyphicon glyphicon-edit"></span>&nbsp;编辑</a>
+									<span class="glyphicon glyphicon-edit"></span>&nbsp;编辑</a>
 							</td>
 						</tr>
+
+					</c:forEach>
 					</tbody>
 				</table>
+				<button id="removeBtn" class="btn btn-lg btn-danger"><span class="glyphicon glyphicon-remove"></span>&nbsp;删除雇员</button>
 				<div id="splitBarDiv" style="float:right">
 					<jsp:include page="/pages/plugins/split_page_bar_plugin.jsp"/>
 				</div>

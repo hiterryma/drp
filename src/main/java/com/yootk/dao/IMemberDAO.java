@@ -1,6 +1,5 @@
 package com.yootk.dao;
 
-import com.alibaba.fastjson.parser.deserializer.SqlDateDeserializer;
 import com.yootk.common.dao.IBaseDAO;
 import com.yootk.vo.Member;
 
@@ -68,5 +67,10 @@ public interface IMemberDAO extends IBaseDAO<String , Member> {
      */
     public Member findByIdAndpw(String mid) throws SQLException;
 
-    public List<Member> findByDept(Long did) throws SQLException;
+    @Override
+    boolean doEdit(Member member) throws SQLException;
+
+    public List<Member> findAllMap() throws SQLException ;
+
+    public List<Member> findByDept(Long did) throws SQLException ;
 }

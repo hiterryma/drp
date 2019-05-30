@@ -1,21 +1,9 @@
 package com.yootk.vo;
 
-import java.io.Serializable;
-
-public class Dept implements Serializable {
-
-    private Long did;
-    private String dname;
-    private String mid;
-
-    @Override
-    public String toString() {
-        return "Dept{" +
-                "did=" + did +
-                ", dname='" + dname + '\'' +
-                ", mid='" + mid + '\'' +
-                '}';
-    }
+public class Dept {
+    private Long did ;
+    private String dname ;
+    private String mid ;
 
     public Long getDid() {
         return did;
@@ -39,5 +27,14 @@ public class Dept implements Serializable {
 
     public void setMid(String mid) {
         this.mid = mid;
+    }
+
+    @Override
+    public String toString() {
+        return "Dept{" +
+                "did=" + did +
+                ", dname='" + dname + '\'' +
+                ", mid='" + mid + '\'' +
+                '}';
     }
 }
