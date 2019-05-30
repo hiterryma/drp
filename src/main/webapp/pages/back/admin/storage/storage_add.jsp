@@ -8,7 +8,7 @@
 	<script type="text/javascript" src="js/split_page.js"></script>
 </head>
 <%!
-	public static final String STORAGE_ADD_URL = "" ;
+	public static final String STORAGE_ADD_URL = "/pages/back/admin/storage/storage_add.action" ;
 %>
 <body class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">
@@ -78,7 +78,7 @@
 								<!-- 定义表单提示文字 -->
 								<label class="col-md-3 control-label" for="iid">商品类型：</label>
 								<div class="col-md-5">
-									<select id="iid" name="iid" class="form-control">
+									<select id="iid" name="wiid" class="form-control">
 										<option value="">====== 请选择库存商品类型 ======</option>
 										<!--
 										<option value="1">服装</option>
@@ -99,9 +99,11 @@
 								<div class="col-md-5">
 									<select id="wid" name="wid" class="form-control">
 										<option value="">====== 请选择要存储的仓库 ======</option>
+                                        <!--
 										<option value="1">通州一号仓库</option>
 										<option value="2">通州二号仓库</option>
 										<option value="3">通州三号仓库</option>
+										-->
 									</select>
 								</div>
 								<!-- 定义表单错误提示显示元素 -->

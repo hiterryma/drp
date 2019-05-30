@@ -1,5 +1,7 @@
 package com.yootk.service.back;
 
+import com.yootk.vo.Storage_apply;
+
 import java.util.Map;
 
 public interface IStorage_applyServiceBack  {
@@ -10,4 +12,12 @@ public interface IStorage_applyServiceBack  {
      * @throws Exception
      */
     public Map<String,Object> preAdd() throws Exception ;
+
+    /**
+     * 执行出入库申请单的创建
+     * @param storage_apply
+     * @return
+     * @throws Exception
+     */
+    public boolean add(Storage_apply storage_apply) throws Exception ;
 }
