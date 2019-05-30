@@ -1,5 +1,6 @@
 package com.yootk.action.back;
 
+import com.alibaba.fastjson.JSONObject;
 import com.yootk.common.action.abs.AbstractAction;
 import com.yootk.common.annotation.Autowired;
 import com.yootk.common.annotation.Controller;
@@ -88,5 +89,17 @@ public class WarehouseActionBack extends AbstractAction {
     @Override
     public String getUploadDir() {
         return "/upload/back/warehouse/";
+    }
+
+    @RequestMapping("warehouse_list_wiid")
+    public void listWarehouseByWiid(Long wiid){
+        System.out.println(wiid);
+        try {
+
+            //super.print(JSONObject.toJSONString(this.warehouseService.listWarehouseByWiid(wiid)));
+            System.out.println(this.warehouseService.listWarehouseByWiid(wiid));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }

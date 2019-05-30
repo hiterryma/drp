@@ -79,4 +79,9 @@ public class WarehouseServiceImpl extends AbstractDAO implements IWarehouseServi
         return map;
     }
 
+    @Override
+    public List<Warehouse> listWarehouseByWiid(Long wiid) throws Exception {
+        return this.warehouseDAO.findAllByWiid(wiid) ;
+    }
+
 }

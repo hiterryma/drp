@@ -64,9 +64,11 @@
 								<div class="col-md-5">
 									<select id="cid" name="cid" class="form-control">
 										<option value="">====== 请选择所在城市 ======</option>
+										<!--
 										<option value="1">石家庄</option>
 										<option value="2">沧州</option>
 										<option value="3">邯郸</option>
+										-->
 									</select>
 								</div>
 								<!-- 定义表单错误提示显示元素 -->
