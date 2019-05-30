@@ -78,4 +78,9 @@ public class GoodsDAOImpl extends AbstractDAO implements IGoodsDAO {
     public Long getAllCount(String column, String keyWord) throws SQLException {
         return super.handleCount("goods", column, keyWord);
     }
+
+    @Override
+    public List<Goods> findByStid(Long stid) throws SQLException {
+        return null;
+    }
 }
