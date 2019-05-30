@@ -29,12 +29,17 @@ public class MemberDAOImpl extends AbstractDAO implements IMemberDAO {
 
     @Override
     public Member findById(String mid) throws SQLException {
-        return null;
+        String sql = "select mid,lid,did,name,sal,phone,password,photo,note,regdate,inmid,locked,type,email,cuid from member where mid=?";
+        super.pstmt = super.conn.prepareStatement(sql);
+        super.pstmt.setString(1, mid);
+        return super.handleResultToVO(super.pstmt.executeQuery(), Member.class);
     }
 
     @Override
     public List<Member> findAll() throws SQLException {
-        return null;
+        String sql = "select mid,lid,did,name,sal,phone,password,photo,note,regdate,inmid,locked,type,email,cuid from member ";
+        super.pstmt = super.conn.prepareStatement(sql);
+        return super.handleResultToList(super.pstmt.executeQuery(), Member.class);
     }
 
     @Override
@@ -154,5 +159,13 @@ public class MemberDAOImpl extends AbstractDAO implements IMemberDAO {
             return vo;
         }
         return null;
+    }
+
+    @Override
+    public List<Member> findByDept(Long did) throws SQLException {
+        String sql = "select mid,lid,did,name,sal,phone,password,photo,note,regdate,inmid,locked,type,email,cuid from member where did=?";
+        super.pstmt = super.conn.prepareStatement(sql);
+        super.pstmt.setLong(1, did);
+        return super.handleResultToList(super.pstmt.executeQuery(), Member.class);
     }
 }

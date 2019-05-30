@@ -32,7 +32,7 @@ public class ProvinceDAOImpl extends AbstractDAO implements IProvinceDAO {
 
     @Override
     public List<Province> findAll() throws SQLException {
-        String sql = "select pid title from province";
+        String sql = "select pid, title from province";
         super.pstmt = super.conn.prepareStatement(sql);
         return super.handleResultToList(super.pstmt.executeQuery(), Province.class);
     }

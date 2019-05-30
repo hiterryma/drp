@@ -7,6 +7,7 @@ import com.yootk.vo.News;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -14,24 +15,30 @@ import java.util.Set;
 public class NewsDAOImpl extends AbstractDAO implements INewsDAO {
     @Override
     public boolean doCreate(News news) throws SQLException {
-        String sql = "insert into news(title,abs,photo,note) values(?,?,?,?)" ;
+        String sql = "insert into news(title,abs,photo,note,mid,pubdate,status) values(?,?,?,?,?,?,?)" ;
         super.pstmt = super.conn.prepareStatement(sql) ;
         super.pstmt.setString(1,news.getTitle());
         super.pstmt.setString(2,news.getAbs());
         super.pstmt.setString(3,news.getPhoto());
         super.pstmt.setString(4,news.getNote());
+        super.pstmt.setString(5,news.getMid());
+        super.pstmt.setDate(6,new java.sql.Date(new Date().getTime()));
+        super.pstmt.setInt(7,news.getStatus());
         return super.pstmt.executeUpdate()>0;
     }
 
     @Override
     public boolean doEdit(News news) throws SQLException {
-        String sql = "update news set title=?,abs=?,photo=?,note=? where nid=?" ;
+        String sql = "update news set title=?,abs=?,photo=?,note=?,mid=?,pubdate=?,status=?  where nid=?" ;
         super.pstmt = super.conn.prepareStatement(sql) ;
         super.pstmt.setString(1,news.getTitle());
         super.pstmt.setString(2,news.getAbs());
         super.pstmt.setString(3,news.getPhoto());
         super.pstmt.setString(4,news.getNote());
-        super.pstmt.setLong(5,news.getNid());
+        super.pstmt.setString(5,news.getMid());
+        super.pstmt.setDate(6,new java.sql.Date(new Date().getTime()));
+        super.pstmt.setInt(7,news.getStatus());
+        super.pstmt.setLong(8,news.getNid());
         return super.pstmt.executeUpdate()>0;
     }
 
@@ -49,7 +56,7 @@ public class NewsDAOImpl extends AbstractDAO implements INewsDAO {
 
     @Override
     public News findById(Long alone) throws SQLException {
-        String sql = "select nid,title,abs,photo,note from news where nid =?" ;
+        String sql = "select nid,title,abs,photo,note,mid,pubdate,status from news where nid =?" ;
         super.pstmt = super.conn.prepareStatement(sql );
         super.pstmt.setLong(1,alone);
         ResultSet rs = super.pstmt.executeQuery() ;
@@ -58,12 +65,15 @@ public class NewsDAOImpl extends AbstractDAO implements INewsDAO {
 
     @Override
     public List<News> findAll() throws SQLException {
-        return null;
+        String sql = "select nid,title,abs,photo,note,mid,pubdate,status from news";
+        super.pstmt = super.conn.prepareStatement(sql );
+        ResultSet rs = super.pstmt.executeQuery() ;
+        return super.handleResultToList(rs,News.class);
     }
 
     @Override
     public List<News> findSplit(Long currentPage, Integer lineSize) throws SQLException {
-        String sql = "select nid,title,abs,photo,note from news limit " + (currentPage-1)*lineSize + "," + lineSize ;
+        String sql = "select nid,title,abs,photo,note,mid,pubdate,status from news  LIMIT " + (currentPage - 1) * lineSize + "," + lineSize;
         super.pstmt = super.conn.prepareStatement(sql );
         ResultSet rs = super.pstmt.executeQuery() ;
         return super.handleResultToList(rs,News.class);
@@ -71,7 +81,7 @@ public class NewsDAOImpl extends AbstractDAO implements INewsDAO {
 
     @Override
     public List<News> findSplit(Long currentPage, Integer lineSize, String column, String keyWord) throws SQLException {
-        String sql = "select nid,title,abs,photo,note from news where "+column+" = ?  limit " + (currentPage-1)*lineSize + "," + lineSize ;
+        String sql = "select nid,title,abs,photo,note,mid,pubdate,status from news WHERE " + column + " LIKE ? LIMIT " + (currentPage - 1) * lineSize + "," + lineSize;
         super.pstmt = super.conn.prepareStatement(sql );
         super.pstmt.setString(1,"%"+keyWord+"%");
         ResultSet rs = super.pstmt.executeQuery() ;
@@ -80,7 +90,7 @@ public class NewsDAOImpl extends AbstractDAO implements INewsDAO {
 
     @Override
     public Long getAllCount() throws SQLException {
-       String sql = "select count(*) form news " ;
+       String sql = "select count(*) from news " ;
        super.pstmt = super.conn.prepareStatement(sql) ;
        ResultSet rs = super.pstmt.executeQuery();
        if(rs.next()){
@@ -91,9 +101,36 @@ public class NewsDAOImpl extends AbstractDAO implements INewsDAO {
 
     @Override
     public Long getAllCount(String column, String keyWord) throws SQLException {
-        String sql = "select count(*) form news where "+column+" = ?" ;
+        String sql = "select count(*) from news where "+column+" like ?" ;
         super.pstmt = super.conn.prepareStatement(sql) ;
         super.pstmt.setString(1,"%"+keyWord+"%");
+        ResultSet rs = super.pstmt.executeQuery();
+        if(rs.next()){
+            return rs.getLong(1) ;
+        }
+        return 0L;
+    }
+
+    @Override
+    public List<News> findAllForIndex() throws SQLException {
+        String sql = "select title,pubdate from news where status = 1 order by pubdate desc limit 0,10;";
+        super.pstmt = super.conn.prepareStatement(sql );
+        ResultSet rs = super.pstmt.executeQuery() ;
+        return super.handleResultToList(rs,News.class);
+    }
+
+    @Override
+    public List<News> findSplitForFront(Long currentPage, Integer lineSize) throws SQLException {
+        String sql = "select nid,title,abs,photo,note,mid,pubdate,status from news where status=1  LIMIT " + (currentPage - 1) * lineSize + "," + lineSize;
+        super.pstmt = super.conn.prepareStatement(sql );
+        ResultSet rs = super.pstmt.executeQuery() ;
+        return super.handleResultToList(rs,News.class);
+    }
+
+    @Override
+    public Long getAllCountForFront() throws SQLException {
+        String sql = "select count(*) from news where status = 1 " ;
+        super.pstmt = super.conn.prepareStatement(sql) ;
         ResultSet rs = super.pstmt.executeQuery();
         if(rs.next()){
             return rs.getLong(1) ;

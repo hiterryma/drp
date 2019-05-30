@@ -29,6 +29,8 @@ public class Warehouse implements Serializable {
     //仓库管理员的用户编号
     private String admin;
 
+
+
     public Long getWid() {
         return wid;
     }

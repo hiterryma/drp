@@ -56,4 +56,12 @@ public class CityDAOImpl extends AbstractDAO implements ICityDAO {
     public Long getAllCount(String column, String keyWord) throws SQLException {
         return null;
     }
+
+    @Override
+    public List<City> findAllByProvince(Long pid) throws SQLException{
+        String sql = "select cid, pid, title from city where pid = ?";
+        super.pstmt = super.conn.prepareStatement(sql);
+        super.pstmt.setLong(1, pid);
+        return super.handleResultToList(super.pstmt.executeQuery(), City.class);
+    }
 }

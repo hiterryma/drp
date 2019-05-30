@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 
 <html>
@@ -8,7 +9,7 @@
 	<script type="text/javascript" src="bootstrap/tinymce/tinymce.min.js"></script>
 </head>
 <%!
-	public static final String GOODS_EDIT_URL = "" ;
+	public static final String GOODS_EDIT_URL = "pages/back/admin/goods/goods/goods_edit.action" ;
 %>
 <body class="hold-transition skin-blue sidebar-mini"> 
 	<div class="wrapper">
@@ -30,11 +31,11 @@
 							<!-- 定义输入表单样式，其中id主要用于设置颜色样式 -->
 							<div class="form-group" id="nameDiv">
 								<!-- 定义表单提示文字 -->
-								<label class="col-md-3 control-label" for="name">商品名称：</label>
+								<label class="col-md-3 control-label" for="name" >商品名称：</label>
 								<div class="col-md-5">
 									<!-- 定义表单输入组件 -->
 									<input type="text" id="name" name="name" class="form-control"
-										placeholder="请输入仓库标记名称">
+										placeholder="请输入仓库标记名称" value="${goods.name}">
 								</div>
 								<!-- 定义表单错误提示显示元素 -->
 								<div class="col-md-4" id="nameMsg"></div>
@@ -45,9 +46,12 @@
 								<div class="col-md-5">
 									<select id="tid" name="tid" class="form-control">
 										<option value="">====== 请选择商品所属分类 ======</option>
-										<option value="1">手机数码</option>
+										<c:forEach items="${allWitems}" var="witem">
+											<option value="${witem.wiid}" ${witem.wiid==goods.wiid?"selected":""}>${witem.title}</option>
+										</c:forEach>
+										<%--<option value="1">手机数码</option>
 										<option value="2">女鞋、箱包</option>
-										<option value="3">电脑、办公</option>
+										<option value="3">电脑、办公</option>--%>
 									</select>
 								</div>
 								<!-- 定义表单错误提示显示元素 -->
@@ -59,9 +63,12 @@
 								<div class="col-md-5">
 									<select id="stid" name="stid" class="form-control">
 										<option value="">====== 请选择商品所属子分类 ======</option>
-										<option value="1">手机</option>
+										<c:forEach items="allSubtypes" var="subtype">
+											<option value="${subtype.stid}" ${subtype.stid==goods.stid?"selected":""}>${subtype.title}</option>
+										</c:forEach>
+										<%--<option value="1">手机</option>
 										<option value="2">老人机</option>
-										<option value="3">平板电脑</option>
+										<option value="3">平板电脑</option>--%>
 									</select>
 								</div>
 								<!-- 定义表单错误提示显示元素 -->
@@ -72,7 +79,7 @@
 								<label class="col-md-3 control-label" for="price">商品单价（￥）：</label>
 								<div class="col-md-5">
 									<input type="text" id="price" name="price" class="form-control"
-										placeholder="请输入商品单价">
+										placeholder="请输入商品单价" value="${goods.price}">
 								</div>
 								<!-- 定义表单错误提示显示元素 -->
 								<div class="col-md-4" id="priceMsg"></div>
@@ -83,7 +90,7 @@
 								<div class="col-md-5">
 									<!-- 定义表单输入组件 -->
 									<input type="text" id="weight" name="weight" class="form-control"
-										placeholder="请输入商品重量.">
+										placeholder="请输入商品重量." value="${goods.weight}">
 								</div>
 								<!-- 定义表单错误提示显示元素 -->
 								<div class="col-md-4" id="weightMsg"></div>
@@ -106,7 +113,7 @@
 								<div class="col-md-5">
 									<!-- 定义表单输入组件 -->
 									<textarea id="note" name="note"
-										class="form-control" placeholder="请输入商品的详细信息" rows="10">fasdfasd</textarea>
+										class="form-control" placeholder="请输入商品的详细信息" rows="10">value="${goods.note}"</textarea>
 								</div>
 								<!-- 定义表单错误提示显示元素 -->
 								<div class="col-md-4" id="noteMsg"></div>

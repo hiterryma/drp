@@ -32,4 +32,10 @@ public interface INewsDAO  extends IBaseDAO<Long, News> {
 
     @Override
     public Long getAllCount(String column, String keyWord) throws SQLException;
+
+    public List<News> findAllForIndex() throws SQLException;
+
+    public List<News> findSplitForFront(Long currentPage, Integer lineSize) throws SQLException;
+
+    public Long getAllCountForFront() throws SQLException;
 }

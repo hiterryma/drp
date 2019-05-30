@@ -34,8 +34,9 @@ $(function(){
 			"abs" : { 
 				required : true
 			},
-			"pic" : {
-				extension : "png|jpg|gif|bmp" 
+			"photo" : {
+				required : true ,
+				accept : ["jpg","png","gif","bmp"]
 			} ,
 			"note" : { 
 				required : true

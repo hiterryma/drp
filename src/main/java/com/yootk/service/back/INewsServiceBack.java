@@ -4,6 +4,7 @@ package com.yootk.service.back;
 import com.yootk.vo.News;
 
 import java.util.Map;
+import java.util.Set;
 
 public interface INewsServiceBack{
     /**
@@ -16,7 +17,9 @@ public interface INewsServiceBack{
 
     public boolean edit(News vo) throws Exception ;
 
-    public News get(Long mid) throws Exception ;
+    public boolean delete(Set<Long> longs) throws Exception ;
 
-    public Map<String,Object> split(Long currentPage, Integer lineSize,String column,String keyword) throws Exception ;
+    public News get(Long nid) throws Exception ;
+
+    public Map<String,Object> list(Long currentPage, Integer lineSize,String column,String keyword) throws Exception ;
 }

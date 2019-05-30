@@ -1,8 +1,10 @@
 package com.yootk.vo;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Goods implements java.io.Serializable {
+public class Goods implements Serializable {
+
     private Long gid;
     private String name;
     private Long wiid;
@@ -14,7 +16,25 @@ public class Goods implements java.io.Serializable {
     private Date lastin;
     private Integer stornum;
     private String recorder;
-    private String delflag;
+    private Integer delflag;
+
+    @Override
+    public String toString() {
+        return "Goods{" +
+                "gid=" + gid +
+                ", name='" + name + '\'' +
+                ", wiid=" + wiid +
+                ", stid=" + stid +
+                ", price=" + price +
+                ", weight=" + weight +
+                ", photo='" + photo + '\'' +
+                ", note='" + note + '\'' +
+                ", lastin=" + lastin +
+                ", stornum=" + stornum +
+                ", recorder='" + recorder + '\'' +
+                ", delflag=" + delflag +
+                '}';
+    }
 
     public Long getGid() {
         return gid;
@@ -104,29 +124,11 @@ public class Goods implements java.io.Serializable {
         this.recorder = recorder;
     }
 
-    public String getDelflag() {
+    public Integer getDelflag() {
         return delflag;
     }
 
-    public void setDelflag(String delflag) {
+    public void setDelflag(Integer delflag) {
         this.delflag = delflag;
-    }
-
-    @Override
-    public String toString() {
-        return "Goods{" +
-                "gid=" + gid +
-                ", name='" + name + '\'' +
-                ", wiid=" + wiid +
-                ", stid=" + stid +
-                ", price=" + price +
-                ", weight=" + weight +
-                ", photo='" + photo + '\'' +
-                ", note='" + note + '\'' +
-                ", lastin=" + lastin +
-                ", stornum=" + stornum +
-                ", recorder='" + recorder + '\'' +
-                ", delflag='" + delflag + '\'' +
-                '}';
     }
 }

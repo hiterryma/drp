@@ -6,7 +6,7 @@
 	<script type="text/javascript" src="bootstrap/tinymce/tinymce.min.js"></script>
 </head>
 <%!
-	public static final String NEWS_EDIT_URL = "pages/back/news/edit.action" ;
+	public static final String NEWS_EDIT_URL = "pages/back/admin/news/news_edit.action" ;
 %>
 <body class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">
@@ -27,38 +27,39 @@
 						<div class="form-group" id="titleDiv">
 							<label class="col-md-2 control-label" for="title">公告标题：</label>
 							<div class="col-md-5">
-								<input type="text" name="title" id="title" class="form-control input-sm" placeholder="请输入公告标题">
+								<input type="text" name="title" id="title" value="${news.title}" class="form-control input-sm" placeholder="请输入公告标题">
 							</div>
 							<div class="col-md-4" id="titleMsg">*</div>
 						</div>
 						<div class="form-group" id="absDiv">
 							<label class="col-md-2 control-label" for="abs">公告摘要：</label>
 							<div class="col-md-5">
-								<input type="text" name="abs" id="abs" class="form-control input-sm" placeholder="请输入公告摘要">
+								<input type="text" name="abs" id="abs" value="${news.abs}" class="form-control input-sm" placeholder="请输入公告摘要">
 							</div>
 							<div class="col-md-4" id="absMsg">*</div>
 						</div>
-						<div class="form-group" id="picDiv">
-							<label class="col-md-2 control-label" for="pic">公告图片：</label>
+						<div class="form-group" id="photoDiv">
+							<label class="col-md-2 control-label" for="photo">公告图片：</label>
 							<div class="col-md-5">
-								<input type="file" name="pic" id="pic" class="form-control input-sm" placeholder="请选择公告所需要的图片">
+								<img src="http://upload-server/upload/${news.photo}" style="width: 100px;">
+								<input type="file" name="photo" id="photo" class="form-control input-sm" placeholder="请选择公告所需要的图片">
 							</div>
-							<div class="col-md-4" id="picMsg">*</div>
+							<div class="col-md-4" id="photoMsg">*</div>
 						</div>
 						<div class="form-group" id="noteDiv">
 							<label class="col-md-2 control-label" for="status">公告内容：</label>
 							<div class="col-md-9">
-								<textarea id="note" name="note" class="form-control" rows="10"></textarea>
+								<textarea id="note" name="note" class="form-control" rows="10">${news.note}</textarea>
 							</div>
 						</div>
 						<div class="form-group" id="statusDiv">
 							<label class="col-md-2 control-label" for="status">公告状态：</label>
 							<div class="col-md-5">
 								<div class="radio-inline">
-									<input type="radio" id="status" name="status" checked value="1">直接发布
+									<input type="radio" id="status" name="status" ${news.status==1?"checked":""} value="1">直接发布
 								</div>
 								<div class="radio-inline">
-									<input type="radio" id="status" name="status" value="0">暂存草稿
+									<input type="radio" id="status" name="status" ${news.status==0?"checked":""} value="0">暂存草稿
 								</div>
 							</div>
 							<span class="col-md-4" id="statusSpan">*</span>
@@ -66,7 +67,7 @@
 						
 						<div class="form-group"> 
 							<div class="col-md-offset-2 col-md-5">
-								<input type="hidden" value="" id="bid" name="bid">
+								<input type="hidden" value="${news.nid}" id="nid" name="nid">
 								<input type="submit" value="发布" class="btn btn btn-primary">
 								<input type="reset" value="重置" class="btn btn btn-warning">
 							</div>
