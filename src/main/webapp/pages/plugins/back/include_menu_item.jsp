@@ -8,7 +8,7 @@
     public static final String CUSTOMER_LIST_URL = "pages/back/admin/customer/customer_list.jsp" ;
     public static final String CUSTOMER_AUDIT_URL = "pages/back/admin/customer/customer_audit_list.jsp" ;
 
-    public static final String STORAGE_ADD_URL = "pages/back/admin/storage/storage_add.jsp" ;
+    public static final String STORAGE_ADD_URL = "pages/back/admin/storage/storage_add_pre.action" ;
     public static final String STORAGE_LIST_URL = "pages/back/admin/storage/storage_list_myself.jsp" ;
 
     public static final String STORAGE_AUDIT_LIST_URL = "pages/back/admin/storageaudit/storageaudit_list_prepare.jsp" ;
@@ -85,7 +85,7 @@
             </a>
                 <ul class="treeview-menu">
                     <li class="${param.msi==31 ? 'active' : ''}"><a href="<%=STORAGE_ADD_URL%>"><i
-                            class="fa fa-train"></i> 入库申请单</a></li>
+                            class="fa fa-train"></i> 创建入库申请单</a></li>
                     <li class="${param.msi==32 ? 'active' : ''}"><a href="<%=STORAGE_LIST_URL%>"><i
                             class="fa fa-history"></i> 我的入库申请</a></li>
                 </ul></li>
