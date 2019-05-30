@@ -1,4 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <head>
 	<jsp:include page="/pages/plugins/basepath.jsp"/>
 	<script type="text/javascript" src="js/pages/back/admin/storage/storage_list_myself.js"></script>
@@ -41,12 +44,13 @@
 						</tr>
 					</thead>
 					<tbody>
+					<c:forEach items="${allStorage_applies}" var="storage_apply">
 						<tr>
-							<th class="text-center" style="width:10%;">20001010</th> 
+							<th class="text-center" style="width:10%;">${storage_apply.said}</th>
 							<td class="text-left">
-								<a href="<%=STORAGE_EDIT_URL%>?sid=1">2017双十一衣帽入库</a></td>
-							<td class="text-left">北京通州仓库一号库</td>
-							<td class="text-center">服装衣帽</td>
+								<a href="<%=STORAGE_EDIT_URL%>?sid=1">${storage_apply.title}</a></td>
+							<td class="text-left">${warehouses[storage_apply.wid]}</td>
+							<td class="text-center">${witems[storage_apply.wiid]}</td>
 							<td class="text-center">未提交</td>
 							<td class="text-center">100</td>
 							<td class="text-left">
@@ -58,6 +62,7 @@
 									<span class="glyphicon glyphicon-trash"></span>&nbsp;删除申请</a>
 							</td>
 						</tr>
+					</c:forEach>
 					</tbody>
 				</table>
 				<div id="splitBarDiv" style="float:right">

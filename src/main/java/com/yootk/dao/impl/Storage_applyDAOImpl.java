@@ -5,12 +5,14 @@ import com.yootk.common.dao.abs.AbstractDAO;
 import com.yootk.dao.IStorage_applyDAO;
 import com.yootk.vo.Storage_apply;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
 @Repository
-public class Stroage_applyDAOImpl extends AbstractDAO implements IStorage_applyDAO {
+public class Storage_applyDAOImpl extends AbstractDAO implements IStorage_applyDAO {
     @Override
     public boolean doCreate(Storage_apply storage_apply) throws SQLException {
 
@@ -51,22 +53,36 @@ public class Stroage_applyDAOImpl extends AbstractDAO implements IStorage_applyD
 
     @Override
     public List<Storage_apply> findSplit(Long currentPage, Integer lineSize) throws SQLException {
-        return null ;
+
+        List<Storage_apply> storage_applies = new ArrayList<>() ;
+        String sql = "SELECT said,title,pid,cid,wiid,wid,note,status,appmid FROM storage_apply LIMIT " + (currentPage - 1) * lineSize + "," + lineSize ;
+        super.pstmt = super.conn.prepareStatement(sql) ;
+        ResultSet rs = super.pstmt.executeQuery() ;
+        return super.handleResultToList(rs,Storage_apply.class) ;
+
+
+
     }
 
     @Override
     public List<Storage_apply> findSplit(Long currentPage, Integer lineSize, String column, String keyWord) throws SQLException {
-        return null;
+
+        List<Storage_apply> storage_applies = new ArrayList<>() ;
+        String sql = "SELECT said,title,pid,cid,wiid,wid,note,status,appmid FROM storage_apply WHERE " + column + " LIKE ? LIMIT " + (currentPage - 1) * lineSize + "," + lineSize ;
+        super.pstmt = super.conn.prepareStatement(sql) ;
+        super.pstmt.setString(1,"%"+keyWord+"%");
+        ResultSet rs = super.pstmt.executeQuery() ;
+        return super.handleResultToList(rs,Storage_apply.class) ;
     }
 
     @Override
     public Long getAllCount() throws SQLException {
-        return null;
+        return super.handleCount("storage_apply") ;
     }
 
     @Override
     public Long getAllCount(String column, String keyWord) throws SQLException {
-        return null;
+        return super.handleCount("storage_apply",column,keyWord) ;
     }
 
     @Override

@@ -5,6 +5,7 @@ import com.yootk.common.annotation.Autowired;
 import com.yootk.common.annotation.Controller;
 import com.yootk.common.annotation.RequestMapping;
 import com.yootk.common.servlet.web.ModuleAndView;
+import com.yootk.common.servlet.web.PageUtil;
 import com.yootk.service.back.IStorage_applyServiceBack;
 import com.yootk.vo.Storage_apply;
 
@@ -57,6 +58,25 @@ public class Storage_applyActionBack extends AbstractAction {
         }catch (Exception e){
             e.printStackTrace();
             mav.add("path",path);
+        }
+        return mav ;
+    }
+    @RequestMapping("storage_list")
+    public ModuleAndView list() {
+        ModuleAndView mav = new ModuleAndView("/pages/back/admin/storage/storage_list_myself.jsp") ;
+        /**
+         * 实例化分页组件
+         * 1、第一个参数是分页显示的页面
+         * 2、第二个参数是当进行分页查询的时候的查询关键字，比如（商品名称:name)
+         * 3、如果不需要查询的时候第二个参数的内容可以为空
+         */
+        PageUtil pu = new PageUtil("/pages/back/admin/storage/storage_list_myself.jsp", "入库单编号:said");
+        try {
+            mav.add(this.storage_applyServiceBack.list(pu.getCurrentPage(),pu.getLineSize(),pu.getColumn(),pu.getKeyword()));
+            System.out.println(pu.getColumn());
+            System.out.println(pu.getKeyword());
+        }catch (Exception e){
+            e.printStackTrace();
         }
         return mav ;
     }

@@ -20,4 +20,15 @@ public interface IStorage_applyServiceBack  {
      * @throws Exception
      */
     public boolean add(Storage_apply storage_apply) throws Exception ;
+
+    /**
+     * 实现申请单的分页显示、分页查询
+     * @param currentPage
+     * @param lineSize
+     * @param column
+     * @param keyWord
+     * @return
+     * @throws Exception
+     */
+    public Map<String,Object> list(Long currentPage, Integer lineSize, String column, String keyWord) throws Exception ;
 }
