@@ -70,7 +70,7 @@ $(function(){
 			 * 4、action返回的数据类型
 			 */
 			$.get("pages/pub/city/list_city.action", {"pid": val},function (data) {
-				console.log(data) ;
+
 				for (x = 0; x < data.length; x++) {
 					$("#cid").append("<option value='" + data[x].cid + "'>" + data[x].title + "</option>");
 				}

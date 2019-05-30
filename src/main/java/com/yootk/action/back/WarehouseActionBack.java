@@ -96,8 +96,8 @@ public class WarehouseActionBack extends AbstractAction {
         System.out.println(wiid);
         try {
 
-            //super.print(JSONObject.toJSONString(this.warehouseService.listWarehouseByWiid(wiid)));
-            System.out.println(this.warehouseService.listWarehouseByWiid(wiid));
+            super.print(JSONObject.toJSONString(this.warehouseService.listWarehouseByWiid(wiid)));
+            //System.out.println(this.warehouseService.listWarehouseByWiid(wiid));
         }catch (Exception e){
             e.printStackTrace();
         }
