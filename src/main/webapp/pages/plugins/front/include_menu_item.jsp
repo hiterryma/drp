@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8" %>
 <%!
-     public static final String GOODS_LIST_URL = "/pages/back/admin/goods/goods_subaru.action?stid=";
+     public static final String GOODS_LIST_URL = "/pages/back/admin/goods/goods_subaru.action";
     //public static final String GOODS_LIST_URL = "/pages/front/goods/goods_list.jsp";
 %>
 <div class="panel-group" id="item">        <!-- 利用面板定义折叠组件 -->
@@ -20,7 +20,7 @@
                         <div class="row">
                             <c:forEach items="${allSubtypes}" var="subtype">
                                 <c:if test="${subtype.wiid == witem.wiid}">
-                                    <div class="col-md-4"><a href="<%=GOODS_LIST_URL%>${subtype.stid}">${subtype.title}</a></div>
+                                    <div class="col-md-4"><a href="<%=GOODS_LIST_URL%>">${subtype.title}</a></div>
                                 </c:if>
                             </c:forEach>
                         </div>
@@ -42,7 +42,7 @@
                         <div class="row">
                             <c:forEach items="${allSubtypes}" var="subtype">
                                 <c:if test="${subtype.wiid == witem.wiid}">
-                                    <div class="col-md-4"><a href="<%=GOODS_LIST_URL%>${subtype.stid}">${subtype.title}</a></div>
+                                    <div class="col-md-4"><a href="<%=GOODS_LIST_URL%>">${subtype.title}</a></div>
                                 </c:if>
                             </c:forEach>
                         </div>
@@ -64,7 +64,7 @@
                         <div class="row">
                             <c:forEach items="${allSubtypes}" var="subtype">
                                 <c:if test="${subtype.wiid == witem.wiid}">
-                                    <div class="col-md-4"><a href="<%=GOODS_LIST_URL%>${subtype.stid}">${subtype.title}</a></div>
+                                    <div class="col-md-4"><a href="<%=GOODS_LIST_URL%>">${subtype.title}</a></div>
                                 </c:if>
                             </c:forEach>
                         </div>
@@ -86,7 +86,7 @@
                         <div class="row">
                             <c:forEach items="${allSubtypes}" var="subtype">
                                 <c:if test="${subtype.wiid == witem.wiid}">
-                                    <div class="col-md-4"><a href="<%=GOODS_LIST_URL%>${subtype.stid}">${subtype.title}</a></div>
+                                    <div class="col-md-4"><a href="<%=GOODS_LIST_URL%>">${subtype.title}</a></div>
                                 </c:if>
                             </c:forEach>
                         </div>
@@ -108,7 +108,7 @@
                         <div class="row">
                             <c:forEach items="${allSubtypes}" var="subtype">
                                 <c:if test="${subtype.wiid == witem.wiid}">
-                                    <div class="col-md-4"><a href="<%=GOODS_LIST_URL%>${subtype.stid}">${subtype.title}</a></div>
+                                    <div class="col-md-4"><a href="<%=GOODS_LIST_URL%>">${subtype.title}</a></div>
                                 </c:if>
                             </c:forEach>
                         </div>

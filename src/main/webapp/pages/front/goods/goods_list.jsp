@@ -32,7 +32,7 @@
                             <div class="col-md-3 text-center" id="goodsList">
                                 <p>
                                     <a href="<%=GOODS_SHOW_URL%>">
-                                        <img id="goodsList_img" src="images/${goods.photo}" style="width:100px;"></a></p>
+                                        <img id="goodsList_img" src="images/nophoto.png" style="width:100px;"></a></p>
                                 <span id="goodsList_span" class="text-warning h4">￥<strong>${goods.price}</strong></span>
                                 <p><a id="goodsList_a" href="<%=GOODS_SHOW_URL%>">${goods.name}</a></p>
                                 <button id="addCar-1" class="btn btn-primary btn-xs">
