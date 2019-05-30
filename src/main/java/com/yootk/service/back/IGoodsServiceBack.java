@@ -12,5 +12,5 @@ public interface IGoodsServiceBack {
      * @return
      * @throws Exception
      */
-    public List<Goods> getByStid(Long stid) throws Exception;
+    public Map<String, Object> getByStid(Long stid,Long currentPage,Integer lineSize,String clonum,String keyword) throws Exception;
 }

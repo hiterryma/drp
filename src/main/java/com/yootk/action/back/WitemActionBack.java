@@ -24,7 +24,6 @@ public class WitemActionBack extends AbstractAction {
     @RequestMapping("/classify")
     public ModuleAndView classify(){
         ModuleAndView mav = new ModuleAndView("mall_index.jsp");
-
         try {
             mav.add(this.witemServiceBack.getAll());
         } catch (Exception e) {

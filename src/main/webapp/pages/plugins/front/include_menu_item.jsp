@@ -1,9 +1,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8" %>
 <%!
-    public static final String GOODS_LIST_URL = "/pages/front/goods/goods_subaru.action?stid=";
-    %>
-    <div class="panel-group" id="item">        <!-- 利用面板定义折叠组件 -->
+     public static final String GOODS_LIST_URL = "/pages/back/admin/goods/goods_subaru.action?stid=";
+    //public static final String GOODS_LIST_URL = "/pages/front/goods/goods_list.jsp";
+%>
+<div class="panel-group" id="item">        <!-- 利用面板定义折叠组件 -->
     <c:forEach items="${allWitems}" var="witem">
         <c:if test="${witem.wiid == 1}">
             <div class="panel panel-primary">

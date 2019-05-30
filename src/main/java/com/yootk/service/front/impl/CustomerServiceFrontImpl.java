@@ -13,7 +13,15 @@ public class CustomerServiceFrontImpl extends AbstractService implements ICustom
     private ICustomerDAO customerDAO;
 
     @Override
-    public boolean add(Customer vo) throws Exception {
-        return this.customerDAO.doCreate(vo);
+    public Integer getStatus(String mid) throws Exception {
+        return this.customerDAO.findByMid(mid);
+    }
+
+    @Override
+    public boolean add(Customer vo,String mid) throws Exception {
+        if (this.customerDAO.findByMid(mid) == null) {   //等于 null 表示用户没有申请认证
+            return this.customerDAO.doCreate(vo);
+        }
+        return false;
     }
 }
