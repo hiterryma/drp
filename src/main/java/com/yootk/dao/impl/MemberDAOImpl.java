@@ -158,7 +158,7 @@ public class MemberDAOImpl extends AbstractDAO implements IMemberDAO {
             vo.setPassword(rs.getString(3));
             return vo;
         }
-        return null;
+        return vo;
     }
 
     @Override
