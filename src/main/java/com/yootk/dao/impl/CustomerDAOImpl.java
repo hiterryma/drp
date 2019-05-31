@@ -137,4 +137,16 @@ public class CustomerDAOImpl extends AbstractDAO implements ICustomerDAO {
         super.pstmt.setString(1, "%" + keyword + "%");
         return super.handleResultToList(super.pstmt.executeQuery(), Customer.class);
     }
+
+    @Override
+    public Integer findByMid(String mid) throws SQLException {
+        String sql = "SELECT status FROM customer WHERE mid=?";
+        super.pstmt = super.conn.prepareStatement(sql);
+        super.pstmt.setString(1,mid);
+        ResultSet rs = super.pstmt.executeQuery();
+        if (rs.next()){
+            return rs.getInt(1);
+        }
+        return null;
+    }
 }

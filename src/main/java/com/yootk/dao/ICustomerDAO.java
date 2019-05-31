@@ -17,4 +17,13 @@ public interface ICustomerDAO extends IBaseDAO<Long, Customer> {
     public List<Customer> findSplitByStatus(Long currentPage, Integer lineSize) throws SQLException;
     public List<Customer> findSplitByStatus(Long currentPage, Integer lineSize, String column, String keyword) throws SQLException;
 
+
+
+    /**
+     * 查询用户是否已经提交给客户认证申请
+     * @param mid  需要查询的用户ID
+     * @return
+     * @throws SQLException
+     */
+    public Integer findByMid(String mid) throws SQLException;
 }

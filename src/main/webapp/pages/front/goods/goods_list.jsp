@@ -28,13 +28,13 @@
                     </div>
 
                     <div class="row" >
-                        <c:forEach items="${allLists}" var="list">
+                        <c:forEach items="${allGoods}" var="goods">
                             <div class="col-md-3 text-center" id="goodsList">
                                 <p>
                                     <a href="<%=GOODS_SHOW_URL%>">
-                                        <img id="goodsList_img" src="images/${list.photo}" style="width:100px;"></a></p>
-                                <span id="goodsList_span" class="text-warning h4">￥<strong>${list.price}</strong></span>
-                                <p><a id="goodsList_a" href="<%=GOODS_SHOW_URL%>">${list.name}</a></p>
+                                        <img id="goodsList_img" src="images/nophoto.png" style="width:100px;"></a></p>
+                                <span id="goodsList_span" class="text-warning h4">￥<strong>${goods.price}</strong></span>
+                                <p><a id="goodsList_a" href="<%=GOODS_SHOW_URL%>">${goods.name}</a></p>
                                 <button id="addCar-1" class="btn btn-primary btn-xs">
                                     <span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;加入购物车
                                 </button>

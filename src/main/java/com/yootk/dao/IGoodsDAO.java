@@ -13,5 +13,6 @@ public interface IGoodsDAO extends IBaseDAO<Long, Goods> {
      * @return 返回所有的二级子分类商品
      * @throws SQLException
      */
-    public List<Goods> findByStid(Long stid) throws SQLException;
+    public List<Goods> findByStid(Long stid,Long currentPage,Integer lineSize,String clonum,String keyword) throws SQLException;
+    public List<Goods> findByStid(Long stid,Long currentPage,Integer lineSize) throws SQLException;
 }

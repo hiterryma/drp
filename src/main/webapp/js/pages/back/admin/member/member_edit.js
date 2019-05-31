@@ -43,25 +43,25 @@ $(function(){
 //				}
 //}
 			} ,
-			"password" : {
-				required : true
-			},
-			"ename" : {
+			// "password" : {
+			// 	required : true
+			// },
+			"name" : {
 				required : true
 			} ,
 			"phone" : {
 				required : true 
 			},
-			"jid" : {
+			"lid" : {
 				required : true 
 			},
 			"did" : {
 				required : true 
 			},
-			"pic" : {
-				required : true ,
-				accept : ["jpg","png","gif","bmp"]
-			},
+			// "pic" : {X
+			// 	required : true ,
+			// 	accept : ["jpg","png","gif","bmp"]
+			// },
 			"note" : {
 				required : true
 			}

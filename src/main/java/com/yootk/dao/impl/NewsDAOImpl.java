@@ -51,7 +51,8 @@ public class NewsDAOImpl extends AbstractDAO implements INewsDAO {
             super.pstmt.setLong(1,along);
             super.pstmt.addBatch();
         }
-        return super.handleRemove("news","nid",longs);
+
+        return  super.isBatchSuccess( super.pstmt.executeBatch());
     }
 
     @Override
@@ -113,7 +114,7 @@ public class NewsDAOImpl extends AbstractDAO implements INewsDAO {
 
     @Override
     public List<News> findAllForIndex() throws SQLException {
-        String sql = "select title,pubdate from news where status = 1 order by pubdate desc limit 0,10;";
+        String sql = "select nid,title,abs,pubdate from news where status = 1 order by pubdate desc limit 0,10;";
         super.pstmt = super.conn.prepareStatement(sql );
         ResultSet rs = super.pstmt.executeQuery() ;
         return super.handleResultToList(rs,News.class);

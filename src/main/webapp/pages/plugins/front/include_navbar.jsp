@@ -6,7 +6,7 @@
 	public static final String LOGIN_URL = "login.jsp" ;
 	public static final String MALL_INDEX_URL = "classify.action" ;
 
-	public static final String PURCHASE_ADD_URL = "pages/front/center/purchase/purchase_add.jsp" ;
+	public static final String PURCHASE_ADD_URL = "/pages/front/center/purchase/add_list.action" ;
 
 	public static final String MEMBER_EDIT_URL = "pages/front/center/member/member_edit.jsp" ;
 	public static final String MEMBER_ADDRESS_LIST_URL = "pages/front/center/address/address_list.jsp" ;
@@ -38,7 +38,7 @@
 					<li><a href="<%=SHOPCAR_LIST_URL%>">
 						<span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;我的购物车</a></li>
 					<li class="divider">&nbsp;</li>
-					<li><a href="<%=PURCHASE_ADD_URL%>"><span class="glyphicon glyphicon-certificate"></span>&nbsp;大宗采购</a></li>
+					<li ><a href="<%=PURCHASE_ADD_URL%>"><span class="glyphicon glyphicon-certificate"></span>&nbsp;大宗采购</a></li>
 				</ul></li>
 		</ul>
 		<form class="navbar-form navbar-left" action="" method="post">

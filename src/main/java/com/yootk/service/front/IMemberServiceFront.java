@@ -51,7 +51,7 @@ public interface IMemberServiceFront {
      * @return
      * @throws Exception
      */
-    public boolean register(Member vo) throws Exception;
+    public boolean add_register(Member vo) throws Exception;
 
     /**
      * 实现登录验证
