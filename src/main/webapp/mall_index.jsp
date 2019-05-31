@@ -6,7 +6,7 @@
     <script type="text/javascript" src="js/mall_index.js"></script>
 </head>
 <%!
-    public static final String GOODS_SHOW_URL = "pages/front/goods/goods_show.jsp";
+    public static final String GOODS_SHOW_URL = "/pages/back/admin/goods/getGoods.action?gid=";
 %>
 <body>
 <div class="container contentback">
@@ -28,10 +28,10 @@
                 <c:forEach items="${allGoods}" var="goods">
                     <div class="col-md-3 text-center">
                         <p>
-                            <a href="<%=GOODS_SHOW_URL%>">
-                                <img src="images/nophoto.png" style="width:100px;"></a></p>
+                            <a href="<%=GOODS_SHOW_URL%>${goods.gid}">
+                                <img src="http://43.226.146.219/upload/${goods.photo}" style="width:100px;"></a></p>
                         <span class="text-warning h4"><strong>￥${goods.price}</strong></span>
-                        <p><a href="<%=GOODS_SHOW_URL%>">${goods.name}</a></p>
+                        <p><a href="<%=GOODS_SHOW_URL%>${goods.gid}">${goods.name}</a></p>
                         <button id="addCar-1" class="btn btn-primary btn-xs">
                             <span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;加入购物车
                         </button>
