@@ -31,7 +31,18 @@ public class GoodsDAOImpl extends AbstractDAO implements IGoodsDAO {
 
     @Override
     public boolean doEdit(Goods goods) throws SQLException {
-        return false;
+        String sql = "update goods set name=?,wiid=?,stid=?,price=?,weight=?,photo=?,note=?,recorder=? where gid=?";
+        super.pstmt = this.conn.prepareStatement(sql);
+        super.pstmt.setString(1, goods.getName());
+        super.pstmt.setLong(2, goods.getWiid());
+        super.pstmt.setLong(3, goods.getStid());
+        super.pstmt.setDouble(4, goods.getPrice());
+        super.pstmt.setDouble(5, goods.getWeight());
+        super.pstmt.setString(6, goods.getPhoto());
+        super.pstmt.setString(7, goods.getNote());
+        super.pstmt.setString(8, goods.getRecorder());
+        super.pstmt.setLong(9, goods.getGid());
+        return super.pstmt.executeUpdate() > 0;
     }
 
     @Override
@@ -77,5 +88,10 @@ public class GoodsDAOImpl extends AbstractDAO implements IGoodsDAO {
     @Override
     public Long getAllCount(String column, String keyWord) throws SQLException {
         return super.handleCount("goods", column, keyWord);
+    }
+
+    @Override
+    public List<Goods> findByStid(Long stid) throws SQLException {
+        return null;
     }
 }

@@ -14,4 +14,6 @@ public interface IGoodsService {
 
     public boolean edit(Goods goods) throws Exception;
 
+    public Map<String, Object> list(Long currentPage, Integer lineSize, String column, String keyword) throws Exception;
+
 }

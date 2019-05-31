@@ -152,22 +152,4 @@ public class Warehouse implements Serializable {
         this.admin = admin;
     }
 
-    @Override
-    public String toString() {
-        return "Warehouse{" +
-                "wid=" + wid +
-                ", name='" + name + '\'' +
-                ", pid=" + pid +
-                ", cid=" + cid +
-                ", wiid=" + wiid +
-                ", address='" + address + '\'' +
-                ", area=" + area +
-                ", maximum=" + maximum +
-                ", currnum=" + currnum +
-                ", photo='" + photo + '\'' +
-                ", note='" + note + '\'' +
-                ", recorder='" + recorder + '\'' +
-                ", admin='" + admin + '\'' +
-                '}';
-    }
 }

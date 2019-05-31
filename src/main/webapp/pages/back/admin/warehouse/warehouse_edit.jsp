@@ -123,10 +123,14 @@
 							<div class="form-group" id="photoDiv">
 								<!-- 定义表单提示文字 -->
 								<label class="col-md-3 control-label" for="photo">仓库照片：</label>
-								<div class="col-md-5">
+								<div class="col-md-2">
 									<!-- 定义表单输入组件 -->
 									<input type="file" id="photo" name="photo" class="form-control"
 										placeholder="请上传该仓库照片，如不修改可以不上传">
+								</div>
+								<div class="col-md-3">
+									<!-- 定义表单输入组件 -->
+									<img src="http://upload-server/upload/${warehouse.photo==""||warehouse.photo==null?"nophoto.jpg":warehouse.photo}">
 								</div>
 								<!-- 定义表单错误提示显示元素 -->
 								<div class="col-md-4" id="photoMsg"></div>

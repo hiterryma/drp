@@ -48,7 +48,7 @@
 								<td class="text-center">${warehouse.maximum}</td>
 								<td class="text-center" id="admin-${warehouse.wid}"><span id="mid-${warehouse.admin}" style="cursor:pointer;">${allMemberMap.get(warehouse.admin)}</span></td>
 								<td class="text-left">
-									<button id="editadmin-${warehouse.admin}" class="btn btn-primary btn-xs">
+									<button id="editadmin-${warehouse.wid}" class="btn btn-primary btn-xs">
 										<span class="glyphicon glyphicon-plus-sign"></span>&nbsp;编辑库管</button>
 
 									<a href="<%=WAREHOUSE_EDIT_URL%>?wid=${warehouse.wid}" id="editinfo-${warehouse.wid}" class="btn btn-warning btn-xs">
