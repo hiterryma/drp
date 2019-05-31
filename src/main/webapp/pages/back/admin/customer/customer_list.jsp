@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%!
 	public static final String CUSTOMER_ADD_URL = "" ;
@@ -40,7 +41,24 @@
 					</tr>
 					</thead>
 					<tbody>
-					<tr>
+					<c:forEach items="${allCustomers}" var="customer">
+						<tr>
+							<td class="text-center"><span id="cuid-${customer.cuid}" style="cursor:pointer;" title="查看联系记录">${customer.name}</span></td>
+							<td class="text-left">${customer.phone}</td>
+							<td class="text-left"><span class="">${allCitemMap.get(customer.ciid)}</span></td>
+							<td class="text-left">${customer.address}</td>
+							<td class="text-left">${customer.indate}</td>
+							<td class="text-center">${customer.connum}</td>
+							<td class="text-center"><span id="mid-${customer.recorder}" style="cursor:pointer;">${allMemberMap.get(customer.recorder)}</span></td>
+							<td class="text-left">
+								<button class="btn btn-primary btn-xs" id="input-${customer.cuid}">
+									<span class="glyphicon glyphicon-floppy-save"></span>&nbsp;追加记录</button>
+								<button class="btn btn-danger btn-xs" id="out-${customer.cuid}">
+									<span class="glyphicon glyphicon-log-out"></span>&nbsp;商品出库</button>
+							</td>
+						</tr>
+					</c:forEach>
+					<%--<tr>
 						<td class="text-center"><span id="cid-1" style="cursor:pointer;" title="查看联系记录">新博</span></td>
 						<td class="text-left">1234456</td>
 						<td class="text-left"><span class="text-danger">重要客户</span></td>
@@ -69,7 +87,7 @@
 							<button class="btn btn-danger btn-xs" id="out-2">
 								<span class="glyphicon glyphicon-log-out"></span>&nbsp;商品出库</button>
 						</td>
-					</tr>
+					</tr>--%>
 					</tbody>
 				</table>
 				<div id="splitBarDiv" style="float:right">

@@ -7,6 +7,7 @@ import com.yootk.vo.Member;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.List;
 import java.util.Set;
 
@@ -14,25 +15,93 @@ import java.util.Set;
 public class MemberDAOImpl extends AbstractDAO implements IMemberDAO {
     @Override
     public boolean doCreate(Member member) throws SQLException {
-        return false;
+        String sql ="insert into member(mid,lid,did,name,sal,phone,note,regdate,inmid,locked,type,email,photo,password) value(?,?,?,?,?,?,?,?,?,?,?,?,?,?)" ;
+        super.pstmt = super.conn.prepareStatement(sql) ;
+        super.pstmt.setString(1,member.getMid());
+        super.pstmt.setLong(2,member.getLid());
+        super.pstmt.setLong(3,member.getDid());
+        super.pstmt.setString(4,member.getName());
+        if(member.getSal() == null){
+            super.pstmt.setDouble(5,Types.NULL);
+        }else{
+            super.pstmt.setDouble(5,member.getSal());
+        }
+        super.pstmt.setString(6,member.getPhone());
+        super.pstmt.setString(7,member.getNote());
+        super.pstmt.setDate(8,new java.sql.Date(new java.util.Date().getTime()));
+        super.pstmt.setString(9,member.getInmid());
+        if(member.getLocked() == null){
+            super.pstmt.setInt(10,Types.NULL);
+        }else{
+            super.pstmt.setInt(10,member.getLocked());
+        }
+        if(member.getType() == null){
+            super.pstmt.setInt(11,Types.NULL);
+        }else{
+            super.pstmt.setInt(11,member.getType());
+        }
+
+        super.pstmt.setString(12,member.getEmail());
+        super.pstmt.setString(13,member.getPhoto());
+        super.pstmt.setString(14,member.getPassword());
+        return super.pstmt.executeUpdate() > 0 ;
     }
 
     @Override
     public boolean doEdit(Member member) throws SQLException {
-        return false;
+        String sql ="update member set lid=?,did=?,name=?,sal=?,phone=?,note=?,inmid=?,type=?,email=?,photo=?,password=? where mid=?" ;
+        super.pstmt = super.conn.prepareStatement(sql) ;
+        super.pstmt.setLong(1,member.getLid());
+        super.pstmt.setLong(2,member.getDid());
+        super.pstmt.setString(3,member.getName());
+        if(member.getSal() == null){
+            super.pstmt.setDouble(4,Types.NULL);
+        }else{
+            super.pstmt.setDouble(4,member.getSal());
+        }
+        super.pstmt.setString(5,member.getPhone());
+        super.pstmt.setString(6,member.getNote());
+        super.pstmt.setString(7,member.getInmid());
+        if(member.getType() == null){
+            super.pstmt.setInt(8,Types.NULL);
+        }else{
+            super.pstmt.setInt(8,member.getType());
+        }
+        super.pstmt.setString(9,member.getEmail());
+        super.pstmt.setString(10,member.getPhoto());
+        super.pstmt.setString(11,member.getPassword());
+        super.pstmt.setString(12,member.getMid());
+        return super.pstmt.executeUpdate() > 0 ;
     }
 
     @Override
     public boolean doRemove(Set<String> strings) throws SQLException {
-        return false;
+
+        String sql = "update member set locked = ? where mid = ?" ;
+        super.pstmt = super.conn.prepareStatement(sql) ;
+        for(String str:strings){
+            super.pstmt.setInt(1,1);
+            super.pstmt.setString(2,str);
+            super.pstmt.addBatch();
+        }
+        return  super.isBatchSuccess( super.pstmt.executeBatch());
     }
 
     @Override
     public Member findById(String mid) throws SQLException {
+
         String sql = "select mid,lid,did,name,sal,phone,password,photo,note,regdate,inmid,locked,type,email,cuid from member where mid=?";
-        super.pstmt = super.conn.prepareStatement(sql);
-        super.pstmt.setString(1, mid);
-        return super.handleResultToVO(super.pstmt.executeQuery(), Member.class);
+        super.pstmt = super.conn.prepareStatement(sql) ;
+        super.pstmt.setString(1,mid);
+        ResultSet rs = super.pstmt.executeQuery() ;
+//        Member member = null ;
+//        try{
+//
+//             member =   super.handleResultToVO(rs,Member.class);
+//        }catch (Exception e){
+//            e.printStackTrace();
+//        }
+        return super.handleResultToVO(rs,Member.class) ;
     }
 
     @Override
@@ -44,22 +113,42 @@ public class MemberDAOImpl extends AbstractDAO implements IMemberDAO {
 
     @Override
     public List<Member> findSplit(Long currentPage, Integer lineSize) throws SQLException {
-        return null;
+        String sql ="select mid,lid,did,sal,name,type,phone,photo,note,regdate,inmid,locked,email from member where locked = 0   LIMIT " + (currentPage - 1) * lineSize + "," + lineSize;
+        super.pstmt = super.conn.prepareStatement(sql) ;
+        ResultSet rs = super.pstmt.executeQuery() ;
+        return super.handleResultToList(rs, Member.class);
     }
 
     @Override
     public List<Member> findSplit(Long currentPage, Integer lineSize, String column, String keyWord) throws SQLException {
-        return null;
+        String sql ="select mid,lid,did,sal,name,type,phone,photo,note,regdate,inmid,locked,email from member where  locked = 0  and "+column+"  like ?  LIMIT " + (currentPage - 1) * lineSize + "," + lineSize;
+        super.pstmt = super.conn.prepareStatement(sql) ;
+        super.pstmt.setString(1,"%"+keyWord+"%");
+        ResultSet rs = super.pstmt.executeQuery() ;
+        return super.handleResultToList(rs, Member.class);
     }
 
     @Override
     public Long getAllCount() throws SQLException {
-        return null;
+        String sql = "select count(*) from member where locked = 0  " ;
+        super.pstmt = super.conn.prepareStatement(sql) ;
+        ResultSet rs = super.pstmt.executeQuery() ;
+        if(rs.next()){
+            return rs.getLong(1) ;
+        }
+        return 0L;
     }
 
     @Override
     public Long getAllCount(String column, String keyWord) throws SQLException {
-        return null;
+        String sql = "select count(*) from member where locked = 0  and '" +column+ "' like ? " ;
+        super.pstmt = super.conn.prepareStatement(sql) ;
+        super.pstmt.setString(1,"%"+keyWord+"%");
+        ResultSet rs = super.pstmt.executeQuery() ;
+        if(rs.next()){
+            return rs.getLong(1) ;
+        }
+        return 0L;
     }
 
     @Override
@@ -160,7 +249,6 @@ public class MemberDAOImpl extends AbstractDAO implements IMemberDAO {
         }
         return vo;
     }
-
     @Override
     public List<Member> findByDept(Long did) throws SQLException {
         String sql = "select mid,lid,did,name,sal,phone,password,photo,note,regdate,inmid,locked,type,email,cuid from member where did=?";

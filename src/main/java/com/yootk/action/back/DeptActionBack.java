@@ -5,26 +5,47 @@ import com.yootk.common.annotation.Autowired;
 import com.yootk.common.annotation.Controller;
 import com.yootk.common.annotation.RequestMapping;
 import com.yootk.common.servlet.web.ModuleAndView;
-import com.yootk.service.back.IDeptService;
+import com.yootk.common.servlet.web.MultipartFile;
+import com.yootk.common.servlet.web.PageUtil;
+import com.yootk.service.back.IDeptServiceBack;
+import com.yootk.vo.Dept;
+
 @Controller
 @RequestMapping("/pages/back/admin/dept/")
 public class DeptActionBack extends AbstractAction {
+	@Autowired
+	private IDeptServiceBack deptService;
 
-    @Autowired
-    private IDeptService deptService;
+	@RequestMapping("dept_list")
+	public ModuleAndView list() {
+		ModuleAndView mav = new ModuleAndView(super.getPage("list.page"));
+		PageUtil pu = new PageUtil(super.getPage("list.action"));
+		try {
+			mav.add(this.deptService.list(pu.getCurrentPage(), pu.getLineSize(),pu.getColumn(), pu.getKeyword()));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return mav;
+	}
+	@RequestMapping("dept_edit")
+	public void edit(Long did,String dname) {
+		try {
+			Dept dept = new Dept() ;
+			dept.setDid(did);
+			dept.setDname(dname);
+			if (this.deptService.edit(dept)){
+				super.print(true);
+			}else {
+				super.print(false);
+			}
+		} catch (Exception e) {
+			super.print(false);
+			e.printStackTrace();
+		}
+	}
 
-    @RequestMapping("dept_list")
-    public ModuleAndView list() {
-        try {
-            return new ModuleAndView("/pages/plugins/back/modal/member_dept_list_modal.jsp", deptService.listDeptMember());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    @Override
-    public String getUploadDir() {
-        return "/upload/back/dept";
-    }
+	@Override
+	public String getUploadDir() {
+		return "upload/news";
+	}
 }
