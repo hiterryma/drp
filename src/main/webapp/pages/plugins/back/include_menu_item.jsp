@@ -1,30 +1,30 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8" %>
 <%!
-    public static final String INDEX_URL = "pages/back/index.jsp";
-    public static final String WAREHOUSE_ADD_URL = "pages/back/admin/warehouse/warehouse_add.jsp";
-    public static final String WAREHOUSE_LIST_URL = "pages/back/admin/warehouse/warehouse_list.jsp";
+	public static final String INDEX_URL = "pages/back/index.jsp" ;
+	public static final String WAREHOUSE_ADD_URL = "pages/back/admin/warehouse/warehouse_pre_add.action" ;
+	public static final String WAREHOUSE_LIST_URL = "pages/back/admin/warehouse/warehouse_list.action" ;
 
-    public static final String CUSTOMER_ADD_URL = "pages/back/admin/customer/customer_add.jsp";
-    public static final String CUSTOMER_LIST_URL = "pages/back/admin/customer/customer_list.jsp";
-    public static final String CUSTOMER_AUDIT_URL = "pages/back/admin/customer/customer_audit_list.jsp";
+	public static final String CUSTOMER_ADD_URL = "pages/back/admin/customer/customer_pre_add.action" ;
+	public static final String CUSTOMER_LIST_URL = "pages/back/admin/customer/customer_list.action" ;
+	public static final String CUSTOMER_AUDIT_URL = "pages/back/admin/customer/customer_audit_list.action" ;
 
-    public static final String STORAGE_ADD_URL = "pages/back/admin/storage/storage_add.jsp";
-    public static final String STORAGE_LIST_URL = "pages/back/admin/storage/storage_list_myself.jsp";
+	public static final String STORAGE_ADD_URL = "pages/back/admin/storage/storage_add.jsp" ;
+	public static final String STORAGE_LIST_URL = "pages/back/admin/storage/storage_list_myself.jsp" ;
 
-    public static final String STORAGE_AUDIT_LIST_URL = "pages/back/admin/storageaudit/storageaudit_list_prepare.jsp";
-    public static final String STORAGE_AUDIT_HISTORY_URL = "pages/back/admin/storageaudit/storageaudit_list_history.jsp";
+	public static final String STORAGE_AUDIT_LIST_URL = "pages/back/admin/storageaudit/storageaudit_list_prepare.jsp" ;
+	public static final String STORAGE_AUDIT_HISTORY_URL = "pages/back/admin/storageaudit/storageaudit_list_history.jsp" ;
 
-    public static final String GOODS_ADD_URL = "pages/back/admin/goods/goods_add.jsp";
-    public static final String GOODS_LIST_URL = "pages/back/admin/goods/goods_list.jsp";
+	public static final String GOODS_ADD_URL = "pages/back/admin/goods/goods_pre_add.action" ;
+	public static final String GOODS_LIST_URL = "pages/back/admin/goods/goods_list.action" ;
 
-    public static final String DISTRIBUTION_GOODS_LIST_URL = "pages/back/admin/distribution/distribution_goods_list.jsp";
-    public static final String DISTRIBUTION_LIST_URL = "pages/back/admin/distribution/distribution_list_myself.jsp";
-    public static final String DISTRIBUTION_CANCLE_URL = "pages/back/admin/distribution/distribution_list_myself.jsp";
+	public static final String DISTRIBUTION_GOODS_LIST_URL = "pages/back/admin/distribution/distribution_goods_list.jsp" ;
+	public static final String DISTRIBUTION_LIST_URL = "pages/back/admin/distribution/distribution_list_myself.jsp" ;
+	public static final String DISTRIBUTION_CANCLE_URL = "pages/back/admin/distribution/distribution_list_myself.jsp" ;
 
 
-    public static final String MANAGE_STORAGE_INPUT_URL = "pages/back/admin/manage/manage_storage_input.jsp";
-    public static final String MANAGE_DISTRIBUTION_INPUT_URL = "pages/back/admin/manage/manage_distribution_input.jsp";
+	public static final String MANAGE_STORAGE_INPUT_URL = "pages/back/admin/manage/manage_storage_input.jsp" ;
+	public static final String MANAGE_DISTRIBUTION_INPUT_URL = "pages/back/admin/manage/manage_distribution_input.jsp" ;
 
     public static final String DEPT_LIST_URL = "pages/back/admin/dept/dept_list.action";
     public static final String EMP_ADD_URL = "pages/back/admin/member/member_add.jsp";

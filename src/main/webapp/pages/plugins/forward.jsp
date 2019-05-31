@@ -29,7 +29,7 @@
             }
         </script>
         <div>${msg}</div>
-        <div><span id="countSpan">2</span>秒后跳转到其它页面！</div>
+        <div><span id="countSpan">3</span>秒后跳转到其它页面！</div>
     </div>
     <div class="row" style="height:50px;">
         <jsp:include page="/pages/plugins/alert.jsp"/>

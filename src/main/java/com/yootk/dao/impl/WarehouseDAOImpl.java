@@ -12,7 +12,7 @@ import java.util.Set;
 public class WarehouseDAOImpl extends AbstractDAO implements IWarehouseDAO {
     @Override
     public boolean doCreate(Warehouse warehouse) throws SQLException {
-        String sql = "insert into warehouse (name,pid,cid,wiid,address,area,maximum,currnum,photo,note,recorder) values (?,?,?,?,?,?,?,?,?,?,?)";
+        String sql = "insert into warehouse (name,pid,cid,wiid,address,area,maximum,currnum,photo,note,recorder,admin) values (?,?,?,?,?,?,?,?,?,?,?,?)";
         super.pstmt = super.conn.prepareStatement(sql);
         super.pstmt.setString(1, warehouse.getName());
         super.pstmt.setLong(2, warehouse.getPid());
@@ -25,6 +25,7 @@ public class WarehouseDAOImpl extends AbstractDAO implements IWarehouseDAO {
         super.pstmt.setString(9, warehouse.getPhoto());
         super.pstmt.setString(10, warehouse.getNote());
         super.pstmt.setString(11, warehouse.getRecorder());
+        super.pstmt.setString(12, warehouse.getAdmin());
         return super.pstmt.executeUpdate() > 0;
     }
 
