@@ -14,14 +14,6 @@ public class LevelDaoImpl extends AbstractDAO implements ILevelDAO {
 
 
     @Override
-    public List<Level> findAllMap() throws Exception {
-        String sql = "select lid ,title from level " ;
-        super.pstmt = super.conn.prepareStatement(sql) ;
-        ResultSet rs = super.pstmt.executeQuery() ;
-        return super.handleResultToList(rs,Level.class);
-    }
-
-    @Override
     public boolean doCreate(Level level) throws SQLException {
         return false;
     }
@@ -43,7 +35,10 @@ public class LevelDaoImpl extends AbstractDAO implements ILevelDAO {
 
     @Override
     public List<Level> findAll() throws SQLException {
-        return null;
+        String sql = "select lid ,title from level " ;
+        super.pstmt = super.conn.prepareStatement(sql) ;
+        ResultSet rs = super.pstmt.executeQuery() ;
+        return super.handleResultToList(rs,Level.class);
     }
 
     @Override

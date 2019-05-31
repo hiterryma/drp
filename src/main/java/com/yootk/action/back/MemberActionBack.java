@@ -1,5 +1,6 @@
 package com.yootk.action.back;
 
+import com.alibaba.fastjson.JSONObject;
 import com.yootk.common.action.abs.AbstractAction;
 import com.yootk.common.annotation.Autowired;
 import com.yootk.common.annotation.Controller;
@@ -81,7 +82,7 @@ public class MemberActionBack extends AbstractAction {
 	}
 	@RequestMapping("member_edit")
 	public ModuleAndView edit(Member member, MultipartFile pic) {
-		ModuleAndView mav = new ModuleAndView(super.getPage("list.action")) ;
+		ModuleAndView mav = new ModuleAndView(super.getForwardPage()) ;
 		try {
 			String fileName = "" ;
 			if (pic != null){
@@ -92,7 +93,7 @@ public class MemberActionBack extends AbstractAction {
 			if (this.memberServiceBack.edit(member)) {
 				msg = super.getMessge("vo.edit.success","雇员") ;
 			}
-			String path = super.getPage("edit.action") ;
+			String path = super.getPage("list.action") ;
 			mav.add(AbstractAction.PATH_ATTRIBUTE_NAME, path);
 			mav.add(AbstractAction.MSG_ATTRIBUTE_NAME, msg);
 		} catch (Exception e) {
@@ -107,13 +108,24 @@ public class MemberActionBack extends AbstractAction {
 		for (String str : results) {
             ids.add(str) ; // 添加所有的商品编号
 		}
-		System.out.println(ids);
 		try {
 			super.print(this.memberServiceBack.delete(ids));
 		} catch (Exception e) {
 			super.print(false);
 		}
 	}
+	/**
+	 * 进行用户的个人资料查询
+	 */
+	@RequestMapping("memberJson")
+	public void memberJson(String mid){
+		try {
+			super.print(JSONObject.toJSON(this.memberServiceBack.preEdit(mid)));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 	@Override
 	public String getUploadDir() {
 		return "upload/member";

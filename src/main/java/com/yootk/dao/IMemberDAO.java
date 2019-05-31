@@ -70,7 +70,5 @@ public interface IMemberDAO extends IBaseDAO<String , Member> {
     @Override
     boolean doEdit(Member member) throws SQLException;
 
-    public List<Member> findAllMap() throws SQLException ;
-
     public List<Member> findByDept(Long did) throws SQLException ;
 }

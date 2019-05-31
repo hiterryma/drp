@@ -79,13 +79,11 @@ public class MemberDAOImpl extends AbstractDAO implements IMemberDAO {
 
         String sql = "update member set locked = ? where mid = ?" ;
         super.pstmt = super.conn.prepareStatement(sql) ;
-        System.out.println(sql);
         for(String str:strings){
             super.pstmt.setInt(1,1);
             super.pstmt.setString(2,str);
             super.pstmt.addBatch();
         }
-        System.out.println("======================================");
         return  super.isBatchSuccess( super.pstmt.executeBatch());
     }
 
@@ -96,7 +94,14 @@ public class MemberDAOImpl extends AbstractDAO implements IMemberDAO {
         super.pstmt = super.conn.prepareStatement(sql) ;
         super.pstmt.setString(1,mid);
         ResultSet rs = super.pstmt.executeQuery() ;
-        return super.handleResultToVO(rs,Member.class);
+//        Member member = null ;
+//        try{
+//
+//             member =   super.handleResultToVO(rs,Member.class);
+//        }catch (Exception e){
+//            e.printStackTrace();
+//        }
+        return super.handleResultToVO(rs,Member.class) ;
     }
 
     @Override
@@ -105,12 +110,7 @@ public class MemberDAOImpl extends AbstractDAO implements IMemberDAO {
         super.pstmt = super.conn.prepareStatement(sql);
         return super.handleResultToList(super.pstmt.executeQuery(), Member.class);
     }
-    @Override
-    public List<Member> findAllMap() throws SQLException {
-        String sql = "select mid,name from member ";
-        super.pstmt = super.conn.prepareStatement(sql);
-        return super.handleResultToList(super.pstmt.executeQuery(), Member.class);
-    }
+
     @Override
     public List<Member> findSplit(Long currentPage, Integer lineSize) throws SQLException {
         String sql ="select mid,lid,did,sal,name,type,phone,photo,note,regdate,inmid,locked,email from member where locked = 0   LIMIT " + (currentPage - 1) * lineSize + "," + lineSize;
