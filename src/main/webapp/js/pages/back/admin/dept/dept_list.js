@@ -24,7 +24,7 @@ $(function(){
 				$("#memberInfo").modal("toggle") ;
 				levelMap = data.allLevelMap ;
 				deptMap = data.allDeptMap ;
-				$(mid).text(data.member.mid);
+				$("#mid").text(data.member.name);
 				$(level).text(levelMap[data.member.lid]);
 				$(dept).text(deptMap[data.member.did]);
 				$(phone).text(data.member.phone);
