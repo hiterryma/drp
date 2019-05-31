@@ -32,12 +32,6 @@ public class GoodsActionBack extends AbstractAction {
         return mav;
     }
 
-    @RequestMapping("goods_subaru11")
-    public void goods_subaru11(Long stid) {
-        ServletObject.getRequest().getSession().removeAttribute("stid");
-        ServletObject.getRequest().getSession().setAttribute("stid",stid);
-    }
-
     @RequestMapping("goods_pre_add")
     public ModuleAndView preAdd() throws Exception{
         return new ModuleAndView(super.getPage("add.page"), this.goodsService.preAdd());
@@ -135,7 +129,6 @@ public class GoodsActionBack extends AbstractAction {
         try {
             mav.add(AbstractAction.PATH_ATTRIBUTE_NAME, "/pages/back/admin/goods/goods_subaru.action");
             mav.add(this.goodsServiceBack.getByStid(stid,pu.getCurrentPage(),pu.getLineSize(),pu.getColumn(),pu.getKeyword()));
-            //mav.add(this.goodsServiceBack.getByStid(stid));
         } catch (Exception e) {
             e.printStackTrace();
         }

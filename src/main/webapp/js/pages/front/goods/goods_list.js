@@ -21,8 +21,9 @@ $(function () {
     if($.cookie("refresh")!="no"){
         setTimeout(function(){
             window.location.reload();
-            $.cookie("refresh","yes");
-        },10);
+            $.cookie("refresh","no");
+        },1);
+        $.cookie().removeAttrs("no");
     }
 });
 
