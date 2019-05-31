@@ -40,9 +40,15 @@ public class Storage_applyActionBack extends AbstractAction {
      */
     @RequestMapping("storage_add")
     public ModuleAndView add(Storage_apply storage_apply) {
-
+        //设置出入库标记
+        storage_apply.setOutorin(1);
+        //设置用户编号
+        storage_apply.setMid(super.getBackUser());
+        //设置提交状态未提交
+        storage_apply.setSubmit_status(0);
         //新创建的清单，设置审核状态为0：未审核
-        storage_apply.setStatus(0);
+        storage_apply.setAudit_status(0);
+
         System.out.println(storage_apply);
         ModuleAndView mav = new ModuleAndView("/pages/plugins/forward.jsp") ;
         //设置默认的提示信息
@@ -70,9 +76,9 @@ public class Storage_applyActionBack extends AbstractAction {
          * 2、第二个参数是当进行分页查询的时候的查询关键字，比如（商品名称:name)
          * 3、如果不需要查询的时候第二个参数的内容可以为空
          */
-        PageUtil pu = new PageUtil("/pages/back/admin/storage/storage_list_myself.jsp", "入库单编号:said");
+        PageUtil pu = new PageUtil("/pages/back/admin/storage/storage_list_myself.jsp", "入库单编号:said|入库申请标题:title");
         try {
-            mav.add(this.storage_applyServiceBack.list(pu.getCurrentPage(),pu.getLineSize(),pu.getColumn(),pu.getKeyword()));
+            mav.add(this.storage_applyServiceBack.list(1,super.getBackUser(),pu.getCurrentPage(),pu.getLineSize(),pu.getColumn(),pu.getKeyword()));
             System.out.println(pu.getColumn());
             System.out.println(pu.getKeyword());
         }catch (Exception e){

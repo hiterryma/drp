@@ -10,7 +10,7 @@
 <%!
 	public static final String STORAGE_SUBMIT_URL = "" ;
 	public static final String STORAGE_EDIT_URL = "pages/back/admin/storage/storage_edit.jsp" ;
-	public static final String STORAGE_LIST_DETAILS_URL = "pages/back/admin/storage/storage_list_details.jsp" ;
+	public static final String STORAGE_LIST_DETAILS_URL = "/pages/back/admin/storage_details/storage_details_add_pre.action" ;
 	public static final String STORAGE_DELETE_URL = "" ;
 %>
 <body class="hold-transition skin-blue sidebar-mini">
@@ -51,12 +51,12 @@
 								<a href="<%=STORAGE_EDIT_URL%>?sid=1">${storage_apply.title}</a></td>
 							<td class="text-left">${warehouses[storage_apply.wid]}</td>
 							<td class="text-center">${witems[storage_apply.wiid]}</td>
-							<td class="text-center">未提交</td>
+							<td class="text-center">${storage_apply.submit_status==0?"未提交":"已提交"}</td>
 							<td class="text-center">100</td>
 							<td class="text-left">
 								<a href="<%=STORAGE_SUBMIT_URL%>?sid=1" class="btn btn-primary btn-xs">
 									<span class="fa fa-rocket"></span>&nbsp;提交申请</a>
-								<a href="<%=STORAGE_LIST_DETAILS_URL%>?sid=1" class="btn btn-warning btn-xs">
+								<a href="<%=STORAGE_LIST_DETAILS_URL%>?said=${storage_apply.said}" class="btn btn-warning btn-xs">
 									<span class="fa fa-th-list"></span>&nbsp;入库清单</a>
 								<a href="<%=STORAGE_DELETE_URL%>?sid=1" class="btn btn-danger btn-xs">
 									<span class="glyphicon glyphicon-trash"></span>&nbsp;删除申请</a>

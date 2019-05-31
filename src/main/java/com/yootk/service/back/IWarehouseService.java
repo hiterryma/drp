@@ -20,4 +20,6 @@ public interface IWarehouseService {
 
     public List<Warehouse> listWarehouseByWiid(Long wiid) throws Exception ;
 
+    public List<Warehouse> listWarehouseByPCW(Long pid, Long cid, Long wiid) throws Exception ;
+
 }

@@ -103,11 +103,13 @@
             </a>
                 <ul class="treeview-menu">
                     <li class="${param.msi==71 ? 'active' : ''}"><a href="<%=DISTRIBUTION_GOODS_LIST_URL%>"><i
-                            class="fa fa-edit"></i> 待出库商品</a></li>
+                            class="fa fa-edit"></i> 创建出库申请</a></li>
                     <li class="${param.msi==72 ? 'active' : ''}"><a href="<%=DISTRIBUTION_LIST_URL%>"><i
                             class="fa fa-fax"></i> 我的出库申请</a></li>
+                    <!--
                     <li class="${param.msi==73 ? 'active' : ''}"><a href="<%=DISTRIBUTION_CANCLE_URL%>"><i
                             class="glyphicon glyphicon-trash"></i> 取消出库申请</a></li>
+                    -->
                 </ul></li>
             <li class="treeview ${param.mi==6 ? 'active' : ''}"><a href="<%=INDEX_URL%>"> <i class="fa fa-trello"></i>
                 <span>仓储管理</span> <i class="fa fa-angle-left pull-right"></i>

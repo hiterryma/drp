@@ -22,6 +22,7 @@ public class Storage_applyServiceBackImpl extends AbstractService implements ISt
     private IStorage_applyDAO storage_applyDAO ;
     @Autowired
     private IWarehouseDAO warehouseDAO ;
+
     @Override
     public Map<String, Object> preAdd() throws Exception {
         Map<String,Object> result = new HashMap<>() ;
@@ -35,14 +36,15 @@ public class Storage_applyServiceBackImpl extends AbstractService implements ISt
     @Override
     public boolean add(Storage_apply storage_apply) throws Exception {
         return this.storage_applyDAO.doCreate(storage_apply) ;
+
     }
 
     @Override
-    public Map<String, Object> list(Long currentPage, Integer lineSize, String column, String keyWord) throws Exception {
+    public Map<String, Object> list(int outorin, String mid, Long currentPage, Integer lineSize, String column, String keyWord) throws Exception {
         Map<String,Object> result = new HashMap<>() ;
         if (super.isEmpty(column,keyWord)) {
             //获取本页面的申请单信息
-            List<Storage_apply> storage_applies = this.storage_applyDAO.findSplit(currentPage,lineSize) ;
+            List<Storage_apply> storage_applies = this.storage_applyDAO.findSplitByMember(outorin,mid,currentPage,lineSize) ;
             /**
              *  以下操作是错误的：因为在前端循环显示的时候，用的是storage_apply的list，而仓库地址storage_apply表的字段，
              *  //定义一个List集合，用于保存分页中的仓库信息，从而进行仓库地址的显示
@@ -64,14 +66,14 @@ public class Storage_applyServiceBackImpl extends AbstractService implements ISt
                 witems.put(storage_apply.getWiid(),witem.getTitle()) ;
             }
             result.put("allStorage_applies",storage_applies) ;
-            result.put("allRecorders",this.storage_applyDAO.getAllCount()) ;
+            result.put("allRecorders",this.storage_applyDAO.getAllCountByMember(outorin,mid)) ;
             //保存仓库的地址
             result.put("warehouses",warehouses) ;
             //保存仓库的类型
             result.put("witems",witems) ;
         }else {//如果有查询列
             //获取本页面的申请单信息
-            List<Storage_apply> storage_applies = this.storage_applyDAO.findSplit(currentPage,lineSize,column,keyWord) ;
+            List<Storage_apply> storage_applies = this.storage_applyDAO.findSplitByMember(outorin,mid,currentPage,lineSize,column,keyWord) ;
             //应该定义一个Map，key为wid,value为仓库地址。这样循环storage_apply的时候，就能根据每一个storage_apply的wid字段从map中查出来
             Map<Long,String> warehouses = new HashMap<>() ;
             //再定义个Map，保存仓库类型数据
@@ -89,7 +91,7 @@ public class Storage_applyServiceBackImpl extends AbstractService implements ISt
                 witems.put(storage_apply.getWiid(),witem.getTitle()) ;
             }
             result.put("allStorage_applies",storage_applies) ;
-            result.put("allRecorders",this.storage_applyDAO.getAllCount(column,keyWord)) ;
+            result.put("allRecorders",this.storage_applyDAO.getAllCountByMember(outorin,mid,column,keyWord)) ;
             //保存仓库的地址
             result.put("warehouses",warehouses) ;
             //保存仓库的类型

@@ -99,4 +99,15 @@ public class WarehouseDAOImpl extends AbstractDAO implements IWarehouseDAO {
         ResultSet rs = super.pstmt.executeQuery() ;
         return super.handleResultToList(rs,Warehouse.class) ;
     }
+
+    @Override
+    public List<Warehouse> findAllByPCW(Long pid, Long cid, Long wiid) throws SQLException {
+        String sql = "select wid,name,pid,cid,wiid,address,area,maximum,currnum,photo,note,recorder,admin from warehouse where pid=? and cid=? and wiid=?" ;
+        super.pstmt =super.conn.prepareStatement(sql) ;
+        super.pstmt.setLong(1,pid);
+        super.pstmt.setLong(2,cid);
+        super.pstmt.setLong(3,wiid);
+        ResultSet rs = super.pstmt.executeQuery() ;
+        return super.handleResultToList(rs,Warehouse.class) ;
+    }
 }

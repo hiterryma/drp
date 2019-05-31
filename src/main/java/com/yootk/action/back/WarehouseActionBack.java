@@ -102,4 +102,16 @@ public class WarehouseActionBack extends AbstractAction {
             e.printStackTrace();
         }
     }
+
+    @RequestMapping("warehouse_list_pcw")
+    public void listWarehouseByWiid(Long pid, Long cid, Long wiid){
+        System.out.println(pid + "  " + cid + " "+ wiid);
+        try {
+
+            super.print(JSONObject.toJSONString(this.warehouseService.listWarehouseByPCW(pid,cid,wiid)));
+            //System.out.println(this.warehouseService.listWarehouseByWiid(wiid));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 }

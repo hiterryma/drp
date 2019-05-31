@@ -80,10 +80,16 @@ $(function(){
 
 
 	$("#iid").on("change",function(){
-		//1、获得本省份组件的内容
-		val = $(this).val() ;
+		//获取省份id
+		val1 = $("#pid").val() ;
+		//获取城市id
+		val2 = $("#cid").val() ;
+		//获取仓库类型id
+		val3 = $(this).val() ;
+
+
 		//2、判断省份内容是否为空
-		if (val != "") {
+		if (val1 !="" && val2!="" && val3!="") {
 			//3、 清除仓库已有的仓库内容
 			$("#wid option:gt(0)").remove();
 			//4、将下拉列表的第一个仓库默认选中
@@ -97,7 +103,7 @@ $(function(){
 			 * 3、回调函数
 			 * 4、action返回的数据类型
 			 */
-			$.get("pages/back/admin/warehouse/warehouse_list_wiid.action", {"wiid": val},function (data) {
+			$.get("pages/back/admin/warehouse/warehouse_list_pcw.action", {"pid": val1,"cid":val2,"wiid":val3},function (data) {
 				console.log(data) ;
 				for (x = 0; x < data.length; x++) {
 					$("#wid").append("<option value='" + data[x].wid + "'>" + data[x].name + "</option>");

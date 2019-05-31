@@ -61,6 +61,8 @@ public abstract class AbstractDAO {
         return 0L ;
     }
 
+
+
     public Long getLastId() throws SQLException {
         String sql = "SELECT LAST_INSERT_ID()" ;
         this.pstmt = this.conn.prepareStatement(sql) ;
