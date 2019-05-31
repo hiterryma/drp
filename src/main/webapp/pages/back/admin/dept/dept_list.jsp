@@ -35,7 +35,7 @@
 					<c:forEach items="${allDepts}" var="dept" >
 						<tr>
 							<td class="text-center"><input type="text" id="dname-1" class="form-control" value="${dept.dname}"></td>
-							<td class="text-center"><span id="eid-7369" style="cursor:pointer;">${dept.mid}</span></td>
+							<td class="text-center"><span id="mid-${dept.mid}" style="cursor:pointer;">${allMemberMap.get(dept.mid)}</span></td>
 							<td class="text-center">
 								<button id="edit-1" class="btn btn-warning">
 									<span class="glyphicon glyphicon-edit"></span>&nbsp;编辑</button>

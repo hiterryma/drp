@@ -26,12 +26,12 @@
 	public static final String MANAGE_STORAGE_INPUT_URL = "pages/back/admin/manage/manage_storage_input.jsp" ;
 	public static final String MANAGE_DISTRIBUTION_INPUT_URL = "pages/back/admin/manage/manage_distribution_input.jsp" ;
 
-    public static final String DEPT_LIST_URL = "pages/back/admin/dept/dept_list.jsp" ;
-    public static final String EMP_ADD_URL = "pages/back/admin/emp/emp_add.jsp" ;
-    public static final String EMP_LIST_URL = "pages/back/admin/emp/emp_list.jsp" ;
+    public static final String DEPT_LIST_URL = "pages/back/admin/dept/dept_list.action";
+    public static final String EMP_ADD_URL = "pages/back/admin/member/member_add.jsp";
+    public static final String EMP_LIST_URL = "pages/back/admin/member/member_list.action";
 
-	public static final String NEWS_ADD_URL = "pages/back/admin/news/news_add.jsp" ;
-	public static final String NEWS_LIST_URL = "pages/back/admin/news/news_list.jsp" ;
+    public static final String NEWS_ADD_URL = "pages/back/admin/news/news_add.jsp";
+    public static final String NEWS_LIST_URL = "pages/back/admin/news/news_list.action";
 %>
 <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
@@ -272,5 +272,5 @@
         </ul>
     </section>
 
-	<!-- /.sidebar -->
+    <!-- /.sidebar -->
 </aside>

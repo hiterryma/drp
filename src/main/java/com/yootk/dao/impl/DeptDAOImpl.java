@@ -3,13 +3,10 @@ package com.yootk.dao.impl;
 import com.yootk.common.annotation.Repository;
 import com.yootk.common.dao.abs.AbstractDAO;
 import com.yootk.dao.IDeptDAO;
-import com.yootk.dao.INewsDAO;
 import com.yootk.vo.Dept;
-import com.yootk.vo.News;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -51,15 +48,6 @@ public class DeptDAOImpl extends AbstractDAO implements IDeptDAO {
         ResultSet rs = super.pstmt.executeQuery() ;
         return super.handleResultToList(rs,Dept.class);
     }
-    @Override
-    public List<Dept> findAllMap() throws SQLException {
-        //String sql = "select did,dname from dept";
-        String sql = "select did,dname from dept" ;
-        super.pstmt = super.conn.prepareStatement(sql );
-        ResultSet rs = super.pstmt.executeQuery() ;
-        return super.handleResultToList(rs,Dept.class);
-    }
-
 
     @Override
     public List<Dept> findSplit(Long currentPage, Integer lineSize) throws SQLException {

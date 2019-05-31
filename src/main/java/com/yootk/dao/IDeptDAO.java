@@ -14,5 +14,4 @@ public interface IDeptDAO extends IBaseDAO<Long, Dept> {
     @Override
     List<Dept> findAll() throws SQLException;
 
-    List<Dept> findAllMap() throws SQLException;
 }

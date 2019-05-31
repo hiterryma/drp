@@ -9,9 +9,11 @@ import com.yootk.dao.ILevelDAO;
 import com.yootk.dao.IMemberDAO;
 import com.yootk.service.back.IMemberServiceBack;
 import com.yootk.vo.Dept;
+import com.yootk.vo.Level;
 import com.yootk.vo.Member;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -61,14 +63,24 @@ public class MemberServiceBackImpl extends AbstractService implements IMemberSer
             map.put("allMembers",this.memberDAO.findSplit(currentPage,lineSize,column,keyword)) ;
             map.put("allRecorders",this.memberDAO.getAllCount(column,keyword)) ;
         }
-        map.put("allDepts",this.deptDAO.findAllMap()) ;
-        map.put("allLevels",this.levelDAO.findAllMap()) ;
+        Map<Long,String> allLevelMap = new HashMap<>();
+        for (Level level :this.levelDAO.findAll()){
+            allLevelMap.put(level.getLid(),level.getTitle());
+        }
+        Map<Long,String> allDeptMap= new HashMap<>();
+        for (Dept dept :this.deptDAO.findAll()){
+            allDeptMap.put(dept.getDid(),dept.getDname());
+        }
+        map.put("allDepts",allDeptMap) ;
+        map.put("allLevels",allLevelMap) ;
         return map;
     }
 
     @Override
     public Member get(String mid) throws Exception {
-        return this.memberDAO.findById(mid);
+        Member member = this.memberDAO.findById(mid) ;
+
+        return member;
     }
 
     @Override
@@ -80,16 +92,35 @@ public class MemberServiceBackImpl extends AbstractService implements IMemberSer
     public Map<String, Object> preEdit(String mid) throws Exception {
         Map<String,Object> map = new HashMap<>() ;
         map.put("member",this.memberDAO.findById(mid)) ;
-        map.put("allDepts",this.deptDAO.findAllMap()) ;
-        map.put("allLevels",this.levelDAO.findAllMap()) ;
+        List<Dept> deptList = this.deptDAO.findAll() ;
+        List<Level> levelList = this.levelDAO.findAll() ;
+        Map<String,String> allLevelMap = new HashMap<>();
+        for (Level level :levelList){
+            allLevelMap.put(level.getLid().toString(),level.getTitle());
+        }
+        Map<String,String> allDeptMap= new HashMap<>();
+        for (Dept dept :deptList){
+            allDeptMap.put(dept.getDid().toString(),dept.getDname());
+        }
+        map.put("allDepts",deptList) ;
+        map.put("allLevels",levelList) ;
+        map.put("allDeptMap",allDeptMap) ;
+        map.put("allLevelMap",allLevelMap) ;
         return map;
     }
     @Override
     public Map<String, Object> preAdd() throws Exception {
         Map<String,Object> map = new HashMap<>() ;
-        System.out.println(this.deptDAO.findAllMap());
-        map.put("allDepts",this.deptDAO.findAllMap()) ;
-        map.put("allLevels",this.levelDAO.findAllMap()) ;
+        Map<String,String> allLevelMap = new HashMap<>();
+        for (Level level :this.levelDAO.findAll()){
+            allLevelMap.put(level.getLid().toString(),level.getTitle());
+        }
+        Map<String,String> allDeptMap= new HashMap<>();
+        for (Dept dept :this.deptDAO.findAll()){
+            allDeptMap.put(dept.getDid().toString(),dept.getDname());
+        }
+        map.put("allDepts",allDeptMap) ;
+        map.put("allLevels",allLevelMap) ;
         return map;
     }
 }

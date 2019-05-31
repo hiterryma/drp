@@ -7,7 +7,7 @@
 	<script type="text/javascript" src="js/pages/back/admin/member/member_list.js"></script>
 </head>
 <%!
-	public static final String EMP_EDIT_URL = "pages/back/admin/member/member_edit.jsp" ;
+	public static final String EMP_EDIT_URL = "pages/back/admin/member/member_pre_edit.action" ;
 %>
 <body class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">
@@ -51,13 +51,13 @@
 								</c:if>
 							</td>
 							<td class="text-center">${member.name}</td>
-							<td class="text-center">${allLevels[member.lid].title}</td>
-							<td class="text-center">${allDepts[member.did].dname}</td>
+							<td class="text-center">${allLevels[member.lid]}</td>
+							<td class="text-center">${allDepts[member.did]}</td>
 							<td class="text-center">${member.regdate}</td>
 							<td class="text-center">${member.sal}</td>
 							<td class="text-center">${member.phone}</td>
 							<td class="text-center">
-								<a type="button" class="btn btn-warning btn-xs" href="<%=EMP_EDIT_URL%>?eid=">
+								<a type="button" class="btn btn-warning btn-xs" href="<%=EMP_EDIT_URL%>?mid=${member.mid}">
 									<span class="glyphicon glyphicon-edit"></span>&nbsp;编辑</a>
 							</td>
 						</tr>
