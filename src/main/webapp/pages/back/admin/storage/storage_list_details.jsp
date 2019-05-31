@@ -1,8 +1,13 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <html>
 <head>
 	<jsp:include page="/pages/plugins/basepath.jsp"/>
+
 	<script type="text/javascript" src="js/pages/back/admin/storage/storage_list_details.js"></script>
+
 	<script type="text/javascript" src="js/split_page.js"></script>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
@@ -69,6 +74,7 @@
 							</tr>
 						</thead>
 						<tbody>
+
 							<tr id="dettr-1" class="text-success">
 								<td><input type="text" id="gid-1" value="100001"/></td>
 								<td><input type="text" id="name-1" value="衣服" size="40"/></td>
@@ -82,6 +88,8 @@
 										<span class="glyphicon glyphicon-edit"></span>&nbsp;移除</button>
 								</td>
 							</tr>
+
+
 						</tbody>
 					</table>
 				</div>

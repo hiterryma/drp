@@ -68,4 +68,48 @@ public interface IStorage_applyDAO extends IBaseDAO<Long, Storage_apply> {
      */
     public Long getAllCountByMember(int outorin, String mid, String column, String keyWord) throws SQLException ;
 
+    /**
+     * 根据出入库标记和提交标记进行分页显示
+     * @param outorin
+     * @param smt
+     * @param currentPage
+     * @param lineSize
+     * @return
+     * @throws SQLException
+     */
+    public List<Storage_apply> findSplitByOutInAndSmt(int outorin, int smt, Long currentPage, Integer lineSize) throws SQLException ;
+
+    /**
+     * 根据出入库标记和提交标记进行分页查询显示
+     * @param outorin
+     * @param smt
+     * @param currentPage
+     * @param lineSize
+     * @param column
+     * @param keyWord
+     * @return
+     * @throws SQLException
+     */
+    public List<Storage_apply> findSplitByOutInAndSmt(int outorin,int smt, Long currentPage, Integer lineSize, String column, String keyWord) throws SQLException ;
+
+    /**
+     * 根据出入库标记和提交标记查询记录数
+     * @param outorin
+     * @param smt
+     * @return
+     * @throws SQLException
+     */
+    public Long getAllCountByOutInAndSmtr(int outorin, int smt) throws SQLException ;
+
+    /**
+     * 根据出入库标记和提交标记查询分页查询记录数
+     * @param outorin
+     * @param smt
+     * @param column
+     * @param keyWord
+     * @return
+     * @throws SQLException
+     */
+    public Long getAllCountByOutInAndSmtr(int outorin, int smt, String column, String keyWord) throws SQLException ;
+
 }

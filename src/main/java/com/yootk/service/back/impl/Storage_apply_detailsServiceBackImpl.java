@@ -4,6 +4,7 @@ import com.yootk.common.annotation.Autowired;
 import com.yootk.common.annotation.Service;
 import com.yootk.common.service.abs.AbstractService;
 import com.yootk.dao.IStorage_applyDAO;
+import com.yootk.dao.IStorage_apply_detailsDAO;
 import com.yootk.dao.IWarehouseDAO;
 import com.yootk.dao.IWitemDAO;
 import com.yootk.service.back.IStorage_apply_detailsServiceBack;
@@ -21,6 +22,8 @@ public class Storage_apply_detailsServiceBackImpl extends AbstractService implem
     private IWarehouseDAO warehouseDAO ;
     @Autowired
     private IWitemDAO witemDAO ;
+    @Autowired
+    private IStorage_apply_detailsDAO storage_apply_detailsDAO ;
     @Override
     public Map<String, Object> preAdd(Long said) throws Exception {
         Map<String,Object> result = new HashMap<>() ;
@@ -34,6 +37,8 @@ public class Storage_apply_detailsServiceBackImpl extends AbstractService implem
         result.put("storage_apply",storage_apply) ;
         result.put("title",title) ;
         result.put("witem",witem) ;
+        //存放Storage_apply_details的List集合
+        result.put("allStorage_apply_details",this.storage_apply_detailsDAO.findAllBySaid(said)) ;
         return result ;
     }
 }

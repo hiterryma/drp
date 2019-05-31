@@ -1,8 +1,8 @@
-//定义一个全局变量
+//定义一个全局变量，表示表的行数，行数从一开始
 temp_did = 1 ;
 $(function(){
 	//给“追加商品”按钮绑定“单击”事件
-	$(addbut).on("click",function(){
+	$("#addbut").on("click",function(){
 		// 通过ajax保存一行新的数据，而后把详情id取得，替换掉如下的id设置
 		addDetails("temp" + temp_did ++) ; // 设置一个临时 id信息
 	}) ;
@@ -22,6 +22,32 @@ $(function(){
 			deleteDetails(did) ;
 		}) ;
 	}) ;
+
+	//给每行商品编号输入框绑定事件
+	$("input[id^=gid-]").each(function () {
+		$(this).on("blur",function () {
+			//获取当前行的行数标号，每行的组件id都带行数
+			tid = $(this).attr("id").split("-")[1] ;
+
+			//获取当前输入的商品编号
+			val = $(this).val() ;
+			//判断商品编号是否为空，不为空的话执行Ajax调用
+			console.log(val) ;
+			if (val != "") {
+				$.get("/pages/back/admin/goods/goods_list_gid.action", {"gid":val},function (data) {
+					console.log(data) ;
+					//设置本行商品名称
+					$("#name-" + tid).val(data.name) ;
+					//设置本行商品价格
+					$("#price-" + tid).val(data.price) ;
+					//设置本行商品重量
+					$("#weight-" + tid).val(data.weight) ;
+
+				}, "json");
+			}
+
+		})
+	})
 })
 function addDetails(tdid) {
 	//定义一行表组件

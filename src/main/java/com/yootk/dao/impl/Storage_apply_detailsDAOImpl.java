@@ -5,6 +5,7 @@ import com.yootk.common.dao.abs.AbstractDAO;
 import com.yootk.dao.IStorage_apply_detailsDAO;
 import com.yootk.vo.Storage_apply_details;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Set;
@@ -63,5 +64,14 @@ public class Storage_apply_detailsDAOImpl extends AbstractDAO implements IStorag
     @Override
     public Long getAllCount(String column, String keyWord) throws SQLException {
         return null;
+    }
+
+    @Override
+    public List<Storage_apply_details> findAllBySaid(Long said) throws SQLException {
+        String sql = "SELECT sadid,said,gid,name,num,price,weight FROM storage_apply_details WHERE said=?" ;
+        super.pstmt = super.conn.prepareStatement(sql) ;
+        super.pstmt.setLong(1,said);
+        ResultSet rs = super.pstmt.executeQuery() ;
+        return super.handleResultToList(rs,Storage_apply_details.class) ;
     }
 }

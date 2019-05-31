@@ -21,4 +21,11 @@ public class GoodsServiceBackImpl extends AbstractService implements IGoodsServi
         List<Goods> all = this.goodsDAO.findByStid(stid);
         return all;
     }
+
+    @Override
+    public Goods get(Long gid) throws Exception {
+
+        return this.goodsDAO.findById(gid) ;
+    }
+
 }

@@ -5,6 +5,7 @@ import com.yootk.common.dao.abs.AbstractDAO;
 import com.yootk.dao.ICityDAO;
 import com.yootk.vo.City;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Set;
@@ -26,8 +27,12 @@ public class CityDAOImpl extends AbstractDAO implements ICityDAO {
     }
 
     @Override
-    public City findById(Long aLong) throws SQLException {
-        return null;
+    public City findById(Long cid) throws SQLException {
+        String sql = "select cid, pid,title from city where cid=?";
+        super.pstmt = super.conn.prepareStatement(sql) ;
+        super.pstmt.setLong(1,cid);
+        ResultSet rs = super.pstmt.executeQuery() ;
+        return super.handleResultToVO(rs,City.class) ;
     }
 
     @Override

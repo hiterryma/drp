@@ -1,4 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <head>
 	<jsp:include page="/pages/plugins/basepath.jsp"/>
 	<script type="text/javascript" src="js/pages/back/admin/storageaudit/storageaudit_list_prepare.js"></script>
@@ -39,19 +42,21 @@
 						</tr>
 					</thead>
 					<tbody>
+					<c:forEach items="${allStorage_applies}" var="storage_apply">
 						<tr>
-							<th class="text-center" style="width:10%;">20001010</th> 
-							<td class="text-left"><span id="sid-1" style="cursor:pointer;">2017双十一衣帽入库</span></td>
-							<td class="text-left"><span id="wid-1" style="cursor:pointer;">北京通州仓库一号库</span></td>
-							<td class="text-center">2019-10-09</td>
-							<td class="text-center"><span id="mid-admin" style="cursor:pointer;">老李</span></td>
-							<td class="text-center">100</td>
-							<td class="text-center">10000</td>
+							<th class="text-center" style="width:10%;">${storage_apply.said}</th>
+							<td class="text-left"><span id="sid-1" style="cursor:pointer;">${storage_apply.title}</span></td>
+							<td class="text-left"><span id="wid-1" style="cursor:pointer;">${warehouses[storage_apply.wid]}</span></td>
+							<td class="text-center">${submitdatemap[storage_apply.said]}</td>
+							<td class="text-center"><span id="mid-admin" style="cursor:pointer;">${storage_apply.mid}</span></td>
+							<td class="text-center">${amounts[storage_apply.said]}</td>
+							<td class="text-center">${totalprices[storage_apply.said]}</td>
 							<td class="text-left">
 								<a href="<%=STORAGEAUDIT_EDIT_URL%>?sid=1" class="btn btn-primary btn-xs">
 									<span class="glyphicon glyphicon-edit"></span>&nbsp;处理申请</a>
 							</td>
 						</tr>
+					</c:forEach>
 					</tbody>
 				</table>
 				<div id="splitBarDiv" style="float:right">

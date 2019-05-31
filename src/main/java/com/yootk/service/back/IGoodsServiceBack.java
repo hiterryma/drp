@@ -13,4 +13,12 @@ public interface IGoodsServiceBack {
      * @throws Exception
      */
     public List<Goods> getByStid(Long stid) throws Exception;
+
+    /**
+     * 根据商品id查询出指定的商品信息
+     * @param gid
+     * @return
+     * @throws Exception
+     */
+    public Goods get(Long gid) throws Exception ;
 }
