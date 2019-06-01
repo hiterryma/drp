@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" pageEncoding="UTF-8"%>
 <html>
 <head>
@@ -5,7 +6,7 @@
 	<script type="text/javascript" src="js/pages/front/center/address/address_add.js"></script>
 </head>
 <%!
-	public static final String ADDRESS_ADD_URL = "" ;
+	public static final String ADDRESS_ADD_URL = "pages/front/center/address/address_add.action" ;
 %>
 <body class="back">
 	<div class="container contentback">
@@ -32,10 +33,10 @@
 								<!-- 定义输入表单样式，其中id主要用于设置颜色样式 -->
 								<div class="form-group" id="nameDiv">
 									<!-- 定义表单提示文字 -->
-									<label class="col-md-3 control-label" for="name">收件人：</label>
+									<label class="col-md-3 control-label" for="receiver">收件人：</label>
 									<div class="col-md-5">
 										<!-- 定义表单输入组件 -->
-										<input type="text" id="name" name="name" class="form-control"
+										<input type="text" id="receiver" name="receiver" class="form-control"
 											placeholder="请输入收件人姓名" value="">
 									</div>
 									<!-- 定义表单错误提示显示元素 -->
@@ -58,11 +59,9 @@
 									<div class="col-md-5">
 										<select id="pid" name="pid" class="form-control">
 											<option value="">========= 请选择所在省份 =========</option>
-											<option value="1">北京</option>
-											<option value="2">天津</option>
-											<option value="3">上海</option>
-											<option value="4">山东</option>
-											<option value="5">辽宁</option>
+											<c:forEach items="${allProvinces}" var="province">
+												<option value="${province.pid}">${province.title}</option>
+											</c:forEach>
 										</select>
 									</div>
 									<!-- 定义表单错误提示显示元素 -->
@@ -74,9 +73,6 @@
 									<div class="col-md-5">
 										<select id="cid" name="cid" class="form-control">
 											<option value="">========= 请选择所在城市 =========</option>
-											<option value="11">济南</option>
-											<option value="12">青岛</option>
-											<option value="13">潍坊</option>
 										</select>
 									</div>
 									<!-- 定义表单错误提示显示元素 -->

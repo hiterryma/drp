@@ -2,8 +2,19 @@ cuid = 0 ;
 $(function(){
 	$("span[id^=mid-]").each(function(){
 		$(this).on("click",function(){
-			mid = this.id.split("-")[1] ;
-			$("#memberInfo").modal("toggle") ;
+			mid = this.id.substr(4);
+			$.getJSON("/pages/back/admin/member/memberJson.action?mid="+mid, function(data){
+				console.log(data)
+				$("#memberInfo").modal("toggle") ;
+				levelMap = data.allLevelMap ;
+				deptMap = data.allDeptMap ;
+				$("#mid").text(data.member.name);
+				$(level).text(levelMap[data.member.lid]);
+				$(dept).text(deptMap[data.member.did]);
+				$(phone).text(data.member.phone);
+				$("pre").text(data.member.note);
+				$(".row img").attr("src","http://upload-server/upload/"+data.member.photo) ;
+			});
 		}) ;
 	}) ;
 	$("span[id^=cuid-]").each(function(){
@@ -30,6 +41,13 @@ $(function(){
 		submitHandler : function(form) {
 			// 发送ajax请求进行异步数据处理操作
 			$("#customerRecordInputInfo").modal("toggle") ;
+
+			$.get("pages/back/admin/customer/customer_audit.action",{audit:$("#audit").val(),note:$("#note").val(),cuid:$("#customerId").val()},function (data) {
+				console.log(data) ;
+				debugger;
+				window.location.reload();
+			},"json");
+
 			operateAlert(true,"客户联系记录追加成功！","客户联系记录追加失败！") ;
 		},
 		errorPlacement : function(error, element) {

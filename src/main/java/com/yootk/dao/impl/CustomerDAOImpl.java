@@ -41,6 +41,16 @@ public class CustomerDAOImpl extends AbstractDAO implements ICustomerDAO {
     }
 
     @Override
+    public boolean doEditForStatus(Integer status,String note,Long cuid) throws SQLException {
+        String sql ="update customer set status = ?,note = ?  where cuid = ? " ;
+        super.pstmt = super.conn.prepareStatement(sql) ;
+        super.pstmt.setInt(1,status);
+        super.pstmt.setString(2,note);
+        super.pstmt.setLong(3,cuid);
+        return super.pstmt.executeUpdate() > 0;
+    }
+
+    @Override
     public boolean doRemove(Set<Long> longs) throws SQLException {
         return false;
     }

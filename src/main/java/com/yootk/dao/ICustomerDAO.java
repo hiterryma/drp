@@ -15,9 +15,10 @@ public interface ICustomerDAO extends IBaseDAO<Long, Customer> {
     public Long getAllCountByStatus(String column, String keyword) throws SQLException;
 
     public List<Customer> findSplitByStatus(Long currentPage, Integer lineSize) throws SQLException;
+
     public List<Customer> findSplitByStatus(Long currentPage, Integer lineSize, String column, String keyword) throws SQLException;
 
-
+    public boolean doEditForStatus(Integer status,String note,Long cuid) throws SQLException ;
 
     /**
      * 查询用户是否已经提交给客户认证申请
