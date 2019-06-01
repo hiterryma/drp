@@ -23,17 +23,17 @@
             <ul class="nav navbar-nav">
                 <li class="dropdown user user-menu"><a href="#"
                                                        class="dropdown-toggle" data-toggle="dropdown"> <img
-                        src="images/user.png" class="user-image" alt="User Image">
-                    <span class="hidden-xs">小李老师</span>
+                        src="http://43.226.146.219/upload/${allMembers.photo}" class="user-image" alt="User Image">
+                    <span class="hidden-xs">${allMembers.name}</span>
                 </a>
                     <ul class="dropdown-menu">
                         <!-- User image -->
-                        <li class="user-header"><img src="images/user.png"
+                        <li class="user-header"><img src="http://43.226.146.219/upload/${allMembers.photo}"
                                                      class="img-circle" alt="User Image"></li>
                         <!-- Menu Body -->
                         <li>
                             <div class="text-center">
-                                上次登录日期：${lastdate}
+                                上次登录日期：${allMembers.lasttime}
                             </div>
                         </li>
                         <!-- Menu Footer-->

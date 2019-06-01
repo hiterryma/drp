@@ -39,11 +39,11 @@
         <!-- Sidebar user panel -->
         <div class="user-panel">
             <div class="pull-left image">
-                <img src="images/user.png" class="img-circle"
+                <img src="http://43.226.146.219/upload/${allMembers.photo}" class="img-circle"
                      alt="User Image">
             </div>
             <div class="pull-left info">
-                <p>小李老师</p>
+                <p>${allMembers.name}</p>
             </div>
         </div>
         <!-- /.search form -->

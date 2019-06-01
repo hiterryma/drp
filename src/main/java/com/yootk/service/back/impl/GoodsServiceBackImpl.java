@@ -90,7 +90,6 @@ public class GoodsServiceBackImpl extends AbstractService implements IGoodsServi
                 map.put("allRecorders", this.goodsDAO.getAllCountByStid(stid, clonum, keyword));
             }
         }
-        System.out.println(map.get("allGoods"));
         return map;
     }
 }

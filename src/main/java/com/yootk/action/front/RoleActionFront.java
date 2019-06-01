@@ -16,7 +16,7 @@ public class RoleActionFront extends AbstractAction {
     @RequestMapping("member_action")
     public ModuleAndView member_action() throws Exception {
         ModuleAndView mav = new ModuleAndView("/pages/back/index.jsp");
-        mav.add(roleServiceFront.role_action(super.getFrontUser()));
+        mav.add(this.roleServiceFront.role_action(super.getFrontUser()));
         return mav;
     }
 
