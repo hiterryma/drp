@@ -38,12 +38,9 @@
     <section class="sidebar">
         <!-- Sidebar user panel -->
         <div class="user-panel">
-            <div class="pull-left image">
-                <img src="http://43.226.146.219/upload/${allMembers.photo}" class="img-circle"
-                     alt="User Image">
+            <div class="pull-left image" id="imgae1">
             </div>
-            <div class="pull-left info">
-                <p>${allMembers.name}</p>
+            <div class="pull-left info" id="name1">
             </div>
         </div>
         <!-- /.search form -->

@@ -20,15 +20,18 @@ public class RoleServiceFront extends AbstractService implements IRoleServiceFro
     private IActionDAO actionDAO;
     @Autowired
     private IMemberDAO memberDAO;
+
+    @Override
+    public Member getByMid(String mid) throws Exception {
+        return this.memberDAO.findDidByDeptAndMember(mid);
+    }
+
     @Override
     public Map<String, Object> role_action(String mid) throws Exception {
         Map<String ,Object> map = new HashMap<>();
         Member vo = this.memberDAO.findDidByDeptAndMember(mid);
         map.put("allActions",this.actionDAO.findAllByMember(vo.getDid()));
         map.put("allRoles",this.roleDAO.findAllByMember(vo.getDid()));
-        map.put("allMembers",vo);
-        System.out.println(map.get("allActions"));
-        System.out.println(map.get("allRoles"));
         return map;
     }
 }
