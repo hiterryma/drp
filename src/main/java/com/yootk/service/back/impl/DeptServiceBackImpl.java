@@ -4,12 +4,15 @@ import com.yootk.common.annotation.Autowired;
 import com.yootk.common.annotation.Service;
 import com.yootk.common.service.abs.AbstractService;
 import com.yootk.dao.IDeptDAO;
+import com.yootk.dao.ILevelDAO;
 import com.yootk.dao.IMemberDAO;
 import com.yootk.service.back.IDeptServiceBack;
 import com.yootk.vo.Dept;
+import com.yootk.vo.Level;
 import com.yootk.vo.Member;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 @Service
 public class DeptServiceBackImpl extends AbstractService implements IDeptServiceBack {
@@ -17,6 +20,9 @@ public class DeptServiceBackImpl extends AbstractService implements IDeptService
     private IDeptDAO deptDAO ;
     @Autowired
     private IMemberDAO memberDAO ;
+    @Autowired
+    private ILevelDAO levelDAO;
+
     @Override
     public boolean edit(Dept dept) throws Exception {
         return this.deptDAO.doEdit(dept);
@@ -33,4 +39,26 @@ public class DeptServiceBackImpl extends AbstractService implements IDeptService
         map.put("allDepts",this.deptDAO.findSplit(currentPage,lineSize));
         return map;
     }
+
+    @Override
+    public List<Dept> list() throws Exception {
+        return deptDAO.findAll();
+    }
+
+    @Override
+    public Map<String, Object> ListMemberbyDept(Long did, Long currentPage, Integer lineSize) throws Exception {
+        Map<String, Object> map = new HashMap<>();
+//        Map<Long, String> allLevelMap = new HashMap<>();
+//        for (Level level:this.levelDAO.findAll()) {
+//            allLevelMap.put(level.getLid(), level.getTitle());
+//        }
+        map.put("allMembers", memberDAO.findByDeptSplit(did, currentPage, lineSize));
+        map.put("allRecorders", memberDAO.getAllCountByDept(did));
+//
+//        map.put("allLevelMap", allLevelMap);
+//        System.out.println(map);
+        return map;
+    }
+
+
 }

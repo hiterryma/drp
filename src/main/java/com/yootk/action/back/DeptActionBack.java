@@ -1,5 +1,6 @@
 package com.yootk.action.back;
 
+import com.alibaba.fastjson.JSONObject;
 import com.yootk.common.action.abs.AbstractAction;
 import com.yootk.common.annotation.Autowired;
 import com.yootk.common.annotation.Controller;
@@ -9,6 +10,9 @@ import com.yootk.common.servlet.web.MultipartFile;
 import com.yootk.common.servlet.web.PageUtil;
 import com.yootk.service.back.IDeptServiceBack;
 import com.yootk.vo.Dept;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/pages/back/admin/dept/")
@@ -27,6 +31,25 @@ public class DeptActionBack extends AbstractAction {
 		}
 		return mav;
 	}
+
+	@RequestMapping("dept_list_all")
+    public void listAll() throws Exception{
+        super.print(JSONObject.toJSONString(this.deptService.list()));
+    }
+
+    @RequestMapping("dept_member_list")
+	public void listDeptMember(Long did, Long currentPage, Integer lineSize)throws Exception {
+//		PageUtil pu = new PageUtil(super.getPage("/pages/back/admin/dept/dept_member_list.action"), null);
+//		System.out.println(pu);
+//		Long cp = pu.getCurrentPage();
+//		Integer ls = pu.getLineSize();
+//		System.out.println(cp);
+//		System.out.println(ls);
+		Map<String, Object> map = this.deptService.ListMemberbyDept(did, currentPage, lineSize);
+		System.out.println(map);
+		super.print(JSONObject.toJSONString(map));
+	}
+
 	@RequestMapping("dept_edit")
 	public void edit(Long did,String dname) {
 		try {

@@ -123,4 +123,21 @@ public class MemberServiceBackImpl extends AbstractService implements IMemberSer
         map.put("allLevels",allLevelMap) ;
         return map;
     }
+
+    @Override
+    public Map<String, Object> getMemberInfo(String mid) throws Exception {
+        Map<String,Object> map = new HashMap<>() ;
+        Map<String,String> allLevelMap = new HashMap<>();
+        for (Level level :this.levelDAO.findAll()){
+            allLevelMap.put(level.getLid().toString(),level.getTitle());
+        }
+        Map<String,String> allDeptMap= new HashMap<>();
+        for (Dept dept :this.deptDAO.findAll()){
+            allDeptMap.put(dept.getDid().toString(),dept.getDname());
+        }
+        map.put("allDepts",allDeptMap) ;
+        map.put("allLevels",allLevelMap) ;
+        map.put("member", this.memberDAO.findById(mid));
+        return map;
+    }
 }

@@ -1,5 +1,6 @@
 package com.yootk.action.back;
 
+import com.alibaba.fastjson.JSONObject;
 import com.yootk.common.action.abs.AbstractAction;
 import com.yootk.common.annotation.Autowired;
 import com.yootk.common.annotation.Controller;
@@ -17,6 +18,11 @@ public class WarehouseActionBack extends AbstractAction {
 
     @Autowired
     private IWarehouseService warehouseService;
+
+    @RequestMapping("warehouse_edit_admin")
+    public void editAdmin(Long wid, String mid) throws Exception {
+        super.print(JSONObject.toJSONString(this.warehouseService.editAdmin(wid, mid)));
+    }
 
     @RequestMapping("warehouse_add")
     public ModuleAndView add(Warehouse warehouse, MultipartFile photo) throws Exception{

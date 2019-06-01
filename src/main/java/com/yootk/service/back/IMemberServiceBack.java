@@ -61,4 +61,6 @@ public interface IMemberServiceBack {
      */
     public Map<String,Object> preEdit(String mid) throws Exception ;
     public Map<String,Object> preAdd() throws Exception ;
+
+    public Map<String, Object> getMemberInfo(String mid) throws Exception;
 }
