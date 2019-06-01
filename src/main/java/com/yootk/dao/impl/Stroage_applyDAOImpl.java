@@ -3,8 +3,10 @@ package com.yootk.dao.impl;
 import com.yootk.common.annotation.Repository;
 import com.yootk.common.dao.abs.AbstractDAO;
 import com.yootk.dao.IStorage_applyDAO;
+import com.yootk.vo.City;
 import com.yootk.vo.Storage_apply;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Set;
@@ -41,7 +43,16 @@ public class Stroage_applyDAOImpl extends AbstractDAO implements IStorage_applyD
 
     @Override
     public Storage_apply findById(Long aLong) throws SQLException {
-        return null;
+        Storage_apply storage_apply = null;
+        String sql = "select mid from storage_apply where wid = ?";
+        super.pstmt = super.conn.prepareStatement(sql);
+        super.pstmt.setLong(1, aLong);
+        ResultSet rs = super.pstmt.executeQuery();
+        if (rs.next()){
+            storage_apply = new Storage_apply();
+            storage_apply.setMid(rs.getString(1));
+        }
+        return storage_apply;
     }
 
     @Override

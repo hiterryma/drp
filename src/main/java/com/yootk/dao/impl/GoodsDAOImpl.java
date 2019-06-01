@@ -54,7 +54,7 @@ public class GoodsDAOImpl extends AbstractDAO implements IGoodsDAO {
 
     @Override
     public Goods findById(Long aLong) throws SQLException {
-        String sql = "select gid,name,wiid,stid,price,weight,photo,note,lastin,stornum,recorder,delflag from goods where gid=?";
+        String sql = "select gid,name,wiid,stid,price,weight,photo,note,lastin,stornum,recorder,delflag,wid from goods where delflag=0 AND gid=?";
         super.pstmt = super.conn.prepareStatement(sql);
         super.pstmt.setLong(1, aLong);
         return super.handleResultToVO(super.pstmt.executeQuery(), Goods.class);
