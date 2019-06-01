@@ -125,10 +125,14 @@ public class GoodsActionBack extends AbstractAction {
 
     @RequestMapping("goods_subaru")
     public ModuleAndView goods_subaru(Long stid) {
+        System.out.println(stid);
+        if (stid == null) {
+            stid = Long.parseLong(ServletObject.getSession().getAttribute("stid").toString());
+           //ServletObject.getSession().removeAttribute("stid");
+        }
         ModuleAndView mav = new ModuleAndView("/pages/front/goods/goods_list.jsp");
         PageUtil pu = new PageUtil("/pages/back/admin/goods/goods_subaru.action","商品名称:name");
         try {
-            mav.add(AbstractAction.PATH_ATTRIBUTE_NAME, "/pages/back/admin/goods/goods_subaru.action");
             mav.add(this.goodsServiceBack.getByStid(stid,pu.getCurrentPage(),pu.getLineSize(),pu.getColumn(),pu.getKeyword()));
         } catch (Exception e) {
             e.printStackTrace();
