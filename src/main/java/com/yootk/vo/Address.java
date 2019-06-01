@@ -5,18 +5,12 @@ import java.io.Serializable;
 public class Address implements Serializable {
     private Long adid;
     private String mid;
-    private  Integer dflag;
-    //1，收件人
-    private String receiver ;
-    //2，联系电话
-    private  String phone ;
-    //3,省份
-    private Long pid ;
-    //4,城市
-    private Long cid ;
-    //5,详细地址
+    private Integer cid;
+    private Integer pid;
     private String addr;
-
+    private String receiver;
+    private String phone;
+    private Integer dflag;
 
     public Long getAdid() {
         return adid;
@@ -34,14 +28,29 @@ public class Address implements Serializable {
         this.mid = mid;
     }
 
-    public Integer getDflag() {
-        return dflag;
+    public Integer getCid() {
+        return cid;
     }
 
-    public void setDflag(Integer dflag) {
-        this.dflag = dflag;
+    public void setCid(Integer cid) {
+        this.cid = cid;
     }
 
+    public Integer getPid() {
+        return pid;
+    }
+
+    public void setPid(Integer pid) {
+        this.pid = pid;
+    }
+
+    public String getAddr() {
+        return addr;
+    }
+
+    public void setAddr(String addr) {
+        this.addr = addr;
+    }
 
     public String getReceiver() {
         return receiver;
@@ -59,41 +68,14 @@ public class Address implements Serializable {
         this.phone = phone;
     }
 
-    public Long getPid() {
-        return pid;
+    public Integer getDflag() {
+        return dflag;
     }
 
-    public void setPid(Long pid) {
-        this.pid = pid;
+    public void setDflag(Integer dflag) {
+        this.dflag = dflag;
     }
 
-    public Long getCid() {
-        return cid;
-    }
-
-    public void setCid(Long cid) {
-        this.cid = cid;
-    }
-
-    public String getAddr() {
-        return addr;
-    }
-
-    public void setAddr(String addr) {
-        this.addr = addr;
-    }
-
-    @Override
-    public String toString() {
-        return "Address{" +
-                "adid=" + adid +
-                ", mid='" + mid + '\'' +
-                ", dflag=" + dflag +
-                ", receiver='" + receiver + '\'' +
-                ", phone='" + phone + '\'' +
-                ", pid=" + pid +
-                ", cid=" + cid +
-                ", addr='" + addr + '\'' +
-                '}';
+    public Address() {
     }
 }

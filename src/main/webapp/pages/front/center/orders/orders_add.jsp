@@ -1,12 +1,13 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" pageEncoding="UTF-8"%>
 <html>
 <head>
 	<jsp:include page="/pages/plugins/basepath.jsp"/>
-	<script type="text/javascript" src="js/front/center/orders/orders_add.js"></script>
+	<script type="text/javascript" src="js/pages/front/center/orders/orders_add.js"></script>
 </head>
 
 <%!
-	public static final String ORDERS_ADD_URL = "" ;
+	public static final String ORDERS_ADD_URL = "pages/front/center/orders/orders_add.action" ;
 %>
 <body class="back">
 	<div class="container contentback">
@@ -33,18 +34,12 @@
 								<!-- 定义表单提示文字 -->
 								<label class="col-md-3 control-label" for="aid">收件地址：</label>
 								<div class="col-md-5">
-									<div class="radio">
-										<input type="radio" id="aid" name="aid" class="radio" checked value="1">李先生，13934720223，北京市朝阳区来广营马泉营
-									</div>
-									<div class="radio">
-										<input type="radio" id="aid" name="aid" class="radio" value="2">李先生，13934720223，北京市朝阳区来广营马泉营
-									</div>
-									<div class="radio">
-										<input type="radio" id="aid" name="aid" class="radio" value="3">李先生，13934720223，北京市朝阳区来广营马泉营
-									</div>
-									<div class="radio">
-										<input type="radio" id="aid" name="aid" class="radio" value="4">李先生，13934720223，北京市朝阳区来广营马泉营
-									</div>
+									<c:forEach items="${AllAddress}" var="Address">
+										<div class="radio">
+											<input type="radio" id="${Address.adid}" name="aid" class="radio" checked value="${Address.adid}">${Address.receiver}, ${Address.phone}, ${Address.addr}
+										</div>
+									</c:forEach>
+
 								</div>
 								<!-- 定义表单错误提示显示元素 -->
 								<div class="col-md-4" id="aidMsg"></div>
@@ -58,8 +53,9 @@
 							</div>
 							<div class="form-group">
 								<div class="col-md-5 col-md-offset-3">
+                                    <input type="hidden" name="gid" value="${gid}" >
 									<button type="submit" class="btn btn-primary btn-lg">下单</button>
-									<a href="pages/front/center/shopcar/shopcar_list.jsp" class="btn btn-link">再想想还有什么没卖的？</a>
+									<a href="pages/front/center/shopcar/shopcar_list.action" class="btn btn-link">再想想还有什么没卖的？</a>
 								</div>
 							</div>
 						</form>

@@ -4,13 +4,14 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%!
 	public static final String GOODS_EDIT_URL = "pages/back/admin/goods/goods_pre_edit.action" ;
-	public static final String GOODS_SHOW_URL = "pages/back/admin/goods/goods_show.jsp" ;
+	public static final String GOODS_SHOW_URL = "/pages/back/admin/goods/goods_show.action?gid=" ;
 %>
 <html>
 <head>
 	<jsp:include page="/pages/plugins/basepath.jsp"/>
 	<script type="text/javascript" src="js/pages/back/admin/goods/goods_list.js"></script>
 	<script type="text/javascript" src="js/split_page.js"></script>
+	<script type="text/javascript" src="js/pages/back/index.js"></script>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">
@@ -47,12 +48,12 @@
 					<c:forEach items="${allGoods}" var="goods">
 						<tr>
 							<td class="text-left">${goods.gid}</td>
-							<td class="text-left"><a href="<%=GOODS_SHOW_URL%>" title="查看商品详情">${goods.name}</a></td>
+							<td class="text-left"><a href="<%=GOODS_SHOW_URL%>${goods.gid}" title="查看商品详情">${goods.name}</a></td>
 							<td class="text-center">${goods.price}</td>
 							<td class="text-center">${goods.weight}g</td>
 							<td class="text-center">${goods.lastin}</td>
 							<td class="text-center"><span id="storage-${goods.gid}" style="cursor:pointer;">${goods.stornum}</span></td>
-							<td class="text-center"><span id="mid-${goods.recorder}" style="cursor:pointer;">${allMemberMap.get(goods.recorder)}</span></td>
+							<td class="text-center"><span id="mid_${goods.recorder}" style="cursor:pointer;">${allMemberMap.get(goods.recorder)}</span></td>
 							<td class="text-left">
 								<a href="<%=GOODS_EDIT_URL%>?gid=${goods.gid}" class="btn btn-primary btn-xs">
 									<span class="glyphicon glyphicon-edit"></span>&nbsp;编辑</a>

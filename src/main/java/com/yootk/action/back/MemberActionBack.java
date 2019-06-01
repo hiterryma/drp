@@ -126,6 +126,11 @@ public class MemberActionBack extends AbstractAction {
 		}
 	}
 
+	@RequestMapping("member_info")
+    public void memberInfo(String mid) throws Exception{
+	    super.print(JSONObject.toJSONString(this.memberServiceBack.getMemberInfo(mid)));
+    }
+
 	@Override
 	public String getUploadDir() {
 		return "upload/member";

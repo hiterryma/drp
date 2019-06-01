@@ -8,6 +8,5 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface ILevelDAO extends IBaseDAO<Long , Level> {
-     @Override
-     List<Level> findAll() throws SQLException;
+
 }

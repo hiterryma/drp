@@ -3,6 +3,7 @@
 	<jsp:include page="/pages/plugins/basepath.jsp"/>
 	<script type="text/javascript" src="js/pages/back/admin/storageaudit/storageaudit_edit.js"></script>
 	<script type="text/javascript" src="js/split_page.js"></script>
+	<script type="text/javascript" src="js/pages/back/index.js"></script>
 </head>
 <%!
 	public static final String STORAGEAUDIT_EDIT_URL = "pages/back/admin/storageaudit/edit.action" ;

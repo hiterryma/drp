@@ -1,7 +1,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8" %>
+<%@ page import="com.yootk.vo.Goods" %>
+<%@ page import="com.yootk.vo.Subtype" %>
 <%!
-    public static final String GOODS_LIST_URL = "/pages/back/admin/goods/goods_subaru.action?stid=";
+    public static final String GOODS_LIST_URL = "/pages/back/admin/goods/goods_subaru.action";
     //public static final String GOODS_LIST_URL = "/pages/front/goods/goods_list.jsp";
 %>
 <script type="text/javascript" src="js/pages/front/goods/include_menu_item.js"></script>
@@ -22,7 +24,7 @@
                         <div class="row">
                             <c:forEach items="${allSubtypes}" var="subtype">
                                 <c:if test="${subtype.wiid == witem.wiid}">
-                                    <div class="col-md-4" ><a href="<%=GOODS_LIST_URL%>${subtype.stid}" onclick="bftask(this)" foole="${subtype.stid}">${subtype.title}</a></div>
+                                    <div class="col-md-4" ><a href="<%=GOODS_LIST_URL%>?stid=${subtype.stid}" onclick="bftask(this)" foole="${subtype.stid}">${subtype.title}</a></div>
                                 </c:if>
                             </c:forEach>
                         </div>
@@ -44,7 +46,7 @@
                         <div class="row">
                             <c:forEach items="${allSubtypes}" var="subtype">
                                 <c:if test="${subtype.wiid == witem.wiid}">
-                                    <div class="col-md-4"><a href="<%=GOODS_LIST_URL%>${subtype.stid}" onclick="bftask(this)" foole="${subtype.stid}">${subtype.title}</a></div>
+                                    <div class="col-md-4"><a href="<%=GOODS_LIST_URL%>?stid=${subtype.stid}" onclick="bftask(this)" foole="${subtype.stid}">${subtype.title}</a></div>
                                 </c:if>
                             </c:forEach>
                         </div>
@@ -66,7 +68,7 @@
                         <div class="row">
                             <c:forEach items="${allSubtypes}" var="subtype">
                                 <c:if test="${subtype.wiid == witem.wiid}">
-                                    <div class="col-md-4"><a href="<%=GOODS_LIST_URL%>${subtype.stid}" onclick="bftask(this)" foole="${subtype.stid}">${subtype.title}</a></div>
+                                    <div class="col-md-4"><a href="<%=GOODS_LIST_URL%>?stid=${subtype.stid}" onclick="bftask(this)" foole="${subtype.stid}">${subtype.title}</a></div>
                                 </c:if>
                             </c:forEach>
                         </div>
@@ -88,7 +90,7 @@
                         <div class="row">
                             <c:forEach items="${allSubtypes}" var="subtype">
                                 <c:if test="${subtype.wiid == witem.wiid}">
-                                    <div class="col-md-4"><a href="<%=GOODS_LIST_URL%>${subtype.stid}" onclick="bftask(this)" foole="${subtype.stid}">${subtype.title}</a></div>
+                                    <div class="col-md-4"><a href="<%=GOODS_LIST_URL%>?stid=${subtype.stid}" onclick="bftask(this)" foole="${subtype.stid}">${subtype.title}</a></div>
                                 </c:if>
                             </c:forEach>
                         </div>
@@ -110,7 +112,7 @@
                         <div class="row">
                             <c:forEach items="${allSubtypes}" var="subtype">
                                 <c:if test="${subtype.wiid == witem.wiid}">
-                                    <div class="col-md-4"><a href="<%=GOODS_LIST_URL%>${subtype.stid}" onclick="bftask(this)" foole="${subtype.stid}">${subtype.title}</a></div>
+                                    <div class="col-md-4"><a href="<%=GOODS_LIST_URL%>?stid=${subtype.stid}" onclick="bftask(this)" foole="${subtype.stid}">${subtype.title}</a></div>
                                 </c:if>
                             </c:forEach>
                         </div>

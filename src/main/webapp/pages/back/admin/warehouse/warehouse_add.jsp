@@ -4,6 +4,7 @@
 	<jsp:include page="/pages/plugins/basepath.jsp"/>
 	<script type="text/javascript" src="js/pages/back/admin/warehouse/warehouse_add.js"></script>
 	<script type="text/javascript" src="js/split_page.js"></script>
+	<script type="text/javascript" src="js/pages/back/index.js"></script>
 </head>
 <%!
 	public static final String WAREHOUSE_ADD_URL = "/pages/back/admin/warehouse/warehouse_add.action" ;

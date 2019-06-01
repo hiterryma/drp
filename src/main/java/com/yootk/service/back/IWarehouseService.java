@@ -17,4 +17,6 @@ public interface IWarehouseService {
 
     public Map<String, Object> list(Long currentPage, Integer linesize, String column, String keyword) throws Exception;
 
+    public boolean editAdmin(Long wid, String mid) throws Exception;
+
 }
