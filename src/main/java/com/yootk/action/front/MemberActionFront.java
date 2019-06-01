@@ -13,6 +13,8 @@ import com.yootk.common.util.ResourceUtil;
 import com.yootk.service.front.IMemberServiceFront;
 import com.yootk.vo.Member;
 
+import java.util.Date;
+
 @Controller
 public class MemberActionFront extends AbstractAction {
     public static final String ACTION_TITLE = "用户";
@@ -182,8 +184,8 @@ public class MemberActionFront extends AbstractAction {
     public ModuleAndView login(Member vo, String rememberme) throws Exception {
         ModuleAndView mav = new ModuleAndView(super.getPage("login.action"));
         vo.setPassword(EncryptUtil.encode(vo.getPassword()));
-        boolean flag = memberService.login(vo);
-        if (flag) {
+        vo.setLasttime(new Date());
+        if (this.memberService.login(vo)) {
             ServletObject.getRequest().getSession().setAttribute("mid", vo.getMid());
             mav.setView(super.getForwardPage());
             mav.add(AbstractAction.PATH_ATTRIBUTE_NAME, super.getIndexPage());

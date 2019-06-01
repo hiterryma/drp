@@ -10,7 +10,9 @@ import com.yootk.service.back.IGoodsService;
 import com.yootk.util.UploadFileToServer;
 import com.yootk.vo.Goods;
 import com.yootk.service.back.IGoodsServiceBack;
+import com.yootk.vo.Subtype;
 
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -125,7 +127,9 @@ public class GoodsActionBack extends AbstractAction {
 
     @RequestMapping("goods_subaru")
     public ModuleAndView goods_subaru(Long stid) {
-        System.out.println(stid);
+        if (stid != null){
+            ServletObject.getSession().setAttribute("stid" ,stid);
+        }
         if (stid == null) {
             stid = Long.parseLong(ServletObject.getSession().getAttribute("stid").toString());
            //ServletObject.getSession().removeAttribute("stid");

@@ -21,19 +21,16 @@
         <!-- Navbar Right Menu -->
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
-                <li class="dropdown user user-menu"><a href="#"
-                                                       class="dropdown-toggle" data-toggle="dropdown"> <img
-                        src="images/user.png" class="user-image" alt="User Image">
-                    <span class="hidden-xs">小李老师</span>
+                <li class="dropdown user user-menu"><a href="#"class="dropdown-toggle" data-toggle="dropdown" id="image2">
+                    <span class="hidden-xs" id="name2"></span>
                 </a>
                     <ul class="dropdown-menu">
                         <!-- User image -->
-                        <li class="user-header"><img src="images/user.png"
-                                                     class="img-circle" alt="User Image"></li>
+                        <li class="user-header" id="image3"></li>
                         <!-- Menu Body -->
                         <li>
-                            <div class="text-center">
-                                上次登录日期：${lastdate}
+                            <div class="text-center" id="lasttime">
+                                上次登录日期：
                             </div>
                         </li>
                         <!-- Menu Footer-->

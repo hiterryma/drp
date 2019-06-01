@@ -76,7 +76,6 @@ public class MemberDAOImpl extends AbstractDAO implements IMemberDAO {
 
     @Override
     public boolean doRemove(Set<String> strings) throws SQLException {
-
         String sql = "update member set locked = ? where mid = ?" ;
         super.pstmt = super.conn.prepareStatement(sql) ;
         for(String str:strings){
@@ -89,7 +88,6 @@ public class MemberDAOImpl extends AbstractDAO implements IMemberDAO {
 
     @Override
     public Member findById(String mid) throws SQLException {
-
         String sql = "select mid,lid,did,name,sal,phone,password,photo,note,regdate,inmid,locked,type,email,cuid from member where mid=?";
         super.pstmt = super.conn.prepareStatement(sql) ;
         super.pstmt.setString(1,mid);
@@ -152,15 +150,29 @@ public class MemberDAOImpl extends AbstractDAO implements IMemberDAO {
     }
 
     @Override
-    public Long findDidByDeptAndMember(String mid) throws SQLException {
-        String sql = "SELECT did FROM member WHERE mid=?";
+    public boolean update_lastTinme(Member vo) throws SQLException {
+        String sql = "UPDATE member SET lasttime=? WHERE mid=?";
+        super.pstmt = super.conn.prepareStatement(sql);
+        super.pstmt.setDate(1,new java.sql.Date(vo.getLasttime().getTime()));
+        super.pstmt.setString(2,vo.getMid());
+        return super.pstmt.executeUpdate()>0;
+    }
+
+    @Override
+    public Member findDidByDeptAndMember(String mid) throws SQLException {
+        Member vo = null;
+        String sql = "SELECT did,name,photo,lasttime FROM member WHERE mid=?";
         super.pstmt = super.conn.prepareStatement(sql);
         super.pstmt.setString(1,mid);
         ResultSet rs = super.pstmt.executeQuery();
         if (rs.next()){
-            return rs.getLong(1);
+            vo = new Member();
+            vo.setDid(rs.getLong(1));
+            vo.setName(rs.getString(2));
+            vo.setPhoto(rs.getString(3));
+            vo.setLasttime(new java.sql.Date(rs.getDate(4).getTime()));
         }
-        return 0L;
+        return vo;
     }
 
     @Override

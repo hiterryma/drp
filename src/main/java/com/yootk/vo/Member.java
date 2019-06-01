@@ -18,6 +18,15 @@ public class Member implements java.io.Serializable {
     private Integer type;
     private String email;
     private Long cuid;
+    private Date Lasttime;
+
+    public Date getLasttime() {
+        return Lasttime;
+    }
+
+    public void setLasttime(Date lasttime) {
+        Lasttime = lasttime;
+    }
 
     public String getMid() {
         return mid;
@@ -157,6 +166,7 @@ public class Member implements java.io.Serializable {
                 ", type=" + type +
                 ", email='" + email + '\'' +
                 ", cuid=" + cuid +
+                ", Lasttime=" + Lasttime +
                 '}';
     }
 }

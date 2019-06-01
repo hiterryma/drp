@@ -6,15 +6,6 @@
     public static final String GOODS_LIST_URL = "/pages/back/admin/goods/goods_subaru.action";
     //public static final String GOODS_LIST_URL = "/pages/front/goods/goods_list.jsp";
 %>
-<%
-    List<Subtype> goodsList = (List<Subtype>)request.getAttribute("allSubtypes");
-    System.out.println("======="+((List<Subtype>) request.getAttribute("allSubtypes")).get(0).getStid());
-    if (goodsList.size() != 0) {
-        session.setAttribute("stid" , ((List<Subtype>) request.getAttribute("allSubtypes")).get(0).getStid());
-    } else {
-        session.setAttribute("stid" , 0);
-    }
-%>
 <script type="text/javascript" src="js/pages/front/goods/include_menu_item.js"></script>
 <script type="text/javascript" src="js/jquery/jquerysession.js"></script>
 <div class="panel-group" id="item">        <!-- 利用面板定义折叠组件 -->
