@@ -59,11 +59,10 @@ public class CityDAOImpl extends AbstractDAO implements ICityDAO {
     }
 
     @Override
-    public List<City> findAllProvince(Long pid) throws SQLException {
-        String sql="select cid,pid,title from city where pid=?";
-        super.pstmt=super.conn.prepareStatement(sql);
+    public List<City> findAllByProvince(Long pid) throws SQLException {
+        String sql = "select cid, pid, title from city WHERE pid=? ";
+        super.pstmt = super.conn.prepareStatement(sql);
         super.pstmt.setLong(1,pid);
-        ResultSet rs=super.pstmt.executeQuery();
-        return super.handleResultToList(rs,City.class);
+        return super.handleResultToList(super.pstmt.executeQuery(), City.class);
     }
 }

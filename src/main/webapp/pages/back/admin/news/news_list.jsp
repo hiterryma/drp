@@ -1,4 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <html>
 <head>
 	<jsp:include page="/pages/plugins/basepath.jsp"/>
@@ -7,7 +10,7 @@
 </head>
 <%!
 	public static final String NEWS_ADD_URL = "pages/back/admin/news/news_add.jsp" ;
-	public static final String NEWS_EDIT_URL = "pages/back/admin/news/news_edit.jsp" ;
+	public static final String NEWS_EDIT_URL = "pages/back/admin/news/news_pre_edit.action" ;
 %>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
@@ -17,7 +20,7 @@
 		<!-- 导入左边菜单项 -->
 		<jsp:include page="/pages/plugins/back/include_menu_item.jsp">
 			<jsp:param name="role" value="news"/>
-			<jsp:param name="action" value="news:${param.type }"/>
+			<jsp:param name="action" value="news:${param.type}"/>
 		</jsp:include>
 		<div class="content-wrapper">
 			<div class="panel panel-success">
@@ -35,22 +38,16 @@
 							<th width="10%" class="text-center">发布状态</th>
 							<th width="5%" class="text-center">操作</th>
 						</tr>
-						<tr>
-							<td class="text-center"><input type="checkbox" id="nid" name="nid" value="1"></td>
-							<td class="text-center">我们要一起面对困难</td>
-							<td class="text-center"><span id="pub-admin">admin</span></td>
-							<td class="text-center">2019-10-10</td>
-							<td class="text-center">已发布</td>
-							<td class="text-center"><a href="<%=NEWS_EDIT_URL%>" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-edit"></span>&nbsp;编辑</a></td>
-						</tr>
-						<tr>
-							<td class="text-center"><input type="checkbox" id="nid" name="nid" value="1"></td>
-							<td class="text-center">我们要一起面对困难</td>
-							<td class="text-center"><span id="pub-admin">admin</span></td>
-							<td class="text-center">2019-10-10</td>
-							<td class="text-center"><button id="news-1" class="btn btn-warning btn-xs">未发布</button></td>
-							<td class="text-center"><a href="<%=NEWS_EDIT_URL%>" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-edit"></span>&nbsp;编辑</a></td>
-						</tr>
+						<c:forEach items="${allNews}" var="news">
+							<tr id="shopcar-${news.nid}">
+								<td class="text-center"><input type="checkbox" id="nid" name="nid" value="${news.nid}"></td>
+								<td class="text-center">${news.title}</td>
+								<td class="text-center"><span id="pub-admin">${news.mid}</span></td>
+								<td class="text-center">${news.pubdate}</td>
+								<td class="text-center">${news.status==1?"已发布":"未发布"}</td>
+								<td class="text-center"><a href="<%=NEWS_EDIT_URL%>?nid=${news.nid}" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-edit"></span>&nbsp;编辑</a></td>
+							</tr>
+						</c:forEach>
 					</table>
 					<a href="<%=NEWS_ADD_URL%>" id="addBtn" class="btn btn-lg btn-primary"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp;发布公告</a>
 					<button id="removeBtn" class="btn btn-lg btn-danger"><span class="glyphicon glyphicon-remove"></span>&nbsp;删除公告</button>

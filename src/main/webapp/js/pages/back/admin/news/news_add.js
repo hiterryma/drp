@@ -1,5 +1,8 @@
 $(function(){
 	tinymce.init({ selector:'#note' });
+	$("[type='submit']").on("click",function () {
+		$("#note").val(tinymce.get('note').getContent());
+	})
 	$("#myform").validate({
 		debug : true, // 取消表单的提交操作
 		submitHandler : function(form) {
@@ -31,8 +34,9 @@ $(function(){
 			"abs" : { 
 				required : true
 			},
-			"pic" : {
-				extension : "png|jpg|gif|bmp" 
+			"photo" : {
+				required : true ,
+				accept : ["jpg","png","gif","bmp"]
 			} ,
 			"note" : { 
 				required : true

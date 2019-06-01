@@ -1,17 +1,18 @@
-<%@ page language="java" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" pageEncoding="UTF-8" %>
 <html>
 <head>
     <jsp:include page="/pages/plugins/basepath.jsp"/>
     <script type="text/javascript" src="js/pages/front/center/purchase/purchase_add.js"></script>
 </head>
 <%!
-    public static final String PURCHASE_ADD_URL = "" ;
+    public static final String PURCHASE_ADD_URL = "/pages/front/center/purchase/add_pre.action";
 %>
 <body class="back">
 <div class="container contentback">
     <div id="headDiv" class="row">
         <div class="col-md-12 col-xs-12">
-            <jsp:include page="/pages/plugins/front/include_navbar.jsp" />
+            <jsp:include page="/pages/plugins/front/include_navbar.jsp"/>
         </div>
     </div>
     <div style="height: 60px;"></div>
@@ -70,11 +71,10 @@
                                 <div class="col-md-5">
                                     <select id="pid" name="pid" class="form-control">
                                         <option value="">===== 请选择配送省份 =======</option>
-                                        <option value="1">北京</option>
-                                        <option value="2">天津</option>
-                                        <option value="3">上海</option>
-                                        <option value="4">山东</option>
-                                        <option value="5">辽宁</option>
+                                        <c:forEach items="${allProvince}" var="pro">
+                                            <option value="${pro.pid}">${pro.title}</option>
+                                        </c:forEach>
+
                                     </select>
                                 </div>
                                 <!-- 定义表单错误提示显示元素 -->
@@ -127,13 +127,19 @@
                     </form>
                 </div>
                 <div class="panel-footer">
+                    <div class="alert alert-danger" id="alertDiv">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <span id="alertText"></span>
+                    </div>
+                </div>
+                <div class="panel-footer">
                     <jsp:include page="/pages/plugins/alert.jsp"/>
                 </div>
             </div>
         </div>
     </div>
     <div id="footDiv" class="row navbar-fixed-bottom">
-        <jsp:include page="/pages/plugins/front/include_title_foot.jsp" />
+        <jsp:include page="/pages/plugins/front/include_title_foot.jsp"/>
     </div>
 </div>
 </body>

@@ -46,7 +46,7 @@ $(function(){
 			"ename" : {
 				required : true
 			} ,
-			"tid" : { 
+			"csid" : {
 				required : true 
 			},
 			"pid" : {
@@ -61,7 +61,7 @@ $(function(){
 			"address" : {
 				required : true 
 			},
-			"lev" : {
+			"ciid" : {
 				required : true 
 			},
 			"note" : {
@@ -69,33 +69,43 @@ $(function(){
 			}
 		}
 	});
-	$(cid).on("change",function() {
-		handleAddress() ;	// 处理地址 
+	$("#cid").on("change",function() {
+		handleAddress() ;	// 处理地址
 	}) ;
-	$(pid).on("change",function(){
+	$("#pid").on("change",function(){
+		$("#cid option:gt(0)").remove(); // 清除已有的内容
+		$("#cid option:eq(0)").prop("selected") ;
 		if (this.value != "") {	// 有内容，需要进行ajax异步加载
-			handleAddress() ;	// 处理地址 
+			$.getJSON("pages/pub/city/list_city.action", {"pid": $(this).val()}, function (data) {
+				for (x = 0; x < data.length; x++) {
+					$("#cid").append("<option value='" + data[x].cid + "'>" + data[x].title + "</option>");
+				}
+			});
 		} else {
-			$("#cid option:gt(0)").remove() ;
+			//$("#cid option:gt(0)").remove() ;
 		}
+		handleAddress() ;	// 处理地址
 	}) ;
 })
 
 function handleAddress() {	// 实现地址处理过程
 	address = $("#address").val() ;	// 获得address原始内容
-	ptitle = $("#pid option:selected").text() + " " ;
-	ctitle = " " ;
+	ptitle = "";
+	if ($("#pid option:selected").val() != "") {
+		ptitle = $("#pid option:selected").text() + " " ;
+	}
+	ctitle = "" ;
 	if ($("#cid option:selected").val() != "") {
 		ctitle = $("#cid option:selected").text() + " " ;
 	}
-	adr = address.split(" ") ; 
+	adr = address.split(" ") ;
+	str = ptitle + ctitle;
 	if (adr.length >= 3) {	// 都填写完了，现在要修改了
-		str = ptitle + ctitle + adr[2] ;
 		for (x = 2 ; x < adr.length ; x ++) {
-			str += adr[x] + " " ; 
-		}  
-		$("#address").val(str) ;  
+			str += " " + adr[x];
+		}
+		$("#address").val(str) ;
 	} else {
-		$("#address").val(ptitle + ctitle) ;  
+		$("#address").val(str) ;
 	}
 }

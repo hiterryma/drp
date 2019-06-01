@@ -24,117 +24,29 @@
                 <%-- <jsp:include page="/pages/plugins/split_plugin_search_bar.jsp"/> --%>
             </div>
             <div class="row">
-                <div class="col-md-3 text-center">
-                    <p>
-                        <a href="<%=GOODS_SHOW_URL%>">
-                            <img src="images/nophoto.png" style="width:100px;"></a></p>
-                    <>
-                            <span class="text-warning h4"><strong>￥198.10</strong></span>    <!--用map集合,在ShopcarActionFront中的map,-->
-                    <p><a href="<%=GOODS_SHOW_URL%>?amount=65">Java开发实战经典</a></p>
-                    <button id="addCar-1" class="btn btn-primary btn-xs">
-                        <span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;加入购物车</button>
-                </div>
-                <div class="col-md-3 text-center">
-                    <p>
-                        <a href="<%=GOODS_SHOW_URL%>">
-                            <img src="images/nophoto.png" style="width:100px;"></a></p>
-                    <span class="text-warning h4"><strong>￥198.10</strong></span>
-                    <p><a href="<%=GOODS_SHOW_URL%>">Java开发实战经典</a></p>
-                    <button id="addCar-2" class="btn btn-primary btn-xs">
-                        <span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;加入购物车</button>
-                </div><div class="col-md-3 text-center">
-                <p>
-                    <a href="<%=GOODS_SHOW_URL%>">
-                        <img src="images/nophoto.png" style="width:100px;"></a></p>
-                <span class="text-warning h4"><strong>￥198.10</strong></span>
-                <p><a href="<%=GOODS_SHOW_URL%>">Java开发实战经典</a></p>
-                <button id="addCar-3" class="btn btn-primary btn-xs">
-                    <span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;加入购物车</button>
-            </div><div class="col-md-3 text-center">
-                <p>
-                    <a href="<%=GOODS_SHOW_URL%>">
-                        <img src="images/nophoto.png" style="width:100px;"></a></p>
-                <span class="text-warning h4"><strong>￥198.10</strong></span>
-                <p><a href="<%=GOODS_SHOW_URL%>">Java开发实战经典</a></p>
-                <button id="addCar-4" class="btn btn-primary btn-xs">
-                    <span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;加入购物车</button>
-            </div><div class="col-md-3 text-center">
-                <p>
-                    <a href="<%=GOODS_SHOW_URL%>">
-                        <img src="images/nophoto.png" style="width:100px;"></a></p>
-                <span class="text-warning h4"><strong>￥198.10</strong></span>
-                <p><a href="<%=GOODS_SHOW_URL%>">Java开发实战经典</a></p>
-                <button id="addCar-5" class="btn btn-primary btn-xs">
-                    <span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;加入购物车</button>
-            </div><div class="col-md-3 text-center">
-                <p>
-                    <a href="<%=GOODS_SHOW_URL%>">
-                        <img src="images/nophoto.png" style="width:100px;"></a></p>
-                <span class="text-warning h4"><strong>￥198.10</strong></span>
-                <p><a href="<%=GOODS_SHOW_URL%>">Java开发实战经典</a></p>
-                <button id="addCar-6" class="btn btn-primary btn-xs">
-                    <span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;加入购物车</button>
-            </div><div class="col-md-3 text-center">
-                <p>
-                    <a href="<%=GOODS_SHOW_URL%>">
-                        <img src="images/nophoto.png" style="width:100px;"></a></p>
-                <span class="text-warning h4"><strong>￥198.10</strong></span>
-                <p><a href="<%=GOODS_SHOW_URL%>">Java开发实战经典</a></p>
-                <button id="addCar-7" class="btn btn-primary btn-xs">
-                    <span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;加入购物车</button>
-            </div><div class="col-md-3 text-center">
-                <p>
-                    <a href="<%=GOODS_SHOW_URL%>">
-                        <img src="images/nophoto.png" style="width:100px;"></a></p>
-                <span class="text-warning h4"><strong>￥198.10</strong></span>
-                <p><a href="<%=GOODS_SHOW_URL%>">Java开发实战经典</a></p>
-                <button id="addCar-8" class="btn btn-primary btn-xs">
-                    <span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;加入购物车</button>
-            </div><div class="col-md-3 text-center">
-                <p>
-                    <a href="<%=GOODS_SHOW_URL%>">
-                        <img src="images/nophoto.png" style="width:100px;"></a></p>
-                <span class="text-warning h4"><strong>￥198.10</strong></span>
-                <p><a href="<%=GOODS_SHOW_URL%>">Java开发实战经典</a></p>
-                <button id="addCar-9" class="btn btn-primary btn-xs">
-                    <span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;加入购物车</button>
-            </div><div class="col-md-3 text-center">
-                <p>
-                    <a href="<%=GOODS_SHOW_URL%>">
-                        <img src="images/nophoto.png" style="width:100px;"></a></p>
-                <span class="text-warning h4"><strong>￥198.10</strong></span>
-                <p><a href="<%=GOODS_SHOW_URL%>">Java开发实战经典</a></p>
-                <button id="addCar-10" class="btn btn-primary btn-xs">
-                    <span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;加入购物车</button>
-            </div><div class="col-md-3 text-center">
-                <p>
-                    <a href="<%=GOODS_SHOW_URL%>">
-                        <img src="images/nophoto.png" style="width:100px;"></a></p>
-                <span class="text-warning h4"><strong>￥198.10</strong></span>
-                <p><a href="<%=GOODS_SHOW_URL%>">Java开发实战经典</a></p>
-                <button id="addCar-11" class="btn btn-primary btn-xs">
-                    <span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;加入购物车</button>
-            </div><div class="col-md-3 text-center">
-                <p>
-                    <a href="<%=GOODS_SHOW_URL%>">
-                        <img src="images/nophoto.png" style="width:100px;"></a></p>
-                <span class="text-warning h4"><strong>￥198.10</strong></span>
-                <p><a href="<%=GOODS_SHOW_URL%>">Java开发实战经典</a></p>
-                <button id="addCar-12" class="btn btn-primary btn-xs">
-                    <span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;加入购物车</button>
+                <c:forEach items="${allGoods}" var="goods">
+                    <div class="col-md-3 text-center">
+                        <p>
+                            <a href="<%=GOODS_SHOW_URL%>${goods.gid}">
+                                <img src="http://43.226.146.219/upload/${goods.photo}" style="width:100px;"></a></p>
+                        <span class="text-warning h4"><strong>￥${goods.price}</strong></span>
+                        <p><a href="<%=GOODS_SHOW_URL%>${goods.gid}">${goods.name}</a></p>
+                        <button id="addCar-1" class="btn btn-primary btn-xs">
+                            <span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;加入购物车
+                        </button>
+                    </div>
+                </c:forEach>
             </div>
+            <div id="splitBarDiv" style="float:right">
+                <%-- <jsp:include page="/pages/plugins/split_plugin_page_bar.jsp"/> --%>
             </div>
         </div>
-        <div id="splitBarDiv" style="float:right">
-            <%-- <jsp:include page="/pages/plugins/split_plugin_page_bar.jsp"/> --%>
+        <div class="row" style="height:50px;">
+            <jsp:include page="/pages/plugins/alert.jsp"/>
+        </div>
+        <div id="footDiv" class="row navbar-fixed-bottom">
+            <jsp:include page="/pages/plugins/front/include_title_foot.jsp"/>
         </div>
     </div>
-    <div class="row" style="height:50px;">
-        <jsp:include page="/pages/plugins/alert.jsp"/>
-    </div>
-    <div id="footDiv" class="row navbar-fixed-bottom">
-        <jsp:include page="/pages/plugins/front/include_title_foot.jsp" />
-    </div>
-</div>
 </body>
 </html>

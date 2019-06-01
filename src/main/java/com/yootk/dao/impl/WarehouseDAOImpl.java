@@ -12,7 +12,7 @@ import java.util.Set;
 public class WarehouseDAOImpl extends AbstractDAO implements IWarehouseDAO {
     @Override
     public boolean doCreate(Warehouse warehouse) throws SQLException {
-        String sql = "insert into warehouse (name,pid,cid,wiid,address,area,maximum,currnum,photo,note,recorder,admin) values (?,?,,?,?,?,?,?,?,?,?,?,?)";
+        String sql = "insert into warehouse (name,pid,cid,wiid,address,area,maximum,currnum,photo,note,recorder,admin) values (?,?,?,?,?,?,?,?,?,?,?,?)";
         super.pstmt = super.conn.prepareStatement(sql);
         super.pstmt.setString(1, warehouse.getName());
         super.pstmt.setLong(2, warehouse.getPid());
@@ -31,7 +31,19 @@ public class WarehouseDAOImpl extends AbstractDAO implements IWarehouseDAO {
 
     @Override
     public boolean doEdit(Warehouse warehouse) throws SQLException {
-        return false;
+        String sql = "update warehouse set name=?,pid=?,cid=?,wiid=?,address=?,area=?,maximum=?,photo=?,note=? where wid=?";
+        super.pstmt = super.conn.prepareStatement(sql);
+        super.pstmt.setString(1, warehouse.getName());
+        super.pstmt.setLong(2, warehouse.getPid());
+        super.pstmt.setLong(3, warehouse.getCid());
+        super.pstmt.setLong(4, warehouse.getWiid());
+        super.pstmt.setString(5, warehouse.getAddress());
+        super.pstmt.setDouble(6, warehouse.getArea());
+        super.pstmt.setInt(7, warehouse.getMaximum());
+        super.pstmt.setString(8, warehouse.getPhoto());
+        super.pstmt.setString(9, warehouse.getNote());
+        super.pstmt.setLong(10, warehouse.getWid());
+        return super.pstmt.executeUpdate() > 0;
     }
 
     @Override
@@ -41,31 +53,41 @@ public class WarehouseDAOImpl extends AbstractDAO implements IWarehouseDAO {
 
     @Override
     public Warehouse findById(Long aLong) throws SQLException {
-        return null;
+        String sql = "select wid,name,pid,cid,wiid,address,area,maximum,currnum,photo,note,recorder,admin from warehouse where wid=?";
+        super.pstmt = super.conn.prepareStatement(sql);
+        super.pstmt.setLong(1, aLong);
+        return super.handleResultToVO(super.pstmt.executeQuery(), Warehouse.class);
     }
 
     @Override
     public List<Warehouse> findAll() throws SQLException {
-        return null;
+        String sql = "select wid,name,pid,cid,wiid,address,area,maximum,currnum,photo,note,recorder,admin from warehouse";
+        super.pstmt = super.conn.prepareStatement(sql);
+        return super.handleResultToList(super.pstmt.executeQuery(), Warehouse.class);
     }
 
     @Override
     public List<Warehouse> findSplit(Long currentPage, Integer lineSize) throws SQLException {
-        return null;
+        String sql = "select wid,name,pid,cid,wiid,address,area,maximum,currnum,photo,note,recorder,admin from warehouse limit " + (currentPage - 1) * lineSize + " , " + lineSize;
+        super.pstmt = super.conn.prepareStatement(sql);
+        return super.handleResultToList(super.pstmt.executeQuery(), Warehouse.class);
     }
 
     @Override
     public List<Warehouse> findSplit(Long currentPage, Integer lineSize, String column, String keyWord) throws SQLException {
-        return null;
+        String sql = "select wid,name,pid,cid,wiid,address,area,maximum,currnum,photo,note,recorder,admin from warehouse where " + column + " like ? limit " + (currentPage - 1) * lineSize + " , " + lineSize;
+        super.pstmt = super.conn.prepareStatement(sql);
+        super.pstmt.setString(1, "%" + keyWord + "%");
+        return super.handleResultToList(super.pstmt.executeQuery(), Warehouse.class);
     }
 
     @Override
     public Long getAllCount() throws SQLException {
-        return null;
+        return super.handleCount("warehouse");
     }
 
     @Override
     public Long getAllCount(String column, String keyWord) throws SQLException {
-        return null;
+        return super.handleCount("warehouse", column, keyWord);
     }
 }

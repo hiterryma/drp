@@ -8,6 +8,35 @@ import java.util.List;
 
 public interface IMemberDAO extends IBaseDAO<String , Member> {
     /**
+     * 查询用户是否有部门，用户查询雇员的角色信息
+     * @param mid
+     * @return
+     * @throws SQLException
+     */
+    public Long findDidByDeptAndMember(String mid) throws SQLException;
+    /**
+     *
+     * @param newpassword
+     * @param mid
+     * @return
+     * @throws SQLException
+     */
+    public boolean doEditPasswordByMember(String newpassword,String mid)throws SQLException;
+    /**
+     * 进行前台用户的资料修改
+     * @param vo  包含要修改的用户资料
+     * @return 成功返回true，否则返回false
+     * @throws SQLException
+     */
+    public boolean doEditDatumByMember(Member vo) throws SQLException;
+    /**
+     * 查询前台登录用户的基本资料
+     * @param mid  要查询的雇员ID
+     * @return 返回雇员的信息
+     * @throws SQLException
+     */
+    public Member findDatumByMember(String mid)throws SQLException;
+    /**
      *
      * @param mid
      * @return
@@ -15,12 +44,12 @@ public interface IMemberDAO extends IBaseDAO<String , Member> {
      */
     public String findMemberById(String mid) throws SQLException;
     /**
-     * 查询用户是否有部门，判断是否开启都台管理选项
+     * 查询用户是为后台用户
      * @param mid 要查询的用户ID
      * @return 返回包含查询信息的Member类
      * @throws SQLException
      */
-    public Integer findByDeptAndMember(String mid) throws SQLException;
+    public Integer findTypeByMember(String mid) throws SQLException;
 
     /**
      * 实现用户注册
@@ -37,4 +66,9 @@ public interface IMemberDAO extends IBaseDAO<String , Member> {
      * @throws SQLException
      */
     public Member findByIdAndpw(String mid) throws SQLException;
+
+    @Override
+    boolean doEdit(Member member) throws SQLException;
+
+    public List<Member> findByDept(Long did) throws SQLException ;
 }

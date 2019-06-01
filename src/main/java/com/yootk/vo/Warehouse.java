@@ -2,20 +2,34 @@ package com.yootk.vo;
 import java.io.Serializable;
 
 public class Warehouse implements Serializable {
-
+    //仓库ID，自动增长
     private Long wid;
+    //仓库名称
     private String name;
+    //仓库所在省份的编号
     private Long pid;
+    //仓库所在城市的编号
     private Long cid;
+    //仓库保存类型（通过witem表）
     private Long wiid;
+    //仓库的地址，要求记录好省、城市、地址
     private String address;
+    //仓库面积
     private Double area;
+    //仓库保存的商品最大数量
     private Integer maximum;
+    //仓库保存的当前商品数量
     private Integer currnum;
+    //仓库的照片
     private String photo;
+    //仓库信息说明
     private String note;
+    //仓库的记录发布者
     private String recorder;
+    //仓库管理员的用户编号
     private String admin;
+
+
 
     public Long getWid() {
         return wid;
@@ -120,4 +134,5 @@ public class Warehouse implements Serializable {
     public void setAdmin(String admin) {
         this.admin = admin;
     }
+
 }

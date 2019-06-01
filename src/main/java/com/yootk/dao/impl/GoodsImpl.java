@@ -37,6 +37,26 @@ public class GoodsImpl extends AbstractDAO implements IGoodsDAO {
     }
 
     @Override
+    public Long getAllCountByStid(Long stid) throws SQLException {
+        return null;
+    }
+
+    @Override
+    public Long getAllCountByStid(Long stid, String column, String keyWord) throws SQLException {
+        return null;
+    }
+
+    @Override
+    public List<Goods> findByStid(Long stid, Long currentPage, Integer lineSize, String clonum, String keyword) throws SQLException {
+        return null;
+    }
+
+    @Override
+    public List<Goods> findByStid(Long stid, Long currentPage, Integer lineSize) throws SQLException {
+        return null;
+    }
+
+    @Override
     public boolean doCreate(Goods goods) throws SQLException {
         return false;
     }

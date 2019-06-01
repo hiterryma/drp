@@ -1,4 +1,8 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%!
+	public static final String CUSTOMER_AUDIT_URL = "pages/back/admin/customer/customer_audit.action" ;
+%>
 <div class="modal fade" id="customerAuditInfo"  tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true" data-keyboard="true">
 	<div class="modal-dialog" style="width: 1000px">
 		<div class="modal-content">
@@ -10,11 +14,11 @@
 			</div>
 			<div class="modal-body">
 				<div>
-					<form class="form-horizontal" action="" id="auditform" method="post">
+					<form class="form-horizontal" action="" id="auditForm" method="post">
 						<fieldset>
 							<div class="form-group" id="auditDiv">
 								<!-- 定义表单提示文字 -->
-								<label class="col-md-3 control-label" for="audit">出库省份：</label>
+								<label class="col-md-3 control-label" for="audit">审核操作：</label>
 								<div class="col-md-5">
 									<select id="audit" name="audit" class="form-control">
 										<option value="">====== 请选择审核结果 ======</option>
@@ -39,8 +43,9 @@
 								<div class="col-md-4" id="noteMsg"></div>
 							</div>
 							<div class="form-group">
+								<input type="hidden"  name ="customerId" id="customerId"/>
 								<div class="col-md-5 col-md-offset-3">
-									<button type="submit" class="btn btn-primary">提交</button>
+									<button type="button" class="btn btn-primary">提交</button>
 									<button type="reset" class="btn btn-warning">重置</button>
 								</div>
 							</div>

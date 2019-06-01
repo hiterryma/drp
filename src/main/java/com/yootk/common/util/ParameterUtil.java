@@ -141,7 +141,6 @@ public class ParameterUtil {
         return allUploadFile;
     }
     public MultipartFile getSingleUpload(String paramName) {
-        System.out.println(this.allUploadFile + "    &&&&&&&&&&&&&&&&&&&&&&&&");
         if (this.allUploadFile.containsKey(paramName)) {
             return this.allUploadFile.get(paramName).get(0) ;
         }

@@ -5,5 +5,5 @@ import com.yootk.vo.City;
 import java.util.List;
 
 public interface ICityService {
-    public List<City> listByProvince(Long pid)throws Exception;
+    public List<City> listByProvince(Long pid) throws Exception ;
 }

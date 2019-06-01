@@ -8,12 +8,14 @@ import com.yootk.service.front.ICityService;
 import com.yootk.vo.City;
 
 import java.util.List;
+
 @Service
 public class CityServiceImpl extends AbstractService implements ICityService {
     @Autowired
-    private ICityDAO cityDAO;
+    private ICityDAO cityDAO ;
+
     @Override
     public List<City> listByProvince(Long pid) throws Exception {
-        return this.cityDAO.findAllProvince(pid);
+        return this.cityDAO.findAllByProvince(pid);
     }
 }
