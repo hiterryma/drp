@@ -16,6 +16,6 @@ public class CityServiceImpl extends AbstractService implements ICityService {
 
     @Override
     public List<City> listByProvince(Long pid) throws Exception {
-        return this.cityDAO.findAllProvince(pid);
+        return this.cityDAO.findAllByProvince(pid);
     }
 }
