@@ -76,4 +76,5 @@ public class CityDAOImpl extends AbstractDAO implements ICityDAO {
         super.pstmt.setLong(1,pid);
         return super.handleResultToList(super.pstmt.executeQuery(), City.class);
     }
+
 }

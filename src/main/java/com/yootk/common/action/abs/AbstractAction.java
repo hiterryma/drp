@@ -81,7 +81,7 @@ public abstract class AbstractAction {
      * @return 跳转显示页
      */
     public String getForwardPage() {
-        return this.getPageResource("forward.page");
+        return this.getPageResource("hello.page");
     }
 
     /**

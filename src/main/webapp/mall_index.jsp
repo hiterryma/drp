@@ -48,5 +48,6 @@
             <jsp:include page="/pages/plugins/front/include_title_foot.jsp"/>
         </div>
     </div>
+</div>
 </body>
 </html>

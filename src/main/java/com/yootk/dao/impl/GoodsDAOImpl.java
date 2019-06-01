@@ -71,8 +71,6 @@ public class GoodsDAOImpl extends AbstractDAO implements IGoodsDAO {
     public List<Goods> findSplit(Long currentPage, Integer lineSize) throws SQLException {
         String sql = "select gid,name,wiid,stid,price,weight,photo,note,lastin,stornum,recorder,delflag from goods limit " + (currentPage - 1) * lineSize + " , " + lineSize;
         super.pstmt = super.conn.prepareStatement(sql);
-
-
         return super.handleResultToList(super.pstmt.executeQuery(), Goods.class);
     }
 
@@ -92,6 +90,32 @@ public class GoodsDAOImpl extends AbstractDAO implements IGoodsDAO {
     @Override
     public Long getAllCount(String column, String keyWord) throws SQLException {
         return super.handleCount("goods", column, keyWord);
+    }
+
+    @Override
+    public List<Goods> findAllByGids(Set<Long> gids) throws SQLException {  //没有覆写
+        StringBuffer sql = new StringBuffer("SELECT gid,name,wiid,stid,price,weight,photo,note,lastin,stornum,recorder FROM goods WHERE delflag=0 and gid IN ( ") ;
+        for (Long gid : gids) {
+            sql.append(gid).append(",") ;
+        }
+        sql.delete(sql.length() - 1,sql.length()).append(")") ;
+        List<Goods> all = new ArrayList<>();
+        super.pstmt = super.conn.prepareStatement(sql.toString());
+        System.out.println("****************打印SQL***********"+sql.toString());
+        System.out.println(gids);
+        return super.handleResultToList(super.pstmt.executeQuery(),Goods.class);
+    }
+
+    @Override
+    public Double findPriceByGid(Long gid) throws SQLException {        //没有覆写
+        String sql="select price from goods where gid=?";
+        super.pstmt=super.conn.prepareStatement(sql);
+        super.pstmt.setLong(1,gid);
+        ResultSet rs=super.pstmt.executeQuery();
+        if(rs.next()){
+            return rs.getDouble(1);
+        }
+        return null;
     }
 
     @Override

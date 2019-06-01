@@ -41,7 +41,7 @@ public class OrdersDAOImpl extends AbstractDAO implements IOrdersDAO {
 
     @Override
     public boolean doCreate(String aid, Set<Long> gids,String note) throws SQLException {
-        IGoodsDAO goodsDAO=new GoodsImpl();
+        IGoodsDAO goodsDAO=new GoodsDAOImpl();
         IShopcarDAO shopcarDAO=new ShopcarDAOImpl();
         Double danJia=null; //此价格为一种商品的单价
         Integer amount=null;//此数量为一种商品所购买的数量

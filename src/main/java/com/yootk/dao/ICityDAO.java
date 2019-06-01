@@ -14,5 +14,4 @@ public interface ICityDAO extends IBaseDAO<Long, City> {
      * @return 对应的所有城市内容
      * @throws SQLException 异常
      */
-    public List<City> findAllProvince(Long pid)throws SQLException;
 }
