@@ -1,6 +1,9 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%!
-	public static final String GOODS_EDIT_URL = "pages/back/admin/goods/goods_edit.jsp" ;
+	public static final String GOODS_EDIT_URL = "pages/back/admin/goods/goods_pre_edit.action" ;
 	public static final String GOODS_SHOW_URL = "pages/back/admin/goods/goods_show.jsp" ;
 %>
 <html>
@@ -41,21 +44,38 @@
 						</tr>
 					</thead>
 					<tbody>
+					<c:forEach items="${allGoods}" var="goods">
 						<tr>
-							<td class="text-left">100001</td>
-							<td class="text-left"><a href="<%=GOODS_SHOW_URL%>" title="查看商品详情">胡友牌化粪池</a></td>
-							<td class="text-center">4456</td>
-							<td class="text-center">200g</td>
-							<td class="text-center">2018-10-13</td>
-							<td class="text-center"><span id="storage-1" style="cursor:pointer;">3000</span></td>
-							<td class="text-center"><span id="mid-admin" style="cursor:pointer;">老李</span></td>
+							<td class="text-left">${goods.gid}</td>
+							<td class="text-left"><a href="<%=GOODS_SHOW_URL%>" title="查看商品详情">${goods.name}</a></td>
+							<td class="text-center">${goods.price}</td>
+							<td class="text-center">${goods.weight}g</td>
+							<td class="text-center">${goods.lastin}</td>
+							<td class="text-center"><span id="storage-${goods.gid}" style="cursor:pointer;">${goods.stornum}</span></td>
+							<td class="text-center"><span id="mid-${goods.recorder}" style="cursor:pointer;">${allMemberMap.get(goods.recorder)}</span></td>
 							<td class="text-left">
-								<a href="<%=GOODS_EDIT_URL%>" class="btn btn-primary btn-xs">
-										<span class="glyphicon glyphicon-edit"></span>&nbsp;编辑</a>
-								<button class="btn btn-danger btn-xs" id="out-1">
-										<span class="glyphicon glyphicon-ok-circle"></span>&nbsp;待出库</button>
+								<a href="<%=GOODS_EDIT_URL%>?gid=${goods.gid}" class="btn btn-primary btn-xs">
+									<span class="glyphicon glyphicon-edit"></span>&nbsp;编辑</a>
+								<button class="btn btn-danger btn-xs" id="out-${goods.gid}">
+									<span class="glyphicon glyphicon-ok-circle"></span>&nbsp;待出库</button>
 							</td>
 						</tr>
+					</c:forEach>
+					<%--<tr>
+                        <td class="text-left">100001</td>
+                        <td class="text-left"><a href="<%=GOODS_SHOW_URL%>" title="查看商品详情">胡友牌化粪池</a></td>
+                        <td class="text-center">4456</td>
+                        <td class="text-center">200g</td>
+                        <td class="text-center">2018-10-13</td>
+                        <td class="text-center"><span id="storage-1" style="cursor:pointer;">3000</span></td>
+                        <td class="text-center"><span id="mid-admin" style="cursor:pointer;">老李</span></td>
+                        <td class="text-left">
+                            <a href="<%=GOODS_EDIT_URL%>?gid=1" class="btn btn-primary btn-xs">
+                                    <span class="glyphicon glyphicon-edit"></span>&nbsp;编辑</a>
+                            <button class="btn btn-danger btn-xs" id="out-1">
+                                    <span class="glyphicon glyphicon-ok-circle"></span>&nbsp;待出库</button>
+                        </td>
+                    </tr>--%>
 					</tbody>
 				</table>
 				<div id="splitBarDiv" style="float:right">

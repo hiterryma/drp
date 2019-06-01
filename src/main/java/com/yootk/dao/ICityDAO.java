@@ -7,5 +7,5 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface ICityDAO extends IBaseDAO<Long, City> {
-    List<City> findAllProvince(Long pid) throws SQLException;
+    public List<City> findAllByProvince(Long pid) throws SQLException;
 }

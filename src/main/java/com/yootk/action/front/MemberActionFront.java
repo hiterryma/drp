@@ -131,7 +131,7 @@ public class MemberActionFront extends AbstractAction {
         vo.setName(name);
         vo.setPassword(EncryptUtil.encode(password));
         try {
-            if (memberService.register(vo)) {
+            if (memberService.add_register(vo)) {
                 mav.setView(super.getForwardPage());
                 mav.add(AbstractAction.PATH_ATTRIBUTE_NAME, super.getIndexPage());
                 mav.add(AbstractAction.MSG_ATTRIBUTE_NAME, ResourceUtil.getMessage("regist.success", ACTION_TITLE));

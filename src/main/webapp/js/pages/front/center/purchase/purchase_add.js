@@ -1,4 +1,23 @@
 $(function() {
+    $("#cid").on("change",function () {
+        cid = $(this).val();
+        if (cid != null){
+            setAddressValue();
+        }
+    });
+    $("#pid").on("change",function () {
+        pid = $(this).val();
+        if (pid != null) {
+            $("#cid option:gt(0)").remove();
+            $("#cid option:eq(0)").prop("selectde");
+            setAddressValue();
+            $.getJSON("/pages/front/center/purchase/city_list.action",{"pid" : pid},function (data) {
+                for (x = 0 ; x<data.length ; x++){
+                    $("#cid").append("<option value='"+data[x].cid+"'>"+data[x].title+"</option>")
+                }
+            });
+        }
+    });
     $("#myform").validate({
         debug : true, // 取消表单的提交操作
         submitHandler : function(form) {
@@ -48,4 +67,23 @@ $(function() {
             }
         }
     });
-})
+});
+function setAddressValue() {
+    myaddress = "";
+    data = $("#address").val();
+    if (data != null){
+        results = data.split(" ");
+        if (results.length == 3){
+            myaddress = results[2];
+        }
+    }
+    province = "";
+    city = "";
+    if ($("#pid").val() != ""){
+        province = $("#pid>option:selected").text();
+    }
+    if ($("#cid").val() != ""){
+        city = $("#cid>option:selected").text();
+    }
+    $("#address").val(province+" "+city+" "+myaddress);
+}

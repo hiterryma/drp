@@ -2,22 +2,21 @@ package com.yootk.dao.impl;
 
 import com.yootk.common.annotation.Repository;
 import com.yootk.common.dao.abs.AbstractDAO;
-import com.yootk.dao.IWitemDAO;
-import com.yootk.vo.Subtype;
-import com.yootk.vo.Witem;
+import com.yootk.dao.ICitemDAO;
+import com.yootk.vo.Citem;
 
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Set;
 @Repository
-public class ItemDAOImpl extends AbstractDAO implements IWitemDAO {
+public class CitemDAOImpl extends AbstractDAO implements ICitemDAO {
     @Override
-    public boolean doCreate(Witem witem) throws SQLException {
+    public boolean doCreate(Citem citem) throws SQLException {
         return false;
     }
 
     @Override
-    public boolean doEdit(Witem witem) throws SQLException {
+    public boolean doEdit(Citem citem) throws SQLException {
         return false;
     }
 
@@ -27,24 +26,24 @@ public class ItemDAOImpl extends AbstractDAO implements IWitemDAO {
     }
 
     @Override
-    public Witem findById(Long aLong) throws SQLException {
+    public Citem findById(Long aLong) throws SQLException {
         return null;
     }
 
     @Override
-    public List<Witem> findAll() throws SQLException {
-        String sql = "select wiid title from witem";
+    public List<Citem> findAll() throws SQLException {
+        String sql = "select ciid, title from citem";
         super.pstmt = super.conn.prepareStatement(sql);
-        return super.handleResultToList(super.pstmt.executeQuery(), Witem.class);
+        return super.handleResultToList(super.pstmt.executeQuery(), Citem.class);
     }
 
     @Override
-    public List<Witem> findSplit(Long currentPage, Integer lineSize) throws SQLException {
+    public List<Citem> findSplit(Long currentPage, Integer lineSize) throws SQLException {
         return null;
     }
 
     @Override
-    public List<Witem> findSplit(Long currentPage, Integer lineSize, String column, String keyWord) throws SQLException {
+    public List<Citem> findSplit(Long currentPage, Integer lineSize, String column, String keyWord) throws SQLException {
         return null;
     }
 

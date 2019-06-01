@@ -1,9 +1,21 @@
 package com.yootk.vo;
 
-public class Subtype implements java.io.Serializable {
+import java.io.Serializable;
+
+public class Subtype implements Serializable {
+
     private Long stid;
     private String title;
     private Long wiid;
+
+    @Override
+    public String toString() {
+        return "Subtype{" +
+                "stid=" + stid +
+                ", title='" + title + '\'' +
+                ", wiid=" + wiid +
+                '}';
+    }
 
     public Long getStid() {
         return stid;

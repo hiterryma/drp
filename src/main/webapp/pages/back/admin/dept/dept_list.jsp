@@ -1,4 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <html>
 <head>
 	<jsp:include page="/pages/plugins/basepath.jsp"/>
@@ -29,22 +32,16 @@
 						</tr>
 					</thead>
 					<tbody>
+					<c:forEach items="${allDepts}" var="dept" >
 						<tr>
-							<td class="text-center"><input type="text" id="dname-1" class="form-control" value="技术部"></td>
-							<td class="text-center"><span id="eid-7369" style="cursor:pointer;">老李</span></td>
+							<td class="text-center"><input type="text" id="dname-1" class="form-control" value="${dept.dname}"></td>
+							<td class="text-center"><span id="mid-${dept.mid}" style="cursor:pointer;">${allMemberMap.get(dept.mid)}</span></td>
 							<td class="text-center">
 								<button id="edit-1" class="btn btn-warning">
-										<span class="glyphicon glyphicon-edit"></span>&nbsp;编辑</button>
+									<span class="glyphicon glyphicon-edit"></span>&nbsp;编辑</button>
 							</td>
 						</tr>
-						<tr>
-							<td class="text-center"><input type="text" id="dname-2" class="form-control" value="市场部"></td>
-							<td class="text-center"><span id="eid-7566" style="cursor:pointer;">老李</span></td>
-							<td class="text-center">
-								<button id="edit-2" class="btn btn-warning">
-										<span class="glyphicon glyphicon-edit"></span>&nbsp;编辑</button>
-							</td>
-						</tr>
+					</c:forEach>
 					</tbody>
 				</table>
 			</div>

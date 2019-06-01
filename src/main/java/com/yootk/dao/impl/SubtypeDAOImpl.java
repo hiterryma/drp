@@ -10,7 +10,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-
 @Repository
 public class SubtypeDAOImpl extends AbstractDAO implements ISubtypeDAO {
     @Override
@@ -67,5 +66,13 @@ public class SubtypeDAOImpl extends AbstractDAO implements ISubtypeDAO {
     @Override
     public Long getAllCount(String column, String keyWord) throws SQLException {
         return null;
+    }
+
+    @Override
+    public List<Subtype> findAllByWitem(Long wiid) throws SQLException {
+        String sql = "select stid, title, wiid from subtype where wiid=?";
+        super.pstmt = super.conn.prepareStatement(sql);
+        super.pstmt.setLong(1, wiid);
+        return super.handleResultToList(super.pstmt.executeQuery(), Subtype.class);
     }
 }

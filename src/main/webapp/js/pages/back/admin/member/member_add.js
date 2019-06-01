@@ -23,9 +23,14 @@ $(function(){
 			})
 		},
 		errorClass : "text-danger",
+		messages:{
+ 			 mid:{
+				 remote:"用户ID已经被注册"
+ 			 }
+		},
 		rules : {
-			"mid" : {
-				required : true
+			// "mid" : {
+			// 	required : true
 				//remote : {
 //				url : "check.jsp", // 后台处理程序
 //				type : "post", // 数据发送方式
@@ -42,7 +47,29 @@ $(function(){
 //						return false;
 //				}
 //}
-			} ,
+// 			} ,
+			"mid" : {
+				required : true ,
+				remote : {
+					url : "checkMid.action", // 后台处理程序
+					type : "post", // 数据发送方式
+					dataType : "html", // 接收数据格式
+					data : { // 要传递的数据
+						id : function() {
+							mid=$("#mid").val();
+							return mid;
+						}
+					},
+					dataFilter : function(data, type) {
+						console.log(data.trim());
+						if (data.trim() == "true") {
+							return false;
+						} else {
+							return true;
+						}
+					}
+				}
+			},
 			"password" : {
 				required : true
 			},
@@ -52,7 +79,7 @@ $(function(){
 			"phone" : {
 				required : true 
 			},
-			"jid" : {
+			"lid" : {
 				required : true 
 			},
 			"did" : {
