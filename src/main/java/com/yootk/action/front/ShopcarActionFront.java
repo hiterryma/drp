@@ -23,6 +23,7 @@ public class ShopcarActionFront extends AbstractAction {
             vo.setMid(super.getFrontUser()); //设置当前的用户名
             try {
                 this.shopcarServiceFront.add(vo);
+                super.print(true);
             } catch (Exception e) {
                 super.print(false);
             }
@@ -33,7 +34,6 @@ public class ShopcarActionFront extends AbstractAction {
     public ModuleAndView list(){
         ModuleAndView mav=new ModuleAndView(super.getPage("list.page"));
         try {
-            System.out.println("***************************打印用户id：：：：*****"+super.getFrontUser());
             Map<String,Object> map=this.shopcarServiceFront.listByMember(super.getFrontUser());//Map<String, Object>， result.put("shopcar",shopcar) ;
             // result.put("allGoods",allGoods) ;
             mav.add(map); //直接将Map集合设置到request属性之中，${map.key("allGoods")}

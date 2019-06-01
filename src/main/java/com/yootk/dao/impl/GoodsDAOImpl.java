@@ -101,8 +101,6 @@ public class GoodsDAOImpl extends AbstractDAO implements IGoodsDAO {
         sql.delete(sql.length() - 1,sql.length()).append(")") ;
         List<Goods> all = new ArrayList<>();
         super.pstmt = super.conn.prepareStatement(sql.toString());
-        System.out.println("****************打印SQL***********"+sql.toString());
-        System.out.println(gids);
         return super.handleResultToList(super.pstmt.executeQuery(),Goods.class);
     }
 

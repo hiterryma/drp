@@ -39,10 +39,7 @@ public class ShopcarServiceFrontImpl extends AbstractService implements IShopcar
     @Override
     public Map<String, Object> listByMember(String mid) throws Exception {
         Map<String,Object> result = new HashMap<>() ;
-        System.out.println("**************shopcarDAO***************"+this.shopcarDAO);
         Map<Long,Integer> shopcar = this.shopcarDAO.findAllByMember(mid) ;
-        System.out.println("**************shopcar***************"+shopcar);
-        System.out.println("**************shopcar.keySet()***************"+shopcar.keySet());
         List<Goods> allGoods = this.goodsDAO.findAllByGids(shopcar.keySet()) ;
         result.put("shopcar",shopcar) ;
         result.put("allGoods",allGoods) ;
