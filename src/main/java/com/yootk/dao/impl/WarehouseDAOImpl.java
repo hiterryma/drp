@@ -90,4 +90,13 @@ public class WarehouseDAOImpl extends AbstractDAO implements IWarehouseDAO {
     public Long getAllCount(String column, String keyWord) throws SQLException {
         return super.handleCount("warehouse", column, keyWord);
     }
+
+    @Override
+    public boolean doEditAdmin(Long wid, String mid) throws SQLException {
+        String sql = "update warehouse set mid=? where wid=?";
+        super.pstmt = super.conn.prepareStatement(sql);
+        super.pstmt.setString(1, mid);
+        super.pstmt.setLong(2, wid);
+        return super.pstmt.executeUpdate() > 0;
+    }
 }

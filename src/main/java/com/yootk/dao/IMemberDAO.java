@@ -71,4 +71,8 @@ public interface IMemberDAO extends IBaseDAO<String , Member> {
     boolean doEdit(Member member) throws SQLException;
 
     public List<Member> findByDept(Long did) throws SQLException ;
+
+    public List<Member> findByDeptSplit(Long did, Long currentPage, Integer lineSize) throws SQLException;
+
+    public Long getAllCountByDept(Long did) throws SQLException;
 }

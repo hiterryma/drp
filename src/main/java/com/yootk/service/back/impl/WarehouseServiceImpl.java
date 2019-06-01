@@ -79,4 +79,9 @@ public class WarehouseServiceImpl extends AbstractDAO implements IWarehouseServi
         return map;
     }
 
+    @Override
+    public boolean editAdmin(Long wid, String mid) throws Exception {
+        return this.warehouseDAO.doEditAdmin(wid, mid);
+    }
+
 }

@@ -256,4 +256,24 @@ public class MemberDAOImpl extends AbstractDAO implements IMemberDAO {
         super.pstmt.setLong(1, did);
         return super.handleResultToList(super.pstmt.executeQuery(), Member.class);
     }
+
+    @Override
+    public List<Member> findByDeptSplit(Long did, Long currentPage, Integer lineSize) throws SQLException {
+        String sql = "select mid,lid,did,name,sal,phone,password,photo,note,regdate,inmid,locked,type,email,cuid from member where did=? limit " + (currentPage - 1) * lineSize + " , " + lineSize;
+        super.pstmt = super.conn.prepareStatement(sql);
+        super.pstmt.setLong(1, did);
+        return super.handleResultToList(super.pstmt.executeQuery(), Member.class);
+    }
+
+    @Override
+    public Long getAllCountByDept(Long did) throws SQLException {
+        String sql = "select count(*) from member where did = ?";
+        super.pstmt = super.conn.prepareStatement(sql);
+        super.pstmt.setLong(1, did);
+        ResultSet rs = super.pstmt.executeQuery();
+        if (rs.next()) {
+            return rs.getLong(1);
+        }
+        return 0L;
+    }
 }
