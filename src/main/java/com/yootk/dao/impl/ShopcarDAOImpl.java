@@ -68,7 +68,7 @@ public class ShopcarDAOImpl extends AbstractDAO implements IShopcarDAO {
         String sql="select amount from shopcar where mid=? and gid=?";
         super.pstmt=super.conn.prepareStatement(sql);
         super.pstmt.setString(1,mid);
-        super.pstmt.setLong(2,gid);
+        super.pstmt.setInt(2,gid.intValue());
         ResultSet rs=super.pstmt.executeQuery();
         if(rs.next()){
             return rs.getInt(1);
@@ -115,7 +115,7 @@ public class ShopcarDAOImpl extends AbstractDAO implements IShopcarDAO {
 
     @Override
     public boolean doRemoveByMemberAndGoods(String mid, Set<Long> gids) throws SQLException {
-        StringBuffer sql=new StringBuffer("delete from shopcar where mid=? and gid in (");
+        StringBuffer sql=new StringBuffer("delete from shopcar where mid=? and gid in (");// StringBuffer sql=new StringBuffer("delete from shopcar where mid=? and gid in (");
         for(Long gid:gids){
             sql.append(gid+",");
         }

@@ -35,7 +35,7 @@ public class ShopcarActionFront extends AbstractAction {
         try {
             Map<String,Object> map=this.shopcarServiceFront.listByMember(super.getFrontUser());//Map<String, Object>， result.put("shopcar",shopcar) ;
            // result.put("allGoods",allGoods) ;
-            mav.add(map); //直接将Map集合设置到request属性之中，${map.key("allgoods")}
+            mav.add(map); //直接将Map集合设置到request属性之中，${map.key("allGoods")}
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -15,4 +15,5 @@ public interface IGoodsDAO extends IBaseDAO<Long, Goods> {
      * @throws SQLException JDBC
      */
     public List<Goods> findAllByGids(Set<Long> gids)throws SQLException;
+    public Double findPriceByGid(Long gid)throws SQLException;
 }

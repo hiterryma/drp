@@ -2,6 +2,7 @@ package com.yootk.service.front;
 
 import com.yootk.vo.Shopcar;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -41,4 +42,13 @@ public interface IShopcarServiceFront {
      * @throws Exception 数据层异常
      */
     public boolean deleteByMember(String mid,Set<Long> gids)throws Exception;
+
+    /**
+     * 根据用户id和商品id查找对应id商品的数量
+     * @param mid 用户id
+     * @param gid 商品ID
+     * @return 返回查找到的数量，没有返回null‘
+     * @throws SQLException 数据层异常
+     */
+    public Integer findAmount(String mid,Long gid)throws SQLException;
 }

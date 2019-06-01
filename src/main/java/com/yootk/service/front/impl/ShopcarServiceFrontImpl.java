@@ -9,6 +9,7 @@ import com.yootk.service.front.IShopcarServiceFront;
 import com.yootk.vo.Goods;
 import com.yootk.vo.Shopcar;
 
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -59,5 +60,10 @@ public class ShopcarServiceFrontImpl extends AbstractService implements IShopcar
             return false;
         }
         return this.shopcarDAO.doRemoveByMemberAndGoods(mid,gids);
+    }
+
+    @Override
+    public Integer findAmount(String mid, Long gid) throws SQLException {
+        return this.shopcarDAO.findAmountByMemberAndGoods(mid,gid);
     }
 }

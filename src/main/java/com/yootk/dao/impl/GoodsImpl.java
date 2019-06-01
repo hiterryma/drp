@@ -5,6 +5,7 @@ import com.yootk.common.dao.abs.AbstractDAO;
 import com.yootk.dao.IGoodsDAO;
 import com.yootk.vo.Goods;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,14 +14,26 @@ import java.util.Set;
 public class GoodsImpl extends AbstractDAO implements IGoodsDAO {
     @Override
     public List<Goods> findAllByGids(Set<Long> gids) throws SQLException {
-        StringBuffer sql = new StringBuffer("SELECT gid,name,wiid,stid,price,weight,photo,note,lastin,stornum,recorder FROM goods WHERE delflag=0 and gid IN (") ;
+        StringBuffer sql = new StringBuffer("SELECT gid,name,wiid,stid,price,weight,photo,note,lastin,stornum,recorder FROM goods WHERE delflag=0 and gid IN ( ") ;
         for (Long gid : gids) {
             sql.append(gid).append(",") ;
         }
         sql.delete(sql.length() - 1,sql.length()).append(")") ;
-        List<Goods> all = new ArrayList<Goods>();
+        List<Goods> all = new ArrayList<>();
         super.pstmt = super.conn.prepareStatement(sql.toString());
         return super.handleResultToList(super.pstmt.executeQuery(),Goods.class);
+    }
+
+    @Override
+    public Double findPriceByGid(Long gid) throws SQLException {
+        String sql="select price from goods where gid=?";
+        super.pstmt=super.conn.prepareStatement(sql);
+        super.pstmt.setLong(1,gid);
+        ResultSet rs=super.pstmt.executeQuery();
+        if(rs.next()){
+            return rs.getDouble(1);
+        }
+        return null;
     }
 
     @Override

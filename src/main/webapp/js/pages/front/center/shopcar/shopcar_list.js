@@ -1,10 +1,8 @@
 $(function() {
 	$("#selectAll").on("click",function(){
 		checkboxSelectAll('gid',this.checked) ;
-	}) ;
-	$("#rmBtn").on("click",function(){	// 绑定用户锁定操作
-		operateChecked("确定要删除这些商品吗？","gid",'pages/back/admin/goods/GoodsActionBack!rm.action?p=p') ;
-	}) ;
+	});
+	calcSumPrice() ;
 	$("button[id^='add-']").each(function(){
 		$(this).on("click",function(){
 			gid = $(this).attr("id").split("-")[1] ; // 获取id的属性内容
@@ -60,7 +58,7 @@ $(function() {
 				gidArray[foot ++] = $(this).val() ;
 			}
 		}) ;
-		console.log(data)
+		console.log(data);
 		if (data == "") {   // 此时没有选中任何的内容
 			operateAlert(false,"","请先选择要删除的购物项！") ;
 		} else {
@@ -76,7 +74,7 @@ $(function() {
 			},"text") ;
 		}
 	}) ;
-})
+});
 function calcSumPrice() {	// 进行购买总价的计算
 	sum = 0.0 ; // 保存商品的计算总价
 	$("span[id^='price-']").each(function() {	// 获取全部的商品价格元素的内容
