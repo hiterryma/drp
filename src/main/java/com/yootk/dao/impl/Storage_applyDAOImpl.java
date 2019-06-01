@@ -165,32 +165,35 @@ public class Storage_applyDAOImpl extends AbstractDAO implements IStorage_applyD
     }
 
     @Override
-    public List<Storage_apply> findSplitByOutInAndSmt(int outorin, int smt, Long currentPage, Integer lineSize) throws SQLException {
-        String sql = "SELECT said,mid,title,pid,cid,wiid,wid,note,outorin,submit_status,audit_status,appmid FROM storage_apply WHERE outorin=? AND submit_status=? LIMIT " + (currentPage - 1) * lineSize + "," + lineSize ;
+    public List<Storage_apply> findSplitByOutInAndSmt(int outorin, int smt, int aud, Long currentPage, Integer lineSize) throws SQLException {
+        String sql = "SELECT said,mid,title,pid,cid,wiid,wid,note,outorin,submit_status,audit_status,appmid FROM storage_apply WHERE outorin=? AND submit_status=? AND audit_status=? LIMIT " + (currentPage - 1) * lineSize + "," + lineSize ;
         super.pstmt = super.conn.prepareStatement(sql) ;
         super.pstmt.setInt(1,outorin);
         super.pstmt.setInt(2,smt);
+        super.pstmt.setInt(3,aud);
         ResultSet rs = super.pstmt.executeQuery() ;
         return super.handleResultToList(rs,Storage_apply.class) ;
     }
 
     @Override
-    public List<Storage_apply> findSplitByOutInAndSmt(int outorin, int smt, Long currentPage, Integer lineSize, String column, String keyWord) throws SQLException {
-        String sql = "SELECT said,mid,title,pid,cid,wiid,wid,note,outorin,submit_status,audit_status,appmid FROM storage_apply WHERE outorin=? AND submit_status=? AND " + column + " LIKE ? LIMIT " + (currentPage - 1) * lineSize + "," + lineSize ;
+    public List<Storage_apply> findSplitByOutInAndSmt(int outorin, int smt, int aud, Long currentPage, Integer lineSize, String column, String keyWord) throws SQLException {
+        String sql = "SELECT said,mid,title,pid,cid,wiid,wid,note,outorin,submit_status,audit_status,appmid FROM storage_apply WHERE outorin=? AND submit_status=? AND audit_status=? AND " + column + " LIKE ? LIMIT " + (currentPage - 1) * lineSize + "," + lineSize ;
         super.pstmt = super.conn.prepareStatement(sql) ;
         super.pstmt.setInt(1,outorin);
         super.pstmt.setInt(2,smt);
-        super.pstmt.setString(3,"%"+keyWord+"%");
+        super.pstmt.setInt(3,aud);
+        super.pstmt.setString(4,"%"+keyWord+"%");
         ResultSet rs = super.pstmt.executeQuery() ;
         return super.handleResultToList(rs,Storage_apply.class) ;
     }
 
     @Override
-    public Long getAllCountByOutInAndSmtr(int outorin, int smt) throws SQLException {
-        String sql = "SELECT COUNT(*) FROM storage_apply WHERE outorin=? AND submit_status=?"  ;
+    public Long getAllCountByOutInAndSmtr(int outorin, int smt,int aud) throws SQLException {
+        String sql = "SELECT COUNT(*) FROM storage_apply WHERE outorin=? AND submit_status=? AND audit_status=?"  ;
         this.pstmt = this.conn.prepareStatement(sql) ;
         super.pstmt.setInt(1,outorin);
         super.pstmt.setInt(2,smt);
+        super.pstmt.setInt(3,aud);
         ResultSet rs = this.pstmt.executeQuery() ;
         if (rs.next()) {
             return rs.getLong(1) ;
@@ -199,12 +202,13 @@ public class Storage_applyDAOImpl extends AbstractDAO implements IStorage_applyD
     }
 
     @Override
-    public Long getAllCountByOutInAndSmtr(int outorin, int smt, String column, String keyWord) throws SQLException {
-        String sql = "SELECT COUNT(*) FROM storage_apply WHERE outorin=? AND submit_status=? AND " + column + " LIKE ?" ;
+    public Long getAllCountByOutInAndSmtr(int outorin, int smt, int aud, String column, String keyWord) throws SQLException {
+        String sql = "SELECT COUNT(*) FROM storage_apply WHERE outorin=? AND submit_status=? AND audit_status=? AND " + column + " LIKE ?" ;
         this.pstmt = this.conn.prepareStatement(sql) ;
         super.pstmt.setInt(1,outorin);
         super.pstmt.setInt(2,smt);
-        this.pstmt.setString(3,"%"+keyWord+"%");
+        super.pstmt.setInt(3,aud);
+        this.pstmt.setString(4,"%"+keyWord+"%");
         ResultSet rs = this.pstmt.executeQuery() ;
         if (rs.next()) {
             return rs.getLong(1) ;

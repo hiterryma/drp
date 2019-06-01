@@ -8,7 +8,7 @@
 	<script type="text/javascript" src="js/split_page.js"></script>
 </head>
 <%!
-	public static final String STORAGEAUDIT_EDIT_URL = "pages/back/admin/storageaudit/storageaudit_edit.jsp" ;
+	public static final String STORAGEAUDIT_EDIT_URL = "/pages/back/admin/audit/audit_add_pre.action" ;
 %>
 <body class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">
@@ -48,11 +48,11 @@
 							<td class="text-left"><span id="sid-1" style="cursor:pointer;">${storage_apply.title}</span></td>
 							<td class="text-left"><span id="wid-1" style="cursor:pointer;">${warehouses[storage_apply.wid]}</span></td>
 							<td class="text-center">${submitdatemap[storage_apply.said]}</td>
-							<td class="text-center"><span id="mid-admin" style="cursor:pointer;">${storage_apply.mid}</span></td>
+							<td class="text-center"><span id="mid-admin" style="cursor:pointer;">${namemap[storage_apply.said]}</span></td>
 							<td class="text-center">${amounts[storage_apply.said]}</td>
 							<td class="text-center">${totalprices[storage_apply.said]}</td>
 							<td class="text-left">
-								<a href="<%=STORAGEAUDIT_EDIT_URL%>?sid=1" class="btn btn-primary btn-xs">
+								<a href="<%=STORAGEAUDIT_EDIT_URL%>?said=${storage_apply.said}" class="btn btn-primary btn-xs">
 									<span class="glyphicon glyphicon-edit"></span>&nbsp;处理申请</a>
 							</td>
 						</tr>

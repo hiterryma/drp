@@ -26,6 +26,10 @@ public class Storage_applyServiceBackImpl extends AbstractService implements ISt
     private IStorage_apply_detailsDAO storage_apply_detailsDAO ;
     @Autowired
     private ISubmitdateDAO submitdateDAO ;
+    @Autowired
+    private IMemberDAO memberDAO ;
+    @Autowired
+    private IAuditDAO auditDAO ;
 
     @Override
     public Map<String, Object> preAdd() throws Exception {
@@ -156,26 +160,36 @@ public class Storage_applyServiceBackImpl extends AbstractService implements ISt
         return this.storage_applyDAO.doRemove(saids) ;
     }
     @Override
-    public Map<String,Object> listByOutIn(int outorin, int smt, Long currentPage, Integer lineSize, String column, String keyWord) throws Exception{
+    public Map<String,Object> listByOutIn(int outorin, int smt, int aud, Long currentPage, Integer lineSize, String column, String keyWord) throws Exception{
         Map<String,Object> result = new HashMap<>() ;
+
+        /**
+         *  以下操作是错误的：因为在前端循环显示的时候，用的是storage_apply的list，而仓库地址storage_apply表的字段，
+         *  //定义一个List集合，用于保存分页中的仓库信息，从而进行仓库地址的显示
+         *             List<Warehouse> warehouses = new ArrayList<>() ;
+         */
+        //应该定义一个Map，key为wid,value为仓库地址。这样循环storage_apply的时候，就能根据每一个storage_apply的wid字段从map中查出来
+        Map<Long,String> warehouses = new HashMap<>() ;
+        //再定义个Map，保存仓库类型数据
+        Map<Long,String> witems = new HashMap<>() ;
+        //此Map存放每个订单的总数
+        Map<Long,Integer> amounts = new HashMap<>() ;
+        //此Map之中存放每个订单的总价
+        Map<Long,Double> totalprices = new HashMap<>() ;
+        //此Map存放订单提交日期数据
+        Map<Long,Date> submitdatemap = new HashMap<>() ;
+        //此Map存放的是申请人的姓名
+        Map<Long,String> namemap = new HashMap<>() ;
+        //此Map存放的是审核日期
+        Map<Long,Date> auditdatemap = new HashMap<>() ;
+        //此Map存放的是审核人员的姓名
+        Map<Long,String> audNamemap =new HashMap<>() ;
+
+
         if (super.isEmpty(column,keyWord)) {
             //获取本页面的申请单信息
-            List<Storage_apply> storage_applies = this.storage_applyDAO.findSplitByOutInAndSmt(outorin,smt,currentPage,lineSize) ;
-            /**
-             *  以下操作是错误的：因为在前端循环显示的时候，用的是storage_apply的list，而仓库地址storage_apply表的字段，
-             *  //定义一个List集合，用于保存分页中的仓库信息，从而进行仓库地址的显示
-             *             List<Warehouse> warehouses = new ArrayList<>() ;
-             */
-            //应该定义一个Map，key为wid,value为仓库地址。这样循环storage_apply的时候，就能根据每一个storage_apply的wid字段从map中查出来
-            Map<Long,String> warehouses = new HashMap<>() ;
-            //再定义个Map，保存仓库类型数据
-            Map<Long,String> witems = new HashMap<>() ;
-            //此Map存放每个订单的总数
-            Map<Long,Integer> amounts = new HashMap<>() ;
-            //此Map之中存放每个订单的总价
-            Map<Long,Double> totalprices = new HashMap<>() ;
-            //此Map存放订单提交日期数据
-            Map<Long,Date> submitdatemap = new HashMap<>() ;
+            List<Storage_apply> storage_applies = this.storage_applyDAO.findSplitByOutInAndSmt(outorin,smt,aud,currentPage,lineSize) ;
+
 
 
             //循环操作本页面的每一个申请单
@@ -191,7 +205,18 @@ public class Storage_applyServiceBackImpl extends AbstractService implements ISt
                 warehouses.put(storage_apply.getWid(),title) ;
                 witems.put(storage_apply.getWiid(),witem.getTitle()) ;
                 submitdatemap.put(storage_apply.getSaid(),submitdate.getSubmit_date()) ;
-
+                namemap.put(storage_apply.getSaid(),this.memberDAO.findNameByMid(storage_apply.getMid())) ;
+                //查询出审核详情最大的编号
+                List<Audit> allAudit = this.auditDAO.findAllBySaid(storage_apply.getSaid()) ;
+                Long aid = 0L;
+                for (Audit audit : allAudit) {
+                    if (aid < audit.getAudid()){
+                        aid = audit.getAudid() ;
+                    }
+                }
+                Audit audit = this.auditDAO.findById(aid) ;
+                auditdatemap.put(storage_apply.getSaid(),audit.getAud_date()) ;
+                audNamemap.put(storage_apply.getSaid(),this.memberDAO.findNameByMid(audit.getAud_member())) ;
                 //查询出该订单的所有订单详情
                 List<Storage_apply_details> allStorage_apply_details = this.storage_apply_detailsDAO.findAllBySaid(storage_apply.getSaid()) ;
                 int amount = 0;
@@ -208,7 +233,7 @@ public class Storage_applyServiceBackImpl extends AbstractService implements ISt
             //存放所有申请的List集合
             result.put("allStorage_applies",storage_applies) ;
             //存放所有的记录数
-            result.put("allRecorders",this.storage_applyDAO.getAllCountByOutInAndSmtr(outorin,smt)) ;
+            result.put("allRecorders",this.storage_applyDAO.getAllCountByOutInAndSmtr(outorin,smt,aud)) ;
             //保存仓库的地址
             result.put("warehouses",warehouses) ;
             //保存仓库的类型
@@ -219,24 +244,16 @@ public class Storage_applyServiceBackImpl extends AbstractService implements ISt
             result.put("totalprices",totalprices) ;
             //保存提交日期
             result.put("submitdatemap",submitdatemap);
+            //保存申请人
+            result.put("namemap",namemap) ;
+            //保存审核日期
+            result.put("auditdatemap",auditdatemap) ;
+            //保存审核人姓名
+            result.put("audNamemap",audNamemap) ;
         }else {
             //获取本页面的申请单信息
-            List<Storage_apply> storage_applies = this.storage_applyDAO.findSplitByOutInAndSmt(outorin,smt,currentPage,lineSize,column,keyWord) ;
-            /**
-             *  以下操作是错误的：因为在前端循环显示的时候，用的是storage_apply的list，而仓库地址storage_apply表的字段，
-             *  //定义一个List集合，用于保存分页中的仓库信息，从而进行仓库地址的显示
-             *             List<Warehouse> warehouses = new ArrayList<>() ;
-             */
-            //应该定义一个Map，key为wid,value为仓库地址。这样循环storage_apply的时候，就能根据每一个storage_apply的wid字段从map中查出来
-            Map<Long,String> warehouses = new HashMap<>() ;
-            //再定义个Map，保存仓库类型数据
-            Map<Long,String> witems = new HashMap<>() ;
-            //此Map存放每个订单的总数
-            Map<Long,Integer> amounts = new HashMap<>() ;
-            //此Map之中存放每个订单的总价
-            Map<Long,Double> totalprices = new HashMap<>() ;
-            //此Map存放订单提交日期数据
-            Map<Long,Date> submitdatemap = new HashMap<>() ;
+            List<Storage_apply> storage_applies = this.storage_applyDAO.findSplitByOutInAndSmt(outorin,smt,aud,currentPage,lineSize,column,keyWord) ;
+
 
 
             //循环操作本页面的每一个申请单
@@ -252,6 +269,19 @@ public class Storage_applyServiceBackImpl extends AbstractService implements ISt
                 warehouses.put(storage_apply.getWid(),title) ;
                 witems.put(storage_apply.getWiid(),witem.getTitle()) ;
                 submitdatemap.put(storage_apply.getSaid(),submitdate.getSubmit_date()) ;
+                namemap.put(storage_apply.getSaid(),this.memberDAO.findNameByMid(storage_apply.getMid())) ;
+
+                //查询出审核详情最大的编号
+                List<Audit> allAudit = this.auditDAO.findAllBySaid(storage_apply.getSaid()) ;
+                Long aid = 0L;
+                for (Audit audit : allAudit) {
+                    if (aid < audit.getAudid()){
+                        aid = audit.getAudid() ;
+                    }
+                }
+                Audit audit = this.auditDAO.findById(aid) ;
+                auditdatemap.put(storage_apply.getSaid(),audit.getAud_date()) ;
+                audNamemap.put(storage_apply.getSaid(),this.memberDAO.findNameByMid(audit.getAud_member())) ;
 
                 //查询出该订单的所有订单详情
                 List<Storage_apply_details> allStorage_apply_details = this.storage_apply_detailsDAO.findAllBySaid(storage_apply.getSaid()) ;
@@ -269,7 +299,7 @@ public class Storage_applyServiceBackImpl extends AbstractService implements ISt
             //存放所有申请的List集合
             result.put("allStorage_applies",storage_applies) ;
             //存放所有的记录数
-            result.put("allRecorders",this.storage_applyDAO.getAllCountByOutInAndSmtr(outorin,smt,column,keyWord)) ;
+            result.put("allRecorders",this.storage_applyDAO.getAllCountByOutInAndSmtr(outorin,smt,aud,column,keyWord)) ;
             //保存仓库的地址
             result.put("warehouses",warehouses) ;
             //保存仓库的类型
@@ -280,6 +310,12 @@ public class Storage_applyServiceBackImpl extends AbstractService implements ISt
             result.put("totalprices",totalprices) ;
             //保存提交日期
             result.put("submitdatemap",submitdatemap);
+            //保存申请人
+            result.put("namemap",namemap) ;
+            //保存审核日期
+            result.put("auditdatemap",auditdatemap) ;
+            //保存审核人姓名
+            result.put("audNamemap",audNamemap) ;
         }
         return result ;
     }

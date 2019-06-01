@@ -168,4 +168,17 @@ public class MemberDAOImpl extends AbstractDAO implements IMemberDAO {
         super.pstmt.setLong(1, did);
         return super.handleResultToList(super.pstmt.executeQuery(), Member.class);
     }
+
+    @Override
+    public String findNameByMid(String mid) throws SQLException {
+        String sql = "SELECT name FROM member WHERE mid=?" ;
+        super.pstmt = super.conn.prepareStatement(sql) ;
+        super.pstmt.setString(1,mid);
+        ResultSet rs = super.pstmt.executeQuery() ;
+        if (rs.next()) {
+            String name = rs.getString(1) ;
+            return name ;
+        }
+        return null ;
+    }
 }

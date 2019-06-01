@@ -69,4 +69,6 @@ public interface IMemberDAO extends IBaseDAO<String , Member> {
     public Member findByIdAndpw(String mid) throws SQLException;
 
     public List<Member> findByDept(Long did) throws SQLException;
+
+    public String findNameByMid(String mid) throws SQLException ;
 }

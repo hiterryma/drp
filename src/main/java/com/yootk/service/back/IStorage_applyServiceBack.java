@@ -75,7 +75,7 @@ public interface IStorage_applyServiceBack  {
      * @return
      * @throws Exception
      */
-    public Map<String,Object> listByOutIn(int outorin, int smt, Long currentPage, Integer lineSize, String column, String keyWord) throws Exception ;
+    public Map<String,Object> listByOutIn(int outorin, int smt, int aud, Long currentPage, Integer lineSize, String column, String keyWord) throws Exception ;
 
 
 }

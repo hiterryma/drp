@@ -73,8 +73,9 @@
 								<th class="text-left" style="width:30%;">操作</th>
 							</tr>
 						</thead>
-						<tbody>
-
+						<tbody id="tbody">
+						<c:forEach items="${allStorage_apply_details}" var="storage_apply_details" varStatus="status">
+							<!--
 							<tr id="dettr-1" class="text-success">
 								<td><input type="text" id="gid-1" value="100001"/></td>
 								<td><input type="text" id="name-1" value="衣服" size="40"/></td>
@@ -88,8 +89,23 @@
 										<span class="glyphicon glyphicon-edit"></span>&nbsp;移除</button>
 								</td>
 							</tr>
+							-->
 
+							<tr id="dettr-${status.index+1}" class="text-success">
+								<td><input type="text" id="gid-${status.index+1}" value="${storage_apply_details.gid}"/></td>
+								<td><input type="text" id="name-${status.index+1}" value="${storage_apply_details.name}" size="40"/></td>
+								<td><input type="text" id="amount-${status.index+1}" value="${storage_apply_details.num}" maxlength="8" size="8"/></td>
+								<td><input type="text" id="price-${status.index+1}" value="${pricemap[storage_apply_details.sadid]}" maxlength="8" size="8"/></td>
+								<td><input type="text" id="weight-${status.index+1}" value="${weightmap[storage_apply_details.sadid]}" maxlength="8" size="8"/></td>
+								<td>
+									<button id="save-1" class="btn btn-primary btn-xs">
+										<span class="glyphicon glyphicon-edit"></span>&nbsp;保存</button>
+									<button id="remove-1" class="btn btn-danger btn-xs">
+										<span class="glyphicon glyphicon-edit"></span>&nbsp;移除</button>
+								</td>
+							</tr>
 
+						</c:forEach>
 						</tbody>
 					</table>
 				</div>
