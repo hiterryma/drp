@@ -31,4 +31,13 @@ public class City implements Serializable {
     public void setTitle(String title) {
         this.title = title;
     }
+
+    @Override
+    public String toString() {
+        return "City{" +
+                "cid=" + cid +
+                ", pid=" + pid +
+                ", title='" + title + '\'' +
+                '}';
+    }
 }

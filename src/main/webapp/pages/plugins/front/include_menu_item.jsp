@@ -1,9 +1,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8" %>
 <%!
-    public static final String GOODS_LIST_URL = "/pages/front/goods/goods_subaru.action?stid=";
-    %>
-    <div class="panel-group" id="item">        <!-- 利用面板定义折叠组件 -->
+    public static final String GOODS_LIST_URL = "/pages/back/admin/goods/goods_subaru.action?stid=";
+    //public static final String GOODS_LIST_URL = "/pages/front/goods/goods_list.jsp";
+%>
+<script type="text/javascript" src="js/pages/front/goods/include_menu_item.js"></script>
+<script type="text/javascript" src="js/jquery/jquerysession.js"></script>
+<div class="panel-group" id="item">        <!-- 利用面板定义折叠组件 -->
     <c:forEach items="${allWitems}" var="witem">
         <c:if test="${witem.wiid == 1}">
             <div class="panel panel-primary">
@@ -19,7 +22,7 @@
                         <div class="row">
                             <c:forEach items="${allSubtypes}" var="subtype">
                                 <c:if test="${subtype.wiid == witem.wiid}">
-                                    <div class="col-md-4"><a href="<%=GOODS_LIST_URL%>${subtype.stid}">${subtype.title}</a></div>
+                                    <div class="col-md-4" ><a href="<%=GOODS_LIST_URL%>${subtype.stid}" onclick="bftask(this)" foole="${subtype.stid}">${subtype.title}</a></div>
                                 </c:if>
                             </c:forEach>
                         </div>
@@ -41,7 +44,7 @@
                         <div class="row">
                             <c:forEach items="${allSubtypes}" var="subtype">
                                 <c:if test="${subtype.wiid == witem.wiid}">
-                                    <div class="col-md-4"><a href="<%=GOODS_LIST_URL%>${subtype.stid}">${subtype.title}</a></div>
+                                    <div class="col-md-4"><a href="<%=GOODS_LIST_URL%>${subtype.stid}" onclick="bftask(this)" foole="${subtype.stid}">${subtype.title}</a></div>
                                 </c:if>
                             </c:forEach>
                         </div>
@@ -63,7 +66,7 @@
                         <div class="row">
                             <c:forEach items="${allSubtypes}" var="subtype">
                                 <c:if test="${subtype.wiid == witem.wiid}">
-                                    <div class="col-md-4"><a href="<%=GOODS_LIST_URL%>${subtype.stid}">${subtype.title}</a></div>
+                                    <div class="col-md-4"><a href="<%=GOODS_LIST_URL%>${subtype.stid}" onclick="bftask(this)" foole="${subtype.stid}">${subtype.title}</a></div>
                                 </c:if>
                             </c:forEach>
                         </div>
@@ -85,7 +88,7 @@
                         <div class="row">
                             <c:forEach items="${allSubtypes}" var="subtype">
                                 <c:if test="${subtype.wiid == witem.wiid}">
-                                    <div class="col-md-4"><a href="<%=GOODS_LIST_URL%>${subtype.stid}">${subtype.title}</a></div>
+                                    <div class="col-md-4"><a href="<%=GOODS_LIST_URL%>${subtype.stid}" onclick="bftask(this)" foole="${subtype.stid}">${subtype.title}</a></div>
                                 </c:if>
                             </c:forEach>
                         </div>
@@ -107,7 +110,7 @@
                         <div class="row">
                             <c:forEach items="${allSubtypes}" var="subtype">
                                 <c:if test="${subtype.wiid == witem.wiid}">
-                                    <div class="col-md-4"><a href="<%=GOODS_LIST_URL%>${subtype.stid}">${subtype.title}</a></div>
+                                    <div class="col-md-4"><a href="<%=GOODS_LIST_URL%>${subtype.stid}" onclick="bftask(this)" foole="${subtype.stid}">${subtype.title}</a></div>
                                 </c:if>
                             </c:forEach>
                         </div>

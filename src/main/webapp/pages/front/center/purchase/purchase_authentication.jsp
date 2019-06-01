@@ -1,17 +1,19 @@
-<%@ page language="java" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" pageEncoding="UTF-8" %>
 <html>
 <head>
     <jsp:include page="/pages/plugins/basepath.jsp"/>
     <script type="text/javascript" src="js/pages/front/center/purchase/purchase_authentication.js"></script>
+    <script type="text/javascript" src="js/pages/front/center/purchase/purchase.js"></script>
 </head>
 <%!
-    public static final String PURCHASE_AUTHENTICATION_URL = "" ;
+    public static final String PURCHASE_AUTHENTICATION_URL = "/pages/front/center/purchase/authentication_pre.action";
 %>
 <body class="back">
-<div class="container contentback">
+<div class="container contentback" id="purchase_authentication">
     <div id="headDiv" class="row">
         <div class="col-md-12 col-xs-12">
-            <jsp:include page="/pages/plugins/front/include_navbar.jsp" />
+            <jsp:include page="/pages/plugins/front/include_navbar.jsp"/>
         </div>
     </div>
     <div style="height: 60px;"></div>
@@ -27,7 +29,8 @@
                     <strong><span class="glyphicon glyphicon-edit"></span>&nbsp;客户认证</strong>
                 </div>
                 <div class="panel-body">
-                    <form class="form-horizontal" action="<%=PURCHASE_AUTHENTICATION_URL%>" id="myform" method="post">
+                    <form class="form-horizontal" action="<%=PURCHASE_AUTHENTICATION_URL%>" id="myform"
+                          method="post">
                         <fieldset>
                             <!-- 定义输入表单样式，其中id主要用于设置颜色样式 -->
                             <div class="form-group" id="nameDiv">
@@ -46,11 +49,14 @@
                                 <label class="col-md-3 control-label" for="type">认证类型：</label>
                                 <div class="col-md-2">
                                     <!-- 定义表单输入组件 -->
-                                    <div class="radio-inline"><input type="radio" name="type" id="type" value="1">企业</div>
+                                    <div class="radio-inline"><input type="radio" name="type" id="type" value="1">企业
+                                    </div>
                                 </div>
                                 <div class="col-md-3">
                                     <!-- 定义表单输入组件 -->
-                                    <div class="radio-inline"><input type="radio" name="type" id="type" value="2" checked>个人</div>
+                                    <div class="radio-inline"><input type="radio" name="type" id="type" value="2"
+                                                                     checked>个人
+                                    </div>
                                 </div>
                                 <!-- 定义表单错误提示显示元素 -->
                                 <div class="col-md-4" id="typeMsg"></div>
@@ -71,10 +77,10 @@
                                 <label class="col-md-3 control-label" for="pid">所在省份：</label>
                                 <div class="col-md-5">
                                     <select id="pid" name="pid" class="form-control">
-                                        <option value="">====== 请选择所在省份 ======</option>
-                                        <option value="1">河北省</option>
-                                        <option value="2">山西部</option>
-                                        <option value="3">广东省</option>
+                                        <option value="">====== 请选择所在省份 =====</option>
+                                        <c:forEach items="${allProvince}" var="province">
+                                            <option value="${province.pid}">${province.title}</option>
+                                        </c:forEach>
                                     </select>
                                 </div>
                                 <!-- 定义表单错误提示显示元素 -->
@@ -125,6 +131,15 @@
                         </fieldset>
                     </form>
                 </div>
+
+                <div class="panel-footer">
+                    <c:if test="${msg != null}">
+                        <div class="alert alert-danger" id="alertDiv">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            <span id="alertText">${msg}</span>
+                        </div>
+                    </c:if>
+                </div>
                 <div class="panel-footer">
                     <jsp:include page="/pages/plugins/alert.jsp"/>
                 </div>
@@ -132,7 +147,7 @@
         </div>
     </div>
     <div id="footDiv" class="row navbar-fixed-bottom">
-        <jsp:include page="/pages/plugins/front/include_title_foot.jsp" />
+        <jsp:include page="/pages/plugins/front/include_title_foot.jsp"/>
     </div>
 </div>
 </body>

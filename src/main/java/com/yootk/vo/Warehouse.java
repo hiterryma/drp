@@ -29,24 +29,7 @@ public class Warehouse implements Serializable {
     //仓库管理员的用户编号
     private String admin;
 
-    @Override
-    public String toString() {
-        return "Warehouse{" +
-                "wid=" + wid +
-                ", name='" + name + '\'' +
-                ", pid=" + pid +
-                ", cid=" + cid +
-                ", wiid=" + wiid +
-                ", address='" + address + '\'' +
-                ", area=" + area +
-                ", maximum=" + maximum +
-                ", currnum=" + currnum +
-                ", photo='" + photo + '\'' +
-                ", note='" + note + '\'' +
-                ", recorder='" + recorder + '\'' +
-                ", admin='" + admin + '\'' +
-                '}';
-    }
+
 
     public Long getWid() {
         return wid;
@@ -151,6 +134,5 @@ public class Warehouse implements Serializable {
     public void setAdmin(String admin) {
         this.admin = admin;
     }
-
 
 }
