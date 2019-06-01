@@ -62,7 +62,7 @@ public class GoodsDAOImpl extends AbstractDAO implements IGoodsDAO {
 
     @Override
     public List<Goods> findAll() throws SQLException {
-        String sql = "SELECT name,price,photo FROM goods WHERE delflag=0  LIMIT 12";
+        String sql = "SELECT  gid,name,price,photo FROM goods WHERE delflag=0  LIMIT 12";
         super.pstmt = super.conn.prepareStatement(sql);
         return super.handleResultToList(super.pstmt.executeQuery(),Goods.class);
     }
@@ -95,8 +95,33 @@ public class GoodsDAOImpl extends AbstractDAO implements IGoodsDAO {
     }
 
     @Override
+    public Long getAllCountByStid(Long stid) throws SQLException {
+        String sql = "SELECT COUNT(*) FROM goods WHERE stid=?";
+        super.pstmt =super.conn.prepareStatement(sql);
+        super.pstmt.setLong(1,stid);
+        ResultSet rs = super.pstmt.executeQuery();
+        if (rs.next()){
+            return rs.getLong(1);
+        }
+        return 0L;
+    }
+
+    @Override
+    public Long getAllCountByStid(Long stid, String column, String keyWord) throws SQLException {
+        String sql = "SELECT COUNT(*) FROM goods WHERE stid=? AND "+column+" LIKE ? ";
+        super.pstmt =super.conn.prepareStatement(sql);
+        super.pstmt.setLong(1,stid);
+        super.pstmt.setString(2,"%"+keyWord+"%");
+        ResultSet rs = super.pstmt.executeQuery();
+        if (rs.next()){
+            return rs.getLong(1);
+        }
+        return 0L;
+    }
+
+    @Override
     public List<Goods> findByStid(Long stid,Long currentPage,Integer lineSize,String clonum,String keyword) throws SQLException {
-        String sql = "SELECT name,price,photo FROM goods WHERE delflag=0 AND stid=? AND "+ clonum +" LIKE ? LIMIT " + (currentPage - 1) * lineSize + " , " + lineSize;
+        String sql = "SELECT gid,name,price,photo FROM goods WHERE delflag=0 AND stid=? AND "+ clonum +" LIKE ? LIMIT " + (currentPage - 1) * lineSize + " , " + lineSize;
         super.pstmt = super.conn.prepareStatement(sql);
         super.pstmt.setLong(1,stid);
         super.pstmt.setString(2,"%"+keyword+"%");
@@ -105,7 +130,7 @@ public class GoodsDAOImpl extends AbstractDAO implements IGoodsDAO {
 
     @Override
     public List<Goods> findByStid(Long stid, Long currentPage, Integer lineSize) throws SQLException {
-        String sql = "SELECT name,price,photo FROM goods WHERE delflag=0 AND stid=?  LIMIT " + (currentPage - 1) * lineSize + " , " + lineSize;
+        String sql = "SELECT gid,name,price,photo FROM goods WHERE delflag=0 AND stid=? LIMIT " + (currentPage - 1) * lineSize + " , " + lineSize;
         super.pstmt = super.conn.prepareStatement(sql);
         super.pstmt.setLong(1,stid);
         return super.handleResultToList(super.pstmt.executeQuery(),Goods.class);

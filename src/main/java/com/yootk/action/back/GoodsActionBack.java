@@ -9,6 +9,9 @@ import com.yootk.service.back.IGoodsService;
 import com.yootk.util.UploadFileToServer;
 import com.yootk.vo.Goods;
 import com.yootk.service.back.IGoodsServiceBack;
+
+import java.util.Map;
+
 @Controller
 @RequestMapping("/pages/back/admin/goods/")
 public class GoodsActionBack extends AbstractAction {
@@ -17,6 +20,17 @@ public class GoodsActionBack extends AbstractAction {
     private IGoodsService goodsService;
     @Autowired
     private IGoodsServiceBack goodsServiceBack;
+
+    @RequestMapping("getGoods")
+    public ModuleAndView getGoods(Long gid){
+        ModuleAndView mav = new ModuleAndView("/pages/front/goods/goods_show.jsp");
+        try {
+            mav.add("getGoods",this.goodsServiceBack.getById(gid));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return mav;
+    }
 
     @RequestMapping("goods_pre_add")
     public ModuleAndView preAdd() throws Exception{
@@ -113,13 +127,14 @@ public class GoodsActionBack extends AbstractAction {
         ModuleAndView mav = new ModuleAndView("/pages/front/goods/goods_list.jsp");
         PageUtil pu = new PageUtil("/pages/back/admin/goods/goods_subaru.action","商品名称:name");
         try {
-            System.out.println(stid+"、"+pu.getCurrentPage()+"、"+ pu.getLineSize()+"、"+ pu.getColumn()+"、"+  pu.getKeyword());
-            mav.add(this.goodsServiceBack.getByStid(stid,pu.getCurrentPage(), pu.getLineSize(),pu.getColumn(), pu.getKeyword()));
+            mav.add(AbstractAction.PATH_ATTRIBUTE_NAME, "/pages/back/admin/goods/goods_subaru.action");
+            mav.add(this.goodsServiceBack.getByStid(stid,pu.getCurrentPage(),pu.getLineSize(),pu.getColumn(),pu.getKeyword()));
         } catch (Exception e) {
             e.printStackTrace();
         }
         return mav;
     }
+
 
     @Override
     public String getUploadDir() {
