@@ -5,12 +5,11 @@ import com.yootk.common.annotation.Service;
 import com.yootk.common.service.abs.AbstractService;
 import com.yootk.dao.*;
 import com.yootk.service.back.ICustomerServiceBack;
-import com.yootk.vo.Citem;
-import com.yootk.vo.Customer;
-import com.yootk.vo.Member;
+import com.yootk.vo.*;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 @Service
 public class CustomerServiceBackImpl extends AbstractService implements ICustomerServiceBack {
@@ -22,9 +21,13 @@ public class CustomerServiceBackImpl extends AbstractService implements ICustome
     @Autowired
     private ICitemDAO citemDAO;
     @Autowired
+    private ICritemDAO critemDAO;
+    @Autowired
     private IProvinceDAO provinceDAO;
     @Autowired
     private IMemberDAO memberDAO;
+    @Autowired
+    private ICustomerRecordDAO customerRecordDAO;
 
     @Override
     public Map<String, Object> preAdd() throws Exception {
@@ -41,6 +44,17 @@ public class CustomerServiceBackImpl extends AbstractService implements ICustome
         customer.setStatus(1);
         customer.setType(1);
         return this.customerDAO.doCreate(customer);
+    }
+
+    @Override
+    public boolean edit(Customer customer) throws Exception {
+        return false;
+    }
+
+    @Override
+    public boolean editForStatus(Integer status,String note,Long cuid) throws Exception {
+        this.customerDAO.doEditForStatus(status,note,cuid) ;
+        return false;
     }
 
     @Override
@@ -61,6 +75,9 @@ public class CustomerServiceBackImpl extends AbstractService implements ICustome
         Map<String, Object> map = new HashMap<>();
         Map<String, String> allMemberMap = new HashMap<>();
         Map<Long, String> allCitemMap = new HashMap<>();
+        Map<Long, String> allCritemMap = new HashMap<>();
+
+        List<Critem> critemList = this.critemDAO.findAll() ;
         for (Member member:memberDAO.findAll()) {
             allMemberMap.put(member.getMid(), member.getName());
         }
@@ -69,6 +86,10 @@ public class CustomerServiceBackImpl extends AbstractService implements ICustome
             allCitemMap.put(citem.getCiid(), citem.getTitle());
         }
         map.put("allCitemMap", allCitemMap);
+        for(Critem critem :critemList){
+            allCritemMap.put(critem.getCriid(),critem.getTitle());
+        }
+        map.put("allCritem",critemList) ;
         if (column == null || "".equals(column) || keyword == null || "".equals(keyword)) {
             map.put("allCustomers", customerDAO.findSplit(currentPage, lineSize));
             map.put("allRecorders", customerDAO.getAllCount());
@@ -79,5 +100,16 @@ public class CustomerServiceBackImpl extends AbstractService implements ICustome
         return map;
     }
 
+    @Override
+    public boolean addForCustomerRecord(CustomerRecord customerRecord) throws Exception {
+        return customerRecordDAO.doCreate(customerRecord) ;
+    }
 
+    @Override
+    public Map<String, Object> listForCustomerRecord(Long currentPage, Integer lineSize, String column, String keyword) throws Exception {
+
+        Map<String,Object> map = new HashMap<>() ;
+        map.put("allCustomerRecord",customerRecordDAO.findSplit(currentPage,lineSize)) ;
+        return map;
+    }
 }

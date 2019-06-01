@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page isELIgnored="false" %>
 <div class="modal fade" id="customerRecordInputInfo"  tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true" data-keyboard="true">
 	<div class="modal-dialog" style="width: 1300px">
 		<div class="modal-content">
@@ -29,10 +30,10 @@
 								<label class="col-md-3 control-label" for="criid">业务分类：</label>
 								<div class="col-md-5">
 									<select id="criid" name="criid" class="form-control">
-										<option value="">====== 请选择联系的业务类型 ======</option>
-										<option value="1">销售推荐</option>
-										<option value="2">客户回访</option>
-										<option value="3">业务合作</option>
+										<option value="">====== 请选择业务类型 ======</option>
+										<c:forEach items="${allCritem}" var="critem" >
+											<option value="${critem.criid}">${critem.title}</option>
+										</c:forEach>
 										<option value="4">其他</option>
 									</select>
 								</div>
