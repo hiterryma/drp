@@ -11,6 +11,7 @@ import com.yootk.common.servlet.web.PageUtil;
 import com.yootk.service.back.ICustomerServiceBack;
 import com.yootk.util.UploadFileToServer;
 import com.yootk.vo.Customer;
+import com.yootk.vo.CustomerRecord;
 import com.yootk.vo.Goods;
 
 @Controller
@@ -42,7 +43,7 @@ public class CustomerActionBack extends AbstractAction {
     @RequestMapping("customer_audit_list")
     public ModuleAndView listByStatus() throws Exception {
         PageUtil pu = new PageUtil(super.getPage("audit_list.action"), "客户姓名:name|联系电话:phone|联系地址:address");
-        return new ModuleAndView(super.getPage("audit_list.page"),customerServiceBack.listByStatus(pu.getCurrentPage(), pu.getLineSize(), pu.getColumn(), pu.getKeyword()));
+        return new ModuleAndView(super.getPage("audit_list.page"), customerServiceBack.listByStatus(pu.getCurrentPage(), pu.getLineSize(), pu.getColumn(), pu.getKeyword()));
     }
 
     @RequestMapping("customer_list")
@@ -50,7 +51,38 @@ public class CustomerActionBack extends AbstractAction {
         PageUtil pu = new PageUtil(super.getPage("list.action"), "客户姓名:name|联系电话:phone|联系地址:address");
         return new ModuleAndView(super.getPage("list.page"),customerServiceBack.list(pu.getCurrentPage(), pu.getLineSize(), pu.getColumn(), pu.getKeyword()));
     }
+    //客户审核
+    @RequestMapping("customer_audit")
+    public void audit(Integer audit,String note,Long cuid) throws Exception{
+        if (this.customerServiceBack.editForStatus(audit,note,cuid)) {
+            super.print(false);
+        }else {
+            super.print(true);
+        }
+    }
 
+    //客户沟通记录获取
+    @RequestMapping("customer_record_list")
+    public void customerRecordList() throws Exception{
+        PageUtil pu = new PageUtil(super.getPage("audit_list.action"));
+        System.out.println(customerServiceBack.listForCustomerRecord(pu.getCurrentPage(), pu.getLineSize(), pu.getColumn(), pu.getKeyword()));
+    }
+    //添加客户沟通记录
+    @RequestMapping("customer_record_add")
+    public void audit(String title,String note,Long criid,String cuid) throws Exception{
+        CustomerRecord customerRecord = new CustomerRecord() ;
+        customerRecord.setCmid(super.getFrontUser());
+        customerRecord.setCuid(cuid);
+        customerRecord.setNote(note);
+        customerRecord.setCriid(criid);
+        customerRecord.setTitle(title);
+        this.customerServiceBack.addForCustomerRecord(customerRecord) ;
+ //      if (this.customerServiceBack.editForStatus(audit,note,criid)) {
+//            super.print(false);
+//        }else {
+//            super.print(true);
+//        }
+    }
     @Override
     public String getUploadDir() {
         return "/upload/back/customer";

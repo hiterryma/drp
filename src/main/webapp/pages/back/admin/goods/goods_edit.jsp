@@ -7,6 +7,7 @@
 	<script type="text/javascript" src="js/pages/back/admin/goods/goods_edit.js"></script>
 	<script type="text/javascript" src="js/split_page.js"></script>
 	<script type="text/javascript" src="bootstrap/tinymce/tinymce.min.js"></script>
+	<script type="text/javascript" src="js/pages/back/index.js"></script>
 </head>
 <%!
 	public static final String GOODS_EDIT_URL = "pages/back/admin/goods/goods_edit.action" ;

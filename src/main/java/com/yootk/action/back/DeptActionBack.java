@@ -25,7 +25,7 @@ public class DeptActionBack extends AbstractAction {
 		ModuleAndView mav = new ModuleAndView(super.getPage("list.page"));
 		PageUtil pu = new PageUtil(super.getPage("list.action"));
 		try {
-			mav.add(this.deptService.list(pu.getCurrentPage(), pu.getLineSize(),pu.getColumn(), pu.getKeyword()));
+			mav.add(this.deptService.list(pu.getCurrentPage(),10,pu.getColumn(), pu.getKeyword()));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

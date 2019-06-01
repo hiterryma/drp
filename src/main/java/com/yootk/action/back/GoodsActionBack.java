@@ -1,5 +1,6 @@
 package com.yootk.action.back;
 
+import com.alibaba.fastjson.JSONObject;
 import com.yootk.common.action.abs.AbstractAction;
 import com.yootk.common.annotation.Autowired;
 import com.yootk.common.annotation.Controller;
@@ -9,6 +10,11 @@ import com.yootk.service.back.IGoodsService;
 import com.yootk.util.UploadFileToServer;
 import com.yootk.vo.Goods;
 import com.yootk.service.back.IGoodsServiceBack;
+import com.yootk.vo.Subtype;
+
+import java.util.List;
+import java.util.Map;
+
 @Controller
 @RequestMapping("/pages/back/admin/goods/")
 public class GoodsActionBack extends AbstractAction {
@@ -17,6 +23,17 @@ public class GoodsActionBack extends AbstractAction {
     private IGoodsService goodsService;
     @Autowired
     private IGoodsServiceBack goodsServiceBack;
+
+    @RequestMapping("getGoods")
+    public ModuleAndView getGoods(Long gid){
+        ModuleAndView mav = new ModuleAndView("/pages/front/goods/goods_show.jsp");
+        try {
+            mav.add("getGoods",this.goodsServiceBack.getById(gid));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return mav;
+    }
 
     @RequestMapping("goods_pre_add")
     public ModuleAndView preAdd() throws Exception{
@@ -110,16 +127,52 @@ public class GoodsActionBack extends AbstractAction {
 
     @RequestMapping("goods_subaru")
     public ModuleAndView goods_subaru(Long stid) {
+        if (stid != null){
+            ServletObject.getSession().setAttribute("stid" ,stid);
+        }
+        if (stid == null) {
+            stid = Long.parseLong(ServletObject.getSession().getAttribute("stid").toString());
+           //ServletObject.getSession().removeAttribute("stid");
+        }
         ModuleAndView mav = new ModuleAndView("/pages/front/goods/goods_list.jsp");
         PageUtil pu = new PageUtil("/pages/back/admin/goods/goods_subaru.action","商品名称:name");
         try {
-            System.out.println(stid+"、"+pu.getCurrentPage()+"、"+ pu.getLineSize()+"、"+ pu.getColumn()+"、"+  pu.getKeyword());
-            mav.add(this.goodsServiceBack.getByStid(stid,pu.getCurrentPage(), pu.getLineSize(),pu.getColumn(), pu.getKeyword()));
+            mav.add(this.goodsServiceBack.getByStid(stid,pu.getCurrentPage(),pu.getLineSize(),pu.getColumn(),pu.getKeyword()));
         } catch (Exception e) {
             e.printStackTrace();
         }
         return mav;
     }
+
+    /**
+     * 查寻商品详细信息
+     * @param gid  要查询的商品ID
+     * @return
+     */
+    @RequestMapping("goods_show")
+    public ModuleAndView goods_show(Long gid) {
+        ModuleAndView mav = new ModuleAndView("/pages/back/admin/goods/goods_show.jsp");
+        try {
+            mav.add(this.goodsServiceBack.getGidAndWid(gid));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return mav;
+    }
+
+    /**
+     * 查询商品入库和商品入库审核人员的信息信息
+     * @param mid 要查询的ID
+     */
+    @RequestMapping("goods_member")
+    public void goods_member(String mid){
+        try {
+            super.print(JSONObject.toJSONString(this.goodsServiceBack.getMemberParticular(mid)));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
     @Override
     public String getUploadDir() {

@@ -4,6 +4,7 @@
 <html>
 <head>
 <jsp:include page="/pages/plugins/basepath.jsp" />
+	<script type="text/javascript" src="js/pages/back/index.js"></script>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">

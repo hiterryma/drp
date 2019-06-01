@@ -59,6 +59,7 @@ public class MemberServiceFrontImpl extends AbstractService implements IMemberSe
             return false;
         }
         else {
+            this.memberDAO.update_lastTinme(vo);
             return member.getPassword().equals(vo.getPassword());
         }
     }

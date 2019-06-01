@@ -6,6 +6,7 @@
 <head>
 	<jsp:include page="/pages/plugins/basepath.jsp"/>
 	<script type="text/javascript" src="js/pages/back/admin/dept/dept_list.js"></script>
+	<script type="text/javascript" src="js/pages/back/index.js"></script>
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
@@ -20,7 +21,7 @@
 		<div class="content-wrapper text-left">
 		<div class="panel panel-success">
 			<div class="panel-heading">
-				<strong><span class="glyphicon glyphicon-list"></span>&nbsp;雇员信息列表</strong>
+				<strong><span class="glyphicon glyphicon-list"></span>&nbsp;部门信息列表</strong>
 			</div>
 			<div class="panel-body">
 				<table class="table table-condensed">

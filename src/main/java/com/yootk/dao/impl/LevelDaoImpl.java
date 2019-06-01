@@ -30,7 +30,10 @@ public class LevelDaoImpl extends AbstractDAO implements ILevelDAO {
 
     @Override
     public Level findById(Long aLong) throws SQLException {
-        return null;
+        String sql = "SELECT title FROM level WHERE lid=?";
+        super.pstmt = super.conn.prepareStatement(sql);
+        super.pstmt.setLong(1,aLong);
+        return super.handleResultToVO(super.pstmt.executeQuery(),Level.class);
     }
 
     @Override

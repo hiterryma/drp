@@ -21,10 +21,10 @@
 						</thead>
 						<tbody>
 							<tr class="text-primary">
-								<td class="text-left">通州一号仓库</td>
-								<td class="text-center">北京</td>
-								<td class="text-center">北京</td>
-								<td class="text-center">2000</td>
+								<td class="text-left">${goodsWid.address}</td>
+								<td class="text-center">${goodsProvince.title}</td>
+								<td class="text-center">${goodsCity.title}</td>
+								<td class="text-center">${goodsShow.stornum}</td>
 							</tr>
 						</tbody>
 					</table>

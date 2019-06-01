@@ -17,6 +17,15 @@ public class Goods implements Serializable {
     private Integer stornum;
     private String recorder;
     private Integer delflag;
+    private Long wid;
+
+    public Long getWid() {
+        return wid;
+    }
+
+    public void setWid(Long wid) {
+        this.wid = wid;
+    }
 
     @Override
     public String toString() {
@@ -33,6 +42,7 @@ public class Goods implements Serializable {
                 ", stornum=" + stornum +
                 ", recorder='" + recorder + '\'' +
                 ", delflag=" + delflag +
+                ", wid=" + wid +
                 '}';
     }
 

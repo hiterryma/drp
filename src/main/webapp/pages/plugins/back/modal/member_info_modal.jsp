@@ -11,30 +11,30 @@
 			<div class="modal-body">
 				<div id="costBasicInfo">
 					<div class="row">
-						<div class="col-xs-3">
-							<img src="#" style="width:200px;">
+						<div class="col-xs-3" id="photo">
+
 						</div>
 						<div class="col-xs-8">
 							<table class="table table-condensed" style="width:700px;">
 								<tr>
 									<td style="width:30%;"><strong>雇员姓名：</strong></td>
-									<td><span id="mid">老李</span></td>
+									<td><span id="mid"></span></td>
 								</tr>
 								<tr>
 									<td><strong>雇员职位：</strong></td>
-									<td id="level">普通员工</td>
+									<td id="level"></td>
 								</tr>
 								<tr>
 									<td><strong>所属部门：</strong></td>
-									<td id="dept">技术部</td>
+									<td id="dept"></td>
 								</tr>
 								<tr>
 									<td><strong>联系电话：</strong></td>
-									<td id="phone">123432890</td>
+									<td id="phone"></td>
 								</tr>
 								<tr>
 									<td><strong>备注信息：</strong></td>
-									<td><pre class="pre-scrollable" style="width:450px;height:150px;" ></pre></td>
+									<td><pre class="pre-scrollable" style="width:450px;height:150px;" id="note"></pre></td>
 								</tr>
 							</table>
 						</div>

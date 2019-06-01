@@ -1,5 +1,5 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%!
 	public static final String CUSTOMER_ADD_URL = "" ;
 %>
@@ -8,6 +8,7 @@
 	<jsp:include page="/pages/plugins/basepath.jsp"/>
 	<script type="text/javascript" src="js/pages/back/admin/customer/customer_audit_list.js"></script>
 	<script type="text/javascript" src="js/split_page.js"></script>
+	<script type="text/javascript" src="js/pages/back/index.js"></script>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">

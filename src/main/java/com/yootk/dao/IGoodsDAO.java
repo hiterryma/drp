@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface IGoodsDAO extends IBaseDAO<Long, Goods> {
+    public Long getAllCountByStid(Long stid) throws SQLException;
+    public Long getAllCountByStid(Long stid,String column, String keyWord) throws SQLException;
     /**
      * 根据商品的二级子分类
      * @param stid 二级子分类ID
@@ -15,4 +17,6 @@ public interface IGoodsDAO extends IBaseDAO<Long, Goods> {
      */
     public List<Goods> findByStid(Long stid,Long currentPage,Integer lineSize,String clonum,String keyword) throws SQLException;
     public List<Goods> findByStid(Long stid,Long currentPage,Integer lineSize) throws SQLException;
+
+
 }

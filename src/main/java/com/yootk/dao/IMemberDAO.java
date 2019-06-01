@@ -8,12 +8,19 @@ import java.util.List;
 
 public interface IMemberDAO extends IBaseDAO<String , Member> {
     /**
+     * 更新最新登录时间
+     * @param vo
+     * @return
+     * @throws SQLException
+     */
+    public boolean update_lastTinme(Member vo) throws SQLException;
+    /**
      * 查询用户是否有部门，用户查询雇员的角色信息
      * @param mid
      * @return
      * @throws SQLException
      */
-    public Long findDidByDeptAndMember(String mid) throws SQLException;
+    public Member findDidByDeptAndMember(String mid) throws SQLException;
     /**
      *
      * @param newpassword
