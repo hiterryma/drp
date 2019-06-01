@@ -17,13 +17,11 @@ $(function () {
             operateAlert(true, "购物车添加成功！", "购物车添加失败！");
         });
     });
-
     if($.cookie("refresh")!="no"){
         setTimeout(function(){
             window.location.reload();
             $.cookie("refresh","no");
         },1);
-        $.cookie().removeAttrs("no");
     }
 });
 

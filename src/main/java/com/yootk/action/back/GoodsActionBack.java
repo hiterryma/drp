@@ -1,5 +1,6 @@
 package com.yootk.action.back;
 
+import com.alibaba.fastjson.JSONObject;
 import com.yootk.common.action.abs.AbstractAction;
 import com.yootk.common.annotation.Autowired;
 import com.yootk.common.annotation.Controller;
@@ -133,6 +134,35 @@ public class GoodsActionBack extends AbstractAction {
             e.printStackTrace();
         }
         return mav;
+    }
+
+    /**
+     * 查寻商品详细信息
+     * @param gid  要查询的商品ID
+     * @return
+     */
+    @RequestMapping("goods_show")
+    public ModuleAndView goods_show(Long gid) {
+        ModuleAndView mav = new ModuleAndView("/pages/back/admin/goods/goods_show.jsp");
+        try {
+            mav.add(this.goodsServiceBack.getGidAndWid(gid));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return mav;
+    }
+
+    /**
+     * 查询商品入库和商品入库审核人员的信息信息
+     * @param mid 要查询的ID
+     */
+    @RequestMapping("goods_member")
+    public void goods_member(String mid){
+        try {
+            super.print(JSONObject.toJSONString(this.goodsServiceBack.getMemberParticular(mid)));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 

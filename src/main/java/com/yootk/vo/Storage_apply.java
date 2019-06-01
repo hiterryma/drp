@@ -21,7 +21,15 @@ public class Storage_apply implements Serializable {
     private Integer status ;
     //审核用户的id，申请单创建后是没有审核用户的，自由提交之后，交给财务部的入库审核人员审核之后，记录下审核人员的id
     private String appmid ;
+    private String mid;
 
+    public String getMid() {
+        return mid;
+    }
+
+    public void setMid(String mid) {
+        this.mid = mid;
+    }
 
     public Long getSaid() {
         return said;
