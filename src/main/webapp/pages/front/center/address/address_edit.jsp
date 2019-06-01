@@ -1,12 +1,12 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
 	<jsp:include page="/pages/plugins/basepath.jsp"/>
 	<script type="text/javascript" src="js/pages/front/center/address/address_edit.js"></script>
 </head>
 <%!
-	public static final String ADDRESS_EDIT_URL = "" ;
+	public static final String ADDRESS_EDIT_URL = "pages/front/center/address/address_edit.action" ;
 %>
 <body class="back">
 	<div class="container contentback">
@@ -33,11 +33,11 @@
 								<!-- 定义输入表单样式，其中id主要用于设置颜色样式 -->
 								<div class="form-group" id="nameDiv">
 									<!-- 定义表单提示文字 -->
-									<label class="col-md-3 control-label" for="name">收件人：</label>
+									<label class="col-md-3 control-label" for="receiver">收件人：</label>
 									<div class="col-md-5">
 										<!-- 定义表单输入组件 -->
-										<input type="text" id="name" name="name" class="form-control"
-											placeholder="请输入收件人姓名" value="张三">
+										<input type="text" id="receiver" name="receiver" class="form-control"
+											placeholder="请输入收件人姓名" value="">
 									</div>
 									<!-- 定义表单错误提示显示元素 -->
 									<div class="col-md-4" id="nameMsg"></div>
@@ -48,7 +48,7 @@
 									<div class="col-md-5">
 										<!-- 定义表单输入组件 -->
 										<input type="text" id="phone" name="phone" class="form-control"
-											placeholder="请输入您的联系电话" value="1234234235312">
+											placeholder="请输入您的联系电话" value="">
 									</div>
 									<!-- 定义表单错误提示显示元素 -->
 									<div class="col-md-4" id="phoneMsg"></div>
@@ -58,11 +58,9 @@
 									<label class="col-md-3 control-label" for="pid">省份：</label>
 									<div class="col-md-5">
 										<select id="pid" name="pid" class="form-control">
-											<option value="1">北京</option>
-											<option value="2">天津</option>
-											<option value="3">上海</option>
-											<option value="4" selected>山东</option>
-											<option value="5">辽宁</option>
+											<c:forEach items="${allProvinces}" var="province">
+												<option value="${province.pid}">${province.title}</option>
+											</c:forEach>
 										</select>
 									</div>
 									<!-- 定义表单错误提示显示元素 -->
@@ -73,9 +71,6 @@
 									<label class="col-md-3 control-label" for="cid">城市：</label>
 									<div class="col-md-5">
 										<select id="cid" name="cid" class="form-control">
-											<option value="11">济南</option>
-											<option value="12" selected>青岛</option>
-											<option value="13">潍坊</option>
 										</select>
 									</div>
 									<!-- 定义表单错误提示显示元素 -->
@@ -87,14 +82,14 @@
 									<div class="col-md-5">
 										<!-- 定义表单输入组件 -->
 										<input type="text" id="addr" name="addr" class="form-control"
-											placeholder="请输入您的联系地址" value="山东省 青岛市 xxx楼xxx">
+											placeholder="请输入您的联系地址" value="">
 									</div>
 									<!-- 定义表单错误提示显示元素 -->
 									<div class="col-md-4" id="addrMsg"></div>
 								</div>
 								<div class="form-group">
 									<div class="col-md-5 col-md-offset-3">
-										<input type="hidden" id="goods.gid" name="goods.gid" value="1">
+<%--										<input type="hidden" id="goods.gid" name="goods.gid" value="1">--%>
 										<button type="submit" class="btn btn-primary">修改</button>
 										<button type="reset" class="btn btn-warning">重置</button>
 									</div>
