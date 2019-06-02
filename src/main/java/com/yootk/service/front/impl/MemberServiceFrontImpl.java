@@ -5,6 +5,7 @@ import com.yootk.common.annotation.Service;
 import com.yootk.common.encrypt.EncryptUtil;
 import com.yootk.common.service.abs.AbstractService;
 import com.yootk.dao.IActionDAO;
+import com.yootk.dao.ICustomerDAO;
 import com.yootk.dao.IMemberDAO;
 import com.yootk.dao.IRoleDAO;
 import com.yootk.service.front.IMemberServiceFront;
@@ -21,6 +22,8 @@ public class MemberServiceFrontImpl extends AbstractService implements IMemberSe
     private IActionDAO actionDAO ;
     @Autowired
     private IRoleDAO roleDAO ;
+    @Autowired
+    private ICustomerDAO customerDAO;
     @Override
     public boolean update_password(String oldpassword,String newpassword,String mid) throws Exception {
         Member vo = this.memberDAO.findByIdAndpw(mid);
@@ -65,7 +68,11 @@ public class MemberServiceFrontImpl extends AbstractService implements IMemberSe
         Member member = this.memberDAO.findById(vo.getMid());
         Map<String,Object> map = new HashMap<>() ;
         if (member != null) {
+
+            Integer aa = this.customerDAO.findByMid(vo.getMid());
+            System.out.println(aa);
             this.memberDAO.update_lastTinme(vo);
+            map.put("status",aa);
            map.put("flag",member.getPassword().equals(vo.getPassword()))  ;
            map.put("allActions",actionDAO.findAllByMember(member.getDid())) ;
            map.put("did",member.getDid());

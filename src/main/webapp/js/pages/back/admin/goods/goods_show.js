@@ -13,7 +13,7 @@ $(function() {
 			loadFlag = true ; // 数据已经加载完成
 			$("span[id^=mid_]").each(function(){
 				$(this).on("click",function(){
-					$("#photo").append("")
+					$("#photo").append("");
 					$("#mid").html("");
 					$("#level").html("");
 					$("#dept").html("");

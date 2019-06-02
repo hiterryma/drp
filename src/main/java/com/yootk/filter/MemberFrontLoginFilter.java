@@ -23,10 +23,10 @@ public class MemberFrontLoginFilter implements Filter {
                     session.setAttribute("mid", temp[0]);
                     chain.doFilter(req, resp);
                 } else {	// 跳转到登录页
-                    req.getRequestDispatcher("/member_login_pre.action").forward(req, resp);
+                    req.getRequestDispatcher("/member_login_filter.action").forward(req, resp);
                 }
             } else {
-                req.getRequestDispatcher("/member_login_pre.action").forward(req, resp);
+                req.getRequestDispatcher("/member_login_filter.action").forward(req, resp);
             }
         } else {	// 用户已登录
             chain.doFilter(req, resp);
