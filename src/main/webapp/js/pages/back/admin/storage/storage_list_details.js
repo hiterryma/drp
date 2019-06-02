@@ -80,10 +80,27 @@ function addDetails(tdid) {
 
 //执行入库商品添加
 function saveDetails(did) {
-	console.log("【增加】详情编号：" + did) ;
-	// 需要进行数据验证，而后再进行ajax提交处理，当提交成功后应该获取最后一次增长ID信息，替换掉原始的临时id
-	operateAlert(true,"入库商品信息添加成功！","入库商品信息添加失败！") ;
-	$("#dettr-" + did).attr("class","text-success") ;
+	said = $("#detailsTab").val() ;
+	sadid = $("dettr-" + did).val() ;
+	gid = $("#gid-" + did).val() ;
+	gname = $("#name-" + did).val() ;
+	amount = $("#amount-" + did).val() ;
+	price = $("#price-" + did).val() ;
+	weight = $("#weight-" + did).val() ;
+	totalprice = price * amount ;
+	totalweight = weight * amount ;
+
+	/**
+	 * 执行Ajax异步增加清单详情
+	 */
+	$.get("/pages/back/admin/storage_details/storage_details_addoredit.action",{"sadid":sadid,"said":said,"gid":gid,"name":gname,"num":amount,"price":totalprice,"weight":totalweight},function(data){
+		operateAlert(data.trim() == "true","清单详情添加成功！","清单详情添加失败！") ;
+	},"text") ;
+
+	// console.log("【增加】详情编号：" + did) ;
+	// // 需要进行数据验证，而后再进行ajax提交处理，当提交成功后应该获取最后一次增长ID信息，替换掉原始的临时id
+	// operateAlert(true,"入库商品信息添加成功！","入库商品信息添加失败！") ;
+	// $("#dettr-" + did).attr("class","text-success") ;
 }
 
 //删除一行表格

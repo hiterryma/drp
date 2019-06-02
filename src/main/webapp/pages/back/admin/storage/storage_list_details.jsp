@@ -62,8 +62,8 @@
 					</table>
 				</div>
 				<div>
-					<table class="table table-condensed" id="detailsTab">
-						<thead>
+					<table class="table table-condensed" id="detailsTab" value="${storage_apply_details.said}">
+						<thead >
 							<tr>
 								<th class="text-left" style="width:10%;">商品编号</th> 
 								<th class="text-left" style="width:30%;">商品名称</th>
@@ -91,7 +91,8 @@
 							</tr>
 							-->
 
-							<tr id="dettr-${status.index+1}" class="text-success">
+							<tr id="dettr-${status.index+1}" class="text-success" value="${storage_apply_details.sadid}">
+
 								<td><input type="text" id="gid-${status.index+1}" value="${storage_apply_details.gid}"/></td>
 								<td><input type="text" id="name-${status.index+1}" value="${storage_apply_details.name}" size="40"/></td>
 								<td><input type="text" id="amount-${status.index+1}" value="${storage_apply_details.num}" maxlength="8" size="8"/></td>

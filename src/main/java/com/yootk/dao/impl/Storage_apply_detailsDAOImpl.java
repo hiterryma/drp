@@ -28,7 +28,16 @@ public class Storage_apply_detailsDAOImpl extends AbstractDAO implements IStorag
 
     @Override
     public boolean doEdit(Storage_apply_details storage_apply_details) throws SQLException {
-        return false;
+        String sql = "UPDATE storage_apply_details SET said=?,gid=?,name=?,num=?,price=?,weight=? WHERE sadid=?" ;
+        super.pstmt = super.conn.prepareStatement(sql) ;
+        super.pstmt.setLong(1,storage_apply_details.getSaid());
+        super.pstmt.setLong(2,storage_apply_details.getGid());
+        super.pstmt.setString(3,storage_apply_details.getName());
+        super.pstmt.setInt(4,storage_apply_details.getNum());
+        super.pstmt.setDouble(5,storage_apply_details.getPrice());
+        super.pstmt.setDouble(6,storage_apply_details.getWeight());
+        super.pstmt.setLong(7,storage_apply_details.getSadid());
+        return super.pstmt.executeUpdate() > 0 ;
     }
 
     @Override
@@ -37,8 +46,12 @@ public class Storage_apply_detailsDAOImpl extends AbstractDAO implements IStorag
     }
 
     @Override
-    public Storage_apply_details findById(Long aLong) throws SQLException {
-        return null;
+    public Storage_apply_details findById(Long sadid) throws SQLException {
+        String sql = "SELECT sadid,said,gid,name,num,price,weight FROM storage_apply_details WHERE sadid=?" ;
+        super.pstmt = super.conn.prepareStatement(sql) ;
+        super.pstmt.setLong(1,sadid);
+        ResultSet rs = super.pstmt.executeQuery() ;
+        return super.handleResultToVO(rs,Storage_apply_details.class) ;
     }
 
     @Override

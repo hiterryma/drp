@@ -1,5 +1,7 @@
 package com.yootk.service.back;
 
+import com.yootk.vo.Storage_apply_details;
+
 import java.util.Map;
 
 public interface IStorage_apply_detailsServiceBack {
@@ -10,5 +12,8 @@ public interface IStorage_apply_detailsServiceBack {
      * @return
      * @throws Exception
      */
-    Map<String,Object> preAdd(Long said) throws Exception ;
+    public Map<String,Object> preAdd(Long said) throws Exception ;
+
+
+    public boolean addOrEdit(Storage_apply_details storage_apply_details) throws Exception ;
 }

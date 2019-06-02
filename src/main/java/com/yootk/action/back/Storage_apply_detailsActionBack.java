@@ -6,6 +6,7 @@ import com.yootk.common.annotation.Controller;
 import com.yootk.common.annotation.RequestMapping;
 import com.yootk.common.servlet.web.ModuleAndView;
 import com.yootk.service.back.IStorage_apply_detailsServiceBack;
+import com.yootk.vo.Storage_apply_details;
 
 import java.awt.event.MouseAdapter;
 @Controller
@@ -35,5 +36,27 @@ public class Storage_apply_detailsActionBack extends AbstractAction {
             e.printStackTrace();
         }
         return mav ;
+    }
+
+    @RequestMapping("storage_details_addoredit")
+    public void addOrEdit(Long sadid, Long said, Long gid, String name, int num, Double price, Double weight) {
+        System.out.println("*******+++++++++");
+        System.out.println(sadid+ "++++"+said+ "++++"+gid+ "++++"+name+ "++++"+num+ "++++"+price+ "++++"+weight);
+        Storage_apply_details storage_apply_details = new Storage_apply_details() ;
+        storage_apply_details.setSaid(said);
+        storage_apply_details.setName(name);
+        storage_apply_details.setSadid(sadid);
+        storage_apply_details.setGid(gid);
+        storage_apply_details.setNum(num) ;
+        storage_apply_details.setPrice(price);
+        storage_apply_details.setWeight(weight);
+        System.out.println(storage_apply_details);
+        try {
+            //1、使用的是Ajax实现，所以要用print()函数
+            super.print(this.storage_apply_detailsServiceBack.addOrEdit(storage_apply_details));
+        } catch (Exception e) {
+            super.print(false);
+        }
+
     }
 }
