@@ -126,7 +126,6 @@ public class WarehouseActionBack extends AbstractAction {
 
     @RequestMapping("warehouse_list_wiid")
     public void listWarehouseByWiid(Long wiid){
-        System.out.println(wiid);
         try {
 
             super.print(JSONObject.toJSONString(this.warehouseService.listWarehouseByWiid(wiid)));
@@ -138,7 +137,6 @@ public class WarehouseActionBack extends AbstractAction {
 
     @RequestMapping("warehouse_list_pcw")
     public void listWarehouseByWiid(Long pid, Long cid, Long wiid){
-        System.out.println(pid + "  " + cid + " "+ wiid);
         try {
 
             super.print(JSONObject.toJSONString(this.warehouseService.listWarehouseByPCW(pid,cid,wiid)));

@@ -4,7 +4,6 @@
 <head>
     <jsp:include page="/pages/plugins/basepath.jsp"/>
     <script type="text/javascript" src="js/pages/front/center/purchase/purchase_authentication.js"></script>
-    <script type="text/javascript" src="js/pages/front/center/purchase/purchase.js"></script>
 </head>
 <%!
     public static final String PURCHASE_AUTHENTICATION_URL = "/pages/front/center/purchase/authentication_pre.action";

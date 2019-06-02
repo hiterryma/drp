@@ -94,14 +94,14 @@ public class GoodsDAOImpl extends AbstractDAO implements IGoodsDAO {
 
     @Override
     public List<Goods> findAllByGids(Set<Long> gids) throws SQLException {  //没有覆写
-        StringBuffer sql = new StringBuffer("SELECT gid,name,wiid,stid,price,weight,photo,note,lastin,stornum,recorder FROM goods WHERE delflag=0 and gid IN ( ") ;
-        for (Long gid : gids) {
-            sql.append(gid).append(",") ;
-        }
-        sql.delete(sql.length() - 1,sql.length()).append(")") ;
-        List<Goods> all = new ArrayList<>();
-        super.pstmt = super.conn.prepareStatement(sql.toString());
-        return super.handleResultToList(super.pstmt.executeQuery(),Goods.class);
+            StringBuffer sql = new StringBuffer("SELECT gid,name,wiid,stid,price,weight,photo,note,lastin,stornum,recorder FROM goods WHERE delflag=0 and gid IN ( ") ;
+            for (Long gid : gids) {
+                sql.append(gid).append(",") ;
+            }
+            sql.delete(sql.length() - 1,sql.length()).append(")") ;
+            List<Goods> all = new ArrayList<>();
+            super.pstmt = super.conn.prepareStatement(sql.toString());
+            return super.handleResultToList(super.pstmt.executeQuery(),Goods.class);
     }
 
     @Override

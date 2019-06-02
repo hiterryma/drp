@@ -47,19 +47,7 @@ public class PurchaseDAOImpl extends AbstractDAO implements IPurchaseDAO {
 
     @Override
     public List<Purchase> findAll() throws SQLException {
-        List<Purchase> all = new ArrayList<>();
-        String sql = "SELECT title,note,subdate,state FROM purchase";
-        super.pstmt = super.conn.prepareStatement(sql);
-        ResultSet rs = super.pstmt.executeQuery();
-        while (rs.next()){
-            Purchase vo = new Purchase();
-            vo.setTitle(rs.getString(1));
-            vo.setNote(rs.getString(2));
-            vo.setSubdate(rs.getDate(3));
-            vo.setState(rs.getInt(4));
-            all.add(vo);
-        }
-        return all;
+        return null;
     }
 
     @Override
@@ -80,5 +68,15 @@ public class PurchaseDAOImpl extends AbstractDAO implements IPurchaseDAO {
     @Override
     public Long getAllCount(String column, String keyWord) throws SQLException {
         return null;
+    }
+
+    @Override
+    public List<Purchase> findAllById(String mid) throws SQLException {
+        List<Purchase> all = new ArrayList<>();
+        String sql = "SELECT title,note,subdate,state FROM purchase WHERE mid=?";
+        super.pstmt = super.conn.prepareStatement(sql);
+        super.pstmt.setString(1,mid);
+        ResultSet rs = super.pstmt.executeQuery();
+        return super.handleResultToList(rs,Purchase.class);
     }
 }

@@ -9,7 +9,9 @@ import com.yootk.common.servlet.web.ModuleAndView;
 import com.yootk.service.front.IAddressServiceFront;
 import com.yootk.vo.Address;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 @Controller
@@ -34,7 +36,7 @@ public class AddressActionFront extends AbstractAction {
     @RequestMapping("address_add")
     public ModuleAndView add(Address addresss) {
         addresss.setMid(super.getFrontUser()); // mid
-        ModuleAndView mav = new ModuleAndView(super.getForwardPage());
+        ModuleAndView mav = new ModuleAndView("/pages/front/center/address/address_list.action");
         try {
             if (this.addressServiceFront.add(addresss)) {    // 进行数据保存
                 mav.add(AbstractAction.MSG_ATTRIBUTE_NAME, super.getMessge("vo.add.success", ACTION_TITLE));
@@ -52,7 +54,7 @@ public class AddressActionFront extends AbstractAction {
     //地址列表显示
     @RequestMapping("address_list")
     public ModuleAndView list() {
-        ModuleAndView mav =new ModuleAndView(super.getPage("list.page"));
+        ModuleAndView mav =new ModuleAndView("/pages/front/center/address/address_list.jsp");//super.getPage("list.page")
         try {
             mav.add(
                     this.addressServiceFront.list(super.getFrontUser()));
@@ -64,7 +66,6 @@ public class AddressActionFront extends AbstractAction {
     //地址删除
     @RequestMapping("address_delete")
     public void delete(String data) {
-        System.out.println(data);
         Set<Long> adids = new HashSet<>() ;
         String results [] = data.split(";") ; // 根据“;”拆分数据
         for (String adid : results) {
@@ -78,10 +79,13 @@ public class AddressActionFront extends AbstractAction {
     }
     //地址修改准备
     @RequestMapping("address_edit_pre")   //路径合并
-    public ModuleAndView editPre(Long[] pid) {
+    public ModuleAndView editPre(Long adid) {      //Long[] pid
         ModuleAndView mav = new ModuleAndView("/pages/front/center/address/address_edit.jsp");
+        Map<String,Object>  map=new HashMap<>();
+        map.put("adid",adid);
         try {
-           mav.add(this.addressServiceFront.preEdit());
+           mav.add(this.addressServiceFront.preEdit(adid));
+            mav.add(map);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -89,11 +93,12 @@ public class AddressActionFront extends AbstractAction {
     }
 //    地址修改
     @RequestMapping("address_edit")
-    public ModuleAndView edit(Address addresss) {
+    public ModuleAndView edit(Address addresss,Long adid) {
         addresss.setMid(super.getFrontUser()); // mid
-        ModuleAndView mav = new ModuleAndView(super.getForwardPage());
+        ModuleAndView mav = new ModuleAndView("/pages/front/center/address/address_list.action");
+
         try {
-            if (this.addressServiceFront.edit(addresss)) {    // 进行数据保存
+            if (this.addressServiceFront.edit(addresss,adid)) {    // 进行数据保存
                 mav.add(AbstractAction.MSG_ATTRIBUTE_NAME, super.getMessge("vo.add.success", ACTION_TITLE));
             } else {
                 mav.add(AbstractAction.MSG_ATTRIBUTE_NAME, super.getMessge("vo.add.failure", ACTION_TITLE));

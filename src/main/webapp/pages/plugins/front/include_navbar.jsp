@@ -1,7 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<script type="text/javascript" src="js/include_navbar.js"></script>
 <%!
 	public static final String LOGIN_URL = "login.jsp" ;
 	public static final String MALL_INDEX_URL = "classify.action" ;
@@ -9,7 +8,7 @@
 	public static final String PURCHASE_ADD_URL = "/pages/front/center/purchase/add_list.action" ;
 
 	public static final String MEMBER_EDIT_URL = "pages/front/center/member/member_edit.jsp" ;
-	public static final String MEMBER_ADDRESS_LIST_URL = "pages/front/center/address/address_list.jsp" ;
+	public static final String MEMBER_ADDRESS_LIST_URL = "pages/front/center/address/address_list.action" ;
 	public static final String ORDERS_LIST_URL = "pages/front/center/orders/orders_list.action" ;
 	public static final String SHOPCAR_LIST_URL = "pages/front/center/shopcar/shopcar_list.action" ;
 %>

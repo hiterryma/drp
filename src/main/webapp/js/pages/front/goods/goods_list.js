@@ -1,5 +1,6 @@
 $(function () {
     $("button[id*=addCar-]").each(function () {
+        alert("hello world");
         var gid = $(this).attr("id").split("-")[1];
         $(this).on("click", function () {
             console.log("*** gid = " + gid);

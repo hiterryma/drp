@@ -37,7 +37,24 @@ public class CustomerDAOImpl extends AbstractDAO implements ICustomerDAO {
 
     @Override
     public boolean doEdit(Customer customer) throws SQLException {
-        return false;
+
+        String sql = "update customer set name=?, phone=?, pid=?, cid=?, address=?, connum=?, ciid=?, csid=?, note=?, recorder=?, status=?, type=?, mid=? where cuid=?";
+        super.pstmt = super.conn.prepareStatement(sql);
+        super.pstmt.setString(1, customer.getName());
+        super.pstmt.setString(2, customer.getPhone());
+        super.pstmt.setLong(3, customer.getPid());
+        super.pstmt.setLong(4, customer.getCid());
+        super.pstmt.setString(5, customer.getAddress());
+        super.pstmt.setInt(6, customer.getConnum());
+        super.pstmt.setLong(7, customer.getCiid());
+        super.pstmt.setLong(8, customer.getCsid());
+        super.pstmt.setString(9, customer.getNote());
+        super.pstmt.setString(10, customer.getRecorder());
+        super.pstmt.setInt(11, customer.getStatus());
+        super.pstmt.setInt(12, customer.getType());
+        super.pstmt.setString(13, customer.getMid());
+        super.pstmt.setLong(14,customer.getCuid());
+        return super.pstmt.executeUpdate() > 0;
     }
 
     @Override

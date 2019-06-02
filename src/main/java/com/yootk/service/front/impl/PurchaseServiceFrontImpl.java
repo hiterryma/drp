@@ -35,8 +35,14 @@ public class PurchaseServiceFrontImpl extends AbstractService implements IPurcha
     }
 
     @Override
-    public List<Purchase> getAll() throws Exception {
-        return this.purchaseDAO.findAll();
+    public List<Purchase> getAllById(String mid) throws Exception {
+        List<Purchase> all = this.purchaseDAO.findAllById(mid);
+        if (all == null){
+            return null;
+        }else {
+            return all;
+        }
+
     }
 
     @Override

@@ -13,6 +13,7 @@ public interface ICustomerServiceBack {
 
     public boolean edit(Customer customer) throws Exception ;
 
+    public Map<String,Object> preAddCustomerRecord() throws Exception ;
     /**
      * 针对认证状态添加更新操作
      * @param status

@@ -17,6 +17,8 @@ public interface INewsServiceBack{
 
     public boolean edit(News vo) throws Exception ;
 
+    public boolean editForPublish(Long aLong) throws Exception ;
+
     public boolean delete(Set<Long> longs) throws Exception ;
 
     public News get(Long nid) throws Exception ;

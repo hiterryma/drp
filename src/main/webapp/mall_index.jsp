@@ -1,4 +1,5 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <jsp:include page="/pages/plugins/basepath.jsp"/>
@@ -28,10 +29,10 @@
                     <div class="col-md-3 text-center">
                         <p>
                             <a href="<%=GOODS_SHOW_URL%>${goods.gid}">
-                                <img src="http://43.226.146.219/upload/${goods.photo}" style="width:100px;"></a></p>
+                                <img src="http://upload-server/upload/${goods.photo}" style="width:100px;"></a></p>
                         <span class="text-warning h4"><strong>￥${goods.price}</strong></span>
                         <p><a href="<%=GOODS_SHOW_URL%>${goods.gid}">${goods.name}</a></p>
-                        <button id="addCar-1" class="btn btn-primary btn-xs">
+                        <button id="addCar-${goods.gid}" class="btn btn-primary btn-xs">
                             <span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;加入购物车
                         </button>
                     </div>

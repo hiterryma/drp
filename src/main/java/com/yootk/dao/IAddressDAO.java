@@ -16,7 +16,15 @@ public interface IAddressDAO extends IBaseDAO<Long , Address> {
 
     public boolean doRemoveByAddress(String mid,Set<Long> adids) throws  SQLException ;
 
-    public boolean doEdit(Address address) throws SQLException ;
+    public boolean doEdit(Address address,Long adid) throws SQLException ;
+
+    /**
+     * 根据地址id查询全部的地址信息
+     * @param adid 地址id
+     * @return 返回全部的地址信息
+     * @throws SQLException jdbc
+     */
+    public Address findByAdid(Long adid)throws SQLException;
 
 
 }

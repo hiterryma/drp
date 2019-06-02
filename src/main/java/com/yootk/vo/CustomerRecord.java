@@ -9,8 +9,21 @@ public class CustomerRecord implements Serializable {
     private Date cdate ;
     private Long criid ;
     private String note ;
-    private String cuid ;
+    private Long cuid ;
     private String title ;
+
+    @Override
+    public String toString() {
+        return "CustomerRecord{" +
+                "crid=" + crid +
+                ", cmid='" + cmid + '\'' +
+                ", cdate=" + cdate +
+                ", criid=" + criid +
+                ", note='" + note + '\'' +
+                ", cuid=" + cuid +
+                ", title='" + title + '\'' +
+                '}';
+    }
 
     public Long getCrid() {
         return crid;
@@ -52,11 +65,11 @@ public class CustomerRecord implements Serializable {
         this.note = note;
     }
 
-    public String getCuid() {
+    public Long getCuid() {
         return cuid;
     }
 
-    public void setCuid(String cuid) {
+    public void setCuid(Long cuid) {
         this.cuid = cuid;
     }
 
@@ -66,18 +79,5 @@ public class CustomerRecord implements Serializable {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    @Override
-    public String toString() {
-        return "CustomerRecord{" +
-                "crid=" + crid +
-                ", cmid='" + cmid + '\'' +
-                ", cdate=" + cdate +
-                ", criid=" + criid +
-                ", note='" + note + '\'' +
-                ", cuid='" + cuid + '\'' +
-                ", title='" + title + '\'' +
-                '}';
     }
 }

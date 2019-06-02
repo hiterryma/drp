@@ -29,6 +29,11 @@ public class PurchaseActionFront extends AbstractAction {
             e.printStackTrace();
         }
     }
+
+    /**
+     *
+     * @return
+     */
     @RequestMapping("purchase_authentication_list")
     public ModuleAndView purchase_authentication_list(){
         ModuleAndView mav = new ModuleAndView("/pages/front/center/purchase/purchase_authentication.jsp");
@@ -40,6 +45,10 @@ public class PurchaseActionFront extends AbstractAction {
         return mav;
     }
 
+    /**
+     *
+     * @return
+     */
     @RequestMapping("purchase_add_list")
     public ModuleAndView purchase_add_list(){
         ModuleAndView mav = new ModuleAndView("/pages/front/center/purchase/purchase_add.jsp");
@@ -50,11 +59,18 @@ public class PurchaseActionFront extends AbstractAction {
         }
         return mav;
     }
+
+    /**
+     * 采购订单列表
+     * @return
+     */
     @RequestMapping("add_list")
     public ModuleAndView add_list(){
         ModuleAndView mav = new ModuleAndView("/pages/front/center/purchase/purchase_list.jsp");
         try {
-            List<Purchase> map = this.purchaseServiceFront.getAll();
+            System.out.println(super.getFrontUser());
+            List<Purchase> map = this.purchaseServiceFront.getAllById(super.getFrontUser());
+            System.out.println(map);
             if (map == null){
                 mav.add(AbstractAction.PATH_ATTRIBUTE_NAME, super.getPage("list.failure"));
             }else {

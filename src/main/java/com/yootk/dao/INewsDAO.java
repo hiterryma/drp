@@ -15,6 +15,8 @@ public interface INewsDAO  extends IBaseDAO<Long, News> {
     @Override
     public boolean doEdit(News news) throws SQLException;
 
+    public boolean doEditForPublish(Long along) throws SQLException ;
+
     @Override
     public boolean doRemove(Set<Long> longs) throws SQLException;
 
