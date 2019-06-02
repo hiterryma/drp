@@ -21,6 +21,7 @@ public class WarehouseActionBack extends AbstractAction {
 
     @RequestMapping("warehouse_edit_admin")
     public void editAdmin(Long wid, String mid) throws Exception {
+        System.out.println(mid);
         super.print(JSONObject.toJSONString(this.warehouseService.editAdmin(wid, mid)));
     }
 

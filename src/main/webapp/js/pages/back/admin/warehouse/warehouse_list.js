@@ -28,28 +28,28 @@ $(function(){
 			$("#memberDeptInfo").modal("toggle") ;
 		}) ;
 	}) ;
-	$("button[id^=addadmin-]").each(function(){
-		$(this).on("click",function(){
-			mid = this.id.split("-")[1] ;
-			// mid = this.id.substring(this.id.indexOf("-") + 1);
-			console.log(mid);
-			console.log("新的仓库管理员编号：" + mid) ;
-			memberName = $("#memberName").text() ;
-			ele = $("<span id='mid-" + mid + "' style='cursor:pointer;'>"+memberName+"</span>") ;
-			ele.on("click",function(){
-				console.log("仓库管理员ID：" + mid) ;
-				// $("#memberInfo").modal("toggle") ;
-				showMemberInfo(mid);
-			}) ;
-			$("#admin-" + wid).html(ele) ;
-			$.getJSON("/pages/back/admin/warehouse/warehouse_edit_admin.action", {"wid":wid, "mid":mid}, function (data) {
-
-				$("#memberDeptInfo").modal("toggle") ;
-				operateAlert(data,"仓库管理员修改成功！","仓库管理员修改失败！") ;
-			});
-
-		}) ;
-	})
+	// $("button[id^=addadmin-]").each(function(){
+	// 	$(this).on("click",function(){
+	// 		mid = this.id.split("-")[1] ;
+	// 		// mid = this.id.substring(this.id.indexOf("-") + 1);
+	// 		console.log(mid);
+	// 		console.log("新的仓库管理员编号：" + mid) ;
+	// 		memberName = $("#memberName").text() ;
+	// 		ele = $("<span id='mid-" + mid + "' style='cursor:pointer;'>"+memberName+"</span>") ;
+	// 		ele.on("click",function(){
+	// 			console.log("仓库管理员ID：" + mid) ;
+	// 			// $("#memberInfo").modal("toggle") ;
+	// 			showMemberInfo(mid);
+	// 		}) ;
+	// 		$("#admin-" + wid).html(ele) ;
+	// 		$.getJSON("/pages/back/admin/warehouse/warehouse_edit_admin.action", {"wid":wid, "mid":mid}, function (data) {
+	//
+	// 			$("#memberDeptInfo").modal("toggle") ;
+	// 			operateAlert(data,"仓库管理员修改成功！","仓库管理员修改失败！") ;
+	// 		});
+	//
+	// 	}) ;
+	// })
 	$("#did").on("change",function(){
 		// did = $(this).val();
 		jsCommonCp = 1;
@@ -107,6 +107,28 @@ function loadData() {	// 该函数名称一定要固定，不许修改
 					"</tr> "
 				tbody = $("#memberDeptInfo tbody:eq(0)")
 				tbody.append(str);
+				$("button[id^=addadmin-]").each(function(){
+					$(this).on("click",function(){
+						// mid = this.id.split("-")[1] ;
+						mid = this.id.substring(this.id.indexOf("-") + 1);
+						console.log(mid);
+						console.log("新的仓库管理员编号：" + mid) ;
+						memberName = $("#memberName").text() ;
+						ele = $("<span id='mid-" + mid + "' style='cursor:pointer;'>"+memberName+"</span>") ;
+						ele.on("click",function(){
+							console.log("仓库管理员ID：" + mid) ;
+							// $("#memberInfo").modal("toggle") ;
+							showMemberInfo(mid);
+						}) ;
+						$("#admin-" + wid).html(ele) ;
+						$.getJSON("/pages/back/admin/warehouse/warehouse_edit_admin.action", {"wid":wid, "mid":mid}, function (data) {
+
+							$("#memberDeptInfo").modal("toggle") ;
+							operateAlert(data,"仓库管理员修改成功！","仓库管理员修改失败！") ;
+						});
+
+					}) ;
+				})
 			}
 		});
 	}
@@ -127,8 +149,11 @@ function showMemberInfo(mid) {
 		if (photo == null || "" == photo){
 			photo = "nophoto.jpg"
 		}
-		$(".row img").attr("src","http://upload-server/upload/"+photo) ;
+		// $(".row img").attr("src","admin"+photo) ;
 		// console.log("http://upload-server/upload/"+data.member.photo);
+		$("#photo").empty();
+		// $("#photo").append("<img src=\"http://43.226.146.219/upload/"+data.voMember.photo+"\" style=\"width:200px;\">")
+		$("#photo").append("<img src='http://upload-server/upload/" + photo + "' style=\"width:200px;\">");
 		$("#memberInfo").modal("toggle") ;
 	});
 }
