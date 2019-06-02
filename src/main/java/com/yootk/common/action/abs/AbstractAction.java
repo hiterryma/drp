@@ -25,9 +25,20 @@ public abstract class AbstractAction {
      *  获取登录的前端ID信息
      *  @return 如果用户已经登录则返回id的内容，如果没有登录返回null
      */
-    public String getFrontUser() {
+    public static String getFrontUser() {
         return (String) ServletObject.getRequest().getSession().getAttribute("mid");
     }
+
+    /**
+     * 后台用户登录之后，获取后台用户的mid
+     * @return
+     */
+    public String getBackUser() {
+        return (String) ServletObject.getRequest().getSession().getAttribute("mid");
+    }
+
+
+
     private String getPageResource(String key) {
         try {
             return pageResourceBundle.getString(key) ;

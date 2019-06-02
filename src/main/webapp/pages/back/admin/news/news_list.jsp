@@ -45,7 +45,14 @@
 								<td class="text-center">${news.title}</td>
 								<td class="text-center"><span id="pub-admin">${news.mid}</span></td>
 								<td class="text-center">${news.pubdate}</td>
-								<td class="text-center">${news.status==1?"已发布":"未发布"}</td>
+								<td class="text-center">
+									<c:if test="${news.status==1}">
+										已发布
+									</c:if>
+									<c:if test="${news.status==0}">
+											<button id="news-${news.nid}" class="btn btn-warning btn-xs">未发布</button>
+									</c:if>
+								</td>
 								<td class="text-center"><a href="<%=NEWS_EDIT_URL%>?nid=${news.nid}" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-edit"></span>&nbsp;编辑</a></td>
 							</tr>
 						</c:forEach>

@@ -5,6 +5,8 @@ import java.io.Serializable;
 public class Storage_apply_details implements Serializable {
     //详情ID，自动增长
     private Long sadid ;
+    //申请单id
+    private Long said ;
     //要出入库的商品ID
     private Long gid ;
     //要出入库的商品名称（避免多表查询）
@@ -22,6 +24,14 @@ public class Storage_apply_details implements Serializable {
 
     public void setSadid(Long sadid) {
         this.sadid = sadid;
+    }
+
+    public Long getSaid() {
+        return said;
+    }
+
+    public void setSaid(Long said) {
+        this.said = said;
     }
 
     public Long getGid() {
@@ -68,6 +78,7 @@ public class Storage_apply_details implements Serializable {
     public String toString() {
         return "Storage_apply_details{" +
                 "sadid=" + sadid +
+                ", said=" + said +
                 ", gid=" + gid +
                 ", name='" + name + '\'' +
                 ", num=" + num +

@@ -4,15 +4,26 @@ import com.yootk.common.annotation.Autowired;
 import com.yootk.common.annotation.Service;
 import com.yootk.common.encrypt.EncryptUtil;
 import com.yootk.common.service.abs.AbstractService;
+import com.yootk.dao.IActionDAO;
+import com.yootk.dao.ICustomerDAO;
 import com.yootk.dao.IMemberDAO;
+import com.yootk.dao.IRoleDAO;
 import com.yootk.service.front.IMemberServiceFront;
 import com.yootk.vo.Member;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Service
 public class MemberServiceFrontImpl extends AbstractService implements IMemberServiceFront {
     @Autowired
     private IMemberDAO memberDAO;
-
+    @Autowired
+    private IActionDAO actionDAO ;
+    @Autowired
+    private IRoleDAO roleDAO ;
+    @Autowired
+    private ICustomerDAO customerDAO;
     @Override
     public boolean update_password(String oldpassword,String newpassword,String mid) throws Exception {
         Member vo = this.memberDAO.findByIdAndpw(mid);
@@ -53,14 +64,23 @@ public class MemberServiceFrontImpl extends AbstractService implements IMemberSe
     }
 
     @Override
-    public boolean login(Member vo) throws Exception {
-        Member member = this.memberDAO.findByIdAndpw(vo.getMid());
-        if (member == null) {
-            return false;
-        }
-        else {
+    public Map<String,Object> login(Member vo) throws Exception {
+        Member member = this.memberDAO.findById(vo.getMid());
+        Map<String,Object> map = new HashMap<>() ;
+        if (member != null) {
+
+            Integer aa = this.customerDAO.findByMid(vo.getMid());
+            System.out.println(aa);
             this.memberDAO.update_lastTinme(vo);
-            return member.getPassword().equals(vo.getPassword());
+            map.put("status",aa);
+           map.put("flag",member.getPassword().equals(vo.getPassword()))  ;
+           map.put("allActions",actionDAO.findAllByMember(member.getDid())) ;
+           map.put("did",member.getDid());
+           map.put("allRoles",roleDAO.findAllByMember(member.getDid()));
+           map.put("name",member.getName()) ;
+        }else {
+            map.put("flag",false);
         }
+        return map;
     }
 }

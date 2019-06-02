@@ -120,6 +120,16 @@ public class NewsActionBack extends AbstractAction {
 			super.print(false);
 		}
 	}
+
+	@RequestMapping("news_publish")
+	public void newsPublish(Long nid) {
+		Set<Long> ids = new HashSet<>() ;
+		try {
+			super.print(this.newsService.editForPublish(nid));
+		} catch (Exception e) {
+			super.print(false);
+		}
+	}
 	@Override
 	public String getUploadDir() {
 		return "upload/news";

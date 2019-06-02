@@ -124,4 +124,26 @@ public class WarehouseActionBack extends AbstractAction {
     public String getUploadDir() {
         return "/upload/back/warehouse/";
     }
+
+    @RequestMapping("warehouse_list_wiid")
+    public void listWarehouseByWiid(Long wiid){
+        try {
+
+            super.print(JSONObject.toJSONString(this.warehouseService.listWarehouseByWiid(wiid)));
+            //System.out.println(this.warehouseService.listWarehouseByWiid(wiid));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    @RequestMapping("warehouse_list_pcw")
+    public void listWarehouseByWiid(Long pid, Long cid, Long wiid){
+        try {
+
+            super.print(JSONObject.toJSONString(this.warehouseService.listWarehouseByPCW(pid,cid,wiid)));
+            //System.out.println(this.warehouseService.listWarehouseByWiid(wiid));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 }

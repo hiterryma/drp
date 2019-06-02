@@ -1,4 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <head>
 	<jsp:include page="/pages/plugins/basepath.jsp"/>
 	<script type="text/javascript" src="js/pages/back/admin/storageaudit/storageaudit_edit.js"></script>
@@ -6,7 +9,7 @@
 	<script type="text/javascript" src="js/pages/back/index.js"></script>
 </head>
 <%!
-	public static final String STORAGEAUDIT_EDIT_URL = "pages/back/admin/storageaudit/edit.action" ;
+	public static final String STORAGEAUDIT_EDIT_URL = "/pages/back/admin/audit/audit_add.action" ;
 %>
 <body class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">
@@ -27,47 +30,57 @@
 					<table class="table table-striped table-bordered table-hover">
 						<tr> 
 							<td style="width:150px;"><strong>入库标题：</strong></td>
-							<td>双13备货</td>
+							<td>${storage_apply.title}</td>
 						</tr>
 						<tr>
 							<td><strong>存入仓库名称：</strong></td>
-							<td><span id="showWarehouse" style="cursor:pointer;">北京市 北京市 通州一号仓库</span></td>
+							<td><span id="showWarehouse" style="cursor:pointer;">${title}</span></td>
 						</tr>
 						<tr>
 							<td><strong>仓库类型：</strong></td>
-							<td>衣帽服饰</td>
+							<td>${witem.title}</td>
+						</tr>
+						<tr>
+							<td><strong>仓库当前容量：</strong></td>
+							<td>${warehouse.maximum-warehouse.currnum}</td>
 						</tr>
 						<tr>
 							<td><strong>申请人：</strong></td>
-							<td><span id="showMember" style="cursor:pointer;">老李</span></td>
+							<td><span id="showMember" style="cursor:pointer;">${member.name}</span></td>
 						</tr>
 						<tr>
 							<td><strong>入库商品总价：</strong></td>
-							<td>￥20000</td>
+							<td>${totalprice}</td>
 						</tr>
 						<tr>
 							<td><strong>入库单备注信息：</strong></td>
-							<td>我要上</td>
+							<td>${storage_apply.note}</td>
 						</tr>
 						<tr>
 							<td><strong>审核历史：</strong></td>
-							<td>历史的所有审核信息</td>
+							<td>
+								<c:forEach items="${allAudit}" var="audit">
+									${audit.aud_date}&nbsp;:&nbsp;${audit.aud_note}<br>
+
+								</c:forEach>
+							</td>
 						</tr>
 					</table>
 				</div>
 				<div>
 					<form class="form-horizontal" action="<%=STORAGEAUDIT_EDIT_URL%>" id="myform" method="post">
 						<fieldset>
+							<input type="hidden" name="said" value="${storage_apply.said}">
 							<div class="form-group" id="auditDiv">
 								<!-- 定义表单提示文字 -->
 								<label class="col-md-3 control-label" for="audit">审核结论：</label>
 								<div class="col-md-5">
 									<div class="radio-inline">
-										<label><input type="radio" id="audit" value="2" checked>
+										<label><input type="radio" id="audit" name="audit_result" value="0" >
 											&nbsp;<span class="text-danger">拒绝</span></label>
 									</div> 
 									<div class="radio-inline">
-										<label><input type="radio" id="audit" value="1">
+										<label><input type="radio" id="audit" name="audit_result" value="1">
 											&nbsp;<span class="text-success">通过</span></label>
 									</div> 
 								</div>
@@ -80,7 +93,7 @@
 								<label class="col-md-3 control-label" for="note">审核备注：</label>
 								<div class="col-md-5">
 									<!-- 定义表单输入组件 -->
-									<textarea id="note" name="note" rows="3"
+									<textarea id="note" name="audit_note" rows="3"
 										class="form-control" placeholder="请输入审核所给出的意见信息" rows="10"></textarea>
 								</div>
 								<!-- 定义表单错误提示显示元素 -->
@@ -118,14 +131,16 @@
 										</tr>
 									</thead>
 									<tbody>
+									<c:forEach items="${allStorage_apply_details}" var="storage_apply_details" >
 										<tr class="text-primary">
-											<td class="text-center">10001</td>
-											<td class="text-left">衣服</td>
-											<td class="text-center">50</td>
-											<td class="text-center">39.2</td>
-											<td class="text-center">200</td>
-											<td class="text-center">2000</td>
+											<td class="text-center">${storage_apply_details.gid}</td>
+											<td class="text-left">${storage_apply_details.name}</td>
+											<td class="text-center">${storage_apply_details.num}</td>
+											<td class="text-center">${pricemap[storage_apply_details.sadid]}</td>
+											<td class="text-center">${weightmap[storage_apply_details.sadid]}</td>
+											<td class="text-center">${storage_apply_details.price}</td>
 										</tr>
+									</c:forEach>
 									</tbody>
 								</table>
 							</div>

@@ -54,10 +54,15 @@ public interface IMemberServiceFront {
     public boolean add_register(Member vo) throws Exception;
 
     /**
-     * 实现登录验证
-     * @param vo  需要验证的member集合
-     * @return
+     * 实现用户的登录验证
+     * @param vo 传递要验证的信息
+     * @return 返回Map集合
+     * 1、Key=flag 、value=登录结果
+     * 2、key=allActions 、value=用户的所有角色
+     * 3、key=allRoles 、value=用户的所有权限
+     * 4、key=name 、value=用户的名字
+     * 5、key=did 、value=部门名称
      * @throws Exception
      */
-    public boolean login(Member vo)throws Exception;
+    Map<String,Object> login(Member vo)throws Exception;
 }

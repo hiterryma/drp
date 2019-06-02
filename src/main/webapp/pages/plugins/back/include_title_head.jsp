@@ -30,7 +30,6 @@
                         <!-- Menu Body -->
                         <li>
                             <div class="text-center" id="lasttime">
-                                上次登录日期：
                             </div>
                         </li>
                         <!-- Menu Footer-->

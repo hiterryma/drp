@@ -1,4 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <head>
 	<jsp:include page="/pages/plugins/basepath.jsp"/>
 	<script type="text/javascript" src="js/pages/back/admin/manage/manage_storage.js"></script>
@@ -24,23 +27,23 @@
 					<table class="table table-striped table-bordered table-hover">
 						<tr> 
 							<td style="width:150px;"><strong>入库单编号：</strong></td>
-							<td>1101010</td>
+							<td>${storage_apply.said}</td>
 						</tr>
 						<tr> 
 							<td><strong>入库标题：</strong></td>
-							<td>双13备货</td>
+							<td>${storage_apply.title}</td>
 						</tr>
 						<tr>
 							<td><strong>存入仓库名称：</strong></td>
-							<td>北京市 北京市 通州一号仓库</td>
+							<td>${title}</td>
 						</tr>
 						<tr>
 							<td><strong>仓库类型：</strong></td>
-							<td>衣帽服饰</td>
+							<td>${witem.title}</td>
 						</tr>
 						<tr>
 							<td><strong>备注信息：</strong></td>
-							<td>我要上</td>
+							<td>${storage_apply.note}</td>
 						</tr>
 					</table>
 				</div>
@@ -57,12 +60,13 @@
 							</tr>
 						</thead>
 						<tbody>
+						<c:forEach items="${allStorage_apply_details}" var="storage_apply_details" >
 							<tr id="dettr-1" class="text-success">
-								<td>100001</td>
-								<td>衣服</td>
-								<td>50</td>
-								<td>39.2</td>
-								<td>200</td>
+								<td>${storage_apply_details.gid}</td>
+								<td>${storage_apply_details.name}</td>
+								<td>${storage_apply_details.num}</td>
+								<td>${pricemap[storage_apply_details.sadid]}</td>
+								<td>${weightmap[storage_apply_details.sadid]}</td>
 								<td>
 									<button id="access-1" class="btn btn-primary btn-xs">
 										<span class="glyphicon glyphicon-edit"></span>&nbsp;允许入库</button>
@@ -70,6 +74,7 @@
 										<span class="glyphicon glyphicon-edit"></span>&nbsp;拒绝入库</button>
 								</td>
 							</tr>
+						</c:forEach>
 						</tbody>
 					</table>
 				</div>

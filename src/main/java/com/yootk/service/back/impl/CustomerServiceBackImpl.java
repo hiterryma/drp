@@ -30,6 +30,14 @@ public class CustomerServiceBackImpl extends AbstractService implements ICustome
     private ICustomerRecordDAO customerRecordDAO;
 
     @Override
+    public Map<String, Object> preAddCustomerRecord() throws Exception {
+        Map<String ,Object> map = new HashMap<>();
+
+        map.put("allCritemMap",  this.critemDAO.findAll() );
+        return map ;
+    }
+
+    @Override
     public Map<String, Object> preAdd() throws Exception {
         Map<String, Object> map = new HashMap<>();
         map.put("allProvinces", provinceDAO.findAll());
@@ -53,8 +61,7 @@ public class CustomerServiceBackImpl extends AbstractService implements ICustome
 
     @Override
     public boolean editForStatus(Integer status,String note,Long cuid) throws Exception {
-        this.customerDAO.doEditForStatus(status,note,cuid) ;
-        return false;
+        return  this.customerDAO.doEditForStatus(status,note,cuid);
     }
 
     @Override
@@ -89,6 +96,7 @@ public class CustomerServiceBackImpl extends AbstractService implements ICustome
         for(Critem critem :critemList){
             allCritemMap.put(critem.getCriid(),critem.getTitle());
         }
+        map.put("allCritemMap", allCritemMap);
         map.put("allCritem",critemList) ;
         if (column == null || "".equals(column) || keyword == null || "".equals(keyword)) {
             map.put("allCustomers", customerDAO.findSplit(currentPage, lineSize));
@@ -102,14 +110,27 @@ public class CustomerServiceBackImpl extends AbstractService implements ICustome
 
     @Override
     public boolean addForCustomerRecord(CustomerRecord customerRecord) throws Exception {
-        return customerRecordDAO.doCreate(customerRecord) ;
+
+        if( customerRecordDAO.doCreate(customerRecord) ){
+            Customer customer = this.customerDAO.findById(customerRecord.getCuid()) ;
+            if(customer.getConnum()==null ){
+                customer.setConnum(1);
+            } else {
+                customer.setConnum(customer.getConnum()+1);
+            }
+            this.customerDAO.doEdit(customer) ;
+            return true ;
+        }
+
+        return false ;
     }
 
     @Override
-    public Map<String, Object> listForCustomerRecord(Long currentPage, Integer lineSize, String column, String keyword) throws Exception {
+    public Map<String, Object> listForCustomerRecord(Long currentPage, Integer lineSize, String column, String value) throws Exception {
 
         Map<String,Object> map = new HashMap<>() ;
-        map.put("allCustomerRecord",customerRecordDAO.findSplit(currentPage,lineSize)) ;
+        map.put("allCustomerRecord",customerRecordDAO.findSplit(currentPage,lineSize,column,value)) ;
+        map.put("allRecorders",customerRecordDAO.getAllCount(column,value)) ;
         return map;
     }
 }

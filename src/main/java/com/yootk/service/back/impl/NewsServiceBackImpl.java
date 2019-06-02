@@ -29,6 +29,11 @@ public class NewsServiceBackImpl extends AbstractService implements INewsService
     }
 
     @Override
+    public boolean editForPublish(Long aLong) throws Exception {
+        return this.newsDAO.doEditForPublish(aLong);
+    }
+
+    @Override
     public boolean delete(Set<Long> longs) throws Exception {
         return this.newsDAO.doRemove(longs) ;
     }

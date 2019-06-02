@@ -23,7 +23,6 @@ $(function(){
 				}else{
 					alert("公告删除失败！") ;
 				}
-
 			},"text") ;
 		}
 		//operateChecked("nid","/pages/back/emp") ;
@@ -36,7 +35,13 @@ $(function(){
 	}) ;
 	$("button[id^=news-]").each(function(){
 		$(this).on("click",function(){
-			operateAlert(true,"公告发布成功！","公告发布失败！") ;
+			nid = this.id.split("-")[1] ;
+			debugger ;
+			$.get("pages/back/admin/news/news_publish.action",{"nid":nid},function(data){
+
+				debugger ;
+				operateAlert(data.trim() == "true","公告发布成功！","公告发布失败！") ;
+			},"text") ;
 		}) ;
 	}) ;
 })

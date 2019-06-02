@@ -111,16 +111,20 @@ public class MemberServiceBackImpl extends AbstractService implements IMemberSer
     @Override
     public Map<String, Object> preAdd() throws Exception {
         Map<String,Object> map = new HashMap<>() ;
+        List<Dept> deptList = this.deptDAO.findAll() ;
+        List<Level> levelList = this.levelDAO.findAll() ;
         Map<String,String> allLevelMap = new HashMap<>();
-        for (Level level :this.levelDAO.findAll()){
+        for (Level level :levelList){
             allLevelMap.put(level.getLid().toString(),level.getTitle());
         }
         Map<String,String> allDeptMap= new HashMap<>();
-        for (Dept dept :this.deptDAO.findAll()){
+        for (Dept dept :deptList){
             allDeptMap.put(dept.getDid().toString(),dept.getDname());
         }
-        map.put("allDepts",allDeptMap) ;
-        map.put("allLevels",allLevelMap) ;
+        map.put("allDepts",deptList) ;
+        map.put("allLevels",levelList) ;
+        map.put("allDeptMap",allDeptMap) ;
+        map.put("allLevelMap",allLevelMap) ;
         return map;
     }
 

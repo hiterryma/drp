@@ -46,7 +46,6 @@ public class DeptActionBack extends AbstractAction {
 //		System.out.println(cp);
 //		System.out.println(ls);
 		Map<String, Object> map = this.deptService.ListMemberbyDept(did, currentPage, lineSize);
-		System.out.println(map);
 		super.print(JSONObject.toJSONString(map));
 	}
 

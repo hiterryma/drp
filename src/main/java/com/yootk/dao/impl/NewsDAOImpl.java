@@ -43,6 +43,14 @@ public class NewsDAOImpl extends AbstractDAO implements INewsDAO {
     }
 
     @Override
+    public boolean doEditForPublish(Long along) throws SQLException {
+        String sql = "update news set  status=1  where nid=?" ;
+        super.pstmt = super.conn.prepareStatement(sql) ;
+        super.pstmt.setLong(1,along);
+        return super.pstmt.executeUpdate()>0;
+    }
+
+    @Override
     public boolean doRemove(Set<Long> longs) throws SQLException {
         String sql = "delete news where nid = ?" ;
         super.pstmt = super.conn.prepareStatement(sql) ;

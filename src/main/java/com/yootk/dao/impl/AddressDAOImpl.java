@@ -2,20 +2,18 @@ package com.yootk.dao.impl;
 
 import com.yootk.common.annotation.Repository;
 import com.yootk.common.dao.abs.AbstractDAO;
-import com.yootk.dao.IActionDAO;
 import com.yootk.dao.IAddressDAO;
 import com.yootk.vo.Address;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
+
 @Repository
 public class AddressDAOImpl extends AbstractDAO implements IAddressDAO {
 
-    @Override
     public List<Address> findAll(String mid) throws SQLException {
         String sql = " SELECT adid,cid,mid,pid,addr,receiver,phone FROM address WHERE mid =? " ;
         super.pstmt = super.conn.prepareStatement(sql);
@@ -45,6 +43,11 @@ public class AddressDAOImpl extends AbstractDAO implements IAddressDAO {
     }
 
     @Override
+    public boolean doEdit(Address address) throws SQLException {
+        return false;
+    }
+
+    @Override
     public boolean doRemoveByAddress(String mid, Set<Long> adids) throws SQLException {
         StringBuffer sql =new StringBuffer("DELETE FROM address WHERE mid=? AND adid in (");
         for (Long adid : adids) {
@@ -57,8 +60,8 @@ public class AddressDAOImpl extends AbstractDAO implements IAddressDAO {
     }
 
     @Override
-    public boolean doEdit(Address address) throws SQLException {
-        String sql = "UPDATE address SET mid=?,cid=?,pid=?,addr=?,receiver=?,phone=?,dflag=？ WHERE adid=?" ;
+    public boolean doEdit(Address address,Long adid) throws SQLException{
+        String sql = "UPDATE address SET mid=?,cid=?,pid=?,addr=?,receiver=?,phone=?,dflag=? WHERE adid=?" ;
         super.pstmt = super.conn.prepareStatement(sql) ;
         super.pstmt.setString(1,address.getMid());
         super.pstmt.setLong(2,address.getCid());
@@ -67,16 +70,17 @@ public class AddressDAOImpl extends AbstractDAO implements IAddressDAO {
         super.pstmt.setString(5,address.getReceiver());
         super.pstmt.setString(6,address.getPhone());
         super.pstmt.setInt(7,0);
-        System.out.println(address.getPhone());
-        System.out.println(address.getReceiver());
-        System.out.println(address.getMid());
-        System.out.println(address.getPid());
-        System.out.println(address.getAddr());
-        System.out.println(address.getAdid());
-        System.out.println(super.pstmt.executeUpdate());
+        super.pstmt.setLong(8,adid);
         return super.pstmt.executeUpdate() > 0 ;
     }
 
+    @Override
+    public Address findByAdid(Long adid) throws SQLException {
+        String sql=" SELECT adid,mid,cid,pid,addr,receiver,phone,dflag from address where adid=? ";
+        super.pstmt=super.conn.prepareStatement(sql);
+        super.pstmt.setLong(1,adid);
+        return super.handleResultToVO(super.pstmt.executeQuery(),Address.class);
+    }
 
 
     @Override
@@ -85,13 +89,33 @@ public class AddressDAOImpl extends AbstractDAO implements IAddressDAO {
     }
 
     @Override
-    public Address findById(Long aLong) throws SQLException {
-        return null;
+    public Address findById(Long adid) throws SQLException {
+        Address address=null;
+        String sql="select adid,mid,cid,pid,addr,receiver,phone from address where adid=? and dflag=0";
+        super.pstmt=super.conn.prepareStatement(sql);
+        super.pstmt.setLong(1,adid);
+        ResultSet rs=super.pstmt.executeQuery();
+        return super.handleResultToVO(rs,Address.class);
     }
 
     @Override
     public List<Address> findAll() throws SQLException {
-        return null;
+        List<Address> Alladdress=new ArrayList<>();
+        String sql="select adid,mid,cid,pid,addr,receiver,phone from address where dflag=0";
+        super.pstmt=super.conn.prepareStatement(sql);
+        ResultSet rs=super.pstmt.executeQuery();
+        while(rs.next()){
+            Address address=new Address();
+            address.setAdid(rs.getLong(1));
+            address.setMid(rs.getString(2));
+            address.setCid(rs.getInt(3));
+            address.setPid(rs.getInt(4));
+            address.setAddr(rs.getString(5));
+            address.setReceiver(rs.getString(6));
+            address.setPhone(rs.getString(7));
+            Alladdress.add(address);
+        }
+        return Alladdress;
     }
 
     @Override
@@ -113,6 +137,8 @@ public class AddressDAOImpl extends AbstractDAO implements IAddressDAO {
     public Long getAllCount(String column, String keyWord) throws SQLException {
         return null;
     }
+
+
 }
 
 

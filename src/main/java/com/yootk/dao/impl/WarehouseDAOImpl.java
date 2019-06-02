@@ -5,6 +5,7 @@ import com.yootk.common.dao.abs.AbstractDAO;
 import com.yootk.dao.IWarehouseDAO;
 import com.yootk.vo.Warehouse;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Set;
@@ -98,5 +99,25 @@ public class WarehouseDAOImpl extends AbstractDAO implements IWarehouseDAO {
         super.pstmt.setString(1, mid);
         super.pstmt.setLong(2, wid);
         return super.pstmt.executeUpdate() > 0;
+    }
+
+    @Override
+    public List<Warehouse> findAllByWiid(Long wiid) throws SQLException {
+        String sql = "select wid,name,pid,cid,wiid,address,area,maximum,currnum,photo,note,recorder,admin from warehouse where wiid=?" ;
+        super.pstmt =super.conn.prepareStatement(sql) ;
+        super.pstmt.setLong(1,wiid);
+        ResultSet rs = super.pstmt.executeQuery() ;
+        return super.handleResultToList(rs,Warehouse.class) ;
+    }
+
+    @Override
+    public List<Warehouse> findAllByPCW(Long pid, Long cid, Long wiid) throws SQLException {
+        String sql = "select wid,name,pid,cid,wiid,address,area,maximum,currnum,photo,note,recorder,admin from warehouse where pid=? and cid=? and wiid=?" ;
+        super.pstmt =super.conn.prepareStatement(sql) ;
+        super.pstmt.setLong(1,pid);
+        super.pstmt.setLong(2,cid);
+        super.pstmt.setLong(3,wiid);
+        ResultSet rs = super.pstmt.executeQuery() ;
+        return super.handleResultToList(rs,Warehouse.class) ;
     }
 }

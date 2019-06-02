@@ -23,7 +23,7 @@
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-md-2 text-center"> 
-								<p><img class="img" src="http://43.226.146.219/upload/${getGoods.photo}" style="width:125px;"></p>
+								<p><img class="img" src="http://upload-server/upload/${getGoods.photo}" style="width:125px;"></p>
 								<button id="addCar-1" class="btn btn-lg btn-danger">
 									<span class="glyphicon glyphicon-eye-open"></span>&nbsp;加入购物车</button>
 							</div>
