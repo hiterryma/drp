@@ -208,15 +208,18 @@ public class Storage_applyServiceBackImpl extends AbstractService implements ISt
                 namemap.put(storage_apply.getSaid(),this.memberDAO.findNameByMid(storage_apply.getMid())) ;
                 //查询出审核详情最大的编号
                 List<Audit> allAudit = this.auditDAO.findAllBySaid(storage_apply.getSaid()) ;
-                Long aid = 0L;
-                for (Audit audit : allAudit) {
-                    if (aid < audit.getAudid()){
-                        aid = audit.getAudid() ;
+                if (allAudit.size() != 0) {
+                    Long aid = 0L;
+                    for (Audit audit : allAudit) {
+                        if (aid < audit.getAudid()){
+                            aid = audit.getAudid() ;
+                        }
                     }
+                    Audit audit = this.auditDAO.findById(aid) ;
+                    auditdatemap.put(storage_apply.getSaid(),audit.getAud_date()) ;
+                    audNamemap.put(storage_apply.getSaid(),this.memberDAO.findNameByMid(audit.getAud_member())) ;
                 }
-                Audit audit = this.auditDAO.findById(aid) ;
-                auditdatemap.put(storage_apply.getSaid(),audit.getAud_date()) ;
-                audNamemap.put(storage_apply.getSaid(),this.memberDAO.findNameByMid(audit.getAud_member())) ;
+
                 //查询出该订单的所有订单详情
                 List<Storage_apply_details> allStorage_apply_details = this.storage_apply_detailsDAO.findAllBySaid(storage_apply.getSaid()) ;
                 int amount = 0;
@@ -273,15 +276,17 @@ public class Storage_applyServiceBackImpl extends AbstractService implements ISt
 
                 //查询出审核详情最大的编号
                 List<Audit> allAudit = this.auditDAO.findAllBySaid(storage_apply.getSaid()) ;
-                Long aid = 0L;
-                for (Audit audit : allAudit) {
-                    if (aid < audit.getAudid()){
-                        aid = audit.getAudid() ;
+                if (allAudit.size() != 0) {
+                    Long aid = 0L;
+                    for (Audit audit : allAudit) {
+                        if (aid < audit.getAudid()){
+                            aid = audit.getAudid() ;
+                        }
                     }
+                    Audit audit = this.auditDAO.findById(aid) ;
+                    auditdatemap.put(storage_apply.getSaid(),audit.getAud_date()) ;
+                    audNamemap.put(storage_apply.getSaid(),this.memberDAO.findNameByMid(audit.getAud_member())) ;
                 }
-                Audit audit = this.auditDAO.findById(aid) ;
-                auditdatemap.put(storage_apply.getSaid(),audit.getAud_date()) ;
-                audNamemap.put(storage_apply.getSaid(),this.memberDAO.findNameByMid(audit.getAud_member())) ;
 
                 //查询出该订单的所有订单详情
                 List<Storage_apply_details> allStorage_apply_details = this.storage_apply_detailsDAO.findAllBySaid(storage_apply.getSaid()) ;

@@ -3,11 +3,9 @@ package com.yootk.service.back.impl;
 import com.yootk.common.annotation.Autowired;
 import com.yootk.common.annotation.Service;
 import com.yootk.common.service.abs.AbstractService;
-import com.yootk.dao.IGoodsDAO;
-import com.yootk.dao.IMemberDAO;
-import com.yootk.dao.ISubtypeDAO;
-import com.yootk.dao.IWitemDAO;
+import com.yootk.dao.*;
 import com.yootk.service.back.IGoodsService;
+import com.yootk.vo.DistributionDetails;
 import com.yootk.vo.Goods;
 import com.yootk.vo.Member;
 
@@ -25,6 +23,8 @@ public class GoodsServiceImpl extends AbstractService implements IGoodsService {
     private ISubtypeDAO subtypeDAO;
     @Autowired
     private IMemberDAO memberDAO;
+    @Autowired
+    private IDistributionDetailsDAO distributionDetailsDAO;
 
     @Override
     public Map<String, Object> preAdd() throws Exception {
@@ -73,6 +73,20 @@ public class GoodsServiceImpl extends AbstractService implements IGoodsService {
             map.put("allGoods", this.goodsDAO.findSplit(currentPage, lineSize, column, keyword));
         }
         return map;
+    }
+
+    @Override
+    public boolean goodsOut(Long gid) throws Exception {
+        Goods goods = goodsDAO.findById(gid);
+        DistributionDetails distributionDetails = new DistributionDetails();
+        if (goods != null) {
+            distributionDetails.setGid(gid);
+            distributionDetails.setName(goods.getName());
+            distributionDetails.setPrice(goods.getPrice());
+            return distributionDetailsDAO.doCreate(distributionDetails);
+        }else {
+            return false;
+        }
     }
 
 

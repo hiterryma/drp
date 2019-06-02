@@ -28,6 +28,7 @@ public class Storage_apply_detailsActionBack extends AbstractAction {
      */
     @RequestMapping("storage_details_add_pre")
     public ModuleAndView addPre(Long said) {
+        System.out.println(said);
         ModuleAndView mav = new ModuleAndView("/pages/back/admin/storage/storage_list_details.jsp") ;
         try {
             mav.add(this.storage_apply_detailsServiceBack.preAdd(said));
@@ -39,6 +40,7 @@ public class Storage_apply_detailsActionBack extends AbstractAction {
 
     @RequestMapping("storage_details_addoredit")
     public void addOrEdit(Long sadid, Long said, Long gid, String name, int num, Double price, Double weight) {
+
         Storage_apply_details storage_apply_details = new Storage_apply_details() ;
         storage_apply_details.setSaid(said);
         storage_apply_details.setName(name);
@@ -47,6 +49,7 @@ public class Storage_apply_detailsActionBack extends AbstractAction {
         storage_apply_details.setNum(num) ;
         storage_apply_details.setPrice(price);
         storage_apply_details.setWeight(weight);
+        System.out.println(storage_apply_details);
         try {
             //1、使用的是Ajax实现，所以要用print()函数
             super.print(this.storage_apply_detailsServiceBack.addOrEdit(storage_apply_details));

@@ -24,8 +24,14 @@ public class GoodsActionBack extends AbstractAction {
     @Autowired
     private IGoodsServiceBack goodsServiceBack;
 
+    @RequestMapping("goods_out")
+    public void outGoods(Long gid) throws Exception{
+        super.print(this.goodsService.goodsOut(gid));
+    }
+
     @RequestMapping("getGoods")
     public ModuleAndView getGoods(Long gid){
+        System.out.println("-------------------------"+ gid);
         ModuleAndView mav = new ModuleAndView("/pages/front/goods/goods_show.jsp");
         try {
             mav.add("getGoods",this.goodsServiceBack.getById(gid));
@@ -171,6 +177,17 @@ public class GoodsActionBack extends AbstractAction {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @RequestMapping("goods_get_ajax")
+    public void getAjaxgoods(Long gid){
+        System.out.println("---------------" + gid);
+        try {
+            super.print(JSONObject.toJSONString(this.goodsServiceBack.getById(gid)));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
 

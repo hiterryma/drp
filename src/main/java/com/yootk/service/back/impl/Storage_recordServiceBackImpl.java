@@ -24,10 +24,13 @@ public class Storage_recordServiceBackImpl extends AbstractService implements IS
     private IStorage_apply_detailsDAO storage_apply_detailsDAO ;
     @Autowired
     private IGoodsDAO goodsDAO ;
+    @Autowired
+    private IStorage_recordDAO storage_recordDAO ;
 
     @Override
     public Map<String,Object> preSearch(Long said) throws Exception {
         List<Audit> auditList = this.auditDAO.findAllBySaid(said) ;
+        //System.out.println("---------" + auditList);
         Map<String,Object> result = new HashMap<>() ;
         if (auditList.size() != 0) {
             Long auditid = 0L ;
@@ -71,4 +74,35 @@ public class Storage_recordServiceBackImpl extends AbstractService implements IS
         }
         return null ;
     }
+
+    @Override
+    public boolean add(Storage_record storage_record) throws Exception {
+        //从中取得清单编号
+        Long said = storage_record.getSaid() ;
+        //取得仓库id
+        Long wid = this.storage_applyDAO.findById(said).getWid() ;
+        //取得入库商品数量
+        int num = storage_record.getNum() ;
+        //取得仓库信息
+        Warehouse warehouse = this.warehouseDAO.findById(wid) ;
+        //取得仓库旧的数量
+        int oldcurnum = warehouse.getCurrnum() ;
+        //增加保存的商品数量
+        warehouse.setCurrnum(oldcurnum+num);
+
+        //取得商品id
+        Long gid = storage_record.getGid() ;
+        Goods goods = this.goodsDAO.findById(gid) ;
+
+        //获得该商品以前的存储量
+        int oldstornum = goods.getStornum() ;
+        goods.setStornum(oldstornum+num);
+
+        //修改仓库信息
+        if (this.warehouseDAO.doEdit(warehouse) && this.goodsDAO.doEdit(goods)) {
+            return this.storage_recordDAO.doCreate(storage_record) ;
+        }
+        return false;
+    }
+
 }

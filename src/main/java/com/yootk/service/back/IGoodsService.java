@@ -16,4 +16,6 @@ public interface IGoodsService {
 
     public Map<String, Object> list(Long currentPage, Integer lineSize, String column, String keyword) throws Exception;
 
+    public boolean goodsOut(Long gid) throws Exception;
+
 }
