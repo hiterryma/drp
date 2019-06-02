@@ -24,6 +24,11 @@ public class GoodsActionBack extends AbstractAction {
     @Autowired
     private IGoodsServiceBack goodsServiceBack;
 
+    @RequestMapping("goods_out")
+    public void outGoods(Long gid) throws Exception{
+        super.print(this.goodsService.goodsOut(gid));
+    }
+
     @RequestMapping("getGoods")
     public ModuleAndView getGoods(Long gid){
         ModuleAndView mav = new ModuleAndView("/pages/front/goods/goods_show.jsp");
