@@ -8,6 +8,13 @@ import java.util.List;
 
 public interface IStorage_applyDAO extends IBaseDAO<Long, Storage_apply> {
     /**
+     * 根据雇员Wid查询Mid
+     * @param wid
+     * @return
+     * @throws Exception
+     */
+    public Storage_apply findIdByMid(Long wid)throws Exception;
+    /**
      * 获取最后一次插入的申请单id
      * @return
      * @throws SQLException

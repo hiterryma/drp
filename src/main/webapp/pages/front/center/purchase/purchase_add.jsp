@@ -127,10 +127,12 @@
                     </form>
                 </div>
                 <div class="panel-footer">
-                    <div class="alert alert-danger" id="alertDiv">
-                        <button type="button" class="close" data-dismiss="alert">&times;</button>
-                        <span id="alertText"></span>
-                    </div>
+                    <c:if test="${msg != null}">
+                        <div class="alert alert-danger" id="alertDiv">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            <span id="alertText">${msg}</span>
+                        </div>
+                    </c:if>
                 </div>
                 <div class="panel-footer">
                     <jsp:include page="/pages/plugins/alert.jsp"/>

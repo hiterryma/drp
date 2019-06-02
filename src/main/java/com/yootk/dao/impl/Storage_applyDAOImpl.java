@@ -65,7 +65,6 @@ public class Storage_applyDAOImpl extends AbstractDAO implements IStorage_applyD
     public Storage_apply findById(Long said) throws SQLException {
         String sql = "SELECT said,mid,title,pid,cid,wiid,wid,note,outorin,submit_status,audit_status,appmid FROM storage_apply WHERE said=? " ;
         super.pstmt = super.conn.prepareStatement(sql) ;
-
         super.pstmt.setLong(1,said);
         ResultSet rs = super.pstmt.executeQuery() ;
         return super.handleResultToVO(rs,Storage_apply.class) ;
@@ -214,6 +213,15 @@ public class Storage_applyDAOImpl extends AbstractDAO implements IStorage_applyD
             return rs.getLong(1) ;
         }
         return 0L ;
+    }
+
+    @Override
+    public Storage_apply findIdByMid(Long wid) throws Exception {
+        String sql = "SELECT mid FROM storage_apply WHERE wid=? " ;
+        super.pstmt = super.conn.prepareStatement(sql) ;
+        super.pstmt.setLong(1,wid);
+        ResultSet rs = super.pstmt.executeQuery() ;
+        return super.handleResultToVO(rs,Storage_apply.class) ;
     }
 
     @Override

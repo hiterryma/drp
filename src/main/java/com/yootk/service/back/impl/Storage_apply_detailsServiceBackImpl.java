@@ -59,7 +59,6 @@ public class Storage_apply_detailsServiceBackImpl extends AbstractService implem
 
     @Override
     public boolean addOrEdit(Storage_apply_details storage_apply_details) throws Exception {
-        System.out.println(storage_apply_details);
         if (storage_apply_details.getSadid() != null) {
             return this.storage_apply_detailsDAO.doEdit(storage_apply_details) ;
         }else {

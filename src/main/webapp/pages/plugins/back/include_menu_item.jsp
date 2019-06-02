@@ -38,12 +38,11 @@
     <section class="sidebar">
         <!-- Sidebar user panel -->
         <div class="user-panel">
-            <div class="pull-left image">
+            <div class="pull-left image" id="imgae1">
                 <img src="images/user.png" class="img-circle"
                      alt="User Image">
             </div>
-            <div class="pull-left info">
-                <p>${name}</p>
+            <div class="pull-left info" id="name1">
             </div>
         </div>
         <!-- /.search form -->

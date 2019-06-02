@@ -23,14 +23,6 @@
             <param-value>com.yootk</param-value> <!-- 如果有多个包使用“;”分割 -->
         </init-param>
         <init-param>
-            <param-name>validationBaseName</param-name>
-            <param-value>com.yootk.mall.action.validate.Validation</param-value>
-        </init-param>
-        <init-param>
-            <param-name>errorPageBaseName</param-name>
-            <param-value>com.yootk.mall.action.validate.ErrorPage</param-value>
-        </init-param>
-        <init-param>
             <param-name>messageBaseName</param-name>
             <param-value>com.yootk.mall.action.resource.Message</param-value>
         </init-param>
@@ -62,6 +54,6 @@
     </filter-mapping>
     <filter-mapping>
         <filter-name>MemberFrontLoginFilter</filter-name>
-        <url-pattern>/pages/front/center/*</url-pattern>
+        <url-pattern>/pages/*</url-pattern>
     </filter-mapping>
 </web-app>

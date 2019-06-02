@@ -28,7 +28,6 @@ public class Storage_applyActionBack extends AbstractAction {
         ModuleAndView mav = new ModuleAndView("/pages/back/admin/storage/storage_add.jsp") ;
         try {
             mav.add(this.storage_applyServiceBack.preAdd());
-            System.out.println(mav);
         }catch (Exception e) {
             e.printStackTrace();
         }
@@ -52,7 +51,6 @@ public class Storage_applyActionBack extends AbstractAction {
         //新创建的清单，设置审核状态为0：未审核
         storage_apply.setAudit_status(0);
 
-        System.out.println(storage_apply);
         ModuleAndView mav = new ModuleAndView("/pages/plugins/forward.jsp") ;
         //设置默认的提示信息
         String msg = "入库申请单创建失败！" ;
@@ -82,8 +80,6 @@ public class Storage_applyActionBack extends AbstractAction {
         PageUtil pu = new PageUtil("/pages/back/admin/storage/storage_list_myself.jsp", "入库单编号:said|入库申请标题:title");
         try {
             mav.add(this.storage_applyServiceBack.list(1,super.getBackUser(),pu.getCurrentPage(),pu.getLineSize(),pu.getColumn(),pu.getKeyword()));
-            System.out.println(pu.getColumn());
-            System.out.println(pu.getKeyword());
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -91,7 +87,6 @@ public class Storage_applyActionBack extends AbstractAction {
     }
     @RequestMapping("storage_submit")
     public ModuleAndView submit(Long said) {
-        System.out.println(said);
         ModuleAndView mav = new ModuleAndView("/pages/plugins/forward.jsp") ;
         //设置默认的提示信息
         String msg = "入库申请单提交失败！" ;
@@ -113,12 +108,10 @@ public class Storage_applyActionBack extends AbstractAction {
 
     @RequestMapping("storage_edit_pre")
     public ModuleAndView editPre(Long said) {
-        System.out.println(said);
         ModuleAndView mav = new ModuleAndView("/pages/back/admin/storage/storage_edit.jsp") ;
         try {
             mav.add(this.storage_applyServiceBack.preEdit(said));
 
-            System.out.println(mav);
         }catch (Exception e) {
             e.printStackTrace();
         }
@@ -126,7 +119,6 @@ public class Storage_applyActionBack extends AbstractAction {
     }
     @RequestMapping("storage_edit")
     public ModuleAndView edit(Storage_apply storage_apply) {
-        System.out.println(storage_apply);
 
         ModuleAndView mav = new ModuleAndView("/pages/plugins/forward.jsp") ;
         //设置默认的提示信息
@@ -147,7 +139,6 @@ public class Storage_applyActionBack extends AbstractAction {
     }
     @RequestMapping("storage_delete")
     public ModuleAndView delete(Long said) {
-        System.out.println(said);
 
         ModuleAndView mav = new ModuleAndView("/pages/plugins/forward.jsp") ;
         //设置默认的提示信息
@@ -181,8 +172,6 @@ public class Storage_applyActionBack extends AbstractAction {
         PageUtil pu = new PageUtil("/pages/back/admin/storageaudit/storageaudit_list_prepare.jsp", "入库单编号:said|入库申请标题:title");
         try {
             mav.add(this.storage_applyServiceBack.listByOutIn(1,1,0, pu.getCurrentPage(),pu.getLineSize(),pu.getColumn(),pu.getKeyword()));
-            System.out.println(pu.getColumn());
-            System.out.println(pu.getKeyword());
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -201,8 +190,6 @@ public class Storage_applyActionBack extends AbstractAction {
         PageUtil pu = new PageUtil("/pages/back/admin/storageaudit/storageaudit_list_history.jsp", "入库单编号:said|入库申请标题:title");
         try {
             mav.add(this.storage_applyServiceBack.listByOutIn(1,1,1, pu.getCurrentPage(),pu.getLineSize(),pu.getColumn(),pu.getKeyword()));
-            System.out.println(pu.getColumn());
-            System.out.println(pu.getKeyword());
         }catch (Exception e){
             e.printStackTrace();
         }

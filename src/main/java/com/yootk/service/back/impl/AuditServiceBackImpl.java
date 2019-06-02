@@ -61,8 +61,6 @@ public class AuditServiceBackImpl extends AbstractService implements IAuditServi
         //获取该清单的所有审核信息
         List<Audit> allAudit = new ArrayList<>() ;
         try {
-            System.out.println(said);
-            System.out.println(this.auditDAO.findAllBySaid(said));
             allAudit = this.auditDAO.findAllBySaid(said) ;
         }catch (Exception e) {
             e.printStackTrace();

@@ -59,7 +59,7 @@ public class GoodsServiceBackImpl extends AbstractService implements IGoodsServi
         //商品入库人员信息  默认是仓库管理员
         Member voStorage = this.memberDAO.findById(warehouse.getAdmin());
         //审核商品入库人员信息
-        Storage_apply storage_apply = this.storage_applyDAO.findById(warehouse.getWid());
+        Storage_apply storage_apply = this.storage_applyDAO.findIdByMid(warehouse.getWid());
         Member voAudit = this.memberDAO.findById(storage_apply.getMid());
 
         map.put("goodsShow",goods);

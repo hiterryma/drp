@@ -33,7 +33,7 @@
                             <div class="col-md-3 text-center" id="goodsList">
                                 <p>
                                     <a href="<%=GOODS_SHOW_URL%>${goods.gid}">
-                                        <img id="goodsList_img" src="http://43.226.146.219/upload/${goods.photo}" style="width:100px;"></a></p>
+                                        <img id="goodsList_img" src="http://upload-server/upload/${goods.photo}" style="width:100px;"></a></p>
                                 <span id="goodsList_span" class="text-warning h4">￥<strong>${goods.price}</strong></span>
                                 <p><a id="goodsList_a" href="<%=GOODS_SHOW_URL%>${goods.gid}">${goods.name}</a></p>
                                 <button id="addCar-${goods.gid}" class="btn btn-primary btn-xs">

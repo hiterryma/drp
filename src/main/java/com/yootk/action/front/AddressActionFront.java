@@ -66,7 +66,6 @@ public class AddressActionFront extends AbstractAction {
     //地址删除
     @RequestMapping("address_delete")
     public void delete(String data) {
-        System.out.println(data);
         Set<Long> adids = new HashSet<>() ;
         String results [] = data.split(";") ; // 根据“;”拆分数据
         for (String adid : results) {

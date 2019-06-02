@@ -18,7 +18,6 @@ public class AuditActionBack extends AbstractAction {
 
     @RequestMapping("audit_add_pre")
     public ModuleAndView addPre(Long said){
-        System.out.println(said);
         ModuleAndView mav = new ModuleAndView("/pages/back/admin/storageaudit/storageaudit_edit.jsp") ;
         try {
             mav.add(this.auditServiceBack.preAdd(said));
