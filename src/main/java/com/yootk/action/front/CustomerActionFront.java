@@ -20,15 +20,6 @@ public class CustomerActionFront extends AbstractAction {
     @Autowired
     private ICustomerServiceFront customerServiceFront;
 
-    @RequestMapping("get_purchase")
-    public void get_purchase() {
-        try {
-            super.print(JSONObject.toJSONString(this.customerServiceFront.getStatus(super.getFrontUser())));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
     @RequestMapping("authentication_pre")
     public ModuleAndView authentication_pre(Customer vo) {
         vo.setMid(super.getFrontUser());  //设置当前登录用户的ID
