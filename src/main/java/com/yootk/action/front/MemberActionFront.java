@@ -13,6 +13,8 @@ import com.yootk.common.util.ResourceUtil;
 import com.yootk.service.front.IMemberServiceFront;
 import com.yootk.vo.Member;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Map;
 
 @Controller
@@ -185,6 +187,7 @@ public class MemberActionFront extends AbstractAction {
         ModuleAndView mav = new ModuleAndView(super.getPage("login.action"));
         vo.setPassword(EncryptUtil.encode(vo.getPassword()));
         Map<String,Object> result = memberService.login(vo);
+        vo.setLasttime(new Date());
         boolean flag = (boolean)result.get("flag") ;
         if (flag) {
             ServletObject.getRequest().getSession().setAttribute("mid", vo.getMid());

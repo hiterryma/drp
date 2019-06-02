@@ -65,6 +65,7 @@ public class MemberServiceFrontImpl extends AbstractService implements IMemberSe
         Member member = this.memberDAO.findById(vo.getMid());
         Map<String,Object> map = new HashMap<>() ;
         if (member != null) {
+            this.memberDAO.update_lastTinme(vo);
            map.put("flag",member.getPassword().equals(vo.getPassword()))  ;
            map.put("allActions",actionDAO.findAllByMember(member.getDid())) ;
            map.put("did",member.getDid());
