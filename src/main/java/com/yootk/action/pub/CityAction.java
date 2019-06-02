@@ -18,8 +18,6 @@ public class CityAction extends AbstractAction {
         try {
             super.print(JSONObject.toJSONString(this.cityService.listByProvince(pid)));
             //System.out.println(this.cityService.listByProvince(pid));
-            System.out.println(pid);
-            System.out.println("************");
         } catch (Exception e) {
             e.printStackTrace();
         }

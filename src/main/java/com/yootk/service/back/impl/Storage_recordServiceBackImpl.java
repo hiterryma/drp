@@ -28,7 +28,6 @@ public class Storage_recordServiceBackImpl extends AbstractService implements IS
     @Override
     public Map<String,Object> preSearch(Long said) throws Exception {
         List<Audit> auditList = this.auditDAO.findAllBySaid(said) ;
-        System.out.println("---------" + auditList);
         Map<String,Object> result = new HashMap<>() ;
         if (auditList.size() != 0) {
             Long auditid = 0L ;

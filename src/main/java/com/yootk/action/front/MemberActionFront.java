@@ -157,6 +157,8 @@ public class MemberActionFront extends AbstractAction {
     @RequestMapping("/member_login_pre")
     public ModuleAndView loginPre() {
         ModuleAndView mav = new ModuleAndView(super.getPage("index.page"));
+        mav.setView(super.getForwardPage());
+        mav.add(AbstractAction.MSG_ATTRIBUTE_NAME, ResourceUtil.getMessage("member.login", ACTION_TITLE));
         return mav;
     }
 
@@ -186,8 +188,8 @@ public class MemberActionFront extends AbstractAction {
     public ModuleAndView login(Member vo, String rememberme) throws Exception {
         ModuleAndView mav = new ModuleAndView(super.getPage("login.action"));
         vo.setPassword(EncryptUtil.encode(vo.getPassword()));
-        Map<String,Object> result = memberService.login(vo);
         vo.setLasttime(new Date());
+        Map<String,Object> result = memberService.login(vo);
         boolean flag = (boolean)result.get("flag") ;
         if (flag) {
             ServletObject.getRequest().getSession().setAttribute("mid", vo.getMid());

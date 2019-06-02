@@ -65,13 +65,6 @@ public class AddressDAOImpl extends AbstractDAO implements IAddressDAO {
         super.pstmt.setString(5,address.getReceiver());
         super.pstmt.setString(6,address.getPhone());
         super.pstmt.setInt(7,0);
-        System.out.println(address.getPhone());
-        System.out.println(address.getReceiver());
-        System.out.println(address.getMid());
-        System.out.println(address.getPid());
-        System.out.println(address.getAddr());
-        System.out.println(address.getAdid());
-        System.out.println(super.pstmt.executeUpdate());
         return super.pstmt.executeUpdate() > 0 ;
     }
 

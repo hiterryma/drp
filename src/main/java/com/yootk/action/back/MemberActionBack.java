@@ -44,7 +44,6 @@ public class MemberActionBack extends AbstractAction {
 			String fileName = UploadFileToServer.upload(pic,pic.getContentType()) ;
 			member.setPhoto(fileName);
 			String msg = super.getMessge("vo.add.failure","雇员") ;
-			System.out.println(member);
 			if (this.memberServiceBack.add(member)) {
 				msg = super.getMessge("vo.add.success","雇员") ;
 			}
