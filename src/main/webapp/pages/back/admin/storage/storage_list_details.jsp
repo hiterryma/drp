@@ -1,9 +1,15 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <html>
 <head>
 	<jsp:include page="/pages/plugins/basepath.jsp"/>
+
 	<script type="text/javascript" src="js/pages/back/admin/storage/storage_list_details.js"></script>
+
 	<script type="text/javascript" src="js/split_page.js"></script>
+	<script type="text/javascript" src="js/pages/back/index.js"></script>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">
@@ -24,19 +30,28 @@
 					<table class="table table-striped table-bordered table-hover">
 						<tr> 
 							<td style="width:150px;"><strong>入库标题：</strong></td>
-							<td>双13备货</td>
+							<td>${storage_apply.title}</td>
 						</tr>
 						<tr>
 							<td><strong>存入仓库名称：</strong></td>
+							<!--
 							<td>北京市 北京市 通州一号仓库</td>
+							-->
+							<td>${title}</td>
 						</tr>
 						<tr>
 							<td><strong>仓库类型：</strong></td>
+							<!--
 							<td>衣帽服饰</td>
+							-->
+							<td>${witem.title}</td>
 						</tr>
 						<tr>
 							<td><strong>备注信息：</strong></td>
+							<!--
 							<td>我要上</td>
+							-->
+							<td>${storage_apply.note}</td>
 						</tr>
 						<tr>
 							<td><strong>入库操作：</strong></td>
@@ -48,8 +63,8 @@
 					</table>
 				</div>
 				<div>
-					<table class="table table-condensed" id="detailsTab">
-						<thead>
+					<table class="table table-condensed" id="detailsTab" value="${storage_apply_details.said}">
+						<thead >
 							<tr>
 								<th class="text-left" style="width:10%;">商品编号</th> 
 								<th class="text-left" style="width:30%;">商品名称</th>
@@ -59,7 +74,9 @@
 								<th class="text-left" style="width:30%;">操作</th>
 							</tr>
 						</thead>
-						<tbody>
+						<tbody id="tbody">
+						<c:forEach items="${allStorage_apply_details}" var="storage_apply_details" varStatus="status">
+							<!--
 							<tr id="dettr-1" class="text-success">
 								<td><input type="text" id="gid-1" value="100001"/></td>
 								<td><input type="text" id="name-1" value="衣服" size="40"/></td>
@@ -73,6 +90,24 @@
 										<span class="glyphicon glyphicon-edit"></span>&nbsp;移除</button>
 								</td>
 							</tr>
+							-->
+
+							<tr id="dettr-${status.index+1}" class="text-success" value="${storage_apply_details.sadid}">
+
+								<td><input type="text" id="gid-${status.index+1}" value="${storage_apply_details.gid}"/></td>
+								<td><input type="text" id="name-${status.index+1}" value="${storage_apply_details.name}" size="40"/></td>
+								<td><input type="text" id="amount-${status.index+1}" value="${storage_apply_details.num}" maxlength="8" size="8"/></td>
+								<td><input type="text" id="price-${status.index+1}" value="${pricemap[storage_apply_details.sadid]}" maxlength="8" size="8"/></td>
+								<td><input type="text" id="weight-${status.index+1}" value="${weightmap[storage_apply_details.sadid]}" maxlength="8" size="8"/></td>
+								<td>
+									<button id="save-1" class="btn btn-primary btn-xs">
+										<span class="glyphicon glyphicon-edit"></span>&nbsp;保存</button>
+									<button id="remove-1" class="btn btn-danger btn-xs">
+										<span class="glyphicon glyphicon-edit"></span>&nbsp;移除</button>
+								</td>
+							</tr>
+
+						</c:forEach>
 						</tbody>
 					</table>
 				</div>

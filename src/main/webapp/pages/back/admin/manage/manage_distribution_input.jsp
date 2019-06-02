@@ -4,9 +4,10 @@
 	<jsp:include page="/pages/plugins/basepath.jsp"/>
 	<script type="text/javascript" src="js/pages/back/admin/manage/manage_distribution_input.js"></script>
 	<script type="text/javascript" src="js/split_page.js"></script>
+	<script type="text/javascript" src="js/pages/back/index.js"></script>
 </head>
 <%!
-	public static final String STORAGE_INPUT_URL = "pages/back/admin/manage/manage_distribution.jsp" ;
+	public static final String STORAGE_INPUT_URL = "/pages/back/admin/manage/manage_storage/search_pre.action" ;
 %>
 
 <body class="hold-transition skin-blue sidebar-mini"> 
@@ -32,7 +33,7 @@
 								<label class="col-md-3 control-label" for="sid">出库单号：</label>
 								<div class="col-md-5">
 									<!-- 定义表单输入组件 -->
-									<input type="text" id="sid" name="sid" class="form-control"
+									<input type="text" id="sid" name="said" class="form-control"
 										placeholder="请输入申请单标题名称">
 								</div>
 								<!-- 定义表单错误提示显示元素 -->

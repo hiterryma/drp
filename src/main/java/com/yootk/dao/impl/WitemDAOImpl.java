@@ -28,7 +28,7 @@ public class WitemDAOImpl extends AbstractDAO implements IWitemDAO {
 
     @Override
     public Witem findById(Long aLong) throws SQLException {
-        String sql = "select wiid, title from where wiid = ?";
+        String sql = "select wiid, title from witem where wiid = ?";
         super.pstmt = super.conn.prepareStatement(sql);
         super.pstmt.setLong(1, aLong);
         return super.handleResultToVO(super.pstmt.executeQuery(), Witem.class);

@@ -1,18 +1,17 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page language="java" pageEncoding="UTF-8" %>
+<%@ page language="java" pageEncoding="UTF-8"%>
 <html>
 <head>
     <jsp:include page="/pages/plugins/basepath.jsp"/>
     <script type="text/javascript" src="js/mall_index.js"></script>
 </head>
 <%!
-    public static final String GOODS_SHOW_URL = "/pages/back/admin/goods/getGoods.action?gid=";
+    public static final String GOODS_SHOW_URL = "pages/front/goods/goods_show.jsp" ;
 %>
 <body>
 <div class="container contentback">
     <div id="headDiv" class="row">
         <div class="col-md-12 col-xs-12">
-            <jsp:include page="/pages/plugins/front/include_navbar.jsp"/>
+            <jsp:include page="/pages/plugins/front/include_navbar.jsp" />
         </div>
     </div>
     <div style="height: 60px;"></div>
@@ -49,5 +48,6 @@
             <jsp:include page="/pages/plugins/front/include_title_foot.jsp"/>
         </div>
     </div>
+</div>
 </body>
 </html>

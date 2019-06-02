@@ -31,9 +31,7 @@
 						</thead>
 						<tbody>
 							<tr id="travel-1">
-								<td class="text-center">
-									<img src="images/user.png" style="width:20px;"/>
-								</td>
+								<td class="text-center"><img src="images/user.png" style="width:20px;"/></td>
 								<td class="text-center" id="memberName">老李</td>
 								<td class="text-center">部门员工</td>
 								<td class="text-center">232902309230</td>

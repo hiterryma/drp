@@ -9,11 +9,11 @@
 	public static final String CUSTOMER_LIST_URL = "pages/back/admin/customer/customer_list.action" ;
 	public static final String CUSTOMER_AUDIT_URL = "pages/back/admin/customer/customer_audit_list.action" ;
 
-	public static final String STORAGE_ADD_URL = "pages/back/admin/storage/storage_add.jsp" ;
-	public static final String STORAGE_LIST_URL = "pages/back/admin/storage/storage_list_myself.jsp" ;
+    public static final String STORAGE_ADD_URL = "pages/back/admin/storage/storage_add_pre.action" ;
+    public static final String STORAGE_LIST_URL = "pages/back/admin/storage/storage_list.action" ;
 
-	public static final String STORAGE_AUDIT_LIST_URL = "pages/back/admin/storageaudit/storageaudit_list_prepare.jsp" ;
-	public static final String STORAGE_AUDIT_HISTORY_URL = "pages/back/admin/storageaudit/storageaudit_list_history.jsp" ;
+    public static final String STORAGE_AUDIT_LIST_URL = "/pages/back/admin/storage/storage_list_In.action" ;
+    public static final String STORAGE_AUDIT_HISTORY_URL = "/pages/back/admin/storage/storage_list_In_aud_history.action" ;
 
 	public static final String GOODS_ADD_URL = "pages/back/admin/goods/goods_pre_add.action" ;
 	public static final String GOODS_LIST_URL = "pages/back/admin/goods/goods_list.action" ;
@@ -43,7 +43,7 @@
                      alt="User Image">
             </div>
             <div class="pull-left info">
-                <p>小李老师</p>
+                <p>${name}</p>
             </div>
         </div>
         <!-- /.search form -->
