@@ -1,5 +1,6 @@
 package com.yootk.dao.impl;
 
+import com.yootk.common.annotation.Repository;
 import com.yootk.common.dao.abs.AbstractDAO;
 import com.yootk.dao.IStorage_recordDAO;
 import com.yootk.vo.Storage_record;
@@ -8,7 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Set;
-
+@Repository
 public class Storage_recordDAOImpl extends AbstractDAO implements IStorage_recordDAO {
     @Override
     public boolean doCreate(Storage_record storage_record) throws SQLException {

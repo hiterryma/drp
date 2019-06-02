@@ -111,7 +111,7 @@ public class MemberDAOImpl extends AbstractDAO implements IMemberDAO {
 
     @Override
     public List<Member> findSplit(Long currentPage, Integer lineSize) throws SQLException {
-        String sql ="select mid,lid,did,sal,name,type,phone,photo,note,regdate,inmid,locked,email from member where locked = 0   LIMIT " + (currentPage - 1) * lineSize + "," + lineSize;
+        String sql ="select mid,lid,did,sal,name,type,phone,photo,note,regdate,inmid,locked,email from member where locked = 0 LIMIT " + (currentPage - 1) * lineSize + "," + lineSize;
         super.pstmt = super.conn.prepareStatement(sql) ;
         ResultSet rs = super.pstmt.executeQuery() ;
         return super.handleResultToList(rs, Member.class);

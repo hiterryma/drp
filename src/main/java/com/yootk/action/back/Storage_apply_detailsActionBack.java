@@ -42,6 +42,7 @@ public class Storage_apply_detailsActionBack extends AbstractAction {
     public void addOrEdit(Long sadid, Long said, Long gid, String name, int num, Double price, Double weight) {
         System.out.println("*******+++++++++");
         System.out.println(sadid+ "++++"+said+ "++++"+gid+ "++++"+name+ "++++"+num+ "++++"+price+ "++++"+weight);
+
         Storage_apply_details storage_apply_details = new Storage_apply_details() ;
         storage_apply_details.setSaid(said);
         storage_apply_details.setName(name);
