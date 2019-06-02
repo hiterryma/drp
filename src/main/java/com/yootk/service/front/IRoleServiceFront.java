@@ -1,8 +1,17 @@
 package com.yootk.service.front;
 
+import com.yootk.vo.Member;
+
 import java.util.Map;
 
 public interface IRoleServiceFront {
+    /**
+     *
+     * @param mid
+     * @return
+     * @throws Exception
+     */
+    public Member getByMid(String mid) throws Exception;
     /**
      * 查询雇员所在部门拥有的角色，以及角色对应的权限
      * @param mid 要查询的ID

@@ -23,6 +23,7 @@ public class WitemServiceBackImpl extends AbstractService implements IWitemServi
     private ISubtypeDAO subtypeDAO;
     @Autowired
     private IGoodsDAO goodsDAO;
+
     @Override
     public Map<String ,Object> getAll() throws Exception {
         Map<String ,Object> map = new HashMap<>();

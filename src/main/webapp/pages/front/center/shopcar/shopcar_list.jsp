@@ -1,11 +1,15 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" pageEncoding="UTF-8"%>
 <html>
 <head>
 	<jsp:include page="/pages/plugins/basepath.jsp"/>
-	<script type="text/javascript" src="js/front/center/shopcar/shopcar_list.js"></script>
+	<script type="text/javascript" src="js/pages/front/center/shopcar/shopcar_list.js"></script>
 </head>
 <%!
 	public static final String GOODS_SHOW_URL = "pages/front/goods/goods_show.jsp" ;
+%>
+<%
+	String orders_add_url = "/pages/front/center/orders/orders_add_pre.action" ;
 %>
 <body class="back">
 	<div class="container contentback">
@@ -27,6 +31,7 @@
 						<strong><span class="glyphicon glyphicon-list"></span>&nbsp;我的购物车</strong>
 					</div>
 					<div class="panel-body">
+						<form action="<%=orders_add_url%>" method="post">
 						<table class="table table-condensed">
 							<thead>
 								<tr>
@@ -40,46 +45,35 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
+                            ${adid}
+							<c:forEach items="${allGoods}" var="goods">
+								<tr id="shopcar-${goods.gid}">
 									<td class="text-center">
-										<input type="checkbox" id="gid" name="gid" value="1">
+										<input type="checkbox" id="gid" name="gid" value="${goods.gid}">
 									</td>
 									<td class="text-center">
-										<a href="<%=GOODS_SHOW_URL%>" onmouseover="this.style.cursor='hand'">Java开发实战经典</a>
+										<a href="<%=GOODS_SHOW_URL%>" onmouseover="this.style.cursor='hand'">${goods.name}</a>
 									</td>
-									<td class="text-center"><span id="price-1">79.8</span></td>
+									<td class="text-center"><span id="price-${goods.gid}">${goods.price}</span></td>
 									<td class="text-center">
-										<button class="btn btn-primary" id="sub-1">-</button>
-										<input type="text" id="amount-1" name="amount-1" class="shopcar-form-control" size="4" maxlength="4" value="20">
-										<button class="btn btn-primary" id="add-1">+</button> 
+										<button class="btn btn-primary" type="button"  id="sub-${goods.gid}">-</button>
+										<input type="text" id="amount-${goods.gid}" name="amount-${goods.gid}" class="shopcar-form-control" size="4" maxlength="4" value="${shopcar[goods.gid]}">
+										<button class="btn btn-primary" type="button"  id="add-${goods.gid}">+</button>
 									</td>
-									<td class="text-center"><button class="btn btn-primary" id="updateBtn-1">修改</button></td>
+									<td class="text-center"><button class="btn btn-primary" type="button"  id="updateBtn-${goods.gid}">修改</button></td>
 								</tr>
-								<tr> 
-									<td class="text-center">
-										<input type="checkbox" id="gid" name="gid" value="2">
-									</td>
-									<td class="text-center">
-										<a href="<%=GOODS_SHOW_URL%>" onmouseover="this.style.cursor='hand'">Java开发实战经典</a>
-									</td>
-									<td class="text-center"><span id="price-2">79.8</span></td>
-									<td class="text-center">
-										<button class="btn btn-primary" id="sub-2">-</button>
-										<input type="text" id="amount-2" name="amount-2" class="shopcar-form-control" size="4" maxlength="4" value="20">
-										<button class="btn btn-primary" id="add-2">+</button> 
-									</td>
-									<td class="text-center"><button class="btn btn-primary" id="updateBtn-2">修改</button></td>
-								</tr>
+							</c:forEach>
 							</tbody>
 						</table>
 						<div class="text-right">
-							总价￥<span id="allPrice" class="text-danger h2">78.9</span>
+							总价￥<span id="allPrice" class="text-danger h2">80</span>
 						</div>
 						<div>
-							<button class="btn btn-primary" id="editBtn"><span class="glyphicon glyphicon-pencil"></span>&nbsp;修改数量</button>
-							<button class="btn btn-danger" id="rmBtn"><span class="glyphicon glyphicon-remove"></span>&nbsp;移出购物车</button>
-							<a class="btn btn-success" href="pages/front/center/orders/orders_add.jsp" id="addBtn"><span class="glyphicon glyphicon-file"></span>&nbsp;下单</a>
+							<button class="btn btn-primary"  type="button" id="editBtn"><span class="glyphicon glyphicon-pencil"></span>&nbsp;修改数量</button>
+							<button class="btn btn-danger"  type="button" id="rmBtn"><span class="glyphicon glyphicon-remove"></span>&nbsp;移出购物车</button>
+							<button class="btn btn-success" type="submit" id="addBtn"><span class="glyphicon glyphicon-file"></span>&nbsp;下单</button>
 						</div>
+						</form>
 					</div>
 					<div class="panel-footer">
 						<jsp:include page="/pages/plugins/alert.jsp"/>

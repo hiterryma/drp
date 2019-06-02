@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%!
 	public static final String CUSTOMER_ADD_URL = "" ;
 %>
@@ -7,6 +8,7 @@
 	<jsp:include page="/pages/plugins/basepath.jsp"/>
 	<script type="text/javascript" src="js/pages/back/admin/customer/customer_audit_list.js"></script>
 	<script type="text/javascript" src="js/split_page.js"></script>
+	<script type="text/javascript" src="js/pages/back/index.js"></script>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -38,7 +40,20 @@
 					</tr>
 					</thead>
 					<tbody>
-					<tr>
+					<c:forEach items="${allCustomers}" var="customer">
+						<tr>
+							<td class="text-center"><span id="mid-admin" style="cursor:pointer;">${customer.name}</span></td>
+							<td class="text-left"><span class="text-danger">网站注册</span></td>
+							<td class="text-left">${customer.phone}</td>
+							<td class="text-left">${customer.address}</td>
+							<td class="text-left">${customer.indate}</td>
+							<td class="text-left">
+								<button class="btn btn-primary btn-xs" id="audit-${customer.cuid}">
+									<span class="glyphicon glyphicon-floppy-save"></span>&nbsp;审核处理</button>
+							</td>
+						</tr>
+					</c:forEach>
+					<%--<tr>
 						<td class="text-center"><span id="mid-admin" style="cursor:pointer;">新博</span></td>
 						<td class="text-left"><span class="text-danger">网站注册</span></td>
 						<td class="text-left">1234456</td>
@@ -59,7 +74,7 @@
 							<button class="btn btn-primary btn-xs" id="audit-2">
 								<span class="glyphicon glyphicon-floppy-save"></span>&nbsp;审核处理</button>
 						</td>
-					</tr>
+					</tr>--%>
 					</tbody>
 				</table>
 				<div id="splitBarDiv" style="float:right">

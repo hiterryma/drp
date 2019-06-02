@@ -1,11 +1,13 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <html>
 <head>
 	<jsp:include page="/pages/plugins/basepath.jsp"/>
-	<script type="text/javascript" src="js/pages/back/admin/emp/emp_edit.js"></script>
+	<script type="text/javascript" src="js/pages/back/admin/member/member_add.js"></script>
+	<script type="text/javascript" src="js/pages/back/index.js"></script>
 </head>
 <%!
-	public static final String EMP_EDIT_URL = "" ;
+	public static final String EMP_ADD_URL =  "pages/back/admin/member/member_add.action" ;
 %>
 <body class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">
@@ -13,27 +15,28 @@
 		<jsp:include page="/pages/plugins/back/include_title_head.jsp" />
 		<!-- 导入左边菜单项 -->
 		<jsp:include page="/pages/plugins/back/include_menu_item.jsp">
-			<jsp:param name="mi" value="2"/>
-			<jsp:param name="msi" value="21"/>
+			<jsp:param name="mi" value="9"/>
+			<jsp:param name="msi" value="91"/>
 		</jsp:include>
 		<div class="content-wrapper text-left">
 					<div class="panel panel-success">
 				<div class="panel-heading">
-					<strong><span class="glyphicon glyphicon-user"></span>&nbsp;雇员编辑</strong>
+					<strong><span class="glyphicon glyphicon-user"></span>&nbsp;雇员入职</strong>
 				</div>
 				<div class="panel-body">
-					<form class="form-horizontal" action="<%=EMP_EDIT_URL%>" id="myform" method="post" enctype="multipart/form-data">
+					<form class="form-horizontal" action="<%=EMP_ADD_URL%>" id="myform" method="post" enctype="multipart/form-data">
 						<fieldset>
 							<!-- 定义输入表单样式，其中id主要用于设置颜色样式 -->
-							<div class="form-group" id="eidDiv">
+							<div class="form-group" id="midDiv">
 								<!-- 定义表单提示文字 -->
-								<label class="col-md-3 control-label" for="eid">登录ID：</label>
+								<label class="col-md-3 control-label" for="mid">登录ID：</label>
 								<div class="col-md-5">
 									<!-- 定义表单输入组件 -->
-									10001
+									<input type="text" id="mid" name="mid" class="form-control"
+										placeholder="请输入雇员登录ID">
 								</div>
 								<!-- 定义表单错误提示显示元素 -->
-								<div class="col-md-4" id="eidMsg"></div>
+								<div class="col-md-4" id="midMsg"></div>
 							</div>
 							<div class="form-group" id="passwordDiv">
 								<!-- 定义表单提示文字 -->
@@ -46,16 +49,16 @@
 								<!-- 定义表单错误提示显示元素 -->
 								<div class="col-md-4" id="passwordMsg"></div>
 							</div>
-							<div class="form-group" id="enameDiv">
+							<div class="form-group" id="nameDiv">
 								<!-- 定义表单提示文字 -->
-								<label class="col-md-3 control-label" for="ename">雇员姓名：</label>
+								<label class="col-md-3 control-label" for="name">雇员姓名：</label>
 								<div class="col-md-5">
 									<!-- 定义表单输入组件 -->
-									<input type="text" id="ename" name="ename" class="form-control"
+									<input type="text" id="name" name="name" class="form-control"
 										placeholder="请输入雇员真实姓名">
 								</div>
 								<!-- 定义表单错误提示显示元素 -->
-								<div class="col-md-4" id="enameMsg"></div>
+								<div class="col-md-4" id="nameMsg"></div>
 							</div>
 							<div class="form-group" id="phoneDiv">
 								<!-- 定义表单提示文字 -->
@@ -70,31 +73,31 @@
 							</div>
 							<div class="form-group" id="didDiv">
 								<!-- 定义表单提示文字 -->
-								<label class="col-md-3 control-label" for="jid">所属部门：</label>
+								<label class="col-md-3 control-label" for="did">所属部门：</label>
 								<div class="col-md-5">
 									<select id="did" name="did" class="form-control">
 										<option value="">====== 请选择所在部门 ======</option>
-										<option value="1">技术部</option>
-										<option value="2">财务部</option>
-										<option value="3">市场部</option>
+										<c:forEach items="${allDepts}" var="dept" >
+											<option value="${dept.did}">${dept.dname}</option>
+										</c:forEach>
 									</select>
 								</div>
 								<!-- 定义表单错误提示显示元素 -->
 								<div class="col-md-4" id="didMsg"></div>
 							</div>
-							<div class="form-group" id="jidDiv">
+							<div class="form-group" id="lidDiv">
 								<!-- 定义表单提示文字 -->
-								<label class="col-md-3 control-label" for="jid">出差类型：</label>
+								<label class="col-md-3 control-label" for="lid">职位类型：</label>
 								<div class="col-md-5">
-									<select id="jid" name="jid" class="form-control">
+									<select id="lid" name="lid" class="form-control">
 										<option value="">====== 请选择雇员职务 ======</option>
-										<option value="1">总监</option>
-										<option value="2">部门经理</option>
-										<option value="3">部门员工</option>
+											<c:forEach items="${allLevels}" var="level" >
+												<option value="${level.lid}">${level.title}</option>
+											</c:forEach>
 									</select>
 								</div>
 								<!-- 定义表单错误提示显示元素 -->
-								<div class="col-md-4" id="jidMsg"></div>
+								<div class="col-md-4" id="lidMsg"></div>
 							</div>
 							<div class="form-group" id="picDiv">
 								<!-- 定义表单提示文字 -->
@@ -121,9 +124,7 @@
 							</div> 
 							<div class="form-group">
 								<div class="col-md-5 col-md-offset-3">
-									<input type="hidden" id="photo" value="">
-									<input type="hidden" id="eid" value="">
-									<button type="submit" class="btn btn-primary">编辑</button>
+									<button type="submit" class="btn btn-primary">增加</button>
 									<button type="reset" class="btn btn-warning">重置</button>
 								</div>
 							</div>

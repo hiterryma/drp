@@ -1,6 +1,5 @@
 package com.yootk.dao;
 
-import com.alibaba.fastjson.parser.deserializer.SqlDateDeserializer;
 import com.yootk.common.dao.IBaseDAO;
 import com.yootk.vo.Member;
 
@@ -9,12 +8,19 @@ import java.util.List;
 
 public interface IMemberDAO extends IBaseDAO<String , Member> {
     /**
+     * 更新最新登录时间
+     * @param vo
+     * @return
+     * @throws SQLException
+     */
+    public boolean update_lastTinme(Member vo) throws SQLException;
+    /**
      * 查询用户是否有部门，用户查询雇员的角色信息
      * @param mid
      * @return
      * @throws SQLException
      */
-    public Long findDidByDeptAndMember(String mid) throws SQLException;
+    public Member findDidByDeptAndMember(String mid) throws SQLException;
     /**
      *
      * @param newpassword
@@ -68,7 +74,13 @@ public interface IMemberDAO extends IBaseDAO<String , Member> {
      */
     public Member findByIdAndpw(String mid) throws SQLException;
 
-    public List<Member> findByDept(Long did) throws SQLException;
+    @Override
+    boolean doEdit(Member member) throws SQLException;
 
+    public List<Member> findByDept(Long did) throws SQLException ;
+
+    public List<Member> findByDeptSplit(Long did, Long currentPage, Integer lineSize) throws SQLException;
+
+    public Long getAllCountByDept(Long did) throws SQLException;
     public String findNameByMid(String mid) throws SQLException ;
 }

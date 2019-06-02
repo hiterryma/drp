@@ -1,27 +1,38 @@
-cid = 0 ;
+cuid = 0 ;
 $(function(){
 	$("span[id^=mid-]").each(function(){
 		$(this).on("click",function(){
-			mid = this.id.split("-")[1] ;
-			$("#memberInfo").modal("toggle") ;
+			mid = this.id.substr(4);
+			$.getJSON("/pages/back/admin/member/memberJson.action?mid="+mid, function(data){
+				console.log(data)
+				$("#memberInfo").modal("toggle") ;
+				levelMap = data.allLevelMap ;
+				deptMap = data.allDeptMap ;
+				$("#mid").text(data.member.name);
+				$(level).text(levelMap[data.member.lid]);
+				$(dept).text(deptMap[data.member.did]);
+				$(phone).text(data.member.phone);
+				$("pre").text(data.member.note);
+				$(".row img").attr("src","http://upload-server/upload/"+data.member.photo) ;
+			});
 		}) ;
 	}) ;
-	$("span[id^=cid-]").each(function(){
+	$("span[id^=cuid-]").each(function(){
 		$(this).on("click",function(){
-			cid = this.id.split("-")[1] ;
+			cuid = this.id.split("-")[1] ;
 			loadData() ;
 			$("#customerRecordInfo").modal("toggle") ;
 		}) ;
 	}) ;
 	$("button[id^=out-]").each(function(){
 		$(this).on("click",function(){
-			cid = this.id.split("-")[1] ;
+			cuid = this.id.split("-")[1] ;
 			operateAlert(true,"出库客户追加成功！","出库客户追加失败！") ;
 		}) ;
 	}) ;
 	$("button[id^=input-]").each(function(){
 		$(this).on("click",function(){
-			cid = this.id.split("-")[1] ;
+			cuid = this.id.split("-")[1] ;
 			$("#customerRecordInputInfo").modal("toggle") ;
 		}) ;
 	}) ;
@@ -30,6 +41,13 @@ $(function(){
 		submitHandler : function(form) {
 			// 发送ajax请求进行异步数据处理操作
 			$("#customerRecordInputInfo").modal("toggle") ;
+
+			$.get("pages/back/admin/customer/customer_audit.action",{audit:$("#audit").val(),note:$("#note").val(),cuid:$("#customerId").val()},function (data) {
+				console.log(data) ;
+				debugger;
+				window.location.reload();
+			},"json");
+
 			operateAlert(true,"客户联系记录追加成功！","客户联系记录追加失败！") ;
 		},
 		errorPlacement : function(error, element) {
@@ -55,7 +73,7 @@ $(function(){
 			"title" : {
 				required : true
 			} ,
-			"bid" : {
+			"criid" : {
 				required : true
 			} ,
 			"note" : { 
@@ -66,7 +84,7 @@ $(function(){
 }) ;
 function loadData() {	// 该函数名称一定要固定，不许修改
 	// 如果要想进行分页的处理列表前首先查询出部门编号
-	console.log("客户编号：" + cid) ;
+	console.log("客户编号：" + cuid) ;
 	// $("#memberBasicInfo tr:gt(0)").remove() ; // 加载之前要进行原有数据删除
 	createSplitBar(10) ;	// 创建分页控制项
 }

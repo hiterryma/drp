@@ -23,35 +23,22 @@
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-md-2 text-center"> 
-								<p><img class="img" src="images/nophoto.png" style="width:125px;"></p>
+								<p><img class="img" src="http://43.226.146.219/upload/${getGoods.photo}" style="width:125px;"></p>
 								<button id="addCar-1" class="btn btn-lg btn-danger">
 									<span class="glyphicon glyphicon-eye-open"></span>&nbsp;加入购物车</button>
 							</div>
 							<div class="col-md-10">
 								<div class="row">
 									<div class="col-md-2 h3"><strong>商品名称：</strong></div>
-									<div class="col-md-3 h3">Java开发实战经典</div>
+									<div class="col-md-3 h3">${getGoods.name}</div>
 								</div>
 								<div class="row">
 									<div class="col-md-2 h3"><strong>商品价格：</strong></div>
-									<div class="col-md-3 h3">￥79.8</div> 
+									<div class="col-md-3 h3">￥${getGoods.price}</div>
 								</div>
 								<div class="row"> 
 									<div class="col-md-12">
-										商品描述信息。商品描述信息。商品描述信息。商品描述信息。商品描述信息。商品描述信息。<br>
-										商品描述信息。商品描述信息。商品描述信息。商品描述信息。商品描述信息。商品描述信息。商品描述信息。<br>
-										商品描述信息。商品描述信息。商品描述信息。商品描述信息。商品描述信息。商品描述信息。商品描述信息。<br>
-										商品描述信息。商品描述信息。商品描述信息。商品描述信息。商品描述信息。商品描述信息。商品描述信息。<br>
-										商品描述信息。商品描述信息。商品描述信息。商品描述信息。商品描述信息。商品描述信息。商品描述信息。<br>
-										商品描述信息。商品描述信息。商品描述信息。商品描述信息。商品描述信息。商品描述信息。商品描述信息。<br>
-										商品描述信息。商品描述信息。商品描述信息。商品描述信息。商品描述信息。商品描述信息。商品描述信息。<br>
-										商品描述信息。商品描述信息。商品描述信息。商品描述信息。商品描述信息。商品描述信息。商品描述信息。<br>
-										商品描述信息。商品描述信息。商品描述信息。商品描述信息。商品描述信息。商品描述信息。商品描述信息。<br>
-										商品描述信息。商品描述信息。商品描述信息。商品描述信息。商品描述信息。商品描述信息。商品描述信息。<br>
-										商品描述信息。商品描述信息。商品描述信息。商品描述信息。商品描述信息。商品描述信息。商品描述信息。<br>
-										商品描述信息。商品描述信息。商品描述信息。商品描述信息。商品描述信息。商品描述信息。商品描述信息。<br>
-										商品描述信息。商品描述信息。商品描述信息。商品描述信息。商品描述信息。商品描述信息。商品描述信息。<br>
-										商品描述信息。商品描述信息。商品描述信息。商品描述信息。商品描述信息。商品描述信息。商品描述信息。<br>
+										${getGoods.note}<br>
 									</div>
 								</div>
 							</div>

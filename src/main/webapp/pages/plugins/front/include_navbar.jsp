@@ -6,12 +6,12 @@
 	public static final String LOGIN_URL = "login.jsp" ;
 	public static final String MALL_INDEX_URL = "classify.action" ;
 
-	public static final String PURCHASE_ADD_URL = "pages/front/center/purchase/purchase_add.jsp" ;
+	public static final String PURCHASE_ADD_URL = "/pages/front/center/purchase/add_list.action" ;
 
 	public static final String MEMBER_EDIT_URL = "pages/front/center/member/member_edit.jsp" ;
 	public static final String MEMBER_ADDRESS_LIST_URL = "pages/front/center/address/address_list.jsp" ;
-	public static final String ORDERS_LIST_URL = "pages/front/center/orders/orders_list.jsp" ;
-	public static final String SHOPCAR_LIST_URL = "pages/front/center/shopcar/shopcar_list.jsp" ;
+	public static final String ORDERS_LIST_URL = "pages/front/center/orders/orders_list.action" ;
+	public static final String SHOPCAR_LIST_URL = "pages/front/center/shopcar/shopcar_list.action" ;
 %>
 <div class="col-md-12" id="mid" >
 	<nav class="navbar navbar-default navbar-inverse navbar-fixed-top">
@@ -38,7 +38,7 @@
 					<li><a href="<%=SHOPCAR_LIST_URL%>">
 						<span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;我的购物车</a></li>
 					<li class="divider">&nbsp;</li>
-					<li><a href="<%=PURCHASE_ADD_URL%>"><span class="glyphicon glyphicon-certificate"></span>&nbsp;大宗采购</a></li>
+					<li ><a href="<%=PURCHASE_ADD_URL%>"><span class="glyphicon glyphicon-certificate"></span>&nbsp;大宗采购</a></li>
 				</ul></li>
 		</ul>
 		<form class="navbar-form navbar-left" action="" method="post">
@@ -56,8 +56,10 @@
 					<ul class="dropdown-menu main-list" >
 
 						<li><a href="pages/front/center/member/member_password_edit.jsp"><i class="glyphicon glyphicon-edit"></i>&nbsp;修改密码</a></li>
-						<li class="divider"></li>
-						<li id="manage"></li>
+						<c:if test="${did != 0}">
+							<li><a href="pages/back/member_action.action"><i class="glyphicon glyphicon-edit"></i>&nbsp;管理中心</a></li>
+						</c:if>
+
 						<li><a href="/member_logout.action"><i class="glyphicon glyphicon-off"></i>&nbsp;登录注销</a></li>
 					</ul></li>
 				<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>

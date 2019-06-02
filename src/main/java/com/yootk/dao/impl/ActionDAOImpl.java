@@ -62,7 +62,7 @@ public class ActionDAOImpl extends AbstractDAO implements IActionDAO {
     @Override
     public Set<String> findAllByMember(Long did) throws SQLException {
         Set<String> actionSet = new HashSet<>();
-        String sql ="SELECT actid FROM action WHERE rid IN ( SELECT rid FROM dept_role WHERE did=?)";
+        String sql ="SELECT actid FROM action WHERE rid IN ( SELECT rid FROM dept_role WHERE did=? )";
         super.pstmt = super.conn.prepareStatement(sql);
         super.pstmt.setLong(1,did);
         ResultSet rs = super.pstmt.executeQuery();

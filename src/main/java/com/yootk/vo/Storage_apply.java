@@ -30,6 +30,8 @@ public class Storage_apply implements Serializable {
     private String appmid ;
 
 
+
+
     public Long getSaid() {
         return said;
     }

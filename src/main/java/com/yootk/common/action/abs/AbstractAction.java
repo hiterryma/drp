@@ -25,8 +25,7 @@ public abstract class AbstractAction {
      *  获取登录的前端ID信息
      *  @return 如果用户已经登录则返回id的内容，如果没有登录返回null
      */
-    public String getFrontUser() {
-
+    public static String getFrontUser() {
         return (String) ServletObject.getRequest().getSession().getAttribute("mid");
     }
 
@@ -93,7 +92,7 @@ public abstract class AbstractAction {
      * @return 跳转显示页
      */
     public String getForwardPage() {
-        return this.getPageResource("forward.page");
+        return this.getPageResource("hello.page");
     }
 
     /**

@@ -80,6 +80,11 @@ public class WarehouseServiceImpl extends AbstractDAO implements IWarehouseServi
     }
 
     @Override
+    public boolean editAdmin(Long wid, String mid) throws Exception {
+        return this.warehouseDAO.doEditAdmin(wid, mid);
+    }
+
+    @Override
     public List<Warehouse> listWarehouseByWiid(Long wiid) throws Exception {
         return this.warehouseDAO.findAllByWiid(wiid) ;
     }

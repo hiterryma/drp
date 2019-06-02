@@ -7,6 +7,7 @@
 	<jsp:include page="/pages/plugins/basepath.jsp"/>
 	<script type="text/javascript" src="js/pages/back/admin/news/news_list.js"></script>
 	<script type="text/javascript" src="bootstrap/tinymce/tinymce.min.js"></script>
+	<script type="text/javascript" src="js/pages/back/index.js"></script>
 </head>
 <%!
 	public static final String NEWS_ADD_URL = "pages/back/admin/news/news_add.jsp" ;

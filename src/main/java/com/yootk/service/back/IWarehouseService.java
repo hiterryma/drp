@@ -18,6 +18,8 @@ public interface IWarehouseService {
 
     public Map<String, Object> list(Long currentPage, Integer linesize, String column, String keyword) throws Exception;
 
+    public boolean editAdmin(Long wid, String mid) throws Exception;
+
     public List<Warehouse> listWarehouseByWiid(Long wiid) throws Exception ;
 
     public List<Warehouse> listWarehouseByPCW(Long pid, Long cid, Long wiid) throws Exception ;

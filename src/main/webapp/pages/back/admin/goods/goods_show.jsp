@@ -4,6 +4,7 @@
 	<jsp:include page="/pages/plugins/basepath.jsp"/>
 	<script type="text/javascript" src="js/pages/back/admin/goods/goods_show.js"></script>
 	<script type="text/javascript" src="js/split_page.js"></script>
+	<script type="text/javascript" src="js/pages/back/index.js"></script>
 </head>
 <%!
 	public static final String GOODS_EDIT_URL = "" ;
@@ -27,43 +28,43 @@
 						<table class="table table-condensed" >
 							<tr>
 								<td style="width:20%;"><strong>商品编号：</strong></td> 
-								<td><span>100001</span></td>
+								<td><span>${goodsShow.gid}</span></td>
 								<td><strong>商品图片：</strong></td>
 							</tr>
 							<tr>
 								<td><strong>商品名称：</strong></td>
-								<td><span>胡友牌化粪池</span></td>
-								<td rowspan="7"><img src="upload/member/nophoto.png" style="height:300px;"></td>
+								<td><span>${goodsShow.name}</span></td>
+								<td rowspan="7"><img src="http://43.226.146.219/upload/${goodsShow.photo}" style="height:300px;"></td>
 							</tr>
 							<tr>
 								<td><strong>入库次数：</strong></td>
-								<td>3</td>
+								<td>未知</td>
 							</tr>
 							<tr>
 								<td><strong>商品库存量：</strong></td>
-								<td>3000（
+								<td>${goodsShow.stornum}（
 									<button id="storage-1" class="btn btn-danger btn-xs">
 										<span class="glyphicon glyphicon-edit"></span>&nbsp;库存详情</button>）</td>
 							</tr>
 							<tr>
 								<td><strong>当前商品价格（￥）：</strong></td>
-								<td>30</td>
+								<td>${goodsShow.price}</td>
 							</tr>
 							<tr>
 								<td><strong>当前商品重量（G）：</strong></td>
-								<td>30</td>
+								<td>${goodsShow.weight}</td>
 							</tr>
 							<tr>
 								<td><strong>最后入库日期：</strong></td>
-								<td>2019-10-10</td>
+								<td>${goodsShow.lastin}</td>
 							</tr>
 							<tr>
 								<td><strong>备注信息：</strong></td>
-								<td><pre class="pre-scrollable" style="width:700px;height:150px;">发神经阿德里飞洒抵抗力 范德克鲁斯建立开放撒 方力申搭建了开发商的 发动机萨拉空间来看 234uop富士达会计分录款手机范德萨进来进来看范德萨克利夫兰斯顿卡机了开发商大量了快捷方式的拉开建立开放撒酒 刘嘉玲发撒旦机立刻地方撒刻录机弗拉基反抗螺丝钉</pre></td>
+								<td><pre class="pre-scrollable" style="width:700px;height:150px;">${goodsShow.note}</pre></td>
 							</tr>
 						</table>
 					</div>
-					<div class="panel-group" id="storageDetails">
+					<div class="panel-group" id="storageDetails" value="${goodsShow.gid}">
 						<div class="panel panel-info">
 							<div class="panel-heading">
 								<h4 class="panel-title"> 
@@ -86,11 +87,11 @@
 										</thead>
 										<tbody>
 											<tr class="text-primary">
-												<td class="text-center">2010-10-10</td>
-												<td class="text-left">北京 北京 通州一号仓库</td>
-												<td class="text-center"><span id="mid-admin" style="cursor:pointer;">老李</span></td>
-												<td class="text-center"><span id="mid-admin" style="cursor:pointer;">老张</span></td>
-												<td class="text-center">200</td>
+												<td class="text-center">${goodsShow.lastin}</td>
+												<td class="text-left">${goodsWid.address}</td>
+												<td class="text-center"><span id="mid_${voStorage.mid}" style="cursor:pointer;">${voStorage.name}</span></td>
+												<td class="text-center"><span id="mid_${voAudit.mid}" style="cursor:pointer;">${voAudit.name}</span></td>
+												<td class="text-center">${goodsShow.stornum}</td>
 											</tr>
 										</tbody>
 									</table>

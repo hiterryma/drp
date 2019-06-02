@@ -1,8 +1,10 @@
 package com.yootk.vo;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Customer implements java.io.Serializable {
+public class Customer implements Serializable {
+
     private Long cuid;
     private String name;
     private String phone;
@@ -19,12 +21,25 @@ public class Customer implements java.io.Serializable {
     private Integer type;
     private String mid;
 
-    public String getMid() {
-        return mid;
-    }
-
-    public void setMid(String mid) {
-        this.mid = mid;
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "cuid=" + cuid +
+                ", name='" + name + '\'' +
+                ", phone='" + phone + '\'' +
+                ", pid=" + pid +
+                ", cid=" + cid +
+                ", address='" + address + '\'' +
+                ", indate=" + indate +
+                ", connum=" + connum +
+                ", ciid=" + ciid +
+                ", csid=" + csid +
+                ", note='" + note + '\'' +
+                ", recorder='" + recorder + '\'' +
+                ", status=" + status +
+                ", type=" + type +
+                ", mid='" + mid + '\'' +
+                '}';
     }
 
     public Long getCuid() {
@@ -137,5 +152,13 @@ public class Customer implements java.io.Serializable {
 
     public void setType(Integer type) {
         this.type = type;
+    }
+
+    public String getMid() {
+        return mid;
+    }
+
+    public void setMid(String mid) {
+        this.mid = mid;
     }
 }
