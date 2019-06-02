@@ -14,9 +14,10 @@
         <!-- 活跃导航项 -->
         <li id="purchaseRequest" class="${param.ch == 2 ? "active" : ""}"><a href="<%=PURCHASE_ADD_URL%>">采购申请单</a></li>
     </c:if>
-    <c:if test="${sessionScope.status == 3}">
+    <c:if test="${sessionScope.status == 2}">
         <!-- 活跃导航项 -->
-        <li id="purchaseRequest" class="${param.ch == 2 ? "active" : ""}"><a href="<%=PURCHASE_ADD_URL%>">采购申请单</a></li>
+        <li id="authentication" class="${param.ch == 1 ? "active" : ""}"><a
+                href="<%=CUSTOMER_AUTHENTICATION_URL%>">客户认证</a></li>
     </c:if>
     <li id="list" class="${param.ch == 3 ? "active" : ""}"><a href="<%=PURCHASE_LIST_URL%>">采购订单</a></li>
 </ul>
