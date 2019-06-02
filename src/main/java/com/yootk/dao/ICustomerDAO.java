@@ -10,6 +10,9 @@ public interface ICustomerDAO extends IBaseDAO<Long, Customer> {
 
     public List<Customer> findAllByStatus() throws SQLException;
 
+    @Override
+    Customer findById(Long aLong) throws SQLException;
+
     public Long getAllCountByStatus() throws SQLException;
 
     public Long getAllCountByStatus(String column, String keyword) throws SQLException;
@@ -27,4 +30,5 @@ public interface ICustomerDAO extends IBaseDAO<Long, Customer> {
      * @throws SQLException
      */
     public Integer findByMid(String mid) throws SQLException;
+
 }

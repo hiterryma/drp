@@ -4,7 +4,7 @@ $(function(){
 		$(this).on("click",function(){
 			mid = this.id.substr(4);
 			$.getJSON("/pages/back/admin/member/memberJson.action?mid="+mid, function(data){
-				console.log(data)
+				//console.log(data)
 				$("#memberInfo").modal("toggle") ;
 				levelMap = data.allLevelMap ;
 				deptMap = data.allDeptMap ;

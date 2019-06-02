@@ -1,5 +1,6 @@
 package com.yootk.action.back;
 
+import com.alibaba.fastjson.JSONObject;
 import com.yootk.common.action.abs.AbstractAction;
 import com.yootk.common.annotation.Autowired;
 import com.yootk.common.annotation.Controller;
@@ -61,28 +62,31 @@ public class CustomerActionBack extends AbstractAction {
             super.print(true);
         }
     }
+    @RequestMapping("customerrecord_pre_add")
+    public void customerRecordInputInfo() throws Exception{
 
+        super.print(JSONObject.toJSON(customerServiceBack.preAddCustomerRecord()));
+    }
     //客户沟通记录获取
     @RequestMapping("customer_record_list")
-    public void customerRecordList() throws Exception{
+    public void customerRecordList(Long currentPage,Integer lineSize,String cuid) throws Exception{
         PageUtil pu = new PageUtil(super.getPage("audit_list.action"));
-        System.out.println(customerServiceBack.listForCustomerRecord(pu.getCurrentPage(), pu.getLineSize(), pu.getColumn(), pu.getKeyword()));
+        super.print(JSONObject.toJSON(customerServiceBack.listForCustomerRecord(currentPage, lineSize, "cuid",cuid)));
     }
     //添加客户沟通记录
     @RequestMapping("customer_record_add")
-    public void audit(String title,String note,Long criid,String cuid) throws Exception{
+    public void audit(String title,String note,Long criid,Long cuid) throws Exception{
         CustomerRecord customerRecord = new CustomerRecord() ;
         customerRecord.setCmid(super.getFrontUser());
         customerRecord.setCuid(cuid);
         customerRecord.setNote(note);
         customerRecord.setCriid(criid);
         customerRecord.setTitle(title);
-        this.customerServiceBack.addForCustomerRecord(customerRecord) ;
- //      if (this.customerServiceBack.editForStatus(audit,note,criid)) {
-//            super.print(false);
-//        }else {
-//            super.print(true);
-//        }
+       if (this.customerServiceBack.addForCustomerRecord(customerRecord)) {
+            super.print(true);
+        }else {
+            super.print(false);
+        }
     }
     @Override
     public String getUploadDir() {

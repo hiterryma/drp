@@ -31,10 +31,9 @@
 								<div class="col-md-5">
 									<select id="criid" name="criid" class="form-control">
 										<option value="">====== 请选择业务类型 ======</option>
-										<c:forEach items="${allCritem}" var="critem" >
-											<option value="${critem.criid}">${critem.title}</option>
-										</c:forEach>
-										<option value="4">其他</option>
+<%--										<c:forEach items="${allCritem}" var="critem" >--%>
+<%--											<option value="${critem.criid}">${critem.title}</option>--%>
+<%--										</c:forEach>--%>
 									</select>
 								</div>
 								<!-- 定义表单错误提示显示元素 -->
@@ -53,6 +52,7 @@
 								<div class="col-md-4" id="noteMsg"></div>
 							</div> 
 							<div class="form-group">
+								<input type="hidden" name="cuid" id="cuid" value="" />
 								<div class="col-md-5 col-md-offset-3">
 									<button type="submit" class="btn btn-primary">增加</button>
 									<button type="reset" class="btn btn-warning">重置</button>

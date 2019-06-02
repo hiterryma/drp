@@ -25,14 +25,6 @@
 		<div class="panel panel-info">
 			<div class="panel-heading">
 				<strong><span class="glyphicon glyphicon-list"></span>&nbsp;客户信息列表</strong>
-
-				<select id="criid" name="criid" class="form-control">
-					<option value="">====== 请选择业务类型 ======</option>
-					<c:forEach items="${allCritem}" var="critem" >
-						<option value="${critem.criid}">${critem.title}</option>
-					</c:forEach>
-					<option value="4">其他</option>
-				</select>
 			</div>
 			<div class="panel-body">
 				<div>
