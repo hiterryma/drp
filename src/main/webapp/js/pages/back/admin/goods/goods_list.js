@@ -13,6 +13,13 @@ $(function(){
 	}) ;
 	$("span[id^=mid_]").each(function(){
 		$(this).on("click",function(){
+			$("#photo").append("");
+			$("#mid").html("");
+			$("#level").html("");
+			$("#dept").html("");
+			$("#phone").html("");
+			$("#note").html("");
+
 			mid = this.id.split("_")[1] ;
 			$("#memberInfo").modal("toggle") ;
 			$.getJSON("/pages/back/admin/goods/goods_member.action",{"mid":mid},function (data) {
