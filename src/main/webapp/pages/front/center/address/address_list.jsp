@@ -50,7 +50,7 @@
 									<td class="text-center">${address.receiver}</td>
 									<td class="text-center">${address.phone}</td>
 									<td class="text-center">${address.addr}</td>
-									<td class="text-center"><a id="editBtn-1" href="<%=ADDRESS_EDIT_URL%>" class="btn btn-primary btn-xs">编辑</a></td>
+									<td class="text-center"><a id="editBtn-1" href="<%=ADDRESS_EDIT_URL%>?adid=${address.adid}" class="btn btn-primary btn-xs">编辑</a></td>
 								</tr>
                             </c:forEach>
 							</tbody>

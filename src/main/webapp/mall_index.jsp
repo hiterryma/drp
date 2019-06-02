@@ -32,7 +32,7 @@
                                 <img src="http://upload-server/upload/${goods.photo}" style="width:100px;"></a></p>
                         <span class="text-warning h4"><strong>￥${goods.price}</strong></span>
                         <p><a href="<%=GOODS_SHOW_URL%>${goods.gid}">${goods.name}</a></p>
-                        <button id="addCar-1" class="btn btn-primary btn-xs">
+                        <button id="addCar-${goods.gid}" class="btn btn-primary btn-xs">
                             <span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;加入购物车
                         </button>
                     </div>

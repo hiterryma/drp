@@ -43,6 +43,11 @@ public class AddressDAOImpl extends AbstractDAO implements IAddressDAO {
     }
 
     @Override
+    public boolean doEdit(Address address) throws SQLException {
+        return false;
+    }
+
+    @Override
     public boolean doRemoveByAddress(String mid, Set<Long> adids) throws SQLException {
         StringBuffer sql =new StringBuffer("DELETE FROM address WHERE mid=? AND adid in (");
         for (Long adid : adids) {
@@ -55,7 +60,7 @@ public class AddressDAOImpl extends AbstractDAO implements IAddressDAO {
     }
 
     @Override
-    public boolean doEdit(Address address) throws SQLException{
+    public boolean doEdit(Address address,Long adid) throws SQLException{
         String sql = "UPDATE address SET mid=?,cid=?,pid=?,addr=?,receiver=?,phone=?,dflag=? WHERE adid=?" ;
         super.pstmt = super.conn.prepareStatement(sql) ;
         super.pstmt.setString(1,address.getMid());
@@ -65,9 +70,17 @@ public class AddressDAOImpl extends AbstractDAO implements IAddressDAO {
         super.pstmt.setString(5,address.getReceiver());
         super.pstmt.setString(6,address.getPhone());
         super.pstmt.setInt(7,0);
+        super.pstmt.setLong(8,adid);
         return super.pstmt.executeUpdate() > 0 ;
     }
 
+    @Override
+    public Address findByAdid(Long adid) throws SQLException {
+        String sql=" SELECT adid,mid,cid,pid,addr,receiver,phone,dflag from address where adid=? ";
+        super.pstmt=super.conn.prepareStatement(sql);
+        super.pstmt.setLong(1,adid);
+        return super.handleResultToVO(super.pstmt.executeQuery(),Address.class);
+    }
 
 
     @Override
