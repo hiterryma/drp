@@ -54,13 +54,14 @@ public class AddressServiceFrontImpl extends AbstractService implements IAddress
     }
 
     @Override
-    public boolean edit(Address address) throws SQLException {
-        return this.addressDAO.doEdit(address);
+    public boolean edit(Address address,Long adid) throws SQLException {
+        return this.addressDAO.doEdit(address,adid);
     }
 
     @Override
-    public Map<String,Object> preEdit() throws Exception {
+    public Map<String,Object> preEdit(Long adid) throws Exception {
         Map<String ,Object> result =new HashMap<>() ;
+        result.put("address",this.addressDAO.findByAdid(adid));
         List<Province> allProvinces =this.provinceDAO.findAll() ; // 查询所有的省份
         result.put("allProvinces",allProvinces) ;
         return result;

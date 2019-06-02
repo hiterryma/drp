@@ -19,8 +19,8 @@ public interface IAddressServiceFront {
 
     public boolean deleteByAddress(String mid, Set<Long> adids) throws SQLException;
 
-    public boolean edit(Address address) throws SQLException ;
+    public boolean edit(Address address,Long adid) throws SQLException ;
 
-    public Map<String,Object> preEdit() throws Exception ;
+    public Map<String,Object> preEdit(Long adid) throws Exception ;
 
 }

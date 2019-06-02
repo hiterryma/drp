@@ -28,7 +28,7 @@
 						<strong><span class="glyphicon glyphicon-pencil"></span>&nbsp;编辑联系地址</strong>
 					</div>
 					<div class="panel-body">
-						<form class="form-horizontal" action="<%=ADDRESS_EDIT_URL%>" id="myform" method="post">
+						<form class="form-horizontal" action="<%=ADDRESS_EDIT_URL%>?adid=${adid}" id="myform" method="post">
 							<fieldset>
 								<!-- 定义输入表单样式，其中id主要用于设置颜色样式 -->
 								<div class="form-group" id="nameDiv">
@@ -37,7 +37,7 @@
 									<div class="col-md-5">
 										<!-- 定义表单输入组件 -->
 										<input type="text" id="receiver" name="receiver" class="form-control"
-											placeholder="请输入收件人姓名" value="">
+											placeholder="请输入收件人姓名" value="${address.receiver}">
 									</div>
 									<!-- 定义表单错误提示显示元素 -->
 									<div class="col-md-4" id="nameMsg"></div>
@@ -48,7 +48,7 @@
 									<div class="col-md-5">
 										<!-- 定义表单输入组件 -->
 										<input type="text" id="phone" name="phone" class="form-control"
-											placeholder="请输入您的联系电话" value="">
+											placeholder="请输入您的联系电话" value="${address.phone}">
 									</div>
 									<!-- 定义表单错误提示显示元素 -->
 									<div class="col-md-4" id="phoneMsg"></div>
@@ -82,7 +82,7 @@
 									<div class="col-md-5">
 										<!-- 定义表单输入组件 -->
 										<input type="text" id="addr" name="addr" class="form-control"
-											placeholder="请输入您的联系地址" value="">
+											placeholder="请输入您的联系地址" value="${address.addr}">
 									</div>
 									<!-- 定义表单错误提示显示元素 -->
 									<div class="col-md-4" id="addrMsg"></div>

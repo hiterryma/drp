@@ -27,7 +27,7 @@ public class OrderActionFront extends AbstractAction {
             Long gidd=Long.parseLong(gids[x]);
             gidSet.add(gidd);
         }
-        ModuleAndView mav = new ModuleAndView(super.getForwardPage());
+        ModuleAndView mav = new ModuleAndView("/pages/front/center/orders/orders_list.action");  //super.getForwardPage()
         try {
             if (this.orderServiceFront.add(aid,gidSet,note)) {    // 进行数据保存
                 mav.add(AbstractAction.MSG_ATTRIBUTE_NAME, super.getMessge("vo.add.success", ACTION_TITLE));
