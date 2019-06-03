@@ -1,6 +1,5 @@
 $(function () {
    $.getJSON("/pages/back/member_message.action",function (date) {
-       console.log(date.photo);
        $("#imgae1").empty();
        $("#name1").empty();
        $("#imgae2").empty();
