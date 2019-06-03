@@ -12,6 +12,7 @@
 	public static final String ORDERS_LIST_URL = "pages/front/center/orders/orders_list.action" ;
 	public static final String SHOPCAR_LIST_URL = "pages/front/center/shopcar/shopcar_list.action" ;
 %>
+<script type="text/javascript" src="js/include_navbar.js"></script>
 <div class="col-md-12" id="mid" >
 	<nav class="navbar navbar-default navbar-inverse navbar-fixed-top">
 		<div class="navbar-header">
