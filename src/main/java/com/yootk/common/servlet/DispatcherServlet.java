@@ -83,7 +83,7 @@ public class DispatcherServlet extends HttpServlet {
                         if (returnValue instanceof ModuleAndView) {
                             ModuleAndView mav = (ModuleAndView) returnValue;
                             dispatcherPath = mav.getView(); // 获取跳转的路径
-                            System.out.println(dispatcherPath);
+//                            System.out.println(dispatcherPath);
                         }
                     }
                 } else {    // 现在有错误信息

@@ -53,7 +53,7 @@
 							<td class="text-left">${warehouses[storage_apply.wid]}</td>
 							<td class="text-center">${witems[storage_apply.wiid]}</td>
 							<td class="text-center">${storage_apply.submit_status==0?"未提交":"已提交"}</td>
-							<td class="text-center">100</td>
+							<td class="text-center">${totalnummap[storage_apply.said]}</td>
 							<td class="text-left">
 								<a href="<%=STORAGE_SUBMIT_URL%>?said=${storage_apply.said}" class="btn btn-primary btn-xs">
 									<span class="fa fa-rocket"></span>&nbsp;提交申请</a>

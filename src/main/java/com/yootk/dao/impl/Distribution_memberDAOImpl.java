@@ -25,6 +25,16 @@ public class Distribution_memberDAOImpl extends AbstractDAO implements IDistribu
     }
 
     @Override
+    public List<Distribution_member> findAllByCuid(Long cuid) throws SQLException {
+        String sql = "SELECT dmid,cuid,salemid FROM distribution_member WHERE cuid=?" ;
+        super.pstmt = super.conn.prepareStatement(sql) ;
+        super.pstmt.setLong(1,cuid);
+        ResultSet rs = super.pstmt.executeQuery() ;
+        return super.handleResultToList(rs,Distribution_member.class) ;
+
+    }
+
+    @Override
     public boolean doCreate(Distribution_member distribution_member) throws SQLException {
         return false;
     }

@@ -14,7 +14,7 @@ public class DistributionDetailsDAOImpl extends AbstractDAO implements IDistribu
     @Override
     public boolean doCreate(DistributionDetails distributionDetails) throws SQLException {
         String sql = "insert into distribution_details (gid, name, price) values (?, ?, ?)";
-        System.out.println(distributionDetails);
+//        System.out.println(distributionDetails);
         super.pstmt  = super.conn.prepareStatement(sql);
         super.pstmt.setLong(1, distributionDetails.getGid());
         super.pstmt.setString(2, distributionDetails.getName());

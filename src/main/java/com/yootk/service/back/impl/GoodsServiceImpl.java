@@ -38,6 +38,7 @@ public class GoodsServiceImpl extends AbstractService implements IGoodsService {
         goods.setDelflag(0);
         goods.setLastin(new Date());
         goods.setStornum(0);
+        goods.setWid(-1L);
         return this.goodsDAO.doCreate(goods);
     }
 
