@@ -33,7 +33,7 @@ public class NewsActionBack extends AbstractAction {
 			if (this.newsService.add(news)) {
 				msg = super.getMessge("vo.add.success","公告") ;
 			}
-			String path = super.getPage("add.action") ;
+			String path = super.getPage("list.action") ;
 			mav.add(AbstractAction.PATH_ATTRIBUTE_NAME, path);
 			mav.add(AbstractAction.MSG_ATTRIBUTE_NAME, msg);
 		} catch (Exception e) {

@@ -7,12 +7,14 @@ import com.yootk.common.annotation.Autowired;
 import com.yootk.common.annotation.Controller;
 import com.yootk.common.annotation.RequestMapping;
 import com.yootk.common.servlet.web.ModuleAndView;
+import com.yootk.common.servlet.web.ServletObject;
 import com.yootk.common.util.ResourceUtil;
 import com.yootk.service.front.IPurchaseServiceFront;
 import com.yootk.vo.Purchase;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/pages/front/center/purchase/")
@@ -68,13 +70,12 @@ public class PurchaseActionFront extends AbstractAction {
     public ModuleAndView add_list(){
         ModuleAndView mav = new ModuleAndView("/pages/front/center/purchase/purchase_list.jsp");
         try {
-//            System.out.println(super.getFrontUser());
-            List<Purchase> map = this.purchaseServiceFront.getAllById(super.getFrontUser());
-//            System.out.println(map);
+            Map<String ,Object> map = this.purchaseServiceFront.getAllById(super.getFrontUser());
+            ServletObject.getRequest().getSession().setAttribute("status",map.get("status"));
             if (map == null){
                 mav.add(AbstractAction.PATH_ATTRIBUTE_NAME, super.getPage("list.failure"));
             }else {
-                mav.add("allPurchase",map);
+                mav.add(map);
             }
         } catch (Exception e) {
             e.printStackTrace();

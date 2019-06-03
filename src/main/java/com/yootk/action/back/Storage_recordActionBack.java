@@ -7,6 +7,7 @@ import com.yootk.common.annotation.RequestMapping;
 import com.yootk.common.servlet.web.ModuleAndView;
 import com.yootk.dao.IAuditDAO;
 import com.yootk.service.back.IStorage_recordServiceBack;
+import com.yootk.vo.Storage_record;
 
 import java.awt.event.MouseAdapter;
 import java.util.Map;
@@ -34,6 +35,27 @@ public class Storage_recordActionBack extends AbstractAction {
             e.printStackTrace();
         }
         return mav ;
+    }
+
+    @RequestMapping("storage_record_add")
+    public void add(Long said, Long gid, String name, int num, Double price, Double weight, int status) {
+        Storage_record storage_record = new Storage_record() ;
+        storage_record.setSaid(said);
+        storage_record.setGid(gid);
+        storage_record.setName(name);
+        storage_record.setNum(num);
+        storage_record.setPrice(price);
+        storage_record.setWeight(weight);
+        storage_record.setStatus(status);
+        storage_record.setInmid(super.getBackUser());
+
+        try {
+            //1、使用的是Ajax实现，所以要用print()函数
+            super.print(this.storage_recordServiceBack.add(storage_record));
+        } catch (Exception e) {
+            super.print(false);
+        }
+
     }
 
     @Override

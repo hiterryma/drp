@@ -27,7 +27,7 @@
 					<table class="table table-striped table-bordered table-hover">
 						<tr> 
 							<td style="width:150px;"><strong>入库单编号：</strong></td>
-							<td>${storage_apply.said}</td>
+							<td id="said">${storage_apply.said}</td>
 						</tr>
 						<tr> 
 							<td><strong>入库标题：</strong></td>
@@ -60,17 +60,17 @@
 							</tr>
 						</thead>
 						<tbody>
-						<c:forEach items="${allStorage_apply_details}" var="storage_apply_details" >
-							<tr id="dettr-1" class="text-success">
-								<td>${storage_apply_details.gid}</td>
-								<td>${storage_apply_details.name}</td>
-								<td>${storage_apply_details.num}</td>
-								<td>${pricemap[storage_apply_details.sadid]}</td>
-								<td>${weightmap[storage_apply_details.sadid]}</td>
+						<c:forEach items="${allStorage_apply_details}" var="storage_apply_details" varStatus="status">
+							<tr id="dettr-${status.index+1}" class="text-success">
+								<td id="gid-${status.index+1}">${storage_apply_details.gid}</td>
+								<td id="name-${status.index+1}">${storage_apply_details.name}</td>
+								<td id="num-${status.index+1}">${storage_apply_details.num}</td>
+								<td id="price-${status.index+1}">${pricemap[storage_apply_details.sadid]}</td>
+								<td id="weight-${status.index+1}">${weightmap[storage_apply_details.sadid]}</td>
 								<td>
-									<button id="access-1" class="btn btn-primary btn-xs">
+									<button id="access-${status.index+1}" class="btn btn-primary btn-xs">
 										<span class="glyphicon glyphicon-edit"></span>&nbsp;允许入库</button>
-									<button id="denied-1" class="btn btn-danger btn-xs">
+									<button id="denied-${status.index+1}" class="btn btn-danger btn-xs">
 										<span class="glyphicon glyphicon-edit"></span>&nbsp;拒绝入库</button>
 								</td>
 							</tr>

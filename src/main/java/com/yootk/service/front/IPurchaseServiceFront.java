@@ -27,7 +27,7 @@ public interface IPurchaseServiceFront {
      * key=allpurchase、value=所有采购单的List集合
      * @throws Exception
      */
-    public List<Purchase>  getAllById(String mid) throws Exception;
+    public Map<String,Object>  getAllById(String mid) throws Exception;
     /**
      * 大宗采购申请单填写
      * @param vo 申请单内容
