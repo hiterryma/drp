@@ -1,4 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%!
 	public static final String DISTRIBUTION_ADD_URL = "" ;
 %>
@@ -43,9 +46,12 @@
 								<div class="col-md-5">
 									<select id="pid" name="pid" class="form-control">
 										<option value="">====== 请选择所在省份 ======</option>
+										<option value="${province.pid}" selected="selected">${province.title}</option>
+										<!--
 										<option value="1">河北省</option>
 										<option value="2">山西部</option>
 										<option value="3">广东省</option>
+										-->
 									</select>
 								</div>
 								<!-- 定义表单错误提示显示元素 -->
@@ -56,10 +62,13 @@
 								<label class="col-md-3 control-label" for="cid">出库城市：</label>
 								<div class="col-md-5">
 									<select id="cid" name="cid" class="form-control">
-										<option value="">====== 请选择所在省份 ======</option>
+										<option value="">====== 请选择所在城市 ======</option>
+										<option value="${city.cid}" selected="selected">${city.title}</option>
+										<!--
 										<option value="1">石家庄</option>
 										<option value="2">沧州</option>
 										<option value="3">邯郸</option>
+										-->
 									</select>
 								</div>
 								<!-- 定义表单错误提示显示元素 -->

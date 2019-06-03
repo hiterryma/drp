@@ -4,7 +4,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <%!
-	public static final String DISTRIBUTION_ADD_URL = "pages/back/admin/distribution/distribution_add.jsp" ;
+	public static final String DISTRIBUTION_ADD_URL = "/pages/back/admin/distribution/distribution_showpc.action" ;
 %>
 <html>
 <head>
@@ -71,7 +71,7 @@
 								<td class="text-center">
 									<input type="checkbox" id="gid" name="gid" value="1">
 								</td>
-								<td class="text-center"><img src="images/goods.png" style="width:30px;"></td>
+								<td class="text-center"><img src="http://upload-server/upload/${goods.photo}" style="width:30px;"></td>
 								<td class="text-left">${goods.name}</td>
 								<td class="text-center"><span id="price-${status.index+1}">${goods.price}</span></td>
 								<td class="text-center">${goods.stornum}</td>
@@ -109,7 +109,7 @@
 				<div>
 					<button class="btn btn-primary" id="editBtn"><span class="glyphicon glyphicon-pencil"></span>&nbsp;修改数量</button>
 					<button class="btn btn-danger" id="rmBtn"><span class="glyphicon glyphicon-remove"></span>&nbsp;移出清单</button>
-					<a class="btn btn-success" href="<%=DISTRIBUTION_ADD_URL%>" id="createBtn"><span class="glyphicon glyphicon-file"></span>&nbsp;创建出库申请单</a>
+					<a class="btn btn-success" href="<%=DISTRIBUTION_ADD_URL%>?cuid=${customer.cuid}" id="createBtn"><span class="glyphicon glyphicon-file"></span>&nbsp;创建出库申请单</a>
 				</div>
 			</div>
 			<div class="panel-footer" style="height:100px;">
