@@ -13,7 +13,13 @@ $(function(){
 				$(dept).text(deptMap[data.member.did]);
 				$(phone).text(data.member.phone);
 				$("pre").text(data.member.note);
-				$(".row img").attr("src","http://upload-server/upload/"+data.member.photo) ;
+				// $(".row img").attr("src","http://upload-server/upload/"+data.member.photo) ;
+				photo = data.member.photo
+				if (photo == null || "" == photo){
+					photo = "nophoto.jpg"
+				}
+				$("#photo").empty();
+				$("#photo").append("<img src='http://upload-server/upload/" + photo + "' style=\"width:200px;\">");
 			});
 		}) ;
 	}) ;
@@ -57,6 +63,7 @@ $(function(){
 				title: $("#title").val(),
 				criid: $("#criid").val(),
 				note: $("#note").val(),
+
 				cuid: $("#cuid").val()
 			}, function (data) {
 				operateAlert(data,"客户联系记录追加成功！","客户联系记录追加失败！") ;

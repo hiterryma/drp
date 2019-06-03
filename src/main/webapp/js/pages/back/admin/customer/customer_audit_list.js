@@ -13,7 +13,13 @@ $(function(){
 				$(dept).text(deptMap[data.member.did]);
 				$(phone).text(data.member.phone);
 				$("pre").text(data.member.note);
-				$(".row img").attr("src","http://upload-server/upload/"+data.member.photo) ;
+				// $(".row img").attr("src","http://upload-server/upload/"+data.member.photo) ;
+				photo = data.member.photo
+				if (photo == null || "" == photo){
+					photo = "nophoto.jpg"
+				}
+				$("#photo").empty();
+				$("#photo").append("<img src='http://upload-server/upload/" + photo + "' style=\"width:200px;\">");
 			});
 		}) ;
 	}) ;
@@ -42,8 +48,7 @@ $(function(){
 			$("#customerAuditInfo").modal("toggle") ;
 			$("#auditForm [type=button]").on("click",function () {
 				$.get("pages/back/admin/customer/customer_audit.action",{audit:$("#audit").val(),note:$("#note").val(),cuid:$("#customerId").val()},function (data) {
-					console.log(data) ;
-					debugger;
+
 					window.location.reload();
 				},"json");
 			});

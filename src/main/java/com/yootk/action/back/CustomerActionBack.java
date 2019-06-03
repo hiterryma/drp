@@ -31,7 +31,8 @@ public class CustomerActionBack extends AbstractAction {
     public ModuleAndView add(Customer customer) throws Exception{
         ModuleAndView mav = new ModuleAndView(super.getForwardPage()) ;
         String msg = super.getMessge("vo.add.failure","客户") ;
-        customer.setRecorder(super.getFrontUser());
+        customer.setRecorder(super.getBackUser());
+        customer.setMid(super.getBackUser());
         if (this.customerServiceBack.add(customer)) {
             msg = super.getMessge("vo.add.success","客户") ;
         }

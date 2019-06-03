@@ -70,7 +70,7 @@ public class MemberServiceFrontImpl extends AbstractService implements IMemberSe
         if (member != null) {
 
             Integer aa = this.customerDAO.findByMid(vo.getMid());
-            System.out.println(aa);
+//            System.out.println(aa);
             this.memberDAO.update_lastTinme(vo);
             map.put("status",aa);
            map.put("flag",member.getPassword().equals(vo.getPassword()))  ;

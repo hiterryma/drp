@@ -68,9 +68,9 @@ public class PurchaseActionFront extends AbstractAction {
     public ModuleAndView add_list(){
         ModuleAndView mav = new ModuleAndView("/pages/front/center/purchase/purchase_list.jsp");
         try {
-            System.out.println(super.getFrontUser());
+//            System.out.println(super.getFrontUser());
             List<Purchase> map = this.purchaseServiceFront.getAllById(super.getFrontUser());
-            System.out.println(map);
+//            System.out.println(map);
             if (map == null){
                 mav.add(AbstractAction.PATH_ATTRIBUTE_NAME, super.getPage("list.failure"));
             }else {

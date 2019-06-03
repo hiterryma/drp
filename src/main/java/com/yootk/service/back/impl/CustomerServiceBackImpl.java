@@ -51,6 +51,7 @@ public class CustomerServiceBackImpl extends AbstractService implements ICustome
         customer.setIndate(new Date());
         customer.setStatus(1);
         customer.setType(1);
+        customer.setConnum(0);
         return this.customerDAO.doCreate(customer);
     }
 
