@@ -47,7 +47,7 @@ public class MemberActionBack extends AbstractAction {
 			if (this.memberServiceBack.add(member)) {
 				msg = super.getMessge("vo.add.success","雇员") ;
 			}
-			String path = super.getPage("add.action") ;
+			String path = super.getPage("list.action") ;
 			mav.add(AbstractAction.PATH_ATTRIBUTE_NAME, path);
 			mav.add(AbstractAction.MSG_ATTRIBUTE_NAME, msg);
 		} catch (Exception e) {

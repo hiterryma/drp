@@ -15,7 +15,7 @@ import java.util.Set;
 public class GoodsDAOImpl extends AbstractDAO implements IGoodsDAO {
     @Override
     public boolean doCreate(Goods goods) throws SQLException {
-        String sql = "insert into goods (name,wiid,stid,price,weight,photo,note,lastin,stornum,recorder,delflag) values (?,?,?,?,?,?,?,?,?,?,?)";
+        String sql = "insert into goods (name,wiid,stid,price,weight,photo,note,lastin,stornum,recorder,delflag, wid) values (?,?,?,?,?,?,?,?,?,?,?, ?)";
         super.pstmt = super.conn.prepareStatement(sql);
         super.pstmt.setString(1, goods.getName());
         super.pstmt.setLong(2, goods.getWiid());
@@ -28,6 +28,7 @@ public class GoodsDAOImpl extends AbstractDAO implements IGoodsDAO {
         super.pstmt.setInt(9, goods.getStornum());
         super.pstmt.setString(10, goods.getRecorder());
         super.pstmt.setInt(11, goods.getDelflag());
+        super.pstmt.setLong(12, goods.getWid());
         return super.pstmt.executeUpdate() > 0;
     }
 

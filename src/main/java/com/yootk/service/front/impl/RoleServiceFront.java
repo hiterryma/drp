@@ -32,6 +32,8 @@ public class RoleServiceFront extends AbstractService implements IRoleServiceFro
         Member vo = this.memberDAO.findDidByDeptAndMember(mid);
         map.put("allActions",this.actionDAO.findAllByMember(vo.getDid()));
         map.put("allRoles",this.roleDAO.findAllByMember(vo.getDid()));
+        map.put("did",vo.getDid());
+        map.put("name",vo.getName()) ;
         return map;
     }
 }

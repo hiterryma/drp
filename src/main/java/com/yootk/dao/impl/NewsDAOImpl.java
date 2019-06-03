@@ -7,6 +7,7 @@ import com.yootk.vo.News;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -22,7 +23,7 @@ public class NewsDAOImpl extends AbstractDAO implements INewsDAO {
         super.pstmt.setString(3,news.getPhoto());
         super.pstmt.setString(4,news.getNote());
         super.pstmt.setString(5,news.getMid());
-        super.pstmt.setDate(6,new java.sql.Date(new Date().getTime()));
+        super.pstmt.setTimestamp(6,new java.sql.Timestamp(new Date().getTime()));
         super.pstmt.setInt(7,news.getStatus());
         return super.pstmt.executeUpdate()>0;
     }
@@ -52,15 +53,13 @@ public class NewsDAOImpl extends AbstractDAO implements INewsDAO {
 
     @Override
     public boolean doRemove(Set<Long> longs) throws SQLException {
-        String sql = "delete news where nid = ?" ;
+        String sql = "delete from news where nid = ?" ;
         super.pstmt = super.conn.prepareStatement(sql) ;
-
         for(Long along:longs){
             super.pstmt.setLong(1,along);
             super.pstmt.addBatch();
         }
-
-        return  super.isBatchSuccess( super.pstmt.executeBatch());
+        return  super.isBatchSuccess( super.pstmt.executeBatch() );
     }
 
     @Override
