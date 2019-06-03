@@ -6,7 +6,7 @@
     <script type="text/javascript" src="js/mall_index.js"></script>
 </head>
 <%!
-    public static final String GOODS_SHOW_URL = "pages/front/goods/goods_show.jsp" ;
+    public static final String GOODS_SHOW_URL = "/pages/back/admin/goods/getGoods.action?gid=" ;
 %>
 <body>
 <div class="container contentback">
