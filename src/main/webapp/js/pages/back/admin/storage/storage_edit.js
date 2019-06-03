@@ -88,9 +88,9 @@ $(function(){
 		//2、判断省份内容是否为空
 		if (val1 !="" && val2!="" && val3!="") {
 			//3、 清除仓库已有的仓库内容
-			$("#wid option:gt(0)").remove();
+			$("#wid").empty();
 			//4、将下拉列表的第一个仓库默认选中
-			$("#wid option:eq(0)").prop("selected") ;
+
 
 
 			/**

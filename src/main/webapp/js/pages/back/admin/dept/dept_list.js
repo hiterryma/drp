@@ -22,6 +22,7 @@ $(function(){
 			mid = this.id.substr(4);
 			$.getJSON("/pages/back/admin/member/memberJson.action?mid="+mid, function(data){
 				$("#memberInfo").modal("toggle") ;
+				$("#photo").empty();
 				levelMap = data.allLevelMap ;
 				deptMap = data.allDeptMap ;
 				$("#mid").text(data.member.name);
@@ -29,7 +30,7 @@ $(function(){
 				$(dept).text(deptMap[data.member.did]);
 				$(phone).text(data.member.phone);
 				$("pre").text(data.member.note);
-				$(".row img").attr("src","http://upload-server/upload/"+data.member.photo) ;
+				$("#photo").append("<img src=\"http://upload-server/upload/"+data.member.photo+"\" style=\"width:200px;\">")
 			});
 		}) ;
 	}) ;
