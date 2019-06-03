@@ -1,5 +1,6 @@
 package com.yootk.dao.impl;
 
+import com.yootk.common.annotation.Repository;
 import com.yootk.common.dao.abs.AbstractDAO;
 import com.yootk.dao.IDistributionDAO;
 import com.yootk.vo.Distribution;
@@ -7,7 +8,7 @@ import com.yootk.vo.Distribution;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Set;
-
+@Repository
 public class DistributionDAOImpl extends AbstractDAO implements IDistributionDAO {
     @Override
     public boolean doCreate(Distribution distribution) throws SQLException {

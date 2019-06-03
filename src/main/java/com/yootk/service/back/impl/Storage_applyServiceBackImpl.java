@@ -30,6 +30,8 @@ public class Storage_applyServiceBackImpl extends AbstractService implements ISt
     private IMemberDAO memberDAO ;
     @Autowired
     private IAuditDAO auditDAO ;
+    @Autowired
+
 
     @Override
     public Map<String, Object> preAdd() throws Exception {
@@ -63,6 +65,9 @@ public class Storage_applyServiceBackImpl extends AbstractService implements ISt
             //再定义个Map，保存仓库类型数据
             Map<Long,String> witems = new HashMap<>() ;
             //循环操作本页面的每一个申请单
+            //存放商品总数的map
+            Map<Long,Integer> totalnummap = new HashMap<>() ;
+
             for (Storage_apply storage_apply : storage_applies) {
                 //根据申请单之中所选的仓库的仓库编号查询出该仓库的所有数据
                 Warehouse warehouse = this.warehouseDAO.findById(storage_apply.getWid()) ;
@@ -72,6 +77,18 @@ public class Storage_applyServiceBackImpl extends AbstractService implements ISt
                 String title = warehouse.getAddress() + "   " + warehouse.getName() ;
                 warehouses.put(storage_apply.getWid(),title) ;
                 witems.put(storage_apply.getWiid(),witem.getTitle()) ;
+
+
+                //查询该清单的所有清单详情
+                List<Storage_apply_details> allStorage_apply_details = this.storage_apply_detailsDAO.findAllBySaid(storage_apply.getSaid()) ;
+                Integer totalnum = 0 ;
+                if (allStorage_apply_details.size() != 0){
+                    for (Storage_apply_details storage_apply_details: allStorage_apply_details) {
+                        totalnum += storage_apply_details.getNum() ;
+                    }
+
+                }
+                totalnummap.put(storage_apply.getSaid(),totalnum) ;
             }
             result.put("allStorage_applies",storage_applies) ;
             result.put("allRecorders",this.storage_applyDAO.getAllCountByMember(outorin,mid)) ;
@@ -79,6 +96,8 @@ public class Storage_applyServiceBackImpl extends AbstractService implements ISt
             result.put("warehouses",warehouses) ;
             //保存仓库的类型
             result.put("witems",witems) ;
+            //保存清单商品总数的Map
+            result.put("totalnummap",totalnummap) ;
         }else {//如果有查询列
             //获取本页面的申请单信息
             List<Storage_apply> storage_applies = this.storage_applyDAO.findSplitByMember(outorin,mid,currentPage,lineSize,column,keyWord) ;
@@ -86,6 +105,9 @@ public class Storage_applyServiceBackImpl extends AbstractService implements ISt
             Map<Long,String> warehouses = new HashMap<>() ;
             //再定义个Map，保存仓库类型数据
             Map<Long,String> witems = new HashMap<>() ;
+            //存放商品总数的map
+            Map<Long,Integer> totalnummap = new HashMap<>() ;
+            Integer totalnum = 0 ;
             //循环操作本页面的每一个申请单
             for (Storage_apply storage_apply : storage_applies) {
                 //根据申请单之中所选的仓库的仓库编号查询出该仓库的所有数据
@@ -97,6 +119,17 @@ public class Storage_applyServiceBackImpl extends AbstractService implements ISt
                 warehouses.put(storage_apply.getWid(),title) ;
 
                 witems.put(storage_apply.getWiid(),witem.getTitle()) ;
+
+                //查询该清单的所有清单详情
+                List<Storage_apply_details> allStorage_apply_details = this.storage_apply_detailsDAO.findAllBySaid(storage_apply.getSaid()) ;
+
+                if (allStorage_apply_details.size() != 0){
+                    for (Storage_apply_details storage_apply_details: allStorage_apply_details) {
+                        totalnum += storage_apply_details.getNum() ;
+                    }
+
+                }
+                totalnummap.put(storage_apply.getSaid(),totalnum) ;
             }
             result.put("allStorage_applies",storage_applies) ;
             result.put("allRecorders",this.storage_applyDAO.getAllCountByMember(outorin,mid,column,keyWord)) ;
@@ -104,6 +137,8 @@ public class Storage_applyServiceBackImpl extends AbstractService implements ISt
             result.put("warehouses",warehouses) ;
             //保存仓库的类型
             result.put("witems",witems) ;
+            //保存清单商品总数的Map
+            result.put("totalnummap",totalnummap) ;
         }
 
         return result ;
