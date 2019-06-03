@@ -22,8 +22,6 @@ public class MemberServiceFrontImpl extends AbstractService implements IMemberSe
     private IActionDAO actionDAO ;
     @Autowired
     private IRoleDAO roleDAO ;
-    @Autowired
-    private ICustomerDAO customerDAO;
     @Override
     public boolean update_password(String oldpassword,String newpassword,String mid) throws Exception {
         Member vo = this.memberDAO.findByIdAndpw(mid);
@@ -68,16 +66,8 @@ public class MemberServiceFrontImpl extends AbstractService implements IMemberSe
         Member member = this.memberDAO.findById(vo.getMid());
         Map<String,Object> map = new HashMap<>() ;
         if (member != null) {
-
-            Integer aa = this.customerDAO.findByMid(vo.getMid());
-            System.out.println(aa);
-            this.memberDAO.update_lastTinme(vo);
-            map.put("status",aa);
+           this.memberDAO.update_lastTinme(vo);
            map.put("flag",member.getPassword().equals(vo.getPassword()))  ;
-           map.put("allActions",actionDAO.findAllByMember(member.getDid())) ;
-           map.put("did",member.getDid());
-           map.put("allRoles",roleDAO.findAllByMember(member.getDid()));
-           map.put("name",member.getName()) ;
         }else {
             map.put("flag",false);
         }
